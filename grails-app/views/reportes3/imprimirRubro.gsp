@@ -208,18 +208,20 @@
 
             <div style="width: 100%;margin-top: 10px;">
 
-                ${tablaHer}
-                ${tablaMano}
-                ${tablaMat}
+                %{--${tablaHer}--}%
+                <elm:poneHtml textoHtml="${tablaHer}"/>
+                <elm:poneHtml textoHtml="${tablaMano}"/>
+                <elm:poneHtml textoHtml="${tablaMat}"/>
                 <g:if test="${bandMat != 1}">
-                    ${tablaMat2}
+                    <elm:poneHtml textoHtml="${tablaMat2}"/>
                 </g:if>
-                ${tablaTrans}
+                <elm:poneHtml textoHtml="${tablaTrans}"/>
                 <g:if test="${band == 0 && bandTrans != 'no'}">
-
-                    ${tablaTrans2}
+                    <elm:poneHtml textoHtml="${tablaTrans2}"/>
+                    %{--${tablaTrans2}--}%
                 </g:if>
-                ${tablaIndi}
+                <elm:poneHtml textoHtml="${tablaIndi}"/>
+                %{--${tablaIndi}--}%
                 <table class="table table-bordered table-striped table-condensed table-hover" style="margin-top: 40px;width: 50%;float: right; border-top: 1px solid #000000;  border-bottom: 1px solid #000000">
                     <tbody>
                         <tr style="">

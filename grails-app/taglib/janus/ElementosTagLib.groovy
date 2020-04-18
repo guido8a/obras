@@ -903,5 +903,12 @@ class ElementosTagLib {
 
     }
 
+    def poneHtml = { attrs ->
+//        println "funcion: ${attrs.funcion}"
+        def html = attrs.textoHtml
+        out << html
+
+    }
+
 
 }
