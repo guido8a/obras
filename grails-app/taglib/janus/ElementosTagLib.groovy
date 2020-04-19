@@ -897,17 +897,15 @@ class ElementosTagLib {
     }
 
     def funcionOk = { attrs ->
-        println "funcion: ${attrs.funcion}"
+//        println "funcion: ${attrs.funcion}"
         def html = "\$(\".ok\").click(${attrs.funcion});"
         out << html
-
     }
 
     def poneHtml = { attrs ->
 //        println "funcion: ${attrs.funcion}"
         def html = attrs.textoHtml
         out << html
-
     }
 
 
