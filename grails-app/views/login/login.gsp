@@ -82,7 +82,8 @@
 </div>
 
 <div class="centrado"><h1 class="titl" style="font-size: 32px;">${empr.empresa}</h1>
-    <h1 class="titl" style="font-size: 24px;">${empr.nombre}</h1>
+    %{--<h1 class="titl" style="font-size: 24px;">${empr.nombre}</h1>--}%
+    <h1 class="titl" style="font-size: 24px;"><elm:poneHtml textoHtml="${empr.nombre}"/></h1>
 
     <div class="dialog ui-corner-all logo">
         <div style="text-align: center; margin-top: 40px; color: #810;">

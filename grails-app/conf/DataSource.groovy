@@ -20,7 +20,7 @@ environments {
         dataSource {
             dbCreate = "update"
 //            url = "jdbc:postgresql://192.168.100.9:5432/casa"
-            url = "jdbc:postgresql://127.0.0.1:5432/janus_brre"
+            url = "jdbc:postgresql://127.0.0.1:5432/gadlr"
 //            url = "jdbc:postgresql://192.168.100.9:5432/casa_prba"
             username = "postgres"
             password = "postgres"
@@ -29,7 +29,7 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:postgresql://127.0.0.1:5432/janus_brre"
+            url = "jdbc:postgresql://127.0.0.1:5432/gadlr"
             username = "postgres"
             password = "postgres"
         }
