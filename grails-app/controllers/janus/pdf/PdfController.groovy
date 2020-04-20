@@ -20,7 +20,10 @@ class PdfController {
                 println "sin plugin --> params url " + params.url
                 def url = baseUri + params.url
                 println "URL --> " + url
-
+                if(url.contains('186.101.52.218')) {
+                    url.replace('186.101.52.218', 'localhost')
+                    println "nuevo URL --> " + url
+                }
                 b = pdfService.buildPdf(url, baseUri)
 //                b = pdfService.buildPdf(params.url, baseUri)
             }
