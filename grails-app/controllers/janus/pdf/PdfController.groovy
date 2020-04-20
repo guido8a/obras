@@ -13,24 +13,21 @@ class PdfController {
 
             params.url = params.url.replaceAll("W", "&")
 
+
             if (params.pdfController) {
                 def content = g.include(controller: params.pdfController, action: params.pdfAction, id: params.pdfId)
                 b = pdfService.buildPdfFromString(content.readAsString(), baseUri)
             } else {
-                println "sin plugin --> params url " + params.url
                 def url = baseUri + params.url
-                println "URL --> " + url
-                if(url.contains('186.101.52.218')) {
-                    url = url.replace('186.101.52.218', 'localhost')
-                    println "nuevo URL --> " + url
-                }
-                b = pdfService.buildPdf(url, baseUri)
-//                b = pdfService.buildPdf(params.url, baseUri)
+                println "url: $url"
+                redirect(url: url)
+
+//                b = pdfService.buildPdf(url, baseUri)
             }
-            response.setContentType("application/pdf")
-            response.setHeader("Content-disposition", "attachment; filename=" + (params.filename ?: "document.pdf"))
-            response.setContentLength(b.length)
-            response.getOutputStream().write(b)
+//            response.setContentType("application/pdf")
+//            response.setHeader("Content-disposition", "attachment; filename=" + (params.filename ?: "document.pdf"))
+//            response.setContentLength(b.length)
+//            response.getOutputStream().write(b)
         }
         catch (Throwable e) {
             println "there was a problem with PDF generation 2 ${e}"

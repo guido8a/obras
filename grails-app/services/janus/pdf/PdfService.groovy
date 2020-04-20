@@ -30,7 +30,7 @@ class PdfService {
 
         FontFactory.registerDirectories();
 
-
+        String html_file = new File("/home/guido/tmp/rubro.html").toURI().toURL().toString()
 
         def pf = pathFonts + "${g.resource(dir: 'fonts/PT/PT_Sans')}/"
         def font = pf + "PT_Sans-Web-Regular.ttf"
@@ -54,7 +54,6 @@ class PdfService {
         renderer.getFontResolver().addFontDirectory(pf_narrow_bold, true);
         renderer.getFontResolver().addFont(font_narrow_bold, true);
 
-//
         ITextFontResolver fontResolver = renderer.getFontResolver();
         fontResolver.addFontDirectory(pf, true);
         fontResolver.addFont(font, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
@@ -62,32 +61,9 @@ class PdfService {
         fontResolver.addFont(font_narrow, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         fontResolver.addFontDirectory(pf_bold, true);
         fontResolver.addFont(font_bold, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-//
-//        println "FONT: " + font
 
-/*
-        ITextFontResolver fontResolver = renderer.getFontResolver();
-        fontResolver.addFontDirectory(pathFonts, true);
-
-//        println pathFonts + "arial.ttf"
-
-        fontResolver.addFont(pathFonts + "arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "arialbd.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "arialbi.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "ariali.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "ARIALN.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "ARIALNB.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "ARIALNBI.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "ARIALNI.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "ARIALUNI.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        fontResolver.addFont(pathFonts + "ariblk.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-*/
-
-
-//        println "123123123 " + url
         try {
-
-            renderer.setDocument(url)
+            renderer.setDocument(html_file)
             renderer.layout();
             renderer.createPDF(baos);
             renderer.finishPDF();
