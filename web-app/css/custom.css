@@ -184,7 +184,8 @@ fieldset.borde legend {
     position          : absolute;
     left              : 5px;
     bottom            : 5px;
-    color             : #0088CC;
+    /*color             : #0088CC;*/
+    color             : #61502b;
     border            : 0px solid red;
     /*writing-mode      : tb-rl;*/
     -webkit-transform : rotate(270deg);
@@ -244,7 +245,7 @@ fieldset.borde legend {
     left        : 30px;
     bottom      : 5px;
     width       : 1px;
-    border-left : 1px solid #0088CC;
+    border-left : 1px solid #967c44;
 
 }
 
@@ -280,7 +281,9 @@ th.desc a {
 
 .table th {
     /*background  : #49AFCD;*/
-    background  : #498FCD;
+    /*background  : #498FCD;  !* gdo azul *!*/
+    /*background  : #9c8147;  !* gdo café *!*/
+    background-image: linear-gradient(to bottom, #6a5830, #a5894b);
     font-family : "Open Sans Condensed";
     font-size   : 15px;
     font-weight : bolder;

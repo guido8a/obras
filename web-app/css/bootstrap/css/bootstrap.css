@@ -2025,12 +2025,13 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #006dcc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-color: #a5894b;   /** gdo café cambia; color de dialogos */
+  /*background-image: -moz-linear-gradient(top, #0088cc, #0044cc);*/
+  /*background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));*/
+  /*background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);*/
+  /*background-image: -o-linear-gradient(top, #0088cc, #0044cc);*/
+  /*background-image: linear-gradient(to bottom, #0088cc, #0044cc);*/
+  background-image: linear-gradient(to bottom, #a5894b, #6a5830);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
   border-color: #0044cc #0044cc #002a80;
@@ -2046,8 +2047,10 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #0044cc;
-  *background-color: #003bb3;
+  /*background-color: #0044cc;*/
+  /**background-color: #003bb3;*/
+  background-color: #6a5830;   /** gdo café **/
+  *background-color: #9b8147;  /** gdo café **/
 }
 .btn-primary:active,
 .btn-primary.active {
@@ -2149,12 +2152,13 @@ input[type="button"].btn-block {
 .btn-info {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #49afcd;
-  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
-  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
-  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
-  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-color: #d1ae5f;
+  /*background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);*/
+  /*background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));*/
+  /*background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);*/
+  /*background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);*/
+  /*background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);*/
+  background-image: linear-gradient(to bottom, #d1ae5f, #61502b);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
   border-color: #2f96b4 #2f96b4 #1f6377;
