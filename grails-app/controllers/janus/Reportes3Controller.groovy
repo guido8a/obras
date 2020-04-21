@@ -1098,7 +1098,7 @@ class Reportes3Controller {
     //VAE
 
     def imprimirRubroVae() {
-//        println "imprimir rubro "+params
+        println "imprimir rubro "+params
 
         def rubro = Item.get(params.id)
 
