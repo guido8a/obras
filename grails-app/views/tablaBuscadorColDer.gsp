@@ -16,7 +16,7 @@
                         <tr style="font-size: 10px !important;">
 
                             <g:each in="${listaCampos}" var="nombre" status="j">
-                                <g:set var="propiedades" value="${propiedades += " prop_" + nombre + "='" + reg.properties[nombre] + "'"}"></g:set>
+                                <g:set var="propiedades" value="${propiedades += " prop_" + nombre + "=" + reg.properties[nombre] + ""}"></g:set>
                                 <g:if test="${funciones}">
                                     <g:if test="${funciones[j]}">
                                         <g:set var="prop" value="${bsc.operacion(propiedad: nombre, funcion: funciones[j], registro: reg)}"></g:set>

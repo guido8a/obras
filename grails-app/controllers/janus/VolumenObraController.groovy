@@ -110,6 +110,10 @@ class VolumenObraController extends janus.seguridad.Shield {
 //        def rubro2 = Item.get(params.rubro)
 //        def rubro = Item.get(params.id)
         def rubro = Item.findByCodigoIlike(params.cod)
+
+//        println("rubro ")
+
+
         def sbpr = SubPresupuesto.get(params.sub)
         def volumen
         def msg = ""
@@ -120,7 +124,7 @@ class VolumenObraController extends janus.seguridad.Shield {
 
             volumen = new VolumenesObra()
 //            def v=VolumenesObra.findByItemAndObra(rubro,obra)
-            def v = VolumenesObra.findAll("from VolumenesObra where obra=${obra.id} and item=${rubro.id} and subPresupuesto=${sbpr.id}")
+            def v = VolumenesObra.findAll("from VolumenesObra where obra=${obra?.id} and item=${rubro?.id} and subPresupuesto=${sbpr?.id}")
 //            println "v "+v
             if (v.size() > 0) {
                 v = v.pop()
