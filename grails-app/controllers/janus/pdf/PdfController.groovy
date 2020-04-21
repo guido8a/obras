@@ -19,7 +19,7 @@ class PdfController {
                 b = pdfService.buildPdfFromString(content.readAsString(), baseUri)
             } else {
                 def url = baseUri + params.url
-                println "url: $url"
+//                println "url: $url"
                 redirect(url: url)
 
 //                b = pdfService.buildPdf(url, baseUri)
