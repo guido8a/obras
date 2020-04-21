@@ -241,7 +241,7 @@ class PlanillaController extends janus.seguridad.Shield {
             def str12 = obra?.descripcion.trim()
             def edit13 = ", ubicada en la Parroquia "
             def str13 = obra?.parroquia?.nombre.trim() + ", cantón " + obra?.parroquia?.canton?.nombre.trim()
-            def edit14 = ", de la Provincia de Pichincha, por un valor de US\$ "
+            def edit14 = ", de la Provincia de Los Ríos, por un valor de US\$ "
             def str14 = g.formatNumber(number: contrato?.monto, format: "##,##0", locale: "ec", maxFractionDigits: 2, minFractionDigits: 2)
             def edit15 = " sin incluir IVA, consta de la cláusula octava, numeral 8.01, que señala que el plazo total " +
                     "que el contratista tiene para ejecutar, terminar y entregar a entera satisfacción es de "

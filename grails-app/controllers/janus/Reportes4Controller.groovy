@@ -136,7 +136,7 @@ class Reportes4Controller extends Shield {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1)
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", titleFont2));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", titleFont2));
         addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, titleFont));
         addEmptyLine(headersTitulo, 1);
@@ -919,7 +919,7 @@ class Reportes4Controller extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         addEmptyLine(headers, 1);
         headers.add(new Paragraph("REPORTE DE OBRAS INGRESADAS", times12bold));
         addEmptyLine(headers, 1);
@@ -1044,7 +1044,7 @@ class Reportes4Controller extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         addEmptyLine(headers, 1);
         headers.add(new Paragraph("REPORTE DE OBRAS PRESUPUESTADAS", times12bold));
         addEmptyLine(headers, 1);
@@ -1142,7 +1142,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL OBRAS INGRESADAS", times16format); sheet.addCell(label);
 
         label = new Label(0, 4, "Código: ", times16format); sheet.addCell(label);
@@ -1232,7 +1232,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL OBRAS PRESUPUESTADAS", times16format); sheet.addCell(label);
 
 
@@ -1389,7 +1389,7 @@ class Reportes4Controller extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         addEmptyLine(headers, 1);
         headers.add(new Paragraph("REPORTE DE OBRAS CONTRATADAS", times12bold));
         addEmptyLine(headers, 1);
@@ -1494,7 +1494,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL OBRAS CONTRATADAS", times16format); sheet.addCell(label);
 
         label = new Label(0, 4, "Código: ", times16format); sheet.addCell(label);
@@ -1701,7 +1701,7 @@ class Reportes4Controller extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         addEmptyLine(headers, 1);
         headers.add(new Paragraph("REPORTE DE ASEGURADORAS", times12bold));
         addEmptyLine(headers, 1);
@@ -1882,7 +1882,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL ASEGURADORAS", times16format); sheet.addCell(label);
 
 
@@ -2091,7 +2091,7 @@ class Reportes4Controller extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         addEmptyLine(headers, 1);
         headers.add(new Paragraph("REPORTE DE CONTRATISTAS", times12bold));
         addEmptyLine(headers, 1);
@@ -2297,7 +2297,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL CONTRATISTAS", times16format); sheet.addCell(label);
 
         label = new Label(0, 4, "Nombre: ", times16format); sheet.addCell(label);
@@ -2607,7 +2607,7 @@ class Reportes4Controller extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         addEmptyLine(headers, 1);
         headers.add(new Paragraph("REPORTE DE CONTRATOS", times12bold));
         addEmptyLine(headers, 1);
@@ -2896,7 +2896,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL CONTRATOS", times16format); sheet.addCell(label);
 
 
@@ -3190,7 +3190,7 @@ class Reportes4Controller extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         addEmptyLine(headers, 1);
         headers.add(new Paragraph("REPORTE DE GARANTÍAS", times12bold));
         addEmptyLine(headers, 1);
@@ -3456,7 +3456,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL REGISTRADAS", times16format); sheet.addCell(label);
 
         label = new Label(0, 4, "N° Contrato: ", times16format); sheet.addCell(label);
@@ -3713,7 +3713,7 @@ class Reportes4Controller extends Shield {
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL ITEMS VAE", times16format); sheet.addCell(label);
 
         label = new Label(0, 4, "Código: ", times16format); sheet.addCell(label);

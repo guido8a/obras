@@ -123,7 +123,7 @@
 
             <div class="tituloPdf">
                 <p>
-                    <b>SEP - G.A.D. PROVINCIA DE PICHINCHA</b>
+                    <b>G.A.D. LOS RÍOS</b>
                 </p>
 
                 <p>

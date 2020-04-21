@@ -146,7 +146,7 @@
 <div class="tituloPdf">
 
     <p style="font-size: 18px">
-        <b>SEP - G.A.D. PROVINCIA DE PICHINCHA</b>
+        <b>G.A.D. LOS RÍOS</b>
     </p>
 
     %{--<p style="font-size: 14px">--}%
@@ -436,7 +436,7 @@
 
 <script type="text/javascript">
 
-    console.log(${valores.rbrocdgo});
+    %{--console.log(${valores.rbrocdgo});--}%
 
     //        cadena = 'pedro@hotmail.com';
     //        cadena = cadena.split('@');

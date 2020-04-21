@@ -472,7 +472,7 @@ class ReportePlanillas3Controller {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 1);
             preface.setAlignment(Element.ALIGN_CENTER);
-            preface.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", fontTituloGad));
+            preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
             preface.add(new Paragraph("PLANILLA DE ${planilla.tipoPlanilla.nombre.toUpperCase()} DE LA OBRA " + obra.nombre, fontTituloGad));
             addEmptyLine(preface, params.espacio);
             Paragraph preface2 = new Paragraph();
@@ -4379,7 +4379,7 @@ class ReportePlanillas3Controller {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", fontTituloGad));
+        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
         preface.add(new Paragraph("PLANILLA DE ${planilla.tipoPlanilla.nombre.toUpperCase()} DE LA OBRA " + obra.nombre, fontTituloGad));
         addEmptyLine(preface, espacio);
 

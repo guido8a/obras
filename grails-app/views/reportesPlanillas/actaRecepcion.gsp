@@ -286,7 +286,7 @@
             </div>
 
             <div class="titulo bold tac">
-                GOBIERNO DE LA PROVINCIA DE PICHINCHA
+                G.A.D. LOS RÍOS
             </div>
 
             <div class="titulo bold tac upper">

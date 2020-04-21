@@ -137,7 +137,7 @@ class ReportesController {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1)
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", titleFont2));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", titleFont2));
         addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, titleFont));
         addEmptyLine(headersTitulo, 1);
@@ -454,7 +454,7 @@ class ReportesController {
             Paragraph headers = new Paragraph();
             addEmptyLine(headers, 1);
             headers.setAlignment(Element.ALIGN_CENTER);
-            headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+            headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
             addEmptyLine(headers, 1);
             headers.add(new Paragraph("" + params.titulo, times12bold));
             addEmptyLine(headers, 1);
@@ -514,7 +514,7 @@ class ReportesController {
             addEmptyLine(preface, 1);
 
 
-            preface.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", catFont));
+            preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont));
             addEmptyLine(preface, 1);
             preface.add(new Paragraph("REPORTE DE OBRAS REGISTRADAS", catFont));
             addEmptyLine(preface, 1);
@@ -609,7 +609,7 @@ class ReportesController {
         sheet.setColumnView(11, 5)
         sheet.setColumnView(12, 5)
 
-        def label = new Label(0, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA".toUpperCase(), times16format); sheet.addCell(label);
+        def label = new Label(0, 1, "G.A.D. LOS RÍOS".toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 2, "Departamento de compras públicas".toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 3, "Plan anual de compras".toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 4, "Departamento: ${dep}".toUpperCase(), times16format); sheet.addCell(label);
@@ -809,7 +809,7 @@ class ReportesController {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times14bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
         headers.add(new Paragraph(" ", times14bold));
         headers.add(new Paragraph("REPORTE GRUPOS Y SUBGRUPOS", times12bold));
         headers.add(new Paragraph("OBRA: " + obra?.nombre, times12bold));
@@ -900,7 +900,7 @@ class ReportesController {
         sheet.setColumnView(5, 15)
         sheet.setColumnView(6, 15)
 
-        def label = new Label(0, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA".toUpperCase(), times16format); sheet.addCell(label);
+        def label = new Label(0, 1, "G.A.D. LOS RÍOS".toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 2, "DGCP - COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS".toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 3, "Análisis de precios unitarios".toUpperCase(), times16format); sheet.addCell(label);
 
@@ -1144,7 +1144,7 @@ class ReportesController {
             header =
                     "  <div class=\"tituloPdf\" >\n" +
                             "                <p style=\"font-size: 18px\">\n" +
-                            "                    <b>SEP - G.A.D. PROVINCIA DE PICHINCHA</b>\n" +
+                            "                    <b>G.A.D. LOS RÍOS</b>\n" +
                             "                </p>\n" +
                             "\n" +
                             "                <p style=\"font-size: 14px\">\n" +
@@ -1846,7 +1846,7 @@ class ReportesController {
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
 
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA"))
+        headers.add(new Paragraph("G.A.D. LOS RÍOS"))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("TRÁMITES EN PROCESO"))
         headers.add(new Paragraph(" "))
@@ -1964,7 +1964,7 @@ class ReportesController {
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
 
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA"))
+        headers.add(new Paragraph("G.A.D. LOS RÍOS"))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("TRÁMITES POR OBRA"))
         headers.add(new Paragraph(" "))
@@ -5608,7 +5608,7 @@ class ReportesController {
 
 
 
-        label = new Label(2, 2, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(2, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(2, 4, "DGCP - COORDINACIÓN DE FIJACIÓN DE PRECIOS", times16format); sheet.addCell(label);
         label = new Label(2, 6, "PRESUPUESTO", times16format); sheet.addCell(label);
         label = new Label(2, 8, "FECHA: " + obra?.fechaCreacionObra.format("dd-MM-yyyy"), times16format);
@@ -5931,7 +5931,7 @@ class ReportesController {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         headersTitulo.add(new Paragraph("COMPOSICIÓN", times14bold));
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
         headersTitulo.add(new Paragraph("", times12bold));
@@ -6278,7 +6278,7 @@ class ReportesController {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         headersTitulo.add(new Paragraph("COMPOSICIÓN", times14bold));
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
         headersTitulo.add(new Paragraph("", times12bold));
@@ -6495,7 +6495,7 @@ class ReportesController {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         headersTitulo.add(new Paragraph("COMPOSICIÓN", times14bold));
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
         headersTitulo.add(new Paragraph("", times12bold));
@@ -6723,7 +6723,7 @@ class ReportesController {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         headersTitulo.add(new Paragraph("COMPOSICIÓN", times14bold));
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
         headersTitulo.add(new Paragraph("", times12bold));
@@ -6894,7 +6894,7 @@ class ReportesController {
         sheet.setColumnView(11, 15)
         sheet.setColumnView(12, 15)  // el resto por defecto..
 
-        def label = new Label(2, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA".toUpperCase(), times10format); sheet.addCell(label);
+        def label = new Label(2, 1, "G.A.D. LOS RÍOS".toUpperCase(), times10format); sheet.addCell(label);
 
         label = new Label(2, 2, "${obra?.departamento?.direccion?.nombre}", times10format); sheet.addCell(label);
         label = new Label(2, 3, "Matriz de la Fórmula Polinómica", times10format); sheet.addCell(label);
@@ -7078,7 +7078,7 @@ class ReportesController {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold));
         headers.add(new Paragraph("CONTROL DE AVANCE DE CONCURSO", times12bold));
         headers.add(new Paragraph("OBRA: " + concurso?.obra?.nombre, times10bold));
         headers.add(new Paragraph("FECHA: " + printFecha(new Date()), times10bold));

@@ -55,7 +55,8 @@ class ReportesPlanillasAdminController {
         def pdfw = PdfWriter.getInstance(document, baos);
 
         // headers and footers must be added before the document is opened
-        HeaderFooter footer1 = new HeaderFooter(new Phrase("Manuel Larrea N. 13-45 y Antonio Ante / Teléfonos troncal: (593-2)252 7077 - 254 9222 - 254 9020 - 254 9163 / www.pichincha.gob.ec", fontFooter), false);
+//        HeaderFooter footer1 = new HeaderFooter(new Phrase("Manuel Larrea N. 13-45 y Antonio Ante / Teléfonos troncal: (593-2)252 7077 - 254 9222 - 254 9020 - 254 9163 / www.pichincha.gob.ec", fontFooter), false);
+        HeaderFooter footer1 = new HeaderFooter(new Phrase("Dirección Calle N. 123 / Teléfonos troncal: 0000 0000 - 000 000 / www.prueba.gob.ec", fontFooter), false);
         // true aqui pone numero de pagina
         footer1.setBorder(Rectangle.NO_BORDER);
         footer1.setBorder(Rectangle.TOP);
@@ -357,7 +358,7 @@ class ReportesPlanillasAdminController {
         def pdfw = PdfWriter.getInstance(document, baos);
 
         // headers and footers must be added before the document is opened
-        HeaderFooter footer1 = new HeaderFooter(new Phrase("Manuel Larrea N. 13-45 y Antonio Ante / Teléfonos troncal: (593-2)252 7077 - 254 9222 - 254 9020 - 254 9163 / www.pichincha.gob.ec", fontFooter), false);
+        HeaderFooter footer1 = new HeaderFooter(new Phrase("Dirección Calle N. 123 / Teléfonos troncal: 0000 0000 - 000 000 / www.prueba.gob.ec", fontFooter), false);
         // true aqui pone numero de pagina
         footer1.setBorder(Rectangle.NO_BORDER);
         footer1.setBorder(Rectangle.TOP);
@@ -375,7 +376,7 @@ class ReportesPlanillasAdminController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", fontTituloGad));
+        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
         preface.add(new Paragraph("Planilla de materiales de " + obra.nombre, fontTituloGad));
         addEmptyLine(preface, 1);
 //        Paragraph preface2 = new Paragraph();

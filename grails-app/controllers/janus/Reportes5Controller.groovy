@@ -275,7 +275,7 @@ class Reportes5Controller extends Shield{
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1)
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", titleFont2));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", titleFont2));
         addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph("REPORTE DE AVANCE DE OBRAS", titleFont));
         headersTitulo.add(new Paragraph("Quito, " + fechaConFormato(new Date(), "dd MMMM yyyy").toUpperCase(), titleFont3));
@@ -404,7 +404,7 @@ class Reportes5Controller extends Shield{
         NumberFormat nf = new NumberFormat("#.##");
         WritableCellFormat cf2obj = new WritableCellFormat(nf);
 
-        label = new Label(1, 1, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 1, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(1, 2, "REPORTE EXCEL AVANCE DE OBRAS", times16format); sheet.addCell(label);
 
         label = new Label(0, 4, "Código: ", times16format); sheet.addCell(label);
@@ -764,7 +764,7 @@ class Reportes5Controller extends Shield{
 
         def ultimaFila
 
-        label = new Label(1, 2, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(1, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
 
         label = new Label(1, 4, "FÓRMULA POLINÓMICA", times16format); sheet.addCell(label);
 
@@ -1022,7 +1022,7 @@ class Reportes5Controller extends Shield{
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1)
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", titleFont2));
+        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", titleFont2));
         addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph("COEFICIENTES DE LA FÓRMULA POLINÓMICA DE LA OBRA ${obra.nombre}", titleFont));
 //        headersTitulo.add(new Paragraph("Quito, " + fechaConFormato(new Date(), "dd MMMM yyyy").toUpperCase(), titleFont3));
@@ -1185,7 +1185,7 @@ class Reportes5Controller extends Shield{
 
 
         //cabecera
-        label = new Label(2, 2, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(2, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(2, 4, "DGCP - COORDINACIÓN DE FIJACIÓN DE PRECIOS", times16format); sheet.addCell(label);
         label = new Label(2, 6, "PRESUPUESTO", times16format); sheet.addCell(label);
         label = new Label(2, 8, "REQUIRENTE: " + obra?.departamento?.direccion?.nombre, times16format); sheet.addCell(label);
@@ -1354,7 +1354,7 @@ class Reportes5Controller extends Shield{
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", catFont3));
+        preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont3));
         preface.add(new Paragraph("CRONOGRAMA", catFont2));
         preface.add(new Paragraph("DGCP - COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS", catFont2));
         addEmptyLine(preface, 1);
@@ -1662,7 +1662,7 @@ class Reportes5Controller extends Shield{
 
 
         //cabecera
-        label = new Label(2, 2, "SEP - G.A.D. PROVINCIA DE PICHINCHA", times16format); sheet.addCell(label);
+        label = new Label(2, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
         label = new Label(2, 4, "FISCALIZACIÓN", times16format); sheet.addCell(label);
         label = new Label(2, 6, "CONTRATOS", times16format); sheet.addCell(label);
 

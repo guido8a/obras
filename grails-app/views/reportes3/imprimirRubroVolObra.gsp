@@ -134,7 +134,7 @@
 
     <div class="tituloPdf tituloHeader">
         <p style="font-size: 18px">
-            <b>SEP - G.A.D. PROVINCIA DE PICHINCHA</b>
+            <b>G.A.D. LOS RÍOS</b>
         </p>
 
         <p style="font-size: 14px">
