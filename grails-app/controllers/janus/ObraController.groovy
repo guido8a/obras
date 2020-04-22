@@ -1390,10 +1390,10 @@ class ObraController extends janus.seguridad.Shield {
 
         if (params.id) {
             flash.clase = "alert-success"
-            flash.message = "Se ha actualizado correctamente Obra "
+            flash.message = "Obra actualizada correctamente"
         } else {
             flash.clase = "alert-success"
-            flash.message = "Se ha creado correctamente Obra "
+            flash.message = "Obra creada correctamente"
         }
         redirect(action: 'registroObra', params: [obra: obraInstance.id])
     } //save
@@ -1540,7 +1540,7 @@ class ObraController extends janus.seguridad.Shield {
         try {
             obraInstance.delete(flush: true)
             flash.clase = "alert-success"
-            flash.message = "Se ha eliminado correctamente Obra " + obraInstance.nombre
+            flash.message = "Se ha eliminado correctamente la obra:  " + obraInstance.nombre
             render("ok")
         }
         catch (DataIntegrityViolationException e) {

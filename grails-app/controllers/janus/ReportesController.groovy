@@ -6027,7 +6027,7 @@ class ReportesController {
         }
 
         addCellTabla(tablaTotales, new Paragraph("Total Materiales", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotales, new Paragraph(g.formatNumber(number: valorTotal, minFractionDigits:
+        addCellTabla(tablaTotales, new Paragraph(g.formatNumber(number: valorTotal ?: 0, minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
         addCellTabla(tablaTotales, new Paragraph(" ", times10bold), prmsNum)
@@ -6073,7 +6073,7 @@ class ReportesController {
         }
 
         addCellTabla(tablaTotalesMano, new Paragraph("Total Mano de Obra:", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotalesMano, new Paragraph(g.formatNumber(number: valorTotalMano, minFractionDigits:
+        addCellTabla(tablaTotalesMano, new Paragraph(g.formatNumber(number: valorTotalMano ?: 0, minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
         addCellTabla(tablaTotalesMano, new Paragraph(" ", times10bold), prmsNum)
@@ -6123,7 +6123,7 @@ class ReportesController {
         }
 
         addCellTabla(tablaTotalesEquipos, new Paragraph("Total Equipos:", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotalesEquipos, new Paragraph(g.formatNumber(number: valorTotalEquipos, minFractionDigits:
+        addCellTabla(tablaTotalesEquipos, new Paragraph(g.formatNumber(number: valorTotalEquipos ?: 0, minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
 //
@@ -6133,11 +6133,11 @@ class ReportesController {
 
 //        addCellTabla(tablaTotalGeneral, new Paragraph("Total General:", times10bold), prmsCellDerecha)
         addCellTabla(tablaTotalGeneral, new Paragraph("Total Directo:", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: (valorTotal + valorTotalMano + valorTotalEquipos), minFractionDigits:
+        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: ((valorTotal ?: 0) + (valorTotalMano ?: 0) + (valorTotalEquipos ?: 0)), minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
         addCellTabla(tablaTotalGeneral, new Paragraph("Total Indirecto:", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: (obra?.valor ? obra?.valor - (valorTotal + valorTotalMano + valorTotalEquipos) : 0), minFractionDigits:
+        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: (obra?.valor ? obra?.valor - ((valorTotal ?: 0) + (valorTotalMano ?: 0) + (valorTotalEquipos ?: 0)) : 0), minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
         addCellTabla(tablaTotalGeneral, new Paragraph("Total:", times10bold), prmsCellDerecha)

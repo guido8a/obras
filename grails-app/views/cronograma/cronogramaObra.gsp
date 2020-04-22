@@ -284,10 +284,11 @@
     </g:else>
 </g:if>
 <g:else>
-    <div class="alert alert-error">
+    <div class="alert alert-error" style="font-size: 14px">
+        <i class="icon-warning-sign icon-2x pull-left"></i>
         <p>No se ha generado la matriz de la fórmula polinómica.</p>
         <i class="icon-warning-sign icon-2x pull-left"></i>
-        <p>Si la obra se halla <strong>registrada</strong>, Por favor vuelva a generar la matriz de la FP para visualizar el cronograma
+        <p>Si la obra se encuentra <strong>registrada</strong>, Por favor vuelva a generar la matriz de la FP para visualizar el cronograma
         </p>
     </div>
 </g:else>

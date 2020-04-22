@@ -3,6 +3,8 @@ package janus.pac
 import janus.Obra
 import org.springframework.dao.DataIntegrityViolationException
 
+import javax.swing.text.html.HTML
+
 class DocumentoObraController extends janus.seguridad.Shield {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -47,7 +49,7 @@ class DocumentoObraController extends janus.seguridad.Shield {
         def justificativo = documentos.findAll { it.nombre.toLowerCase().contains("justificativo") }
         def error = ""
         if (plano.size() == 0)
-            error = "<li>No se ha registrado el documento 'Plano' en la biblioteca de la obra.</li>"
+            error = "<li>" + 'No se ha registrado el documento Plano en la biblioteca de la obra.' + "</li>"
         if (justificativo.size() == 0)
             error += "<li>No se ha registrado el documento 'Justificativo de cantidad de obra' en la biblioteca de la obra.</li>"
 

@@ -429,7 +429,7 @@
                 <legend>Cabecera</legend>
 
                 <div class="span6">
-                    <div class="span1">Memo N°</div>
+                    <div class="span2">Memo Salida N°</div>
 
                     <div class="span3"><g:textField name="numeroMemo" value="${obra?.memoSalida}" disabled="true"/></div>
                 </div>
@@ -457,7 +457,7 @@
                 </div>
 
                 <div class="span7">
-                    <div class="span1">Valor de la Base:</div>
+                    <div class="span2">Valor de la Base:</div>
 
                     <div class="span2">
                         <g:textField name="baseMemo" style="width: 100px" disabled="true" value="${totalPresupuestoBien}"/>

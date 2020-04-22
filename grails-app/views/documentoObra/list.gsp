@@ -1,5 +1,5 @@
-<%@ page import="janus.pac.DocumentoProceso" %>
-<!doctype html>
+<%@ page import="janus.pac.DocumentoProceso" contentType="text/html;charset=UTF-8" %>
+%{--<!doctype html>--}%
 <html>
 <head>
     <meta name="layout" content="main">
@@ -21,7 +21,7 @@
         <div class="span12">
             <div class="alert ${flash.clase ?: 'alert-info'}" role="status">
                 <a class="close" data-dismiss="alert" href="#">×</a>
-                ${flash.message}
+                    ${flash.message}
             </div>
         </div>
     </div>
