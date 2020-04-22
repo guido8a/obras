@@ -7,8 +7,8 @@
     overflow-y : auto;
     height     : 720px;
     width      : 500px;
-    background : #CEE2E8;
-    border     : solid 2px #6AA8BA;
+    background : #e8e8e4;
+    border     : solid 2px #61502b;
 }
 
 #info {
@@ -17,6 +17,6 @@
     height       : 690px;
     /*border-color : #DC6816;*/
     border-color : #444444;
-    background   : #e0e8f0;   /*gdo*/
+    background   : #efefe8;   /*gdo*/
     padding      : 15px;
 }

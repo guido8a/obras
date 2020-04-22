@@ -18,6 +18,7 @@
         </g:if>
         <g:else>
             <link href="${resource(dir: 'css', file: 'tree.css')}" rel="stylesheet"/>
+            <link href="${resource(dir: 'js/jquery/plugins/jstree/themes/default', file: 'style.css')}" rel="stylesheet"/>
         </g:else>
 
 

@@ -145,9 +145,11 @@
                 <div class="control-group">
 
                     <a href="#" class="btn btn-primary" id="btnLogin">Continuar</a>
+%{--
                     <a href="#" id="btnOlvidoPass" style="color: #223;margin-left: 70px;text-decoration: none;font-family: 'Open Sans Condensed', serif;font-weight: bold">
                         ¿Olvidó su contraseña?
                     </a>
+--}%
                 </div>
             </fieldset>
         </g:form>

@@ -808,7 +808,7 @@ a.badge:hover {
 .label-inverse,
 .badge-inverse {
   /*background-color: #073E6F;      gdo*/
-  background-color: #145588;     /* gdo */
+  background-color: #61502b;     /* gdo */
 }
 .label-inverse[href],
 .badge-inverse[href] {
@@ -2064,7 +2064,7 @@ input[type="button"].btn-block {
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
   background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
   background-image: -o-linear-gradient(top, #fbb450, #f89406);
-  background-image: linear-gradient(to bottom, #fbb450, #f89406);
+  background-image: linear-gradient(to bottom, #d88006, #f89406);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', endColorstr='#fff89406', GradientType=0);
   border-color: #f89406 #f89406 #ad6704;
