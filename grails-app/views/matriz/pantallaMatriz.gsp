@@ -504,7 +504,11 @@
                                 closeOnEscape : false,
                                 buttons       : {
                                     "Continuar" : function () {
-                                        fp(url);
+                                        if(${params.sbpr}){
+                                            fp(url);
+                                        }else{
+                                            alert("No existen valores ingresados!")
+                                        }
                                     },
                                     "Cancelar"  : function () {
                                     }

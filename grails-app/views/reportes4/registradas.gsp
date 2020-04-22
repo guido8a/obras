@@ -1,4 +1,5 @@
 <%@ page import="janus.Grupo" %>
+
 <!doctype html>
 <html>
 <head>
@@ -36,18 +37,15 @@
             Regresar
         </a>
     </div>
-
 </div>
 
 <script type="text/javascript">
-
-
     function loading(div) {
         y = 0;
-        $("#" + div).html("<div class='tituloChevere' id='loading'>Sistema Janus - Cargando, Espere por favor</div>")
+        $("#" + div).html("<div class='tituloChevere' id='loading'>Sistema Janus - Cargando, Espere por favor</div>");
         var interval = setInterval(function () {
             if (y == 30) {
-                $("#detalle").html("<div class='tituloChevere' id='loading'>Cargando, Espere por favor</div>")
+                $("#detalle").html("<div class='tituloChevere' id='loading'>Cargando, Espere por favor</div>");
                 y = 0
             }
             $("#loading").append(".");
@@ -58,7 +56,6 @@
     function cargarTabla() {
         var interval = loading("detalle")
         var datos = ""
-        %{--datos = "si=${"si"}&buscador=" + $("#buscador_con").val() + "&criterio=" + $("#criterio_con").val() + "&operador=" + $("#oprd").val()--}%
         datos = "si=${"si"}&buscador=" + $("#buscador_reg1").val() + "&estado=" + $("#estado_reg1").val()
         $.ajax({type : "POST", url : "${g.createLink(controller: 'reportes4',action:'tablaRegistradas')}",
             data     : datos,
@@ -69,13 +66,9 @@
         });
     }
 
-
     $(function () {
         cargarTabla();
     });
-
-
-
 </script>
 </body>
 </html>

@@ -8,6 +8,8 @@
 
     <script type="text/javascript" src="${resource(dir: 'js', file: 'tableHandlerBody.js')}"></script>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'tableHandler.css')}"/>
+    <script src="${resource(dir: 'js/jquery/plugins/box/js', file: 'jquery.luz.box.js')}"></script>
+    <link href="${resource(dir: 'js/jquery/plugins/box/css', file: 'jquery.luz.box.css')}" rel="stylesheet">
 
     <title>Valores del VAE</title>
 
@@ -17,10 +19,7 @@
         background: url(${resource(dir:'images', file:'edit.gif')}) right no-repeat;
         padding-right: 18px !important;
     }
-
-
     </style>
-
 </head>
 
 <body>
@@ -44,7 +43,6 @@
                 Regresar
             </a>
         </div>
-
 
         <div class="btn-group" data-toggle="buttons-radio">
             <g:link action="composicionVae" id="${obra?.id}" params="[tipo: -1]"
@@ -210,7 +208,7 @@
                     <td class="numero">
                         <g:if test="${totalEquipo > 0}">
                             <g:formatNumber number="${sumaVaeEq / totalEquipo * 100}" minFractionDigits="2"
-                                                       maxFractionDigits="2" format="##,##0" locale="ec"/>%
+                                            maxFractionDigits="2" format="##,##0" locale="ec"/>%
 
                         </g:if>
                     </td>
@@ -220,10 +218,10 @@
                     <td class="numero"><g:formatNumber number="${totalMano}" minFractionDigits="2" maxFractionDigits="2"
                                                        format="##,##0" locale="ec"/></td>
                     <td class="numero">
-                    <g:if test="${totalMano > 0}">
-                        <g:formatNumber number="${sumaVaeMo / totalMano * 100}" minFractionDigits="2"
-                                                       maxFractionDigits="2" format="##,##0" locale="ec"/>%
-                    </g:if>
+                        <g:if test="${totalMano > 0}">
+                            <g:formatNumber number="${sumaVaeMo / totalMano * 100}" minFractionDigits="2"
+                                            maxFractionDigits="2" format="##,##0" locale="ec"/>%
+                        </g:if>
                     </td>
                 </tr>
                 <tr>
@@ -232,8 +230,8 @@
                                                        maxFractionDigits="2" format="##,##0" locale="ec"/></td>
                     <td class="numero">
                         <g:if test="${totalMaterial > 0}">
-                             <g:formatNumber number="${sumaVaeMt / totalMaterial * 100}" minFractionDigits="2"
-                                                       maxFractionDigits="2" format="##,##0" locale="ec"/>%
+                            <g:formatNumber number="${sumaVaeMt / totalMaterial * 100}" minFractionDigits="2"
+                                            maxFractionDigits="2" format="##,##0" locale="ec"/>%
                         </g:if>
                     </td>
                 </tr>
@@ -246,8 +244,8 @@
                     <td class="numero">
                         <g:if test="${totalEquipo > 0 && totalMano > 0 && totalMaterial > 0}">
                             <g:formatNumber
-                            number="${(sumaVaeEq / totalEquipo + sumaVaeMo / totalMano + sumaVaeMt / totalMaterial) / 3 * 100}"
-                            minFractionDigits="2" maxFractionDigits="2" format="##,##0" locale="ec"/>%
+                                    number="${(sumaVaeEq / totalEquipo + sumaVaeMo / totalMano + sumaVaeMt / totalMaterial) / 3 * 100}"
+                                    minFractionDigits="2" maxFractionDigits="2" format="##,##0" locale="ec"/>%
                         </g:if>
                     </td>
 
@@ -289,11 +287,11 @@
             }
         });
 
-         $(".btn, .sp").click(function () {
+        $(".btn, .sp").click(function () {
             if ($(this).hasClass("active")) {
                 return false;
             }
-         });
+        });
 
 
         function stopEditing() {
@@ -336,50 +334,73 @@
         });
 
         $(".btn-actualizar").click(function () {
-            $("#dlgLoad").dialog("open");
-            var data = "";
 
-            $(".editable").each(function () {
-                var id = $(this).data("id");
-                var valor = $(this).html().trim();
-                var data1 = $(this).data("original");
+            var data = "";
+            var existe = 0
+
+            $(".editando").each(function () {
+                existe = 1
+            });
+
+            if(existe == 0){
+                $("#dlgLoad").dialog("open");
+                $(".editable").each(function () {
+                    var id = $(this).data("id");
+                    var valor = $(this).html().trim();
+                    var data1 = $(this).data("original");
 //                console.log('valores' + id, "valor:" + $(this).html().trim(), "original: " + data1);
 
-                if ((parseFloat(data1) != parseFloat(valor))) {
-                    if (data != "") {
-                        data += "&";
-                    }
-                    var val = valor ? valor : data1;
-                    data += "item=" + id + "_" + valor;
-//                    console.log("item: ", data)
-                }
-            });
-
-
-            $.ajax({
-                type    : "POST",
-                url     : "${createLink(action: 'actualizaVae')}",
-                data    : data + "&obra=" + ${obra.id},
-                success : function (msg) {
-                    $("#dlgLoad").dialog("close");
-                    var parts = msg.split("_");
-                    var ok = parts[0];
-                    var no = parts[1];
-
-                    $(ok).each(function () {
-                        var $tdChk = $(this).siblings(".chk");
-                        var chk = $tdChk.children("input").is(":checked");
-                        if (chk) {
-                            $tdChk.html('<i class="icon-ok"></i>');
+                    if ((parseFloat(data1) != parseFloat(valor))) {
+                        if (data != "") {
+                            data += "&";
                         }
-                    });
+                        var val = valor ? valor : data1;
+                        data += "item=" + id + "_" + valor;
+//                    console.log("item: ", data)
+                    }
+                });
 
-                    doHighlight({elem : $(ok), clase : "ok"});
-                    doHighlight({elem : $(no), clase : "no"});
-                }
-            });
+
+                $.ajax({
+                    type    : "POST",
+                    url     : "${createLink(action: 'actualizaVae')}",
+                    data    : data + "&obra=" + ${obra.id},
+                    success : function (msg) {
+                        $("#dlgLoad").dialog("close");
+                        var parts = msg.split("_");
+                        var ok = parts[0];
+                        var no = parts[1];
+
+                        $(ok).each(function () {
+                            var $tdChk = $(this).siblings(".chk");
+                            var chk = $tdChk.children("input").is(":checked");
+                            if (chk) {
+                                $tdChk.html('<i class="icon-ok"></i>');
+                            }
+                        });
+                        doHighlight({elem : $(ok), clase : "ok"});
+                        doHighlight({elem : $(no), clase : "no"});
+                    }
+                });
+            }else{
+                var d =   $.box({
+                    imageClass : "box_info",
+                    text       : "No se puede guardar, primero cierre el campo que se encuentra en edición actualmente! <br> * Use la tecla Enter sobre el campo en edición",
+                    title      : "Alerta",
+                    iconClose  : false,
+                    dialog     : {
+                        resizable : false,
+                        width: '500px',
+                        draggable : false,
+                        buttons   : {
+                            "Aceptar":function(){
+
+                            }
+                        }
+                    }
+                });
+            }
         });
-
     });
 </script>
 

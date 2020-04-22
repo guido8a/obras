@@ -849,9 +849,6 @@
                             $("#cdgo_buscar").val(codigo)
                             $("#item_desc").val(desc)
                             $("#item_unidad").val(unidad)
-
-
-
                         })
 
                         if (a) {
@@ -864,7 +861,6 @@
                                             if (msg == "Registro eliminado") {
                                                 tr.remove()
                                             }
-
                                             $.box({
                                                 imageClass : "box_info",
                                                 text       : msg,

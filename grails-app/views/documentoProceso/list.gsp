@@ -126,7 +126,6 @@
                     </g:each>
                 </tbody>
             </table>
-
         </div>
 
         <div class="modal hide fade" id="modal-DocumentoProceso">

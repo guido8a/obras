@@ -54,53 +54,50 @@
 <body>
 
 <div class="contenedor">
-    <h2>Reportes del Sistema</h2>
+
     <g:if test="${flash.message}">
         <div class="message ${flash.clase}" role="status"><span
                 class="ss_sprite ${flash.ico}">&nbsp;</span>${flash.message}
         </div>
     </g:if>
 
+    <h2 style="margin-left: 110px"><i class="icon-print"></i> Reportes del Sistema</h2>
+
     <div class="ui-widget-content ui-corner-all lista">
         <ul class="noBullet">
             <li text="obrargst" class="item" texto="obrargst">
-                %{--<g:link controller="reportes" action="presupuesto" file="Presupuesto.pdf" class="link"--}%
                 <g:link controller="reportes4" action="registradas" class="link"
                         dialog="dlgContabilidad">
-                    Obras ingresadas:
+                    <i class="icon-print"></i> Obras ingresadas:
                 </g:link>
                 Listado de obras que se hallan en el sistema, estas obras están an la fase inicial de estructuración de presupuestos
                 y de documentos precontractuales. Estado = 'N'
             </li>
             <li text="obraprsp" class="item" texto="obraprsp">
-                %{--<g:link controller="reportes4" action="presupuestadas" class="link" dialog="dlgVentas">--}%
                 <g:link controller="reportes4" action="presuestadasFinal" class="link">
-                    Obras presupuestadas:
+                    <i class="icon-print"></i> Obras presupuestadas:
                 </g:link>
                 Listado de obras que ya poseen un presupuesto elaborado y se hallan listas para entrar en el proceso de
                 contratación. Estado = 'R'
             </li>
-
             <li text="cncr" class="item" texto="cncr">
                 <g:link controller="concurso" action="concursos" file="concursos" class="link"
                         dialog="dlgContabilidadPeriodo">
-                    Procesos de contratación:
+                    <i class="icon-print"></i> Procesos de contratación:
                 </g:link>
                 Listado de procesos de contratación para la construcción de obras y para consultorías.
             </li>
-
-
             <li text="obracntr" class="item" texto="obracntr">
                 <g:link controller="reportes4" action="contratadas" class="link"
                         dialog="dlgContabilidad">
-                    Obras contratadas:
+                    <i class="icon-print"></i> Obras contratadas:
                 </g:link>
                 Listado de obras que se hallan contratadas
             </li>
 
             <li text="cntr" class="item" texto="cntr">
                 <g:link controller="reportes4" action="contratos" class="link">
-                    Contratos:
+                    <i class="icon-print"></i> Contratos:
                 </g:link>
                 Listado de contratos de obras y consultorías registrados en el sistema.
             </li>
@@ -108,49 +105,49 @@
             <li text="prve" class="item" texto="prve">
                 <g:link controller="reportes4" action="contratistas"
                         class="link">
-                    Contratistas:
+                    <i class="icon-print"></i> Contratistas:
                 </g:link>
                 Listado de contratistas que han firmado contratos de obras y consultoría con el GADPP.
             </li>
 
             <li text="asgr" class="item" texto="asgr">
                 <g:link controller="reportes4" action="aseguradoras" class="link">
-                    Aseguradoras:
+                    <i class="icon-print"></i> Aseguradoras:
                 </g:link>
                 Listado de aseguradoras que se hallan registradas en el sistema que han emitido garantías.
             </li>
 
             <li text="grnt" class="item" texto="grnt">
                 <g:link controller="reportes4" action="garantias" class="link">
-                    Garantías registradas de los distintos contratos para obras y cosultoría:
+                    <i class="icon-print"></i> Garantías registradas de los distintos contratos para obras y cosultoría:
                 </g:link>
                 Listado de garantías detalladas por contrato.
             </li>
             <li text="trnf" class="item" texto="trnf">
                 <g:link controller="planilla2" action="pagos" file="pagos.pdf"
                         class="link" dialog="dlgVentas">
-                    Transferencias y/o cheques pagados:
+                    <i class="icon-print"></i> Transferencias y/o cheques pagados:
                 </g:link>
                 Listado de pagos realizados a partir de la solicitud de pagos relativos a las obras.
             </li>
             <li text="avob" class="item" texto="avob">
                 <g:link controller="reportes5" action="avance" file="Estado_Cambios_Patrimonio.pdf"
                         class="link" dialog="dlgVentas">
-                    Avance de obras:
+                    <i class="icon-print"></i> Avance de obras:
                 </g:link>
                 Listado de obras con el respectivo porcentaje de avance.
             </li>
             <li text="obfn" class="item" texto="obfn">
                 <g:link controller="obra" action="obrasFinalizadas" file=""
                         class="link" dialog="dlgVentas">
-                    Obras finalizadas:
+                    <i class="icon-print"></i> Obras finalizadas:
                 </g:link>
                 Listado de obras finalizadas.
             </li>
             <li text="cnfc" class="item" texto="cnfc">
                 <g:link controller="reportes5" action="contratoFechas" file=""
                         class="link">
-                    Detalle de Contratos y Obras contratadas
+                    <i class="icon-print"></i> Detalle de Contratos y Obras contratadas
                 </g:link>
                 Listado de contratos y obras contratadas inluyendo valores planillados y actas
             </li>
