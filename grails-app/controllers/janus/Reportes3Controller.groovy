@@ -143,9 +143,7 @@ class Reportes3Controller {
         def fechaPU = (obra?.fechaPreciosRubros?.format("dd-MM-yyyy"));
 
         if (params.sub != '-1'){
-
             subPre= SubPresupuesto.get(params.sub).descripcion
-
         }else {
             subPre= -1
         }

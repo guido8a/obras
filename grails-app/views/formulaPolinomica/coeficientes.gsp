@@ -1011,6 +1011,9 @@
             handle : ".modal-header"
         });
 
+
+
+
         $tree.bind("loaded.jstree",
             function (event, data) {
                 var $first = $tree.children("ul").first().children("li").eq(1);
@@ -1026,7 +1029,7 @@
                 updateSumaTotal();
             }).jstree({
             plugins   : ["themes", "json_data", "grid", "types", "contextmenu", "search", "crrm", "cookies", "types" ],
-            json_data : {data : ${json.toString()}},
+            json_data : {data : <elm:poneHtml textoHtml="${json.toString()}"/>},
             themes    : {
                 theme : "apple"
             },

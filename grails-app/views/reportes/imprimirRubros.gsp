@@ -2,13 +2,6 @@
 <html>
 <head>
     <title>Rubros</title>
-    %{--<link href="../../css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>--}%
-    %{--<link href="../../css/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>--}%
-    %{--<link href="../../font/open/stylesheet.css" rel="stylesheet" type="text/css"/>--}%
-    %{--<link href="../../font/tulpen/stylesheet.css" rel="stylesheet" type="text/css"/>--}%
-    %{--<link href="../../css/custom.css" rel="stylesheet" type="text/css"/>--}%
-    %{--<link href="../../css/font-awesome.css" rel="stylesheet" type="text/css"/>--}%
-    %{--<link href="../css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>--}%
     <link href="../font/open/stylesheet.css" rel="stylesheet" type="text/css"/>
     <link href="../font/tulpen/stylesheet.css" rel="stylesheet" type="text/css"/>
     <link href="../css/custom.css" rel="stylesheet" type="text/css"/>
@@ -155,7 +148,7 @@
 
 <body>
 <div class="hoja">
-    ${html}
+    <elm:poneHtml textoHtml="${html}"/>
 </div>
 </body>
 </html>

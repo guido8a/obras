@@ -271,12 +271,11 @@ class Reportes2Controller {
                 extEspecificacion = ares.ruta.split("\\.")
                 extEspecificacion = extEspecificacion[extEspecificacion.size() - 1]
 
-//                pathEspecificacion = servletContext.getRealPath("/") + "rubros" + File.separatorChar + rubro?.especificaciones
                 pathEspecificacion = servletContext.getRealPath("/") + "rubros" + File.separatorChar + ares?.ruta
 
-                if (extEspecificacion.toLowerCase() == "pdf") {
-                    readerEspecificacion = new PdfReader(new FileInputStream(pathEspecificacion));
-                    pagesEspecificacion = readerEspecificacion.getNumberOfPages()
+                if (extEspecificacion?.toLowerCase() == "pdf") {
+                        readerEspecificacion = new PdfReader(new FileInputStream(pathEspecificacion));
+                        pagesEspecificacion = readerEspecificacion.getNumberOfPages()
                 }
             }
 
