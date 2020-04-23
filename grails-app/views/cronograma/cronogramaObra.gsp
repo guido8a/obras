@@ -13,7 +13,8 @@
 
 <body>
 <g:set var="meses" value="${obra.plazoEjecucionMeses + (obra.plazoEjecucionDias > 0 ? 1 : 0)}"/>
-<g:set var="plazoOk" value="${detalle.findAll { it.dias > 0 }.size() > 0}"/>
+%{--<g:set var="plazoOk" value="${detalle.findAll { it.dias > 0 }.size() > 0}"/>--}%
+<g:set var="plazoOk" value="${(obra.plazoEjecucionMeses + obra.plazoEjecucionDias) > 0}"/>
 <g:set var="matrizOk" value="${tieneMatriz}"/>
 <g:set var="sum" value="${0}"/>
 
