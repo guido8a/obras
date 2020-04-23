@@ -453,6 +453,7 @@ class ObraController extends janus.seguridad.Shield {
         def personasUtfpu1 = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
         def personasUtfpu = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, personasUtfpu1)
         def responsableObra
+        def sql = ""
 
         def fechaPrecio = new Date()
         cn.eachRow("select max(rbpcfcha) fcha from rbpc, item where rbpc.item__id = item.item__id and " +
@@ -497,7 +498,10 @@ class ObraController extends janus.seguridad.Shield {
         def campos = ["codigo": ["Código", "string"], "nombre": ["Nombre", "string"], "descripcion": ["Descripción", "string"], "oficioIngreso": ["Memo ingreso", "string"], "oficioSalida": ["Memo salida", "string"], "sitio": ["Sitio", "string"], "plazoEjecucionMeses": ["Plazo", "number"], "canton": ["Canton", "string"], "parroquia": ["Parroquia", "string"], "comunidad": ["Comunidad", "string"], "departamento": ["Dirección", "string"], "fechaCreacionObra": ["Fecha", "date"], "estado": ["Estado", "string"], "valor": ["Monto", "number"]]
         if (params.obra) {
             obra = Obra.get(params.obra)
-            cn.eachRow("select distinct sbpr__id from mfrb where obra__id = ${obra.id} order by sbpr__id".toString()) { d ->
+//            cn.eachRow("select distinct sbpr__id from mfrb where obra__id = ${obra.id} order by sbpr__id".toString()) { d ->
+            sql = "SELECT distinct sbpr__id FROM vlobitem WHERE obra__id = ${obra.id}"
+            println "sql: $sql"
+            cn.eachRow(sql.toString()) { d ->
                 if(d.sbpr__id == 0)
                     sbprMF << ["0" : 'Todos los subpresupuestos']
                 else
@@ -509,7 +513,7 @@ class ObraController extends janus.seguridad.Shield {
             def volumen = VolumenesObra.findByObra(obra)
             def formula = FormulaPolinomica.findByObra(obra)
 
-            def sqlVer = "SELECT voit__id id FROM  vlobitem WHERE obra__id= ${params.obra}"
+            def sqlVer = "SELECT voit__id id FROM  vlobitem WHERE obra__id= ${params.obra} limit 1"
             def verif = cn.rows(sqlVer.toString())
             def verifOK = false
 
