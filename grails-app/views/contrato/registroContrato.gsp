@@ -269,7 +269,7 @@
 
             <div class="span3" style="margin-left:-20px">
                 <g:select from="${janus.pac.TipoContrato.list()}" name="tipoContrato.id" id="tpcr"
-                          class="tipoContrato activo text-info" value="${contrato?.tipoContrato.id}"
+                          class="tipoContrato activo text-info" value="${contrato?.tipoContrato?.id}"
                           optionKey="id" optionValue="descripcion" style="font-weight: bolder"/></div>
 
             <div id="CntrPrincipal" hidden>
@@ -414,7 +414,7 @@
 
             <div class="span4">
                 <g:select name="depAdministrador.id" from="${janus.Departamento.list([sort: 'descripcion'])}" optionKey="id"
-                          optionValue="descripcion"  value="${contrato?.depAdministrador.id}" class="required span4"/>
+                          optionValue="descripcion"  value="${contrato?.depAdministrador?.id}" class="required span4"/>
             </div>
 
             <div class="span2 formato">Indirectos</div>
