@@ -910,8 +910,8 @@
             }
 
             function initSecciones() {
-                var secciones = ${secciones};
-                console.log('secciones', secciones.length())
+                var secciones = <elm:poneHtml textoHtml="${secciones}"/>;
+                // console.log('secciones', secciones.length())
                 for (var i = 0; i < secciones.length; i++) {
                     addSeccion(secciones[i], ${editable});
                 }
