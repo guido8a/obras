@@ -14,7 +14,7 @@
         </div>
 
         <div class="controls">
-            ${parrafoInstance.seccion.titulo}
+           <elm:poneHtml textoHtml="${parrafoInstance.seccion.titulo}"/>
         </div>
     </div>
 
