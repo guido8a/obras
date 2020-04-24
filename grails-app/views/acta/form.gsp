@@ -274,7 +274,7 @@
             </div> %{-- well contrato --}%
 
             <div class="${editable ? 'editable' : ''} ui-corner-all" id="descripcion" ${editable ? 'contenteditable="true"' : ''}>
-                ${actaInstance.descripcion}
+                <elm:poneHtml textoHtml="${actaInstance.descripcion}"/>
             </div>
 
             <g:if test="${editable && actaInstance.id}">
@@ -283,6 +283,7 @@
                 </a>
             </g:if>
 
+            %{------ secciones ---- "${secciones}"--}%
             <div id="secciones"></div>
 
         </g:form>
@@ -307,7 +308,14 @@
             var secciones = 1;
             var $btnSaveActa = $("#btnSave");
 
+            $(document ).ready(function() {
+                console.log( "ready!" );
+            });
+
+
             $.jGrowl.defaults.closerTemplate = '<div>[ cerrar todo ]</div>';
+
+
 
             function log(msg, error) {
                 var sticky = false;
@@ -720,7 +728,7 @@
             }
 
             function addSeccion(data, isEditable) {
-//                console.log(data)
+                console.log(data)
                 var $seccion = $("<div class='seccion ui-corner-all'></div>");
                 var $titulo = $("<div class='row tituloSeccion'></div>");
                 $("<div class='span1 numero lvl1 bold'>" + data.numero + ".-</div>").appendTo($titulo);
@@ -903,6 +911,7 @@
 
             function initSecciones() {
                 var secciones = ${secciones};
+                console.log('secciones', secciones.length())
                 for (var i = 0; i < secciones.length; i++) {
                     addSeccion(secciones[i], ${editable});
                 }
@@ -1009,10 +1018,12 @@
                 }
             }
 
+
             $(function () {
 
                 CKEDITOR.disableAutoInline = true;
 
+                console.log('initsecciones');
                 initSecciones();
 
                 $('[rel=tooltip]').tooltip();

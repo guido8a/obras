@@ -1,4 +1,4 @@
-${html}
+<elm:poneHtml textoHtml="${html}"/>
 
 <script type="text/javascript">
     $(function () {
