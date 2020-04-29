@@ -26,7 +26,7 @@
         font-weight: bold;
         text-shadow: -2px 2px 1px rgba(0, 0, 0, 0.25);
     <g:if test="${janus.Parametros.findByEmpresaLike(message(code: 'ambiente2'))}">
-        color: #1a7031;
+        color: #4a702d;
     </g:if>
     <g:else>
         /*color:#0088CC;*/
