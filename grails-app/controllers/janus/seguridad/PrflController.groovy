@@ -225,9 +225,11 @@ class PrflController extends janus.seguridad.Shield  {
               "from accn where mdlo__id = " + modulo + " and  " +
               "accn__id in (${ids})) and prfl__id = ${prfl} and tpac__id = ${tpac}"
 //
-      println "grabar SQL: ${tx}"
+//      println "grabar SQL: ${tx}"
       cn.eachRow(tx) { d ->
-        Prms.get(d.prms__id).delete()
+          tx = "delete from prms where prms__id = ${d.prms__id}"
+          cn.execute(tx)
+//        Prms.get(d.prms__id).delete()
       }
       //println "-------------borrado de permisos----------"
       // se debe barrer tosos los menús señalados y si está chequeado añadir a prms.

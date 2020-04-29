@@ -35,7 +35,9 @@
             </div>
         </g:if>
         <div class="tituloTree" style="width: 720px;">
-            Código: ${rubro?.codigo}<br/>Nombre: ${rubro?.nombre}
+            Código: ${rubro?.codigo}<br/>
+            Especificación: ${rubro?.codigoEspecificacion}<br/>
+            Nombre: ${rubro?.nombre}
         </div>
         <fieldset class="borde_abajo" style="position: relative;width: 670px;padding-left: 50px;">
             <div class="linea" style="height: 98%;"></div>

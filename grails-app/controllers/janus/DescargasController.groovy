@@ -112,6 +112,7 @@ class DescargasController extends janus.seguridad.Shield {
         response.getOutputStream().write(b)
     }
 
+/*
     def materiales() {
         def filePath = "materiales.xlsx"
         def path = servletContext.getRealPath("/") + File.separatorChar + filePath
@@ -122,6 +123,7 @@ class DescargasController extends janus.seguridad.Shield {
         response.setContentLength(b.length)
         response.getOutputStream().write(b)
     }
+*/
 
 
 } //fin controller
