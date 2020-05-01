@@ -559,15 +559,19 @@ class Reportes5Controller extends Shield{
         }
         if (params.bcl) {
             cell.setBorderColorLeft(params.bcl);
+            cell.setUseVariableBorders(true);
         }
         if (params.bcb) {
             cell.setBorderColorBottom(params.bcb);
+            cell.setUseVariableBorders(true);
         }
         if (params.bcr) {
             cell.setBorderColorRight(params.bcr);
+            cell.setUseVariableBorders(true);
         }
         if (params.bct) {
             cell.setBorderColorTop(params.bct);
+            cell.setUseVariableBorders(true);
         }
         if (params.padding) {
             cell.setPadding(params.padding.toFloat());
@@ -601,6 +605,77 @@ class Reportes5Controller extends Shield{
                 cell.setBorderWidthTop(0)
             }
         }
+        table.addCell(cell);
+    }
+
+    private static void addCellTabla3(PdfPTable table, paragraph, params) {
+        PdfPCell cell = new PdfPCell(paragraph);
+        if (params.height) {
+            cell.setFixedHeight(params.height.toFloat());
+        }
+        if (params.border) {
+            cell.setBorderColor(params.border);
+        }
+        if (params.bg) {
+            cell.setBackgroundColor(params.bg);
+        }
+        if (params.colspan) {
+            cell.setColspan(params.colspan);
+        }
+        if (params.align) {
+            cell.setHorizontalAlignment(params.align);
+        }
+        if (params.valign) {
+            cell.setVerticalAlignment(params.valign);
+        }
+        if (params.w) {
+            cell.setBorderWidth(params.w);
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwl) {
+            cell.setBorderWidthLeft(params.bwl.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwb) {
+            cell.setBorderWidthBottom(params.bwb.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwr) {
+            cell.setBorderWidthRight(params.bwr.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwt) {
+            cell.setBorderWidthTop(params.bwt.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bcl) {
+            cell.setBorderColorLeft(params.bcl);
+        }
+        if (params.bcb) {
+            cell.setBorderColorBottom(params.bcb);
+        }
+        if (params.bcr) {
+            cell.setBorderColorRight(params.bcr);
+        }
+        if (params.bct) {
+            cell.setBorderColorTop(params.bct);
+        }
+        if (params.padding) {
+            cell.setPadding(params.padding.toFloat());
+        }
+        if (params.pl) {
+            cell.setPaddingLeft(params.pl.toFloat());
+        }
+        if (params.pr) {
+            cell.setPaddingRight(params.pr.toFloat());
+        }
+        if (params.pt) {
+            cell.setPaddingTop(params.pt.toFloat());
+        }
+        if (params.pb) {
+            cell.setPaddingBottom(params.pb.toFloat());
+        }
+
         table.addCell(cell);
     }
 
@@ -1216,47 +1291,47 @@ class Reportes5Controller extends Shield{
         subPres.each {sp->
 
 
-                label = new Label(0, filaSub, sp?.descripcion?.toString()); sheet.addCell(label);
+            label = new Label(0, filaSub, sp?.descripcion?.toString()); sheet.addCell(label);
 
             valores.each {val->
 
-            if(val.sbpr__id == sp.id){
-                number = new Number(0, fila, val.vlobordn); sheet.addCell(number);
-                label = new Label(1, fila, val.rbrocdgo.toString()); sheet.addCell(label);
-                label = new Label(2, fila, val?.itemcdes?.toString() ?: ''); sheet.addCell(label);
-                label = new Label(3, fila, val.rbronmbr.toString()); sheet.addCell(label);
-                label = new Label(4, fila, val?.vlobdscr?.toString() ?: ''); sheet.addCell(label);
-                label = new Label(5, fila, val.unddcdgo.toString()); sheet.addCell(label);
-                number = new Number(6, fila, val.vlobcntd); sheet.addCell(number);
-                number = new Number(7, fila, val.pcun); sheet.addCell(number);
-                number = new Number(8, fila, val.totl); sheet.addCell(number);
-                number = new Number(9, fila, val.relativo); sheet.addCell(number);
-                if(val.vae_rbro != null){
-                    number = new Number(10, fila, val.vae_rbro); sheet.addCell(number);
-                }else{
-                    number = new Number(10, fila, 0); sheet.addCell(number);
+                if(val.sbpr__id == sp.id){
+                    number = new Number(0, fila, val.vlobordn); sheet.addCell(number);
+                    label = new Label(1, fila, val.rbrocdgo.toString()); sheet.addCell(label);
+                    label = new Label(2, fila, val?.itemcdes?.toString() ?: ''); sheet.addCell(label);
+                    label = new Label(3, fila, val.rbronmbr.toString()); sheet.addCell(label);
+                    label = new Label(4, fila, val?.vlobdscr?.toString() ?: ''); sheet.addCell(label);
+                    label = new Label(5, fila, val.unddcdgo.toString()); sheet.addCell(label);
+                    number = new Number(6, fila, val.vlobcntd); sheet.addCell(number);
+                    number = new Number(7, fila, val.pcun); sheet.addCell(number);
+                    number = new Number(8, fila, val.totl); sheet.addCell(number);
+                    number = new Number(9, fila, val.relativo); sheet.addCell(number);
+                    if(val.vae_rbro != null){
+                        number = new Number(10, fila, val.vae_rbro); sheet.addCell(number);
+                    }else{
+                        number = new Number(10, fila, 0); sheet.addCell(number);
+                    }
+                    if(val.vae_totl != null){
+                        number = new Number(11, fila, val.vae_totl); sheet.addCell(number);
+                    }else{
+                        number = new Number(11, fila, 0); sheet.addCell(number);
+                    }
+
+
+                    fila++
+                    filaSub++
+                    totales = val.totl
+                    if(val.vae_totl != null){
+                        vaeTotal = val.vae_totl
+                    }else{
+                        vaeTotal = 0
+                    }
+
+                    totalPresupuesto = (total1 += totales);
+                    totalVae = (vaeTotal1 += vaeTotal)
+                    ultimaFila = fila
+
                 }
-                if(val.vae_totl != null){
-                    number = new Number(11, fila, val.vae_totl); sheet.addCell(number);
-                }else{
-                    number = new Number(11, fila, 0); sheet.addCell(number);
-                }
-
-
-                fila++
-                filaSub++
-                totales = val.totl
-                if(val.vae_totl != null){
-                    vaeTotal = val.vae_totl
-                }else{
-                    vaeTotal = 0
-                }
-
-                totalPresupuesto = (total1 += totales);
-                totalVae = (vaeTotal1 += vaeTotal)
-                ultimaFila = fila
-
-            }
             }
 
             fila++
@@ -1729,6 +1804,488 @@ class Reportes5Controller extends Shield{
         output.write(file.getBytes());
     }
 
+    def reporteRubrosV2() {
 
+//        println("params " + params)
+
+        def auxiliar = Auxiliar.get(1)
+
+        def obra
+        def fecha
+        def fecha1
+        def rubro = Item.get(params.id)
+
+        if(params.fecha){
+            fecha = new Date().parse("dd-MM-yyyy", params.fecha)
+        }
+
+        if(params.fechaSalida){
+            fecha1 = new Date().parse("dd-MM-yyyy", params.fechaSalida)
+        }
+
+        def bandMat = 0
+        def band = 0
+        def bandTrans = params.trans
+        def lugar = params.lugar
+        def indi = params.indi
+        def listas = params.listas
+        def total = 0, totalHer = 0, totalMan = 0, totalMat = 0, totalHerRel = 0, totalHerVae = 0, totalManRel = 0, totalManVae = 0, totalMatRel = 0, totalMatVae = 0, totalTRel=0, totalTVae=0
+
+        try {
+            indi = indi.toDouble()
+        } catch (e) {
+            println "error parse " + e
+            indi = 21.5
+        }
+
+        if (params.obra) {
+            obra = Obra.get(params.obra)
+        }
+
+        def parametros = "" + rubro.id + ",'" + fecha.format("yyyy-MM-dd") + "'," + listas + "," + params.dsp0 + "," + params.dsp1 + "," + params.dsv0 + "," + params.dsv1 + "," + params.dsv2 + "," + params.chof + "," + params.volq
+        preciosService.ac_rbroV2(params.id, fecha.format("yyyy-MM-dd"), params.lugar)
+        def res = preciosService.rb_preciosAsc(parametros, "")
+        def vae = preciosService.rb_preciosVae(parametros, "")
+
+        def prmsHeaderHoja = [border: Color.WHITE]
+        def prmsFila = [border: Color.WHITE, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def prmsFilaIzquierda = [border: Color.WHITE, align : Element.ALIGN_LEFT, valign: Element.ALIGN_LEFT]
+        def prmsFilaDerecha = [border: Color.WHITE, align : Element.ALIGN_RIGHT, valign: Element.ALIGN_RIGHT]
+        def prmsHeaderHoja2 = [border: Color.WHITE, colspan: 9]
+        def prmsHeader = [border: Color.WHITE, colspan: 7, bg: new Color(73, 175, 205),
+                          align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def prmsHeader2 = [border: Color.WHITE, colspan: 3, bg: new Color(73, 175, 205),
+                           align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def prmsCellHead = [border: Color.WHITE, bg: new Color(73, 175, 205),
+                            align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def prmsCellCenter = [border: Color.BLACK, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def prmsCellRight = [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_RIGHT]
+        def prmsCellLeft = [border: Color.BLACK, valign: Element.ALIGN_MIDDLE]
+        def prmsSubtotal = [border: Color.BLACK, colspan: 6,
+                            align : Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+        def prmsNum = [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+
+        def celdaCabecera = [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def celdaCabeceraIzquierda = [bct: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bcb: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_LEFT]
+        def celdaCabeceraDerecha = [bct: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bcb: Color.WHITE, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_RIGHT]
+        def celdaCabeceraCentro = [bct: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bcb: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_CENTER]
+        def celdaCabeceraCentro2 = [bcb: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bct: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_CENTER]
+        def celdaCabeceraDerecha2 = [bcb: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bct: Color.WHITE, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_RIGHT]
+        def celdaCabeceraIzquierda2 = [bcb: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bct: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_LEFT]
+
+        def prms = [prmsHeaderHoja: prmsHeaderHoja, prmsHeader: prmsHeader, prmsHeader2: prmsHeader2,
+                    prmsCellHead: prmsCellHead, prmsCell: prmsCellCenter, prmsCellLeft: prmsCellLeft, prmsSubtotal: prmsSubtotal, prmsNum: prmsNum, prmsHeaderHoja2: prmsHeaderHoja2, prmsCellRight: prmsCellRight]
+
+        Font times12bold = new Font(Font.TIMES_ROMAN, 12, Font.BOLD);
+        Font times14bold = new Font(Font.TIMES_ROMAN, 14, Font.BOLD);
+        Font times10bold = new Font(Font.TIMES_ROMAN, 10, Font.BOLD);
+        Font times10normal = new Font(Font.TIMES_ROMAN, 10, Font.NORMAL);
+        Font times8bold = new Font(Font.TIMES_ROMAN, 8, Font.BOLD)
+        Font times8normal = new Font(Font.TIMES_ROMAN, 8, Font.NORMAL)
+        Font times7bold = new Font(Font.TIMES_ROMAN, 7, Font.BOLD)
+        Font times7normal = new Font(Font.TIMES_ROMAN, 7, Font.NORMAL)
+        Font times10boldWhite = new Font(Font.TIMES_ROMAN, 10, Font.BOLD);
+        Font times8boldWhite = new Font(Font.TIMES_ROMAN, 8, Font.BOLD)
+        times8boldWhite.setColor(Color.WHITE)
+        times10boldWhite.setColor(Color.WHITE)
+        def fonts = [times12bold: times12bold, times10bold: times10bold, times8bold: times8bold,
+                     times10boldWhite: times10boldWhite, times8boldWhite: times8boldWhite, times8normal: times8normal, times10normal: times10normal]
+
+        def baos = new ByteArrayOutputStream()
+        def name = "reporteRubros_" + new Date().format("ddMMyyyy_hhmm") + ".pdf";
+
+        Document document
+        document = new Document(PageSize.A4.rotate());
+        def pdfw = PdfWriter.getInstance(document, baos);
+        document.open();
+        document.addTitle("Rubros " + new Date().format("dd_MM_yyyy"));
+        document.addSubject("Generado por el sistema Obras");
+        document.addKeywords("documentosObra, janus, rubros");
+        document.addAuthor("OBRAS");
+        document.addCreator("Tedein SA");
+
+        Paragraph headers = new Paragraph();
+        addEmptyLine(headers, 1);
+        headers.setAlignment(Element.ALIGN_CENTER);
+        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
+        headers.add(new Paragraph("DGCP - COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph(" ", times10bold));
+        document.add(headers)
+
+        PdfPTable tablaCoeficiente = new PdfPTable(3);
+        tablaCoeficiente.setWidthPercentage(100);
+        tablaCoeficiente.setWidths(arregloEnteros([30, 45, 25]))
+
+        addCellTabla(tablaCoeficiente, new Paragraph(" ", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph(" ", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph(" ", times10normal), prmsHeaderHoja)
+
+        addCellTabla(tablaCoeficiente, new Paragraph("Fecha: " + (fecha1?.format("dd-MM-yyyyy") ?: ''), times10bold), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph(" ", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph("Fecha Act. P.U: " + (fecha?.format("dd-MM-yyyy") ?: '') , times10bold), prmsHeaderHoja)
+
+        addCellTabla(tablaCoeficiente, new Paragraph("Código de rubro: " + (rubro?.codigo ?: ''), times10bold), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph("Código de especificación: " + (rubro?.codigoEspecificacion ?: ''), times10bold), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph("Unidad: " + (rubro?.unidad?.codigo ?: ''), times10bold), prmsHeaderHoja)
+
+        addCellTabla(tablaCoeficiente, new Paragraph("Descripción: " + (rubro?.nombre ?: ''), times10bold), [border: Color.WHITE, colspan: 3])
+
+        addCellTabla(tablaCoeficiente, new Paragraph("", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph(" ", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph(" ", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaCoeficiente, new Paragraph(" ", times10normal), prmsHeaderHoja)
+
+        //EQUIPOS
+        PdfPTable tablaEquipos = new PdfPTable(12);
+        tablaEquipos.setWidthPercentage(100);
+        tablaEquipos.setWidths(arregloEnteros([8,21,8,8,8,8,7,5,7,5,5,5]))
+
+        addCellTabla(tablaEquipos, new Paragraph("EQUIPOS", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        addCellTabla(tablaEquipos, new Paragraph("CÓDIGO", times10bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("DESCRIPCIÓN", times10bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("CANTIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("TARIFA(\$/H)", times10bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("COSTOS(\$)", times10bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("RENDIMIENTO", times8bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("C.TOTAL(\$)", times8bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("PESO RELAT(%)", times7bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("CPC", times10bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("NP/EP/ND", times10bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("VAE (%)", times8bold), celdaCabecera)
+        addCellTabla(tablaEquipos, new Paragraph("VAE(%) ELEMENTO", times8bold), celdaCabecera)
+
+        vae.eachWithIndex { r, i ->
+            if (r["grpocdgo"] == 3) {
+                addCellTabla(tablaEquipos, new Paragraph(r["itemcdgo"], times10normal), prmsFilaIzquierda)
+                addCellTabla(tablaEquipos, new Paragraph(r["itemnmbr"], times10normal), prmsFilaIzquierda)
+                addCellTabla(tablaEquipos, new Paragraph(numero(r["rbrocntd"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaEquipos, new Paragraph(numero(r["rbpcpcun"], 5)?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaEquipos, new Paragraph((numero((r["rbpcpcun"] * r["rbrocntd"]), 5))?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaEquipos, new Paragraph(numero(r["rndm"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaEquipos, new Paragraph(numero(r["parcial"], 5)?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaEquipos, new Paragraph(numero(r["relativo"], 2)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaEquipos, new Paragraph(r["itemcpac"]?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaEquipos, new Paragraph(r["tpbncdgo"], times10normal), prmsFila)
+                addCellTabla(tablaEquipos, new Paragraph(numero(r["vae"], 2)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaEquipos, new Paragraph((numero(r["vae_vlor"],2))?.toString(), times10normal), prmsFila)
+                totalHer += r["parcial"]
+                totalHerRel += r["relativo"]
+                totalHerVae += r["vae_vlor"]
+            }
+        }
+
+        addCellTabla(tablaEquipos, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 5, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaEquipos, new Paragraph("TOTAL", times10bold), prmsFila)
+        addCellTabla(tablaEquipos, new Paragraph(numero(totalHer, 5)?.toString(), times10bold), prmsFilaDerecha)
+        addCellTabla(tablaEquipos, new Paragraph(numero(totalHerRel, 2)?.toString(), times10bold), prmsFila)
+        addCellTabla(tablaEquipos, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaEquipos, new Paragraph(numero(totalHerVae, 2)?.toString(), times10bold), prmsFila)
+
+        addCellTabla(tablaEquipos, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        //MANO DE OBRA
+        PdfPTable tablaManoObra = new PdfPTable(12);
+        tablaManoObra.setWidthPercentage(100);
+        tablaManoObra.setWidths(arregloEnteros([8,21,8,8,8,8,7,5,7,5,5,5]))
+
+        addCellTabla(tablaManoObra, new Paragraph("MANO DE OBRA", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        addCellTabla(tablaManoObra, new Paragraph("CÓDIGO", times10bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("DESCRIPCIÓN", times10bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("CANTIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("JORNAL(\$/H)", times8bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("COSTOS(\$)", times10bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("RENDIMIENTO", times8bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("C.TOTAL(\$)", times8bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("PESO RELAT(%)", times7bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("CPC", times10bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("NP/EP/ND", times10bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("VAE (%)", times8bold), celdaCabecera)
+        addCellTabla(tablaManoObra, new Paragraph("VAE(%) ELEMENTO", times8bold), celdaCabecera)
+
+        vae.eachWithIndex { r, i ->
+            if (r["grpocdgo"] == 2) {
+                addCellTabla(tablaManoObra, new Paragraph(r["itemcdgo"], times10normal), prmsFilaIzquierda)
+                addCellTabla(tablaManoObra, new Paragraph(r["itemnmbr"], times10normal), prmsFilaIzquierda)
+                addCellTabla(tablaManoObra, new Paragraph(numero(r["rbrocntd"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaManoObra, new Paragraph(numero(r["rbpcpcun"], 5)?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaManoObra, new Paragraph((numero((r["rbpcpcun"] * r["rbrocntd"]), 5))?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaManoObra, new Paragraph(numero(r["rndm"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaManoObra, new Paragraph(numero(r["parcial"], 5)?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaManoObra, new Paragraph(numero(r["relativo"], 2)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaManoObra, new Paragraph(r["itemcpac"]?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaManoObra, new Paragraph(r["tpbncdgo"], times10normal), prmsFila)
+                addCellTabla(tablaManoObra, new Paragraph(numero(r["vae"], 2)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaManoObra, new Paragraph((numero(r["vae_vlor"],2))?.toString(), times10normal), prmsFila)
+                totalMan += r["parcial"]
+                totalManRel += r["relativo"]
+                totalManVae += r["vae_vlor"]
+            }
+        }
+
+        addCellTabla(tablaManoObra, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 5, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaManoObra, new Paragraph("TOTAL", times10bold), prmsFila)
+        addCellTabla(tablaManoObra, new Paragraph(numero(totalMan, 5)?.toString(), times10bold), prmsFilaDerecha)
+        addCellTabla(tablaManoObra, new Paragraph(numero(totalManRel, 2)?.toString(), times10bold), prmsFila)
+        addCellTabla(tablaManoObra, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaManoObra, new Paragraph(numero(totalManVae, 2)?.toString(), times10bold), prmsFila)
+
+        addCellTabla(tablaManoObra, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        //MATERIALES
+        PdfPTable tablaMateriales = new PdfPTable(11);
+        tablaMateriales.setWidthPercentage(100);
+        tablaMateriales.setWidths(arregloEnteros([8,22,6,8,8,7,5,7,5,5,6]))
+
+        if(params.trans == 'no'){
+            addCellTabla(tablaMateriales, new Paragraph("MATERIALES INCLUIDO TRANSPORTE", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        }else{
+            addCellTabla(tablaMateriales, new Paragraph("MATERIALES", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        }
+
+        addCellTabla(tablaMateriales, new Paragraph("CÓDIGO", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("DESCRIPCIÓN", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("UNIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("CANTIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("UNITARIO(\$)", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("C.TOTAL(\$)", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("PESO RELAT(%)", times7bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("CPC", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("NP/EP/ND", times10bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("VAE(%)", times8bold), celdaCabecera)
+        addCellTabla(tablaMateriales, new Paragraph("VAE(%) ELEMENTO", times8bold), celdaCabecera)
+
+        vae.eachWithIndex { r, i ->
+            if (r["grpocdgo"] == 1) {
+                bandMat = 1
+                addCellTabla(tablaMateriales, new Paragraph(r["itemcdgo"], times10normal), prmsFilaIzquierda)
+                addCellTabla(tablaMateriales, new Paragraph(r["itemnmbr"], times10normal), prmsFilaIzquierda)
+                addCellTabla(tablaMateriales, new Paragraph(r["unddcdgo"], times10normal), prmsFila)
+                addCellTabla(tablaMateriales, new Paragraph(numero(r["rbrocntd"], 5)?.toString(), times10normal), prmsFila)
+                if (params.trans != 'no') {
+                    addCellTabla(tablaMateriales, new Paragraph(numero(r["rbpcpcun"], 5)?.toString(), times10normal), prmsFilaDerecha)
+                    addCellTabla(tablaMateriales, new Paragraph(numero(r["parcial"], 5)?.toString(), times10normal), prmsFilaDerecha)
+                    addCellTabla(tablaMateriales, new Paragraph(numero(r["relativo"], 2)?.toString(), times10normal), prmsFila)
+                    totalMat += r["parcial"]
+                    totalMatRel += r["relativo"]
+                    totalMatVae += r["vae_vlor"]
+                }else{
+                    addCellTabla(tablaMateriales, new Paragraph(numero((r["rbpcpcun"] + r["parcial_t"] / r["rbrocntd"]), 5)?.toString(), times10normal), prmsFilaDerecha)
+                    addCellTabla(tablaMateriales, new Paragraph(numero((r["parcial"] + r["parcial_t"]), 5)?.toString(), times10normal), prmsFilaDerecha)
+                    addCellTabla(tablaMateriales, new Paragraph(numero((r["relativo"] + r["relativo_t"]), 2)?.toString(), times10normal), prmsFila)
+                    totalMat += (r["parcial"] + r["parcial_t"])
+                    totalMatRel += (r["relativo"] + r["relativo_t"])
+                    totalMatVae += (r["vae_vlor"] + r["vae_vlor_t"])
+                }
+                addCellTabla(tablaMateriales, new Paragraph(r["itemcpac"]?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaMateriales, new Paragraph(r["tpbncdgo"], times10normal), prmsFila)
+                addCellTabla(tablaMateriales, new Paragraph(numero(r["vae"], 2)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaMateriales, new Paragraph((numero(r["vae_vlor"],2))?.toString(), times10normal), prmsFila)
+            }
+        }
+
+        addCellTabla(tablaMateriales, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 4, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaMateriales, new Paragraph("TOTAL", times10bold), prmsFila)
+        addCellTabla(tablaMateriales, new Paragraph(numero(totalMat, 5)?.toString(), times10bold), prmsFilaDerecha)
+        addCellTabla(tablaMateriales, new Paragraph(numero(totalMatRel, 2)?.toString(), times10bold), prmsFila)
+        addCellTabla(tablaMateriales, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaMateriales, new Paragraph(numero(totalMatVae, 2)?.toString(), times10bold), prmsFila)
+
+        addCellTabla(tablaMateriales, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        //MATERIALES VACIA
+        PdfPTable tablaMaterialesVacia = new PdfPTable(11);
+        tablaMaterialesVacia.setWidthPercentage(100);
+        tablaMaterialesVacia.setWidths(arregloEnteros([8,22,6,8,8,7,5,7,5,5,6]))
+
+        addCellTabla(tablaMaterialesVacia, new Paragraph("MATERIALES", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        addCellTabla(tablaMaterialesVacia, new Paragraph("CÓDIGO", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("DESCRIPCIÓN", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("UNIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("CANTIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("UNITARIO(\$)", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("C.TOTAL(\$)", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("PESO RELAT(%)", times7bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("CPC", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("NP/EP/ND", times10bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("VAE(%)", times8bold), celdaCabecera)
+        addCellTabla(tablaMaterialesVacia, new Paragraph("VAE(%) ELEMENTO", times8bold), celdaCabecera)
+
+        addCellTabla(tablaMaterialesVacia, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 12, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        //TRANSPORTE
+        PdfPTable tablaTransporte = new PdfPTable(13);
+        tablaTransporte.setWidthPercentage(100);
+        tablaTransporte.setWidths(arregloEnteros([8,21,5,7,8,7,5,7,6,7,6,5,5]))
+
+        addCellTabla(tablaTransporte, new Paragraph("TRANSPORTE", times14bold), [border: Color.WHITE, colspan: 13, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        addCellTabla(tablaTransporte, new Paragraph("CÓDIGO", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("DESCRIPCIÓN", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("UNIDAD", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("PES/VOL", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("CANTIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("DISTANCIA", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("TARIFA", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("C.TOTAL(\$)", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("PESO RELAT(%)", times7bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("CPC", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("NP/EP/ND", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("VAE(%)", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporte, new Paragraph("VAE(%) ELEMENTO", times7bold), celdaCabecera)
+
+        vae.eachWithIndex { r, i ->
+            if (r["grpocdgo"]== 1 && params.trans != 'no') {
+                addCellTabla(tablaTransporte, new Paragraph(r["itemcdgo"], times10normal), prmsFilaIzquierda)
+                addCellTabla(tablaTransporte, new Paragraph(r["itemnmbr"], times10normal), prmsFilaIzquierda)
+                if(r["tplscdgo"].trim() =='P' || r["tplscdgo"].trim() =='P1' ){
+                    addCellTabla(tablaTransporte, new Paragraph("ton-km", times10normal), prmsFila)
+                }else{
+                    if(r["tplscdgo"].trim() =='V' || r["tplscdgo"].trim() =='V1' || r["tplscdgo"].trim() =='V2') {
+                        addCellTabla(tablaTransporte, new Paragraph("m3-km", times10normal), prmsFila)
+                    }else{
+                        addCellTabla(tablaTransporte, new Paragraph(r["unddcdgo"], times10normal), prmsFila)
+                    }
+                }
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["itempeso"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["rbrocntd"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["distancia"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["tarifa"], 5)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["parcial_t"], 5)?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["relativo_t"], 2)?.toString(), times10normal), prmsFilaDerecha)
+                addCellTabla(tablaTransporte, new Paragraph((r["itemcpac"] ?: '')?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaTransporte, new Paragraph(r["tpbncdgo"], times10normal), prmsFila)
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["vae_t"], 2)?.toString(), times10normal), prmsFila)
+                addCellTabla(tablaTransporte, new Paragraph(numero(r["vae_vlor_t"], 2)?.toString(), times10normal), prmsFila)
+                total += r["parcial_t"]
+                totalTRel += r["relativo_t"]
+                totalTVae += r["vae_vlor_t"]
+            }
+        }
+
+        addCellTabla(tablaTransporte, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 6, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaTransporte, new Paragraph("TOTAL", times10bold), prmsFila)
+        addCellTabla(tablaTransporte, new Paragraph(numero(total, 5)?.toString(), times10bold), prmsFilaDerecha)
+        addCellTabla(tablaTransporte, new Paragraph(numero(totalTRel, 2)?.toString(), times10bold), prmsFilaDerecha)
+        addCellTabla(tablaTransporte, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaTransporte, new Paragraph(numero(totalTVae, 2)?.toString(), times10bold), prmsFila)
+
+        addCellTabla(tablaTransporte, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 13, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaTransporte, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 13, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        //TRANSPORTE VACIA
+
+        PdfPTable tablaTransporteVacia = new PdfPTable(13);
+        tablaTransporteVacia.setWidthPercentage(100);
+        tablaTransporteVacia.setWidths(arregloEnteros([8,21,5,7,8,7,5,7,6,7,6,5,5]))
+
+        addCellTabla(tablaTransporteVacia, new Paragraph("TRANSPORTE", times14bold), [border: Color.WHITE, colspan: 13, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        addCellTabla(tablaTransporteVacia, new Paragraph("CÓDIGO", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("DESCRIPCIÓN", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("UNIDAD", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("PES/VOL", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("CANTIDAD", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("DISTANCIA", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("TARIFA", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("C.TOTAL(\$)", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("PESO RELAT(%)", times7bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("CPC", times10bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("NP/EP/ND", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("VAE(%)", times8bold), celdaCabecera)
+        addCellTabla(tablaTransporteVacia, new Paragraph("VAE(%) ELEMENTO", times7bold), celdaCabecera)
+
+        addCellTabla(tablaTransporteVacia, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 13, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        //COSTOS INDIRECTOS
+        def totalRubro = total + totalHer + totalMan + totalMat
+        def totalRelativo = totalTRel + totalHerRel + totalMatRel + totalManRel
+        def totalVae = totalTVae + totalHerVae + totalMatVae + totalManVae
+        def totalIndi = totalRubro?.toDouble() * indi / 100
+
+        PdfPTable tablaIndirectos = new PdfPTable(3);
+        tablaIndirectos.setWidthPercentage(70);
+        tablaIndirectos.setWidths(arregloEnteros([50,25,25]))
+        tablaIndirectos.horizontalAlignment = Element.ALIGN_LEFT;
+
+        addCellTabla(tablaIndirectos, new Paragraph("COSTOS INDIRECTOS", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        addCellTabla(tablaIndirectos, new Paragraph("DESCRIPCIÓN", times10bold), celdaCabecera)
+        addCellTabla(tablaIndirectos, new Paragraph("PORCENTAJE", times8bold), celdaCabecera)
+        addCellTabla(tablaIndirectos, new Paragraph("VALOR", times8bold), celdaCabecera)
+
+        addCellTabla(tablaIndirectos, new Paragraph("COSTOS INDIRECTOS", times10normal), prmsFilaIzquierda)
+        addCellTabla(tablaIndirectos, new Paragraph(numero(indi, 1)?.toString() + "%", times10normal), prmsFila)
+        addCellTabla(tablaIndirectos, new Paragraph(numero(totalIndi, 5)?.toString(), times10normal), prmsFila)
+
+        addCellTabla(tablaIndirectos, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        if(rubro?.codigo?.split("-")[0] == 'TR'){
+            addCellTabla(tablaIndirectos, new Paragraph("Distancia a la escombrera: ${obra?.distanciaDesalojo ?: '0'} KM", times10bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_LEFT, valign: Element.ALIGN_LEFT])
+        }
+
+        addCellTabla(tablaIndirectos, new Paragraph("Nota: Los cálculos se hacen con todos los " +
+                "decimales y el resultado final se lo redondea a dos decimales.", times10bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_LEFT, valign: Element.ALIGN_LEFT])
+
+        addCellTabla(tablaIndirectos, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaIndirectos, new Paragraph("", times14bold), [border: Color.WHITE, colspan: 3, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+        PdfPTable tablaTotales = new PdfPTable(4);
+        tablaTotales.setWidthPercentage(70);
+        tablaTotales.setWidths(arregloEnteros([30,25,25,20]))
+        tablaTotales.horizontalAlignment = Element.ALIGN_RIGHT;
+
+        addCellTabla(tablaTotales, new Paragraph("COSTO UNITARIO DIRECTO", times10bold), celdaCabeceraIzquierda)
+        addCellTabla(tablaTotales, new Paragraph(numero(totalRubro, 2)?.toString(), times10bold), celdaCabeceraDerecha)
+        addCellTabla(tablaTotales, new Paragraph(numero(totalRelativo, 2)?.toString(), times10bold), celdaCabeceraCentro)
+        addCellTabla(tablaTotales, new Paragraph(numero(totalVae, 2)?.toString(), times10bold), celdaCabeceraCentro)
+
+        addCellTabla(tablaTotales, new Paragraph("COSTOS INDIRECTO", times10bold), prmsFilaIzquierda)
+        addCellTabla(tablaTotales, new Paragraph(numero(totalIndi, 2)?.toString(), times10bold), prmsFilaDerecha)
+        addCellTabla(tablaTotales, new Paragraph("TOTAL", times10bold), prmsFila)
+        addCellTabla(tablaTotales, new Paragraph("TOTAL", times10bold), prmsFila)
+
+        addCellTabla(tablaTotales, new Paragraph("COSTO TOTAL DEL RUBRO", times10bold), prmsFilaIzquierda)
+        addCellTabla(tablaTotales, new Paragraph(numero((totalRubro + totalIndi), 2)?.toString(), times10bold), prmsFilaDerecha)
+        addCellTabla(tablaTotales, new Paragraph("PESO", times10bold), prmsFila)
+        addCellTabla(tablaTotales, new Paragraph("VAE", times10bold), prmsFila)
+
+        addCellTabla(tablaTotales, new Paragraph("PRECIO UNITARIO \$USD", times10bold), celdaCabeceraIzquierda2)
+        addCellTabla(tablaTotales, new Paragraph(numero((totalRubro + totalIndi), 2)?.toString(), times10bold), celdaCabeceraDerecha2)
+        addCellTabla(tablaTotales, new Paragraph("RELATIVO", times10bold), celdaCabeceraCentro2)
+        addCellTabla(tablaTotales, new Paragraph("(%)", times10bold), celdaCabeceraCentro2)
+
+        document.add(tablaCoeficiente)
+        document.add(tablaEquipos)
+        document.add(tablaManoObra)
+        document.add(tablaMateriales)
+        if(bandMat != 1){
+            document.add(tablaMaterialesVacia)
+        }
+        if (total == 0 || params.trans == "no"){
+        }else{
+            document.add(tablaTransporte)
+        }
+        if(band == 0 && bandTrans == '1'){
+            document.add(tablaTransporteVacia)
+        }
+        document.add(tablaIndirectos)
+        document.add(tablaTotales)
+
+        document.close();
+        pdfw.close()
+        byte[] b = baos.toByteArray();
+        response.setContentType("application/pdf")
+        response.setHeader("Content-disposition", "attachment; filename=" + name)
+        response.setContentLength(b.length)
+        response.getOutputStream().write(b)
+    }
+
+    def reporteRubrosTransporteV2(){
+        
+    }
 
 }
