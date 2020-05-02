@@ -2241,7 +2241,7 @@
                     var fechaSalida = $("#fechaSalidaId").val();
 
                     %{--datos = "dsp0=" + dsp0 + "Wdsp1=" + dsp1 + "Wdsv0=" + dsv0 + "Wdsv1=" + dsv1 + "Wdsv2=" + dsv2 + "Wprvl=" + volqueta + "Wprch=" + chofer + "Wfecha=" + $("#fecha_precios").val() + "Wid=${rubro?.id}Wlugar=" + $("#ciudad").val() + "Wlistas=" + listas + "Wchof=" + $("#cmb_chof").val() + "Wvolq="--}%
-                    // + $("#cmb_vol").val() + "Windi=" + $("#costo_indi").val() + "WfechaSalida=" + fechaSalida;
+                    %{--+ $("#cmb_vol").val() + "Windi=" + $("#costo_indi").val() + "WfechaSalida=" + fechaSalida;--}%
                     %{--var url = "${g.createLink(controller: 'reportes3',action: 'imprimirRubroVae')}?" + datos--}%
                     %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url--}%
 
