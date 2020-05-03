@@ -20,14 +20,14 @@ class PdfController {
             } else {
                 def url = baseUri + params.url
 //                println "url: $url"
-                redirect(url: url)
+//                redirect(url: url)
 
-//                b = pdfService.buildPdf(url, baseUri)
+                b = pdfService.buildPdf(url, baseUri)
             }
-//            response.setContentType("application/pdf")
-//            response.setHeader("Content-disposition", "attachment; filename=" + (params.filename ?: "document.pdf"))
-//            response.setContentLength(b.length)
-//            response.getOutputStream().write(b)
+            response.setContentType("application/pdf")
+            response.setHeader("Content-disposition", "attachment; filename=" + (params.filename ?: "document.pdf"))
+            response.setContentLength(b.length)
+            response.getOutputStream().write(b)
         }
         catch (Throwable e) {
             println "there was a problem with PDF generation 2 ${e}"

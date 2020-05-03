@@ -346,6 +346,100 @@ class ReportesPdfService {
         table.addCell(cell);
     }
 
+    private static void addCellTb(PdfPTable table, paragraph, params) {
+        PdfPCell cell = new PdfPCell(paragraph);
+        if (params.height) {
+            cell.setFixedHeight(params.height.toFloat());
+        }
+        if (params.border) {
+            cell.setBorderColor(params.border);
+        }
+        if (params.bg) {
+            cell.setBackgroundColor(params.bg);
+        }
+        if (params.colspan) {
+            cell.setColspan(params.colspan);
+        }
+        if (params.align) {
+            cell.setHorizontalAlignment(params.align);
+        }
+        if (params.valign) {
+            cell.setVerticalAlignment(params.valign);
+        }
+        if (params.w) {
+            cell.setBorderWidth(params.w);
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwl) {
+            cell.setBorderWidthLeft(params.bwl.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwb) {
+            cell.setBorderWidthBottom(params.bwb.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwr) {
+            cell.setBorderWidthRight(params.bwr.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bwt) {
+            cell.setBorderWidthTop(params.bwt.toFloat());
+            cell.setUseBorderPadding(true);
+        }
+        if (params.bcl) {
+            cell.setBorderColorLeft(params.bcl);
+            cell.setUseVariableBorders(true);
+        }
+        if (params.bcb) {
+            cell.setBorderColorBottom(params.bcb);
+            cell.setUseVariableBorders(true);
+        }
+        if (params.bcr) {
+            cell.setBorderColorRight(params.bcr);
+            cell.setUseVariableBorders(true);
+        }
+        if (params.bct) {
+            cell.setBorderColorTop(params.bct);
+            cell.setUseVariableBorders(true);
+        }
+        if (params.padding) {
+            cell.setPadding(params.padding.toFloat());
+        }
+        if (params.pl) {
+            cell.setPaddingLeft(params.pl.toFloat());
+        }
+        if (params.pr) {
+            cell.setPaddingRight(params.pr.toFloat());
+        }
+        if (params.pt) {
+            cell.setPaddingTop(params.pt.toFloat());
+        }
+        if (params.pb) {
+            cell.setPaddingBottom(params.pb.toFloat());
+        }
+        if (params.bordeTop) {
+            cell.setBorderWidthTop(1)
+            cell.setBorderWidthLeft(0)
+            cell.setBorderWidthRight(0)
+            cell.setBorderWidthBottom(0)
+            cell.setPaddingTop(7);
+        }
+        if (params.bordeBot) {
+            cell.setBorderWidthBottom(1)
+            cell.setBorderWidthLeft(0)
+            cell.setBorderWidthRight(0)
+            cell.setPaddingBottom(7)
+
+            if (!params.bordeTop) {
+                cell.setBorderWidthTop(0)
+            }
+        }
+        table.addCell(cell);
+    }
+
+
+
+
     int[] arregloEnteros(array) {
         int[] ia = new int[array.size()]
         array.eachWithIndex { it, i ->

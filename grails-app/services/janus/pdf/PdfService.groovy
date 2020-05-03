@@ -63,7 +63,7 @@ class PdfService {
         fontResolver.addFont(font_bold, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
         try {
-            renderer.setDocument(html_file)
+            renderer.setDocument(url)
             renderer.layout();
             renderer.createPDF(baos);
             renderer.finishPDF();

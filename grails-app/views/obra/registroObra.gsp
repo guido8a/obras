@@ -88,7 +88,7 @@
 
 <div class="span12 btn-group" role="navigation" style="margin-left: 0px;width: 100%;float: left;height: 35px;">
     <button class="btn" id="lista"><i class="icon-book"></i> Lista</button>
-    <button class="btn" id="listaLq"><i class="icon-book"></i> Liquidación</button>
+    %{--<button class="btn" id="listaLq"><i class="icon-book"></i> Liquidación</button>--}%
     <button class="btn" id="nuevo"><i class="icon-plus"></i> Nuevo</button>
 
     <g:if test="${persona?.departamento?.codigo != 'UTFPU'}">
