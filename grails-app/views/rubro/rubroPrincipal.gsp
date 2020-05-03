@@ -2287,16 +2287,16 @@
                     var volqueta = $("#costo_volqueta").val();
                     var chofer = $("#costo_chofer").val();
                     var fechaSalida = $("#fechaSalidaId").val();
-                    datos = "dsp0=" + dsp0 + "Wdsp1=" + dsp1 + "Wdsv0=" + dsv0 + "Wdsv1=" + dsv1 + "Wdsv2=" + dsv2 + "Wprvl=" + volqueta + "Wprch=" + chofer + "Wfecha=" + $("#fecha_precios").val() + "Wid=${rubro?.id}Wlugar=" + $("#ciudad").val() + "Wlistas=" + listas + "Wchof=" + $("#cmb_chof").val() + "Wvolq="
-                            + $("#cmb_vol").val() + "Windi=" + $("#costo_indi").val() + "WfechaSalida=" + fechaSalida;
-                    var url = "${g.createLink(controller: 'reportes3',action: 'imprimirRubro')}?" + datos;
-                    location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url;
+                    %{--datos = "dsp0=" + dsp0 + "Wdsp1=" + dsp1 + "Wdsv0=" + dsv0 + "Wdsv1=" + dsv1 + "Wdsv2=" + dsv2 + "Wprvl=" + volqueta + "Wprch=" + chofer + "Wfecha=" + $("#fecha_precios").val() + "Wid=${rubro?.id}Wlugar=" + $("#ciudad").val() + "Wlistas=" + listas + "Wchof=" + $("#cmb_chof").val() + "Wvolq="--}%
+                    %{--        + $("#cmb_vol").val() + "Windi=" + $("#costo_indi").val() + "WfechaSalida=" + fechaSalida;--}%
+                    %{--var url = "${g.createLink(controller: 'reportes3',action: 'imprimirRubro')}?" + datos;--}%
+                    %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url;--}%
 
-                    // datos = "dsp0=" + dsp0 + "&dsp1=" + dsp1 + "&dsv0=" + dsv0 + "&dsv1=" + dsv1 + "&dsv2=" + dsv2
-                    //     + "&prvl=" + volqueta + "&prch=" + chofer + "&fecha=" + $("#fecha_precios").val()
-                    %{--    + "&id=${rubro?.id}&lugar=" + $("#ciudad").val() + "&listas=" + listas + "&chof="--}%
-                    //     + $("#cmb_chof").val() + "&volq=" + $("#cmb_vol").val() + "&indi=" + $("#costo_indi").val() + "&fechaSalida=" + fechaSalida;
-                    %{--location.href = "${g.createLink(controller: 'reportes5',action: 'reporteRubrosTransporteV2')}?" + datos;--}%
+                    datos = "dsp0=" + dsp0 + "&dsp1=" + dsp1 + "&dsv0=" + dsv0 + "&dsv1=" + dsv1 + "&dsv2=" + dsv2
+                        + "&prvl=" + volqueta + "&prch=" + chofer + "&fecha=" + $("#fecha_precios").val()
+                        + "&id=${rubro?.id}&lugar=" + $("#ciudad").val() + "&listas=" + listas + "&chof="
+                        + $("#cmb_chof").val() + "&volq=" + $("#cmb_vol").val() + "&indi=" + $("#costo_indi").val() + "&fechaSalida=" + fechaSalida;
+                    location.href = "${g.createLink(controller: 'reportes4',action: 'reporteRubrosTransporteV2')}?" + datos;
 
                     $("#imprimirTransporteDialog").dialog("close");
                 },
@@ -2311,11 +2311,19 @@
                     var chofer = $("#costo_chofer").val();
                     var fechaSalida = $("#fechaSalidaId").val();
 
-                    datos = "dsp0=" + dsp0 + "Wdsp1=" + dsp1 + "Wdsv0=" + dsv0 + "Wdsv1=" + dsv1 + "Wdsv2=" + dsv2 + "Wprvl=" + volqueta + "Wprch=" + chofer + "Wfecha=" + $("#fecha_precios").val()
-                            + "Wid=${rubro?.id}Wlugar=" + $("#ciudad").val() + "Wlistas=" + listas + "Wchof=" + $("#cmb_chof").val() + "Wvolq=" + $("#cmb_vol").val()
-                            + "Windi=" + $("#costo_indi").val() + "Wtrans=no" + "WfechaSalida=" + fechaSalida;
-                    var url = "${g.createLink(controller: 'reportes3',action: 'imprimirRubro')}?" + datos;
-                    location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url;
+                    %{--datos = "dsp0=" + dsp0 + "Wdsp1=" + dsp1 + "Wdsv0=" + dsv0 + "Wdsv1=" + dsv1 + "Wdsv2=" + dsv2 + "Wprvl=" + volqueta + "Wprch=" + chofer + "Wfecha=" + $("#fecha_precios").val()--}%
+                    %{--        + "Wid=${rubro?.id}Wlugar=" + $("#ciudad").val() + "Wlistas=" + listas + "Wchof=" + $("#cmb_chof").val() + "Wvolq=" + $("#cmb_vol").val()--}%
+                    %{--        + "Windi=" + $("#costo_indi").val() + "Wtrans=no" + "WfechaSalida=" + fechaSalida;--}%
+                    %{--var url = "${g.createLink(controller: 'reportes3',action: 'imprimirRubro')}?" + datos;--}%
+                    %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url;--}%
+
+
+                    datos = "dsp0=" + dsp0 + "&dsp1=" + dsp1 + "&dsv0=" + dsv0 + "&dsv1=" + dsv1 + "&dsv2=" + dsv2 + "&prvl=" + volqueta + "&prch=" + chofer + "&fecha=" + $("#fecha_precios").val()
+                        + "&id=${rubro?.id}&lugar=" + $("#ciudad").val() + "&listas=" + listas + "&chof=" + $("#cmb_chof").val() + "&volq=" + $("#cmb_vol").val()
+                        + "&indi=" + $("#costo_indi").val() + "&trans=no" + "&fechaSalida=" + fechaSalida;
+                    location.href = "${g.createLink(controller: 'reportes4',action: 'reporteRubrosTransporteV2')}?" + datos;
+
+
                     $("#imprimirTransporteDialog").dialog("close");
                 },
                 "Cancelar" :  function () {
