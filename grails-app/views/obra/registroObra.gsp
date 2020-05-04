@@ -1917,11 +1917,13 @@
                                         },
                                         "VAE con desglose de Trans.": function () {
                                             urlVae += "1";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosVaeRegistro')}?" + "&desglose=" + 1 + "&obra=" + '${obra?.id}';
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae--}%
                                         },
                                         "VAE sin desglose de Trans.": function () {
                                             urlVae += "0";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosVaeRegistro')}?" + "&desglose=" + 0 + "&obra=" + '${obra?.id}';
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae--}%
                                         },
                                         "Exportar VAE a Excel": function () {
                                             var urlVaeEx = "${createLink(controller:'reportes3', action:'imprimirRubrosVaeExcel')}?obra=${obra?.id}&transporte=";
@@ -2015,11 +2017,15 @@
                                         },
                                         "VAE con desglose de Trans.": function () {
                                             urlVae += "1";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae--}%
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosVaeRegistro')}?" + "&desglose=" + 1 + "&obra=" + '${obra?.id}';
+
                                         },
                                         "VAE sin desglose de Trans.": function () {
                                             urlVae += "0";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae--}%
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosVaeRegistro')}?" + "&desglose=" + 0 + "&obra=" + '${obra?.id}';
+
                                         },
                                         "Exportar VAE a Excel": function () {
                                             var urlVaeEx = "${createLink(controller:'reportes3', action:'imprimirRubrosVaeExcel')}?obra=${obra?.id}&transporte=";
