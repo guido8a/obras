@@ -99,7 +99,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="distanciaPeso" class="inputVar num"
-                                 value="${g.formatNumber(number: obra?.distanciaPeso, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"
+                                 value="${g.formatNumber(number: obra?.distanciaPeso, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"
                                  title="Distancia de la Obra a la capital del Cantón"/>
                 </div>
 
@@ -109,7 +109,7 @@
 
                 <div class="span1">
                     <g:textField type="text" name="distanciaVolumen" class="inputVar num"
-                                 value="${g.formatNumber(number: obra?.distanciaVolumen, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"
+                                 value="${g.formatNumber(number: obra?.distanciaVolumen, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"
                                  title="Distancia de la Obra a la mina"/>
                 </div>
 
@@ -123,7 +123,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="distanciaPesoEspecial" class="inputVar num"
-                                 value="${g.formatNumber(number: obra?.distanciaPesoEspecial, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"
+                                 value="${g.formatNumber(number: obra?.distanciaPesoEspecial, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0'}"
                                  title="Distancia de la Obra a la fábrica o proveedor especial"/>
                 </div>
 
@@ -133,7 +133,7 @@
 
                 <div class="span1">
                     <g:textField type="text" name="distanciaVolumenMejoramiento" class="inputVar num"
-                                 value="${g.formatNumber(number: obra?.distanciaVolumenMejoramiento, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"
+                                 value="${g.formatNumber(number: obra?.distanciaVolumenMejoramiento, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"
                                  title="Distancia de la Obra a la mina"/>
                 </div>
             </div>
@@ -148,7 +148,7 @@
 
                 <div class="span1">
                     <g:textField type="text" name="distanciaVolumenCarpetaAsfaltica" class="inputVar num"
-                                 value="${g.formatNumber(number: obra?.distanciaVolumenCarpetaAsfaltica, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"
+                                 value="${g.formatNumber(number: obra?.distanciaVolumenCarpetaAsfaltica, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"
                                  title="Distancia de la Obra a la mina"/>
                 </div>
 
@@ -229,7 +229,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="factorReduccion" class="inputVar num" value="${g.formatNumber(number: (obra?.factorReduccion) ?: par.factorReduccion, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="factorReduccion" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.factorReduccion) ?: par.factorReduccion, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -239,7 +240,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="factorVelocidad" class="inputVar num" value="${g.formatNumber(number: (obra?.factorVelocidad) ?: par.factorVelocidad, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="factorVelocidad" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.factorVelocidad) ?: par.factorVelocidad, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -249,19 +251,20 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="capacidadVolquete" class="inputVar num" value="${g.formatNumber(number: (obra?.capacidadVolquete) ?: par.capacidadVolquete, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="capacidadVolquete" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.capacidadVolquete) ?: par.capacidadVolquete, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
             <div class="row-fluid margen">
 
                 <div class="span5">
-                    %{--Reducción/Tiempo--}%
                     Factor Tiempo
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="factorReduccionTiempo" class="inputVar num" value="${g.formatNumber(number: (obra?.factorReduccionTiempo) ?: par.factorReduccionTiempo, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="factorReduccionTiempo" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.factorReduccionTiempo) ?: par.factorReduccionTiempo, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -271,7 +274,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="factorVolumen" class="inputVar num" value="${g.formatNumber(number: (obra?.factorVolumen) ?: par.factorVolumen, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="factorVolumen" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.factorVolumen) ?: par.factorVolumen, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -281,7 +285,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="factorPeso" class="inputVar num" value="${g.formatNumber(number: (obra?.factorPeso) ?: par.factorPeso, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="factorPeso" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.factorPeso) ?: par.factorPeso, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -425,7 +430,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceAlquiler" class="inputVar sum1 num" value="${g.formatNumber(number: (obra?.indiceAlquiler), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="1"/>
+                    <g:textField type="text" name="indiceAlquiler" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (obra?.indiceAlquiler), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="1"/>
                 </div>
 
                 <div class="span4">
@@ -433,7 +439,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceCampo" class="inputVar sum3 num" value="${g.formatNumber(number: (obra?.indiceCampo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="7"/>
+                    <g:textField type="text" name="indiceCampo" class="inputVar sum3 num"
+                                 value="${g.formatNumber(number: (obra?.indiceCampo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="7"/>
                 </div>
             </div>
 
@@ -443,7 +450,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="administracion" class="inputVar sum1 num" value="${g.formatNumber(number: (obra?.administracion), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="2"/>
+                    <g:textField type="text" name="administracion" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (obra?.administracion), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="2"/>
                 </div>
 
                 <div class="span4">
@@ -451,7 +459,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceCostosIndirectosCostosFinancieros" class="inputVar sum3 num" value="${g.formatNumber(number: (obra?.indiceCostosIndirectosCostosFinancieros), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" />
+                    <g:textField type="text" name="indiceCostosIndirectosCostosFinancieros" class="inputVar sum3 num"
+                                 value="${g.formatNumber(number: (obra?.indiceCostosIndirectosCostosFinancieros), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" />
                 </div>
             </div>
 
@@ -461,7 +470,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceProfesionales" class="inputVar sum1 num" value="${g.formatNumber(number: (obra?.indiceProfesionales), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="3"/>
+                    <g:textField type="text" name="indiceProfesionales" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (obra?.indiceProfesionales), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="3"/>
                 </div>
 
                 <div class="span4">
@@ -469,7 +479,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceCostosIndirectosGarantias" class="inputVar  sum3 num" value="${g.formatNumber(number: (obra?.indiceCostosIndirectosGarantias), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="8"/>
+                    <g:textField type="text" name="indiceCostosIndirectosGarantias" class="inputVar  sum3 num"
+                                 value="${g.formatNumber(number: (obra?.indiceCostosIndirectosGarantias), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="8"/>
                 </div>
             </div>
 
@@ -479,7 +490,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceCostosIndirectosMantenimiento" class="inputVar sum1 num" value="${g.formatNumber(number: (obra?.indiceCostosIndirectosMantenimiento), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="4"/>
+                    <g:textField type="text" name="indiceCostosIndirectosMantenimiento" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (obra?.indiceCostosIndirectosMantenimiento), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="4"/>
                 </div>
 
                 <div class="span4">
@@ -487,7 +499,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceCampamento" class="inputVar sum3 num" value="${g.formatNumber(number: (obra?.indiceCampamento), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="9"/>
+                    <g:textField type="text" name="indiceCampamento" class="inputVar sum3 num"
+                                 value="${g.formatNumber(number: (obra?.indiceCampamento), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="9"/>
                 </div>
             </div>
 
@@ -497,7 +510,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceSeguros" class="inputVar sum1 num" value="${g.formatNumber(number: (obra?.indiceSeguros), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="5"/>
+                    <g:textField type="text" name="indiceSeguros" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (obra?.indiceSeguros), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="5"/>
                 </div>
 
                 <div class="span4 bold" style="border-top: solid 1px #D3D3D3;">
@@ -505,7 +519,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceGastoObra" style="font-weight: bold" class="inputVar sum2 num" value="${g.formatNumber(number: (total2), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="10" readonly=""/>
+                    <g:textField type="text" name="indiceGastoObra" style="font-weight: bold" class="inputVar sum2 num"
+                                 value="${g.formatNumber(number: (total2), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="10" readonly=""/>
                 </div>
             </div>
 
@@ -515,7 +530,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceSeguridad" class="inputVar sum1 num" value="${g.formatNumber(number: (obra?.indiceSeguridad), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="6"/>
+                    <g:textField type="text" name="indiceSeguridad" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (obra?.indiceSeguridad), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="6"/>
                 </div>
 
                 <div class="span4">
@@ -523,7 +539,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="impreso" class="inputVar sum2 num" value="${g.formatNumber(number: (obra?.impreso) ?: 0, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="impreso" class="inputVar sum2 num"
+                                 value="${g.formatNumber(number: (obra?.impreso) ?: 0, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -533,7 +550,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceGastosGenerales" style="font-weight: bold" class="inputVar sum2 num" value="${g.formatNumber(number: (obra?.indiceGastosGenerales), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="6" readonly=""/>
+                    <g:textField type="text" name="indiceGastosGenerales" style="font-weight: bold" class="inputVar sum2 num"
+                                 value="${g.formatNumber(number: (obra?.indiceGastosGenerales), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="6" readonly=""/>
                 </div>
 
                 <div class="span4">
@@ -541,7 +559,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceUtilidad" class="inputVar sum2 num" value="${g.formatNumber(number: (obra?.indiceUtilidad) ?: 0, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="indiceUtilidad" class="inputVar sum2 num"
+                                 value="${g.formatNumber(number: (obra?.indiceUtilidad) ?: 0, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -557,7 +576,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" style="font-weight: bold" name="totales" class="inputVar num" value="${g.formatNumber(number: (obra?.totales) ?: 0, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" readonly=""/>
+                    <g:textField type="text" style="font-weight: bold" name="totales" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.totales) ?: 0, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" readonly=""/>
                 </div>
             </div>
 
@@ -578,7 +598,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="desgloseEquipo" class="inputVar num" value="${g.formatNumber(number: (obra?.desgloseEquipo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="desgloseEquipo" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.desgloseEquipo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -588,7 +609,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="desgloseRepuestos" class="inputVar num" value="${g.formatNumber(number: (obra?.desgloseRepuestos), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="desgloseRepuestos" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.desgloseRepuestos), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -599,7 +621,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="desgloseCombustible" class="inputVar num" value="${g.formatNumber(number: (obra?.desgloseCombustible), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="desgloseCombustible" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.desgloseCombustible), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -610,7 +633,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="desgloseMecanico" class="inputVar num" value="${g.formatNumber(number: (obra?.desgloseMecanico), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="desgloseMecanico" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.desgloseMecanico), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -620,7 +644,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="desgloseSaldo" class="inputVar num" value="${g.formatNumber(number: (obra?.desgloseSaldo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="desgloseSaldo" class="inputVar num"
+                                 value="${g.formatNumber(number: (obra?.desgloseSaldo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
 
             </div>
@@ -658,7 +683,8 @@
 
                 <div class="span2">
                     %{--<g:textField class="inputVar num2" name="distanciaCamioneta" style="width: 60px" type="number" maxlength="12" value="${obra?.distanciaCamioneta}"/>--}%
-                    <g:textField class="inputVar num3" name="distanciaCamioneta" style="width: 60px" type="number" maxlength="6" value="${g.formatNumber(number: (obra?.distanciaCamioneta), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField class="inputVar num3" name="distanciaCamioneta" style="width: 60px" type="number" maxlength="6"
+                                 value="${g.formatNumber(number: (obra?.distanciaCamioneta), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
 
                 <div class="span1">
@@ -678,7 +704,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField class="inputVar num3" name="distanciaAcemila" style="width: 60px" type="number" maxlength="6" value="${g.formatNumber(number: (obra?.distanciaAcemila), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField class="inputVar num3" name="distanciaAcemila" style="width: 60px" type="number" maxlength="6"
+                                 value="${g.formatNumber(number: (obra?.distanciaAcemila), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
 
                 <div class="span1">
@@ -691,7 +718,8 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField class="inputVar num3" name="distanciaDesalojo" style="width: 60px" type="number" maxlength="6" value="${g.formatNumber(number: (obra?.distanciaDesalojo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField class="inputVar num3" name="distanciaDesalojo" style="width: 60px" type="number" maxlength="6"
+                                 value="${g.formatNumber(number: (obra?.distanciaDesalojo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
 
                 <div class="span1">
