@@ -1901,11 +1901,14 @@
 
                                         "Con desglose de Trans.": function () {
                                             url += "1";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url--}%
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosTransporteRegistro')}?" + "&desglose=" + 1 + "&obra=" + '${obra?.id}';
                                         },
                                         "Sin desglose de Trans.": function () {
                                             url += "0";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url--}%
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosTransporteRegistro')}?" + "&desglose=" + 0 + "&obra=" + '${obra?.id}';
+
                                         },
                                         "Exportar Rubros a Excel": function () {
                                             var url = "${createLink(controller:'reportes', action:'imprimirRubrosExcel')}?obra=${obra?.id}&transporte=";
@@ -1996,11 +1999,14 @@
 
                                         "Con desglose de Trans.": function () {
                                             url += "1";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url--}%
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosTransporteRegistro')}?" + "&desglose=" + 1 + "&obra=" + '${obra?.id}';
+
                                         },
                                         "Sin desglose de Trans.": function () {
                                             url += "0";
-                                            location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url
+                                            %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url--}%
+                                            location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosTransporteRegistro')}?" + "&desglose=" + 0 + "&obra=" + '${obra?.id}';
                                         },
                                         "Exportar Rubros a Excel": function () {
                                             var url = "${createLink(controller:'reportes', action:'imprimirRubrosExcel')}?obra=${obra?.id}&transporte=";
