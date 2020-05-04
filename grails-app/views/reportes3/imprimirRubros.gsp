@@ -153,7 +153,7 @@
 
     <body>
         <div class="hoja">
-            ${html}
+            <elm:poneHtml textoHtml="${html}"/>
         </div>
     </body>
 </html>
