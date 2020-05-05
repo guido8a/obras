@@ -1179,9 +1179,7 @@
                     $(this).val(val);
                 }
             }
-
         }
-
     });
 
     $("#anchoVia").bind({

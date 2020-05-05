@@ -94,7 +94,7 @@
 
             <div class="row-fluid">
                 <div class="span3">
-                    Capital de Cantón
+                    Capital de Cantón (km)
                 </div>
 
                 <div class="span2">
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="span5">
-                    Pétreos para Hormigones
+                    Pétreos para Hormigones (km)
                 </div>
 
                 <div class="span1">
@@ -118,7 +118,7 @@
             <div class="row-fluid">
 
                 <div class="span3">
-                    Especial
+                    Especial (km)
                 </div>
 
                 <div class="span2">
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="span5">
-                    Pétreos para Mejoramiento
+                    Pétreos para Mejoramiento (km)
                 </div>
 
                 <div class="span1">
@@ -143,7 +143,7 @@
                 <div class="span3"></div>
                 <div class="span2"></div>
                 <div class="span5">
-                    Pétreos para Carpeta Asfáltica
+                    Pétreos para Carpeta Asfáltica (km)
                 </div>
 
                 <div class="span1">
