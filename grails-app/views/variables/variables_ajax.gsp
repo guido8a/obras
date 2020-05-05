@@ -230,7 +230,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="factorReduccion" class="inputVar num"
-                                 value="${g.formatNumber(number: (obra?.factorReduccion) ?: par.factorReduccion, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
+                                 value="${g.formatNumber(number: (obra?.factorReduccion) ?: par.factorReduccion.replace('.',','), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -241,7 +241,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="factorVelocidad" class="inputVar num"
-                                 value="${g.formatNumber(number: (obra?.factorVelocidad) ?: par.factorVelocidad, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
+                                 value="${g.formatNumber(number: (obra?.factorVelocidad) ?: par.factorVelocidad.replace('.',','), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -252,7 +252,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="capacidadVolquete" class="inputVar num"
-                                 value="${g.formatNumber(number: (obra?.capacidadVolquete) ?: par.capacidadVolquete, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
+                                 value="${g.formatNumber(number: (obra?.capacidadVolquete) ?: par.capacidadVolquete.replace('.',','), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -264,7 +264,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="factorReduccionTiempo" class="inputVar num"
-                                 value="${g.formatNumber(number: (obra?.factorReduccionTiempo) ?: par.factorReduccionTiempo, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
+                                 value="${g.formatNumber(number: (obra?.factorReduccionTiempo) ?: par.factorReduccionTiempo.replace('.',','), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -275,7 +275,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="factorVolumen" class="inputVar num"
-                                 value="${g.formatNumber(number: (obra?.factorVolumen) ?: par.factorVolumen, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
+                                 value="${g.formatNumber(number: (obra?.factorVolumen) ?: par.factorVolumen.replace('.',','), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -286,7 +286,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="factorPeso" class="inputVar num"
-                                 value="${g.formatNumber(number: (obra?.factorPeso) ?: par.factorPeso, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
+                                 value="${g.formatNumber(number: (obra?.factorPeso) ?: par.factorPeso.replace('.',','), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"/>
                 </div>
             </div>
 
@@ -806,7 +806,7 @@
     function suma(items, update) {
         var sum1 = 0;
         items.each(function () {
-            sum1 += parseFloat($(this).val());
+            sum1 += parseFloat($(this).val().replace(',', '.'));
         });
         update.val(number_format(sum1, 2, ".", ""));
     }
@@ -934,10 +934,11 @@
     function sumaDesglose() {
         var smDesglose = 0.0
         //console.log("sumadesglose")
-        smDesglose = parseFloat($("#desgloseEquipo").val()) + parseFloat($("#desgloseRepuestos").val()) +
-        parseFloat($("#desgloseCombustible").val()) + parseFloat($("#desgloseMecanico").val()) +
-        parseFloat($("#desgloseSaldo").val())
-        $("#totalDesglose").val(number_format(smDesglose, 2, ".", ""));
+        smDesglose = parseFloat($("#desgloseEquipo").val().replace(',', '.')) + parseFloat($("#desgloseRepuestos").val().replace(',', '.')) +
+        parseFloat($("#desgloseCombustible").val().replace(',', '.')) + parseFloat($("#desgloseMecanico").val().replace(',', '.')) +
+        parseFloat($("#desgloseSaldo").val().replace(',', '.'))
+        console.log('deasglose:', $("#desgloseEquipo").val(), smDesglose)
+        $("#totalDesglose").val(number_format(smDesglose, 3, ",", ""));
     }
 
 
