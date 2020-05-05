@@ -123,7 +123,7 @@
 
                 <div class="span2">
                     <g:textField type="text" name="distanciaPesoEspecial" class="inputVar num"
-                                 value="${g.formatNumber(number: obra?.distanciaPesoEspecial, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0'}"
+                                 value="${g.formatNumber(number: obra?.distanciaPesoEspecial, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}"
                                  title="Distancia de la Obra a la fábrica o proveedor especial"/>
                 </div>
 
@@ -754,7 +754,7 @@
         (ev.keyCode >= 96 && ev.keyCode <= 105) ||
         ev.keyCode == 190 || ev.keyCode == 110 ||
         ev.keyCode == 8 || ev.keyCode == 46 || ev.keyCode == 9 ||
-        ev.keyCode == 37 || ev.keyCode == 39);
+        ev.keyCode == 37 || ev.keyCode == 39 || ev.keyCode == 188 );
     }
 
     $(".sum1, .sum2, .num").keydown(function (ev) {
