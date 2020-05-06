@@ -35,7 +35,7 @@
 
     function loading(div) {
         y = 0;
-        $("#" + div).html("<div class='tituloChevere' id='loading'>Sistema Janus - Cargando, Espere por favor</div>")
+//        $("#" + div).html("<div class='tituloChevere' id='loading'>Sistema Janus - Cargando, Espere por favor</div>")
         var interval = setInterval(function () {
             if (y == 30) {
                 $("#detalle").html("<div class='tituloChevere' id='loading'>Cargando, Espere por favor</div>")
@@ -46,6 +46,7 @@
         }, 500);
         return interval
     }
+    
     function cargarTabla() {
         var interval = loading("detalle")
         var datos = ""
@@ -65,8 +66,6 @@
 
 
     $(function () {
-
-
 
         cargarTabla();
 

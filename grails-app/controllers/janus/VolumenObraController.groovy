@@ -223,8 +223,6 @@ class VolumenObraController extends janus.seguridad.Shield {
 
             redirect(action: "tablaCopiarRubro", params: [obra: obra.id, sub: volumen.subPresupuesto.id])
         }
-
-
     }
 
 
@@ -360,42 +358,30 @@ class VolumenObraController extends janus.seguridad.Shield {
     }
 
     def copiarRubros() {
-
         def obra = Obra.get(params.obra)
         def volumenes = VolumenesObra.findAllByObra(obra)
+//        flash.message = "seleccione el subpresupuesto de origen y a continuación el subpresupuesto de destino"
 
         return [obra: obra, volumenes: volumenes]
-
     }
 
     def tablaCopiarRubro() {
-
-
         def usuario = session.usuario.id
-
         def persona = Persona.get(usuario)
-
         def direccion = Direccion.get(persona?.departamento?.direccion?.id)
-
         def grupo = Grupo.findAllByDireccion(direccion)
-
-
-        def subPresupuesto1 = SubPresupuesto.findAllByGrupoInList(grupo)
-
-
         def obra = Obra.get(params.obra)
-
         def valores
+
         if (params.sub && params.sub != "null") {
             valores = preciosService.rbro_pcun_v3(obra.id, params.sub)
-
         } else {
             valores = preciosService.rbro_pcun_v2(obra.id)
-
         }
 
         def subPres = VolumenesObra.findAllByObra(obra, [sort: "orden"]).subPresupuesto.unique()
-
+        def subPresupuesto1 = SubPresupuesto.findAllByGrupoInList(subPres.grupo, [sort: 'descripcion'])
+//        println "subPresupuesto1: ${subPresupuesto1.size()}, grupo: ${subPres.grupo}, sub: ${subPres.id}"
 
         def precios = [:]
         def fecha = obra.fechaPreciosRubros
@@ -407,10 +393,8 @@ class VolumenObraController extends janus.seguridad.Shield {
         def indirecto = obra.totales / 100
 
         preciosService.ac_rbroObra(obra.id)
-
-        [precios: precios, subPres: subPres, subPre: params.sub, obra: obra, precioVol: prch, precioChof: prvl, indirectos: indirecto * 100, valores: valores, subPresupuesto1: subPresupuesto1]
-
-
+        [precios: precios, subPres: subPres, subPre: params.sub, obra: obra, precioVol: prch, precioChof: prvl,
+         indirectos: indirecto * 100, valores: valores, subPresupuesto1: subPresupuesto1, grupo: grupo]
     }
 
 
