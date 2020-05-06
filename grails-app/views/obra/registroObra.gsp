@@ -1893,8 +1893,8 @@
                                 dialog: {
                                     resizable: false,
                                     draggable: false,
-                                    width: 600,
-                                    height: 320,
+                                    width: 640,
+                                    height: 280,
                                     buttons: {
 
                                         "Con desglose de Trans.": function () {
@@ -1993,8 +1993,8 @@
                                 dialog: {
                                     resizable: false,
                                     draggable: false,
-                                    width: 600,
-                                    height: 260,
+                                    width: 640,
+                                    height: 280,
                                     buttons: {
 
                                         "Con desglose de Trans.": function () {
@@ -2030,7 +2030,7 @@
                                             urlVaeEx += "1";
                                             location.href = urlVaeEx;
                                         },
-                                        "Imprimir las Ilustraciones y las Especificaciones de los Rubros": function () {
+                                        "Imprimir las Ilustraciones y las Especificaciones de todos los Rubros de la Obra": function () {
                                             $.ajax({
                                                 type: "POST",
                                                 url: "${createLink(controller:'reportes2', action:'comprobarIlustracion')}",

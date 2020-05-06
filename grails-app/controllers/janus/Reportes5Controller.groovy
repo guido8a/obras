@@ -1106,20 +1106,12 @@ class Reportes5Controller extends Shield{
 
         document.add(headersTitulo)
 
-        def sql = "SELECT DISTINCT\n" +
-//                "  v.voit__id id,\n" +
-//                "  i.item__id iid,\n" +
-                "  i.itemcdgo codigo,\n" +
-                "  i.itemnmbr item,\n" +
-                "  v.voitcoef aporte,\n" +
-                "  v.voitpcun precio,\n" +
-                "  g.grpodscr grupo\n" +
-                "FROM vlobitem v\n" +
-                "  INNER JOIN item i ON v.item__id = i.item__id\n" +
-                "  INNER JOIN grpo g ON v.voitgrpo = g.grpo__id\n" +
-                "WHERE v.obra__id = ${params.id}\n" +
-                "      AND voitgrpo IN (1, 2)\n" + //cambiar aqui si hay que filtrar solo mano de obra o no: 1:formula polinomica, 2:mano de obra
-                "ORDER BY g.grpodscr, i.itemnmbr;"
+        def sql = "SELECT distinct i.itemcdgo codigo, i.itemnmbr item, v.voitcoef aporte, v.voitpcun precio, " +
+                "grpo__id::char(1) grupo FROM vlobitem v, item i, dprt, sbgr where v.item__id = i.item__id and " +
+                "dprt.dprt__id = i.dprt__id and sbgr.sbgr__id = dprt.sbgr__id and grpo__id in (1,2) and " +
+                "obra__id = ${params.id} ORDER BY grupo, i.itemnmbr;"
+
+        println "sql: $sql"
 
         def tablaDatos = new PdfPTable(3);
         tablaDatos.setWidthPercentage(100);
@@ -1135,7 +1127,7 @@ class Reportes5Controller extends Shield{
         cn.eachRow(sql.toString()) { row ->
             if (row.grupo != grupo) {
                 grupo = row.grupo
-                addCellTabla(tablaDatos, new Paragraph(row.grupo, fontTh), [border: Color.BLACK, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 3])
+                addCellTabla(tablaDatos, new Paragraph((row.grupo == '1'? 'Materiales' : 'Mano de Obra'), fontTh), [border: Color.BLACK, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 3])
             }
             addCellTabla(tablaDatos, new Paragraph(row.codigo, fontTd), [border: Color.BLACK, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaDatos, new Paragraph(row.item, fontTd), [border: Color.BLACK, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])

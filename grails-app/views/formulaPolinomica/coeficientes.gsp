@@ -182,9 +182,11 @@
     </g:link>
 
     <g:if test="${(obra?.responsableObra?.departamento?.direccion?.id == persona?.departamento?.direccion?.id && duenoObra == 1)}">
+%{--
         <a href="#" id="creaIndice" class="btn" title="Crear Índices" style="margin-top: -10px;">
             Crear Índices
         </a>
+--}%
         <a href="#" class="btn " title="Borrar la Fórmula Polinómica"
            style="margin-top: -10px;" id="btnEliminarFP">
             <i class="icon-trash"></i>
