@@ -1180,16 +1180,18 @@
                 resizable : false,
                 draggable : false,
                 width     : 600,
-                height    : 280,
+                height    : 320,
                 buttons   : {
 
                     "Con desglose de Trans."     : function () {
                         url += "1";
-                        location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url
+                        %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url--}%
+                        location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosTransporteRegistro')}?" + "&desglose=" + 1 + "&obra=" + '${contrato?.oferta?.concurso?.obra?.id}';
                     },
                     "Sin desglose de Trans."     : function () {
                         url += "0";
-                        location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url
+                        %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + url--}%
+                        location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosTransporteRegistro')}?" + "&desglose=" + 0 + "&obra=" + '${contrato?.oferta?.concurso?.obra?.id}';
                     },
                     "Exportar Rubros a Excel"    : function () {
                         var url = "${createLink(controller:'reportes', action:'imprimirRubrosExcel')}?obra=${contrato?.oferta?.concurso?.obra?.id}&transporte=";
@@ -1198,11 +1200,13 @@
                     },
                     "VAE con desglose de Trans." : function () {
                         urlVae += "1";
-                        location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae
+                        %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae--}%
+                        location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosVaeRegistro')}?" + "&desglose=" + 1 + "&obra=" + '${contrato?.oferta?.concurso?.obra?.id}';
                     },
                     "VAE sin desglose de Trans." : function () {
                         urlVae += "0";
-                        location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae
+                        %{--location.href = "${g.createLink(controller: 'pdf',action: 'pdfLink')}?url=" + urlVae--}%
+                        location.href = "${g.createLink(controller: 'reportesRubros',action: 'reporteRubrosVaeRegistro')}?" + "&desglose=" + 0 + "&obra=" + '${contrato?.oferta?.concurso?.obra?.id}';
                     },
                     "Exportar VAE a Excel"       : function () {
                         var urlVaeEx = "${createLink(controller:'reportes3', action:'imprimirRubrosVaeExcel')}?obra=${contrato?.oferta?.concurso?.obra?.id}&transporte=";
