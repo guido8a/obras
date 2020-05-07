@@ -153,8 +153,9 @@
                 $("#divCoords").data("coords", "${obra.coordenadas}");
 
                 var myOptions = {
-                    center             : countryCenter,
-                    zoom               : 7,
+//                    center             : countryCenter,
+                    center             :  {lat: latitudObra, lng: longitudObra},
+                    zoom               : 8,
                     maxZoom            : 16,
                     minZoom            : 8,
                     panControl         : false,

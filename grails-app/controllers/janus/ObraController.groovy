@@ -1185,18 +1185,8 @@ class ObraController extends janus.seguridad.Shield {
     } //form_ajax
 
     def save() {
-
-//        println "save " + params
-
         def usuario = session.usuario.id
-
         def persona = Persona.get(usuario)
-
-//        def dpto = persona.departamento
-//        def numero = null
-
-//        println("usuario" + usuario)
-//        println("dep" + persona.departamento.id)
 
         params.oficioIngreso = params.oficioIngreso.toUpperCase()
         params.memoCantidadObra = params.memoCantidadObra.toUpperCase()
@@ -1335,15 +1325,9 @@ class ObraController extends janus.seguridad.Shield {
                 obraInstance.distanciaPeso = 10
                 obraInstance.distanciaVolumen = 30
 
-
-//                obraInstance.indiceGastosGenerales = (obraInstance.indiceCostosIndirectosObra + obraInstance.indiceCostosIndirectosPromocion + obraInstance.indiceCostosIndirectosMantenimiento +
-//                        obraInstance.administracion + obraInstance.indiceCostosIndirectosGarantias + obraInstance.indiceCostosIndirectosCostosFinancieros + obraInstance.indiceCostosIndirectosVehiculos)
-
-
                 obraInstance.indiceGastosGenerales = (obraInstance?.indiceAlquiler + obraInstance?.administracion + obraInstance?.indiceProfesionales + obraInstance?.indiceCostosIndirectosMantenimiento + obraInstance?.indiceSeguros + obraInstance?.indiceSeguridad)
 
                 obraInstance.indiceGastoObra = (obraInstance?.indiceCampo + obraInstance?.indiceCostosIndirectosCostosFinancieros + obraInstance?.indiceCostosIndirectosGarantias + obraInstance?.indiceCampamento)
-
 //                obraInstance.totales = (obraInstance.impreso + obraInstance.indiceUtilidad + obraInstance.indiceCostosIndirectosTimbresProvinciales + obraInstance.indiceGastosGenerales)
                 obraInstance.totales = (obraInstance.impreso + obraInstance.indiceUtilidad + obraInstance.indiceGastoObra + obraInstance.indiceGastosGenerales)
 
@@ -1351,6 +1335,7 @@ class ObraController extends janus.seguridad.Shield {
                 if (session.perfil.codigo == 'ADDI' || session.perfil.codigo == 'COGS') {
                     obraInstance.tipo = 'D'
                 }
+                obraInstance.coordenadas = 'S 1 45.3193 W 79 32.4346'
             }else {
 
 //                println("entro codigo no")

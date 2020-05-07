@@ -10,10 +10,10 @@ class VerificacionPreciosController {
         def obra = Obra.get(params.id)
 
         def sql = "SELECT distinct itemcdgo codigo, itemnmbr item, unddcdgo unidad, rbpcpcun  punitario, " +
-                "rbpcfcha  fecha FROM obra_rbpc(${params.id}) " +
+                "rbpcfcha fecha FROM obra_rbpc(${params.id}) " +
                 "where rbpcfcha < (cast('${obra.fechaPreciosRubros.format('yyyy-MM-dd')}' as date) - 210)  " +
                 "ORDER BY itemnmbr"
-
+        println "verif: $sql"
         def res = cn.rows(sql.toString())
 
         return[res: res, obra: obra]
