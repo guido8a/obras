@@ -35,7 +35,7 @@
         
                 <span aria-labelledby="concurso-label">
         %{--<g:link controller="concurso" action="show" id="${documentoProcesoInstance?.concurso?.id}">--}%
-                    ${documentoProcesoInstance?.concurso?.id?.encodeAsHTML()}
+                    ${documentoProcesoInstance?.concurso?.objeto}
         %{--</g:link>--}%
                 </span>
         
