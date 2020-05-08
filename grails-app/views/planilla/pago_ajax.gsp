@@ -18,14 +18,14 @@ input[readonly] {
     <fieldset>
         <div class="row">
             <div class="span5">
-                ${extra}
+                <elm:poneHtml textoHtml="${extra}"/>
             </div>
         </div>
 
         <g:if test="${tipo.toInteger() < 5}">
             <div class="row">
                 <div class="span2 formato">
-                    ${lblMemo}
+                    <elm:poneHtml textoHtml="${lblMemo}"/>
                 </div>
 
                 <div class="span4">
@@ -38,7 +38,7 @@ input[readonly] {
         </g:if>
         <div class="row">
             <div class="span2 formato">
-                ${lblFecha}
+                <elm:poneHtml textoHtml="${lblFecha}"/>
             </div>
 
             <div class="span4">
@@ -50,7 +50,7 @@ input[readonly] {
             </div>
         </div>
 
-        ${nombres}
+        <elm:poneHtml textoHtml="${nombres}"/>
 
         %{--<g:if test="${tipo == '4'}">--}%
         %{--<div class="row">--}%

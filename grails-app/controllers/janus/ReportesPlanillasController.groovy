@@ -3382,12 +3382,14 @@ class ReportesPlanillasController {
         addCellTabla(tablaValores, new Paragraph("${numero(planilla.valor + reajuste - planilla.descuentos - multas - planilla.noPagoValor + costo, 2)}", fontThTabla), [border: Color.WHITE, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
 
         document.add(tablaValores)
-        def totalLetras = planilla.valor + planilla.reajuste - planilla.descuentos - multas + costo
+        Double totalLetras = planilla.valor + planilla.reajuste - planilla.descuentos - multas + costo
         def neg = ""
         if (totalLetras < 0) {
             totalLetras = totalLetras * -1
             neg = "MENOS "
         }
+        totalLetras = Math.round(totalLetras.toDouble()*100)/100
+        println "totalLetras: ${totalLetras.class}"
         def numerosALetras = NumberToLetterConverter.convertNumberToLetter(totalLetras)
 //        println "a letras: $totalLetras, resulta: $numerosALetras"
 //       def strParrafo3 = "Son ${neg}${numerosALetras}"

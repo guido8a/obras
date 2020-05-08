@@ -808,7 +808,8 @@ class PlanillaController extends janus.seguridad.Shield {
         nombres += '<div class="span4">' + g.textArea(name: 'asunto', style: "width:410px;", value: tramite.descripcion) + '</div>'
         nombres += '</div>'
 
-        [planilla: planilla, tipo: tipo, lblMemo: lblMemo, lblFecha: lblFecha, fechaMin: fechaMin, fechaMax: fechaMax, extra: extra, fecha: fecha, nombres: nombres]
+        [planilla: planilla, tipo: tipo, lblMemo: lblMemo, lblFecha: lblFecha, fechaMin: fechaMin, fechaMax: fechaMax,
+         extra: extra, fecha: fecha, nombres: nombres]
     }
 
     def saveDevolucionPlanilla() {

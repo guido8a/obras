@@ -432,10 +432,8 @@ class ReportesRubrosController extends Shield {
 
     def reporteRubrosV2() {
 
-        println("params " + params)
-
+//        println("params " + params)
         def auxiliar = Auxiliar.get(1)
-
         def obra
         def fecha
         def fecha1
@@ -920,7 +918,6 @@ class ReportesRubrosController extends Shield {
 
     def reporteRubrosTransporteRegistro(){
         println("params rrtr " + params)
-
         def obra = Obra.get(params.obra)
         def fecha1
         def fecha2

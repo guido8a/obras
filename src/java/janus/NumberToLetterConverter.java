@@ -2,6 +2,7 @@ package janus;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 /**
  * Esta clase provee la funcionalidad de convertir un numero representado en
@@ -48,14 +49,17 @@ public abstract class NumberToLetterConverter {
             throws NumberFormatException {
 
         StringBuilder converted = new StringBuilder();
+        DecimalFormatSymbols decimalSymbols = DecimalFormatSymbols.getInstance();
+        decimalSymbols.setDecimalSeparator('.');
 
         String patternThreeDecimalPoints = "#.###";
 
-        DecimalFormat format = new DecimalFormat(patternThreeDecimalPoints);
+        DecimalFormat format = new DecimalFormat(patternThreeDecimalPoints, decimalSymbols);
         format.setRoundingMode(RoundingMode.DOWN);
 
         // formateamos el numero, para ajustarlo a el formato de tres puntos
         // decimales
+//        System.out.println("valor aconvertir:" + doubleNumber);
         String formatedDouble = format.format(doubleNumber);
         doubleNumber = Double.parseDouble(formatedDouble);
 
@@ -73,8 +77,8 @@ public abstract class NumberToLetterConverter {
         if (doubleNumber < 0)
             throw new NumberFormatException("El numero debe ser positivo");
 
-        String splitNumber[] = String.valueOf(doubleNumber).replace('.', '#')
-                .split("#");
+        System.out.println("valor aconvertir:" + doubleNumber);
+        String splitNumber[] = String.valueOf(doubleNumber).replace('.', '#').split("#");
 //        System.out.println(splitNumber[0] + "con" + splitNumber[1]);
         if(splitNumber[1].length() == 1) {
             splitNumber[1] = splitNumber[1] + "0";

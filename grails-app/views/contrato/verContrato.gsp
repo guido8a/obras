@@ -1179,8 +1179,8 @@
             dialog     : {
                 resizable : false,
                 draggable : false,
-                width     : 600,
-                height    : 320,
+                width     : 640,
+                height    : 280,
                 buttons   : {
 
                     "Con desglose de Trans."     : function () {
