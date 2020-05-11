@@ -5,6 +5,7 @@ import janus.seguridad.Shield
 import org.springframework.dao.DataIntegrityViolationException
 
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 class MantenimientoItemsController extends Shield {
 
@@ -1139,11 +1140,12 @@ class MantenimientoItemsController extends Shield {
     }
 
     def savePrecio_ajax() {
-//        println params
+//        println "savePrecio_ajax" + params
         def item = Item.get(params.item.id)
         params.fecha = new Date().parse("dd-MM-yyyy", params.fecha)
         if (params.lugar.id != "-1") {
             def precioRubrosItemsInstance = new PrecioRubrosItems(params)
+            precioRubrosItemsInstance.precioUnitario = params.precioUnitario.toDouble()
             if (precioRubrosItemsInstance.save(flush: true)) {
                 render "OK"
             } else {
@@ -1177,7 +1179,7 @@ class MantenimientoItemsController extends Shield {
                             println "mantenimiento items controller l 873: " + precioRubrosItemsInstance.errors
                             error++
                         }
-                    }
+                    } 
                 }
                 if (error == 0) {
                     render "OK"
@@ -1358,7 +1360,7 @@ class MantenimientoItemsController extends Shield {
     }
 
     def showLg_ajax() {
-//        println "showLg_ajax... params: $params"
+        println "showLg_ajax... params: $params"
 //        params.operador = "<"
         if (params.fecha == "all") {
             params.todasLasFechas = "true"
