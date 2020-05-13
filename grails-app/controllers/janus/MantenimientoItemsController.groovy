@@ -1051,6 +1051,7 @@ class MantenimientoItemsController extends Shield {
         params.campo = params.campo.toString().toUpperCase()
         params.observaciones = params.observaciones.toString().toUpperCase()
         params.codigo = params.codigo.toString().toUpperCase()
+        params.peso = params.peso.toDouble()
         if (!params.id) {
             if (!params.codigo.contains(".")) {
                 if (dep.subgrupo.grupoId == 2) {
