@@ -1,15 +1,26 @@
 package janus
 
+import com.itextpdf.text.html.simpleparser.HTMLWorker
 import com.lowagie.text.*
 import com.lowagie.text.pdf.PdfContentByte
 import com.lowagie.text.pdf.PdfPCell
 import com.lowagie.text.pdf.PdfPTable
 import com.lowagie.text.pdf.PdfWriter
+import janus.actas.Acta
+import janus.ejecucion.DetallePlanillaEjecucion
+import janus.ejecucion.Planilla
+import janus.ejecucion.TipoPlanilla
 import janus.pac.CronogramaContratado
+import janus.pac.Garantia
 import janus.seguridad.Shield
 import jxl.Workbook
 import jxl.WorkbookSettings
 import jxl.write.*
+
+import org.apache.commons.lang.StringEscapeUtils
+
+import janus.ActaTagLib
+import org.xhtmlrenderer.pdf.ITextRenderer
 
 import java.awt.*
 
@@ -3798,4 +3809,259 @@ class ReportesRubrosController extends Shield {
         response.getOutputStream().write(b)
     }
 
+//    def reporteActaRecepcionProvisional(){
+//        println("params racta " + params)
+//
+//        def acta = Acta.get(params.id)
+//        def garantias = Garantia.findAllByContrato(acta.contrato)
+//        def obra = Obra.get(acta.contrato.oferta.concurso.obra.id)
+//        def fiscalizador = Planilla.findAllByContrato(acta.contrato, [sort: "id", order: "desc"]).first().fiscalizador
+//        def contrato = acta.contrato
+//
+//        def prmsHeaderHoja = [border: Color.WHITE]
+//        def prmsFila = [border: Color.WHITE, align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+//        def prmsFilaIzquierda = [border: Color.WHITE, align : Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE]
+//        def prmsFilaDerecha = [border: Color.WHITE, align : Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+//        def prmsHeaderHoja2 = [border: Color.WHITE, colspan: 9]
+//        def prmsHeader = [border: Color.WHITE, colspan: 7, bg: new Color(73, 175, 205),
+//                          align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+//        def prmsHeader2 = [border: Color.WHITE, colspan: 3, bg: new Color(73, 175, 205),
+//                           align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+//        def prmsCellHead = [border: Color.WHITE, bg: new Color(73, 175, 205),
+//                            align : Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+//        def prmsCellCenter = [border: Color.BLACK, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+//        def prmsCellRight = [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+//        def prmsCellLeft = [border: Color.BLACK, valign: Element.ALIGN_MIDDLE]
+//        def prmsSubtotal = [border: Color.BLACK, colspan: 6,
+//                            align : Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+//        def prmsNum = [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+//
+//        def celdaCabecera = [border: Color.BLACK, bg: new Color(220, 220, 220), align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, bordeBot: "1"]
+//        def celdaCabeceraIzquierda = [bct: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bcb: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE]
+//        def celdaCabeceraDerecha = [bct: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bcb: Color.WHITE, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+//        def celdaCabeceraCentro = [bct: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bcb: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+//        def celdaCabeceraCentro2 = [bcb: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bct: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+//        def celdaCabeceraDerecha2 = [bcb: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bct: Color.WHITE, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+//        def celdaCabeceraIzquierda2 = [bcb: Color.BLACK, bcl: Color.WHITE, bcr:Color.WHITE, bct: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE]
+//        def celdaTitulos = [border: new Color(220, 220, 220), bg: new Color(220, 220, 220), align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, bordeBot: "1"]
+//        def celdaTitulosIzquierda = [border: new Color(220, 220, 220), bg: new Color(220, 220, 220), align: Element.ALIGN_LEFT, valign: Element.ALIGN_LEFT, bordeBot: "1"]
+//        def celdaEnBlanco = [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_LEFT, bordeBot: "1"]
+//
+//        def tituloRubro = [height: 20, border: Color.WHITE, colspan: 12, align : Element.ALIGN_LEFT, valign: Element.ALIGN_TOP]
+//        def tituloRubro13 = [height: 20, border: Color.WHITE, colspan: 13, align : Element.ALIGN_LEFT, valign: Element.ALIGN_TOP]
+//        def tituloRubro3 = [height: 20, border: Color.WHITE, colspan: 3, align : Element.ALIGN_LEFT, valign: Element.ALIGN_TOP]
+//
+//        def prms = [prmsHeaderHoja: prmsHeaderHoja, prmsHeader: prmsHeader, prmsHeader2: prmsHeader2,
+//                    prmsCellHead: prmsCellHead, prmsCell: prmsCellCenter, prmsCellLeft: prmsCellLeft, prmsSubtotal: prmsSubtotal, prmsNum: prmsNum, prmsHeaderHoja2: prmsHeaderHoja2, prmsCellRight: prmsCellRight]
+//
+//        Font times12bold = new Font(Font.TIMES_ROMAN, 12, Font.BOLD)
+//        Font times14bold = new Font(Font.TIMES_ROMAN, 14, Font.BOLD)
+//        Font times10bold = new Font(Font.TIMES_ROMAN, 10, Font.BOLD)
+//        Font times10normal = new Font(Font.TIMES_ROMAN, 10, Font.NORMAL)
+//        Font times8bold = new Font(Font.TIMES_ROMAN, 8, Font.BOLD)
+//        Font times8normal = new Font(Font.TIMES_ROMAN, 8, Font.NORMAL)
+//        Font times7bold = new Font(Font.TIMES_ROMAN, 7, Font.BOLD)
+//        Font times7normal = new Font(Font.TIMES_ROMAN, 7, Font.NORMAL)
+//        Font times10boldWhite = new Font(Font.TIMES_ROMAN, 10, Font.BOLD);
+//        Font times8boldWhite = new Font(Font.TIMES_ROMAN, 8, Font.BOLD)
+//        times8boldWhite.setColor(Color.WHITE)
+//        times10boldWhite.setColor(Color.WHITE)
+//
+//        def baos = new ByteArrayOutputStream()
+//        def name = "reporteActa_" + new Date().format("ddMMyyyy_hhmm") + ".pdf"
+//        Document document
+//        document = new Document(PageSize.A4)
+//        document.setMargins(60, 24, 45, 45);
+//
+//        def pdfw = PdfWriter.getInstance(document, baos);
+//        document.open();
+//        document.addTitle("acta_ " + new Date().format("dd_MM_yyyy"));
+//        document.addSubject("Generado por el sistema Obras");
+//        document.addKeywords("documentosObra, janus, acta");
+//        document.addAuthor("OBRAS");
+//        document.addCreator("Tedein SA");
+//
+//        Paragraph headers = new Paragraph();
+//        addEmptyLine(headers, 1);
+//        headers.setAlignment(Element.ALIGN_CENTER);
+//        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
+//        headers.add(new Paragraph( "Acta de ${acta?.nombre} ${acta?.tipo == 'P' ? 'Provisional' : 'Definitiva'} N. ${acta?.numero}", times10bold));
+//        headers.add(new Paragraph("", times14bold));
+//
+//
+//        PdfPTable tablaCabecera = new PdfPTable(2);
+//        tablaCabecera.setWidthPercentage(100);
+//        tablaCabecera.setWidths(arregloEnteros([10,90]))
+//        tablaCabecera.horizontalAlignment = Element.ALIGN_LEFT;
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Datos generales",  times10bold), tituloRubro3)
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Contrato N.", times8bold), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph(acta?.contrato?.codigo ?: '', times8normal), celdaTitulosIzquierda)
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Garantías N.", times8bold), celdaTitulosIzquierda)
+//        if(garantias.size() > 0){
+//            garantias.each{i,garantia->
+//                reportesPdfService.addCellTb(tablaCabecera, new Paragraph( (garantia.tipoDocumentoGarantia.descripcion +  "N." + garantia.codigo +  "-" + garantia.aseguradora.nombre  + i < garantias.size() - 1 ? "," : "") , times8normal), celdaTitulosIzquierda)
+//            }
+//        }else{
+//            reportesPdfService.addCellTb(tablaCabecera, new Paragraph('', times8normal), celdaTitulosIzquierda)
+//        }
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Objeto", times8bold), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph(acta.contrato.objeto ?: '', times8normal), celdaTitulosIzquierda)
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Lugar", times8bold), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph( obra?.sitio ?: '', times8normal), celdaTitulosIzquierda)
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Ubicación", times8bold), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph( "Parroquia " + obra.parroquia.nombre + " - " + "Cantón " + obra.parroquia.canton.nombre ?: '', times8normal), celdaTitulosIzquierda)
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Monto", times8bold), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph(numero(acta.contrato.monto, 2)?.toString() , times8normal), celdaTitulosIzquierda)
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Contratista", times8bold), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph(acta.contrato.oferta.proveedor.nombre , times8normal), celdaTitulosIzquierda)
+//
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph("Fiscalizador", times8bold), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaCabecera, new Paragraph((fiscalizador?.titulo ?: '' )+ " " + fiscalizador?.nombre + " " + fiscalizador?.apellido, times8normal), celdaTitulosIzquierda)
+//
+//        PdfPTable tablaDescripcion = new PdfPTable(1);
+//        tablaDescripcion.setWidthPercentage(100);
+//        tablaDescripcion.setWidths(arregloEnteros([100]))
+//        tablaDescripcion.horizontalAlignment = Element.ALIGN_LEFT;
+//
+//        reportesPdfService.addCellTb(tablaDescripcion, new Paragraph("", times8normal), celdaEnBlanco)
+//        reportesPdfService.addCellTb(tablaDescripcion, new Paragraph(cambiarHtml(acta.descripcion), times8normal), celdaTitulosIzquierda)
+//        reportesPdfService.addCellTb(tablaDescripcion, new Paragraph("", times8normal), celdaEnBlanco)
+//
+//
+//        String cc = new ActaTagLib().clean(str: acta.descripcion)
+//
+//        println("cc " + cc)
+//
+//
+//        reportesPdfService.addCellTb(tablaDescripcion, new Paragraph(cc, times8normal), celdaEnBlanco)
+//
+//        document.add(headers)
+//        document.add(tablaCabecera)
+//        document.add(tablaDescripcion)
+//
+//
+//        acta.secciones.each{seccion->
+//
+//
+////            println("z " + z)
+//
+//            PdfPTable tablaSeccion = new PdfPTable(3);
+//            tablaSeccion.setWidthPercentage(100);
+//            tablaSeccion.setWidths(arregloEnteros([3,5,92]))
+//            tablaSeccion.horizontalAlignment = Element.ALIGN_LEFT;
+//
+//
+//            reportesPdfService.addCellTb(tablaSeccion, new Paragraph(seccion.numero + ".-", times8bold), [border: Color.WHITE, colspan: 2])
+//            reportesPdfService.addCellTb(tablaSeccion, new Paragraph(cambiarHtml(seccion.titulo), times8bold), prmsFilaIzquierda)
+//
+//            seccion.parrafos.each{parrafo->
+//                reportesPdfService.addCellTb(tablaSeccion, new Paragraph("", times8bold), prmsFilaIzquierda)
+//                reportesPdfService.addCellTb(tablaSeccion, new Paragraph((seccion.numero + "." + parrafo.numero + ".-"), times8bold), prmsFilaIzquierda)
+//                reportesPdfService.addCellTb(tablaSeccion, new Paragraph(cambiarHtml(parrafo.contenido), times8normal), prmsFilaIzquierda)
+//
+//                println("--> " + parrafo.tipoTabla)
+//
+//                document.add(tablaSeccion)
+//
+//                switch (parrafo.tipoTabla){
+//                    case "RBR":
+//
+////                    def planillasAvance = Planilla.findAllByContratoAndTipoPlanillaInList(contrato, TipoPlanilla.findAllByCodigoInList(['P', 'Q', 'O']), [sort: 'fechaInicio'])
+////                    def indirecto = obra.totales / 100
+////                    preciosService.ac_rbroObra(obra.id)
+////                    def detalles = [:]
+////                    def volumenes = VolumenContrato.findAllByObra(obra, [sort: "volumenOrden"])
+////
+////                    volumenes.each { vol ->
+////                        vol.refresh()
+////
+////                        if (!detalles[vol.subPresupuesto]) {
+////                            detalles[vol.subPresupuesto] = [:]
+////                        }
+////                        if (!detalles[vol.subPresupuesto][vol.item]) {
+////                            detalles[vol.subPresupuesto][vol.item] = [
+////                                    codigo  : vol.item.codigo,
+////                                    nombre  : vol.item.nombre,
+////                                    unidad  : vol.item.unidad.codigo,
+////                                    precio  : vol.volumenPrecio,
+////                                    cantidad: [
+////                                            contratado: 0,
+////                                            ejecutado : 0
+////                                    ],
+////                                    valor   : [
+////                                            contratado: 0,
+////                                            ejecutado : 0
+////                                    ]
+////                            ]
+////                        }
+////                        detalles[vol.subPresupuesto][vol.item].cantidad.contratado += vol.volumenCantidad
+////                        detalles[vol.subPresupuesto][vol.item].valor.contratado += vol.volumenSubtotal
+////                    }
+////
+////                    planillasAvance.each { pla ->
+////                        def det = DetallePlanillaEjecucion.findAllByPlanilla(pla)
+////                        det.each { dt ->
+////                            if (detalles[dt.volumenContrato.subPresupuesto][dt.volumenContrato.item]) {
+////                                detalles[dt.volumenContrato.subPresupuesto][dt.volumenContrato.item].cantidad.ejecutado += dt.cantidad
+////                                detalles[dt.volumenContrato.subPresupuesto][dt.volumenContrato.item].valor.ejecutado += dt.monto
+////                            } else {
+////                                println "no existe detalle para " + dt.volumenContrato.item + "???"
+////                            }
+////                        }
+////                    }
+//
+//
+//
+//                        PdfPTable tablaV1 = new PdfPTable(7);
+//                        tablaV1.setWidthPercentage(100);
+//                        tablaV1.setWidths(arregloEnteros([20,35,10,13,5,7,10]))
+//                        reportesPdfService.addCellTb(tablaV1, new Paragraph("N.", times7bold), celdaCabecera)
+//                        reportesPdfService.addCellTb(tablaV1, new Paragraph("Descripción del rubro", times7bold), celdaCabecera)
+//                        reportesPdfService.addCellTb(tablaV1, new Paragraph("U.", times7bold), celdaCabecera)
+//                        reportesPdfService.addCellTb(tablaV1, new Paragraph("Precio unitario", times7bold), celdaCabecera)
+//                        reportesPdfService.addCellTb(tablaV1, new Paragraph("Volumen contratado", times7bold), celdaCabecera)
+//                        reportesPdfService.addCellTb(tablaV1, new Paragraph("cantidad total ejecutada", times7bold), celdaCabecera)
+//                        reportesPdfService.addCellTb(tablaV1, new Paragraph("Valor total ejecutado", times7bold), celdaCabecera)
+//
+//
+//                        String tt = new ActaTagLib().tabla(tipo: parrafo.tipoTabla, acta: acta)
+//                        println("tt " + tt)
+//
+//                        document.add(tablaV1)
+//
+//                        break;
+//                }
+//            }
+//        }
+//
+//
+//        document.close();
+//        pdfw.close()
+//        byte[] b = baos.toByteArray();
+//        response.setContentType("application/pdf")
+//        response.setHeader("Content-disposition", "attachment; filename=" + name)
+//        response.setContentLength(b.length)
+//        response.getOutputStream().write(b)
+//    }
+
+
+    def cambiarHtml(texto){
+        String gt = ''
+        ArrayList p2 = new ArrayList()
+        StringReader sh2 = new StringReader(texto)
+        p2 = HTMLWorker.parseToList(sh2, null)
+        for (int k = 0; k < p2[0].size(); ++k){
+            gt += p2[0].get(k)
+        }
+
+        return gt
+    }
 }
