@@ -407,13 +407,13 @@
 
         <div class="tipoReporteMemo">
 
-            <fieldset class="borde">
+            <fieldset class="borde hidden">
 
                 <legend>Tipo de Reporte</legend>
 
                 <div class="span6" style="margin-bottom: 10px; margin-top: -20px">
 
-                    <input type="radio" name="tipoPresupuestoMemo" class="radioPresupuestoMemo" value="1"
+                    <input type="radio" name="tipoPresupuestoMemo" class="radioPresupuestoMemo " value="1"
                            checked="true"/>  Base de Contrato
 
                 %{--<input type="radio" name="tipoPresupuestoMemo" class="radioPresupuestoMemo" value="2"--}%
@@ -2068,6 +2068,11 @@
                         tipoReporte = 2
                     }
 
+
+                    console.log("aaaaaaaaaaaaaaa " + $(".radioPresupuesto:checked").val())
+
+
+
                     $.ajax({
                         type    : "POST",
                         url     : "${createLink(controller: 'nota', action: 'saveNota')}",
@@ -2085,7 +2090,7 @@
                             if (part[0] == 'ok') {
 //                                $("#divOk").show(msg);
                                 //console.log($(".encabezado:checked").val());
-                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObra',id: obra?.id)}?tipoReporte=" + tipoReporte +
+                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObra',id: obra?.id)}?tipoReporte=" + $(".radioPresupuesto:checked").val() +
                                 "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
                                 "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
                                 "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
@@ -2169,7 +2174,7 @@
                                 %{--location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObra',id: obra?.id)}?tipoReporte=" + tipoReporte + "&forzarValue=" + forzarValue + "&notaValue=" + part[1]--}%
                                 %{--+ "&firmasId=" + firmasId + "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses + "&firmasFijas=" +firmasFijas + "&firmaCoordinador=" + firmaCoordinador--}%
 //                                //console.log("LINK 1")
-                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraMemo',id: obra?.id)}?tipoReporte=" + tipoReporte +
+                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraMemo',id: obra?.id)}?tipoReporte=" + '1' +
                                 "&firmasIdMemo=" + firmasIdMemo  + "&totalPresupuesto=" + totalPres + "&proyeccionMemo=" + proyeccionMemo +
                                 "&reajusteIvaMemo=" + reajusteIvaMemo + "&reajusteMesesMemo=" + reajusteMesesMemo +
                                 "&para=" + paraMemo + "&firmasFijasMemo=" + firmasFijasMemo + "&texto=" + textoMemo + "&pie=" + pieMemo +
