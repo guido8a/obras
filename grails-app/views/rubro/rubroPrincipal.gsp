@@ -84,15 +84,15 @@
         </a>
     </g:if>
     <g:if test="${session.perfil.codigo == 'APRB' && rubro?.aprobado == null && rubro?.id}">
-        <a href="#" class="btn btn-ajax btn-new btn-success" id="btnRegistrar" title="Registrar el rubro">
+        <a href="#" class="btn btn-ajax btn-new btn-success" id="btnRegistrar" title="Aprobar el rubro">
             <i class="icon-check"></i>
-            Registrar
+            Aprobar
         </a>
     </g:if>
     <g:if test="${session.perfil.codigo == 'APRB' && rubro?.aprobado == 'R'}">
-        <a href="#" class="btn btn-ajax btn-new btn-warning" id="btnQuitarRegistro" title="Quitar el registro del rubro">
+        <a href="#" class="btn btn-ajax btn-new btn-warning" id="btnQuitarRegistro" title="Quitar el aprobado del rubro">
             <i class="icon-check"></i>
-            Desregistrar
+            Desaprobar
         </a>
     </g:if>
 </div>
@@ -677,7 +677,7 @@
         var idRubro = '${rubro?.id}';
         $.box({
             imageClass: "box_info",
-            text: "Está seguro de cambiar el estado de este"  + '<p style="margin-left: 42px">' + "rubro a " + '<strong style="color: #1a7031">' + "REGISTRADO" + "?" + '</strong>' + '</p>',
+            text: "Está seguro de cambiar el estado de este"  + '<p style="margin-left: 42px">' + "rubro a " + '<strong style="color: #1a7031">' + "APROBADO" + "?" + '</strong>' + '</p>',
             title: "Registrar rubro",
             dialog: {
                 resizable: false,
@@ -720,7 +720,8 @@
         var idRubroR = '${rubro?.id}';
         $.box({
             imageClass: "box_info",
-            text: "Está seguro de cambiar el estado de este"  + '<p style="margin-left: 42px">' + "rubro a " + '<strong style="color: #ff5c34">' + "INGRESADO" + "?" + '</strong>' + '</p>',
+            text: "Está seguro de cambiar el estado de este"  + '<p style="margin-left: 42px">' + "rubro a " +
+                  '<strong style="color: #ff5c34">' + "NO APROBADO" + "?" + '</strong>' + '</p>',
             title: "Quitar registro del rubro",
             dialog: {
                 resizable: false,
