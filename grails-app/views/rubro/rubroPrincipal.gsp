@@ -274,7 +274,7 @@
                         <a class="btn btn-small btn-primary btn-ajax" href="#" rel="tooltip" title="Agregar" id="btn_agregarItem">
                             <i class="icon-plus"></i>
                         </a>
-
+                        <a class="btn btn-small btn-primary btn-ajax" href="#" rel="tooltip" title="Precio" id="btn_precio">$</a>
                     </div>
                 </g:if>
         </div>
@@ -668,7 +668,127 @@
 
 </div>
 
+
+<div class="modal hide fade" id="modal-tree">
+    <div class="modal-header" id="modal-header-tree">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+
+        <h3 id="modalTitle-tree"></h3>
+    </div>
+
+    <div class="modal-body" id="modalBody-tree">
+    </div>
+
+    <div class="modal-footer" id="modalFooter-tree">
+    </div>
+</div>
+
 <script type="text/javascript">
+
+
+    $("#btn_precio").click(function () {
+        var idItem = $("#item_id").val();
+        if(idItem){
+            $.ajax({
+                type    : "POST",
+                url     : "${createLink(controller: 'rubro', action:'precio_ajax')}",
+                data    : {
+                    item        : idItem
+                },
+                success : function (msg) {
+                    var btnOk = $('<a href="#" data-dismiss="modal" class="btn">Cancelar</a>');
+                    var btnSave = $('<a href="#"  class="btn btn-success"><i class="icon-ok"></i> Guardar</a>');
+                    btnSave.click(function () {
+                        if($("#precioUnitario").val() == 0){
+                            $("#modal-tree").modal("hide");
+                            $.box({
+                                imageClass: "box_info",
+                                text: "Ingrese un valor diferente de 0",
+                                title: "Error",
+                                dialog: {
+                                    resizable: false,
+                                    draggable: false,
+                                    width: 300,
+                                    height: 150,
+                                    buttons: {
+                                        "Aceptar": function () {
+                                        }
+                                    }
+                                }
+                            });
+                        }else{
+                            $.ajax({
+                                type    : "POST",
+                                url     : $("#frmSave").attr("action"),
+                                data    : $("#frmSave").serialize(),
+                                success : function (msg) {
+                                    if (msg == "OK") {
+                                        $("#modal-tree").modal("hide");
+                                        $.box({
+                                            imageClass: "box_info",
+                                            text: "Precio creado correctamente",
+                                            title: "Precio creado",
+                                            dialog: {
+                                                resizable: false,
+                                                draggable: false,
+                                                width: 300,
+                                                height: 150,
+                                                buttons: {
+                                                    "Aceptar": function () {
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        $("#modal-tree").modal("hide");
+                                        $.box({
+                                            imageClass: "box_info",
+                                            text: "Error al crear el precio",
+                                            title: "Error",
+                                            dialog: {
+                                                resizable: false,
+                                                draggable: false,
+                                                width: 300,
+                                                height: 150,
+                                                buttons: {
+                                                    "Aceptar": function () {
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
+
+
+                        return false;
+                    });
+
+                    $("#modalTitle-tree").html("Nuevo Precio");
+                    $("#modalBody-tree").html(msg);
+                    $("#modalFooter-tree").html("").append(btnOk).append(btnSave);
+                    $("#modal-tree").modal("show");
+                }
+            });
+        }else{
+            $.box({
+                imageClass: "box_info",
+                text: "Seleccione un item!",
+                title: "Error",
+                dialog: {
+                    resizable: false,
+                    draggable: false,
+                    width: 300,
+                    height: 150,
+                    buttons: {
+                        "Aceptar": function () {
+                        }
+                    }
+                }
+            });
+        }
+    });
 
     var urlS = "${resource(dir:'images', file:'spinner_24.gif')}";
     var spinner = $("<img style='margin-left:15px;' src='" + urlS + "' alt='Cargando...'/>");

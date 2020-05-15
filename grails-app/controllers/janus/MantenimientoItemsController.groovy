@@ -1141,54 +1141,77 @@ class MantenimientoItemsController extends Shield {
     }
 
     def savePrecio_ajax() {
-//        println "savePrecio_ajax" + params
-        def item = Item.get(params.item.id)
+
+//        println ("gprecio " + params)
+
+        def item = Item.get(params."item.id")
+        def lugar = Lugar.get(params."lugar.id")
         params.fecha = new Date().parse("dd-MM-yyyy", params.fecha)
-        if (params.lugar.id != "-1") {
-            def precioRubrosItemsInstance = new PrecioRubrosItems(params)
-            precioRubrosItemsInstance.precioUnitario = params.precioUnitario.toDouble()
-            if (precioRubrosItemsInstance.save(flush: true)) {
-                render "OK"
-            } else {
-                println "mantenimiento items controller l 846: " + precioRubrosItemsInstance.errors
-                render "NO"
-            }
-        } else {
-//            def tipo = ["C"]
-            if (params.ignore == "true") {
-//                if (params.all == "true") {
-//                    tipo.add("V")
-//                }
-                def error = 0
-                Lugar.findAllByTipoLista(item.tipoLista).each { lugar ->
-                    def precios = PrecioRubrosItems.withCriteria {
-                        and {
-                            eq("lugar", lugar)
-                            eq("fecha", params.fecha)
-                            eq("item", item)
-                        }
-                    }
-                    if (precios.size() == 0) {
-                        def precioRubrosItemsInstance = new PrecioRubrosItems()
-                        precioRubrosItemsInstance.precioUnitario = params.precioUnitario.toDouble()
-                        precioRubrosItemsInstance.lugar = lugar
-                        precioRubrosItemsInstance.item = Item.get(params.item.id)
-                        precioRubrosItemsInstance.fecha = params.fecha
-                        if (precioRubrosItemsInstance.save(flush: true)) {
-//                            println "OK"
-                        } else {
-                            println "mantenimiento items controller l 873: " + precioRubrosItemsInstance.errors
-                            error++
-                        }
-                    } 
-                }
-                if (error == 0) {
-                    render "OK"
-                } else {
-                    render "NO"
-                }
-            }
+        def precioRubrosItemsInstance
+
+        if(PrecioRubrosItems.findByItemAndFechaAndLugar(item, params.fecha, lugar)){
+            precioRubrosItemsInstance = PrecioRubrosItems.findByItemAndFechaAndLugar(item, params.fecha, lugar)
+        }else{
+            precioRubrosItemsInstance = new PrecioRubrosItems()
+            precioRubrosItemsInstance.lugar = lugar
+            precioRubrosItemsInstance.item = item
+            precioRubrosItemsInstance.fecha = params.fecha
         }
+
+        precioRubrosItemsInstance.precioUnitario = params.precioUnitario.toDouble()
+
+        if(!precioRubrosItemsInstance?.save(flush: true)){
+            println("error al guardar el precio del rubro " +  precioRubrosItemsInstance.errors)
+            render "NO"
+        }else{
+            render "OK"
+        }
+
+
+//        println "savePrecio_ajax" + params
+//        def item = Item.get(params.item.id)
+//        params.fecha = new Date().parse("dd-MM-yyyy", params.fecha)
+//        if (params.lugar.id != "-1") {
+//            def precioRubrosItemsInstance = new PrecioRubrosItems(params)
+//            precioRubrosItemsInstance.precioUnitario = params.precioUnitario.toDouble()
+//            if (precioRubrosItemsInstance.save(flush: true)) {
+//                render "OK"
+//            } else {
+//                println "mantenimiento items controller l 846: " + precioRubrosItemsInstance.errors
+//                render "NO"
+//            }
+//        } else {
+//            if (params.ignore == "true") {
+//                def error = 0
+//                Lugar.findAllByTipoLista(item.tipoLista).each { lugar ->
+//                    def precios = PrecioRubrosItems.withCriteria {
+//                        and {
+//                            eq("lugar", lugar)
+//                            eq("fecha", params.fecha)
+//                            eq("item", item)
+//                        }
+//                    }
+//                    if (precios.size() == 0) {
+//                        def precioRubrosItemsInstance = new PrecioRubrosItems()
+//                        precioRubrosItemsInstance.precioUnitario = params.precioUnitario.toDouble()
+//                        precioRubrosItemsInstance.lugar = lugar
+//                        precioRubrosItemsInstance.item = Item.get(params.item.id)
+//                        precioRubrosItemsInstance.fecha = params.fecha
+//                        if (precioRubrosItemsInstance.save(flush: true)) {
+////                            println "OK"
+//                        } else {
+//                            println "mantenimiento items controller l 873: " + precioRubrosItemsInstance.errors
+//                            error++
+//                        }
+//                    }
+//                }
+//                if (error == 0) {
+//                    render "OK"
+//                } else {
+//                    render "NO"
+//                }
+//            }
+//        }
     }
 
     def deletePrecio_ajax() {
