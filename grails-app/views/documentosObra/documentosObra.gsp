@@ -2350,7 +2350,7 @@
                         success : function (msg) {
                             var part = msg.split('_');
                             if (part[0] == 'ok') {
-                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraDscr',id: obra?.id)}?tipoReporte=" + tipoReporte +
+                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraDscr',id: obra?.id)}?tipoReporte=" + $(".radioPresupuesto:checked").val() +
                                 "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
                                 "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
                                 "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
@@ -2440,7 +2440,7 @@
                         success : function (msg) {
                             var part = msg.split('_');
                             if (part[0] == 'ok') {
-                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraVae',id: obra?.id)}?tipoReporte=" + tipoReporte +
+                                location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraVae',id: obra?.id)}?tipoReporte=" + $(".radioPresupuesto:checked").val() +
                                 "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
                                 "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
                                 "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
