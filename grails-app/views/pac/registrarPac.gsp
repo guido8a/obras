@@ -35,16 +35,6 @@
             </g:if>
         </div>
 
-
-        %{--<div class="span12 btn-group" role="navigation" style="margin-left: 0px;">--}%
-
-
-        %{--<a href="#" class="btn btn-ajax btn-new" id="calcular" title="Calcular precios">--}%
-        %{--<i class="icon-table"></i>--}%
-        %{--Calcular--}%
-        %{--</a>--}%
-
-        %{--</div>--}%
         <div id="list-grupo" class="span12" role="main" style="margin-top: 10px;margin-left: 0px">
             <div class="borde_abajo" style="padding-left: 45px;position: relative;">
                 <p class="css-vertical-text">P.A.C.</p>
@@ -96,7 +86,7 @@
                     <div class="span4">
                         <b>Coordinación:</b>
                         <input type="hidden" id="item_id">
-                        <g:select name="presupuesto.id" from="${janus.Departamento.list([sort: 'descripcion'])}" optionKey="id" optionValue="descripcion" style="width: 250px;;font-size: 12px" id="item_depto"></g:select>
+                        <g:select name="presupuesto.id" from="${janus.Departamento.list([sort: 'descripcion'])}" optionKey="id" optionValue="descripcion" style="width: 250px;;font-size: 12px" id="item_depto"/>
                     </div>
 
                 </div>
@@ -104,7 +94,7 @@
                 <div class="row-fluid" style="margin-left: 0px">
                     <div class="span4">
                         <b>Tipo procedimiento:</b>
-                        <g:select name="tipoProcedimiento.id" from="${janus.pac.TipoProcedimiento.list([sort: 'descripcion'])}" optionKey="id" optionValue="descripcion" style="width: 213px;;font-size: 12px" id="item_tipoProc"></g:select>
+                        <g:select name="tipoProcedimiento.id" from="${janus.pac.TipoProcedimiento.list([sort: 'descripcion'])}" optionKey="id" optionValue="descripcion" style="width: 213px;;font-size: 12px" id="item_tipoProc"/>
                     </div>
 
                     <div class="span3">
@@ -115,7 +105,7 @@
 
                     <div class="span5">
                         <b>Tipo compra:</b>
-                        <g:select name="tipo" from="${janus.pac.TipoCompra.list([sort: 'descripcion'])}" optionKey="id" optionValue="descripcion" style="width: 120px;;font-size: 12px; margin-left: 6px;" id="item_tipo"></g:select>
+                        <g:select name="tipo" from="${janus.pac.TipoCompra.list([sort: 'descripcion'])}" optionKey="id" optionValue="descripcion" style="width: 120px;;font-size: 12px; margin-left: 6px;" id="item_tipo"/>
                     </div>
                 </div>
 
@@ -124,12 +114,7 @@
                     <div class="span4" style="width: 400px;">
                         <b>Descripción:</b>
                         <input type="text" style="width: 400px;font-size: 12px" id="item_desc">
-
                     </div>
-                    %{--<div class="span2" style="width: 100px;">--}%
-                    %{--<b>Tipo compra:</b>--}%
-                    %{--<g:select name="tipo" from="${janus.pac.TipoCompra.list()}" optionKey="id" optionValue="descripcion" style="width: 100px;;font-size: 12px" id="item_tipo"></g:select>--}%
-                    %{--</div>--}%
                     <div class="span2">
                         <b>Cantidad:</b>
                         <input type="text" style="width: 100px;text-align: right" id="item_cantidad" value="1">
@@ -142,7 +127,7 @@
 
                     <div class="span1" style="margin-left: -10px;">
                         <b>Unidad:</b>
-                        <g:select name="unidad.id" from="${janus.pac.UnidadIncop.list()}" id="item_unidad" optionKey="id" optionValue="codigo" style="width: 60px;font-size: 12px"></g:select>
+                        <g:select name="unidad.id" from="${janus.pac.UnidadIncop.list()}" id="item_unidad" optionKey="id" optionValue="codigo" style="width: 60px;font-size: 12px"/>
                     </div>
 
                     <div class="span2">
@@ -157,7 +142,7 @@
 
                     <div class="span1" style="margin-left: 12px;padding-top:30px; width:90px;">
                         <input type="hidden" value="" id="vol_id">
-                        <a href="#" class="btn btn-primary" title="agregar" style="margin-top: -10px" id="item_agregar">
+                        <a href="#" class="btn btn-success" title="Agregar" style="margin-top: -10px" id="item_agregar">
                             <i class="icon-plus"></i>
                         </a>
                         <g:link action="formUploadPac" class="btn" title="Subir Excel" style="margin-top: -10px" id="btnUpload">
@@ -367,17 +352,17 @@
                         c3 = ""
                     var msg = ""
                     if (req.trim() == "") {
-                        msg += "<br>Error: Ingrese el nombre de la persona requiriente"
+                        msg += "<br>Error: Ingrese el nombre de la "  + '<strong>' + "persona requiriente" + '</strong>'
 
                     }
                     if (memo.trim() == "") {
-                        msg += "<br>Error: Ingrese el numero del momorando de referencia"
+                        msg += "<br>Error: Ingrese el numero del " + '<strong>' +  "memorando de referencia" + '</strong>'
                     }
                     if (costo * 1 == 0 || cant * 1 == 0) {
-                        msg += "<br>Error: El costo y la cantidad deben ser números positivos"
+                        msg += "<br>Error: El costo y la cantidad deben ser números " + '<strong>' + "positivos" + '</strong>'
                     }
                     if (desc.trim() == "") {
-                        msg += "<br>Error: Ingrese una descripción"
+                        msg += "<br>Error: Ingrese una " + '<strong>' + "descripción" + '</strong>'
 
                     }
                     if (prsp * 1 < 1) {
@@ -385,14 +370,14 @@
 
                     }
                     if (cpac * 1 < 1) {
-                        msg += "<br>Error en el Código CP: Escoja un código de compras públicas (CPC) válido"
+                        msg += "<br>Error en el Código CP: Escoja un código de compras públicas " + '<strong>' + "(CPC) válido" + '</strong>'
 
                     }
-                    var disponible = $("#disponible").val()
+                    var disponible = $("#disponible").val();
                     if (disponible == "" || isNaN(disponible))
-                        disponible = 0
+                        disponible = 0;
                     else
-                        disponible = disponible * 1
+                        disponible = disponible * 1;
 
                     if (costo * cant > disponible + costoAnt) {
                         msg += "<br>Error: El valor total del P.A.C. (costo*cantidad) $" + (costo * cant) + " no se puede ser superior a: $" + (disponible + costoAnt)
@@ -435,24 +420,24 @@
                                 id                     : $("#item_id").val()
                             },
                             success  : function (msg) {
-                                $("#item_id").val("")
-                                $("#item_cpac").val("")
-                                $("#item_tipo").val()
-                                $("#item_desc").val("")
-                                $("#item_cantidad").val("1")
-                                $("#item_precio").val("1")
-                                $("#item_unidad").val()
-                                $("#item_c1").removeClass("active")
-                                $("#item_c2").removeClass("active")
-                                $("#item_c3").removeClass("active")
-                                $("#item_codigo").val("").attr("title", "")
-                                $("#item_presupuesto").val("").attr("title", "")
-                                $("#item_prsp").val("")
-                                $("#item_req").val("")
-                                $("#item_memo").val("")
-                                $("#techo").val("")
-                                $("#usado").val("")
-                                $("#disponible").val("")
+                                $("#item_id").val("");
+                                $("#item_cpac").val("");
+                                $("#item_tipo").val();
+                                $("#item_desc").val("");
+                                $("#item_cantidad").val("1");
+                                $("#item_precio").val("1");
+                                $("#item_unidad").val();
+                                $("#item_c1").removeClass("active");
+                                $("#item_c2").removeClass("active");
+                                $("#item_c3").removeClass("active");
+                                $("#item_codigo").val("").attr("title", "");
+                                $("#item_presupuesto").val("").attr("title", "");
+                                $("#item_prsp").val("");
+                                $("#item_req").val("");
+                                $("#item_memo").val("");
+                                $("#techo").val("");
+                                $("#usado").val("");
+                                $("#disponible").val("");
                                 cargarTabla()
                             }
                         });

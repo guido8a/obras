@@ -308,7 +308,7 @@ class DocumentoProcesoController extends janus.seguridad.Shield {
 
         if (!documentoProcesoInstance.save(flush: true)) {
             flash.clase = "alert-error"
-            def str = "<h4>No se pudo guardar Documento Proceso " + (documentoProcesoInstance.id ? documentoProcesoInstance.id : "") + "</h4>"
+            def str = "<h4>No se pudo guardar el documento de proceso " + (documentoProcesoInstance.id ? documentoProcesoInstance.id : "") + "</h4>"
 
             str += "<ul>"
             documentoProcesoInstance.errors.allErrors.each { err ->
@@ -327,10 +327,10 @@ class DocumentoProcesoController extends janus.seguridad.Shield {
 
         if (params.id) {
             flash.clase = "alert-success"
-            flash.message = "Se ha actualizado correctamente Documento Proceso " + documentoProcesoInstance.id
+            flash.message = "Se ha actualizado correctamente documentos del proceso " + (documentoProcesoInstance?.concurso?.codigo ?: '')
         } else {
             flash.clase = "alert-success"
-            flash.message = "Se ha creado correctamente Documento Proceso " + documentoProcesoInstance.id
+            flash.message = "Se ha creado correctamente el documento del proceso " + (documentoProcesoInstance?.concurso?.codigo ?: '')
         }
         if (params.contrato) {
             redirect(action: 'list', id: params.concurso.id, params: [contrato: params.contrato, show: params.show])
@@ -363,7 +363,7 @@ class DocumentoProcesoController extends janus.seguridad.Shield {
         try {
             documentoProcesoInstance.delete(flush: true)
             flash.clase = "alert-success"
-            flash.message = "Se ha eliminado correctamente Documento Proceso " + documentoProcesoInstance.id
+            flash.message = "Se ha eliminado correctamente el documento del proceso " + (documentoProcesoInstance?.concurso?.codigo ?: '')
             def folder = "archivos"
             path = servletContext.getRealPath("/") + folder + File.separatorChar + path
             def file = new File(path)

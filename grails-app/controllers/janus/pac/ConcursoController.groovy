@@ -621,10 +621,10 @@ class ConcursoController extends janus.seguridad.Shield {
 
         if (params.id) {
             flash.clase = "alert-success"
-            flash.message = "Se ha actualizado correctamente Concurso " + concursoInstance.id
+            flash.message = "Se ha actualizado correctamente el concurso: " + concursoInstance.codigo
         } else {
             flash.clase = "alert-success"
-            flash.message = "Se ha creado correctamente Concurso " + concursoInstance.id
+            flash.message = "Se ha creado correctamente el concurso "
         }
         redirect(action: 'list')
     } //save

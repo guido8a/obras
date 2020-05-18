@@ -41,8 +41,8 @@
             <div class="span3" id="busca">
             </div>
         </div>
-        <span style="color: navy;">Haga clic con el botón derecho del ratón sobre el concurso para acceder al menú de acciones.</span>
-        <span style="color: navy;">Recuerde que el formato del código del proceso es: MCO-<strong>número</strong>-GADPP-17</span>
+        <span style="color: navy;"> * Haga clic con el botón derecho del ratón sobre el concurso para acceder al menú de acciones.</span>
+        <br/><span style="color: navy;"> * Recuerde que el formato del código del proceso es: MCO-<strong>número</strong>-GADPP-17</span>
 
         <g:form action="delete" name="frmDelete-Concurso">
             <g:hiddenField name="id"/>
@@ -55,9 +55,10 @@
                     <tr>
                         <th>Obra</th>
                         <th>Pac</th>
+%{--                        <th>Pac</th>--}%
                         <g:sortableColumn property="codigo" title="Código"/>
                         <g:sortableColumn property="objeto" title="Objeto"/>
-                        <g:sortableColumn property="costoBases" title="Costo Bases"/>
+                        <th>Costo Bases</th>
                         <th>Documentos</th>
                         <th style="width: 80px">Estado</th>
                     </tr>
@@ -72,9 +73,8 @@
                             <td style="text-align: right">${fieldValue(bean: concursoInstance, field: "costoBases")}</td>
                             <td style="text-align: center">${janus.pac.DocumentoProceso.countByConcurso(concursoInstance)}</td>
                             <td>
-                                ${(concursoInstance.estado == "R") ? "Registrado" : "No registrado"}<br>
+                               <strong style="color: ${concursoInstance.estado == "R" ? '#78b665' : '#c42623'} "> ${(concursoInstance.estado == "R") ? "Registrado" : "No registrado"}</strong>
                             </td>
-
                         </tr>
                     </g:each>
                 </tbody>

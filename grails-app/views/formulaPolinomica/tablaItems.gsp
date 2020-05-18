@@ -11,7 +11,9 @@
         <tr>
             <th>Item</th>
             <th>Descripción</th>
-            ${tipo == 'c' ? '<th>Precio unitario</th>' : ''}
+            <g:if test="${tipo == 'c'}">
+                <th>Precio unitario</th>
+            </g:if>
             <th>Aporte</th>
         </tr>
         </thead>
@@ -659,7 +661,7 @@
 
         $("#creaIndice").click(function () {
             if (confirm("¿Crear un nuevo Indice INEC?. \nSe deberá luego solicitar al INEC su calificación.\n" +
-                    "¿Continuar?")) {
+                "¿Continuar?")) {
                 $.ajax({
                     type    : "POST",
                     url :  "${createLink(action:'creaIndice')}",

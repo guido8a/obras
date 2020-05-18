@@ -37,6 +37,12 @@
             margin-bottom : 0;
             border        : solid 1px #555;
         }
+
+        .red .active a,
+        .red .active a:hover {
+            background-color: #6f5437;
+            color: #ffffff;
+        }
         </style>
     </head>
 
@@ -55,15 +61,13 @@
         <div class="row" style="margin-bottom: 10px;">
             <div class="span9 btn-group" role="navigation">
                 <g:link controller="concurso" action="list" class="btn">
-                    <i class="icon-angle-left"></i> Regresar
+                    <i class="icon-arrow-left"></i> Regresar
                 </g:link>
-            %{--<input type="SUBMIT" value="Guardar" class="btn btn-primary">--}%
                 <g:if test="${concursoInstance.estado != 'R'}">
                     <a href="#" class="btn btn-success" id="btnSave">
                         <i class="icon-save"></i> Guardar
                     </a>
                 </g:if>
-
                 <g:if test="${Oferta.countByConcurso(concursoInstance) == 0}">
                         <a href="#" class="btn" id="btnRegi"><i class="icon-exchange"></i> Cambiar Estado</a>
                 </g:if>
@@ -81,61 +85,52 @@
                 <div class="span10">
                     <b>Ver P.A.C.</b>
                 </div>
-
             </div>
 
             <div class="row header">
-                <div class="span10">
+                <div class="span12">
                     <span class="control-label label label-inverse span2" style="width: 135px;">
                         Tipo Procedimiento:
                     </span>
-
                     <div class="controls span2">
                         ${concursoInstance?.pac?.tipoProcedimiento?.descripcion}
                     </div>
                     <span class="control-label label label-inverse span2" style="width: 100px;">
                         Tipo Compra:
                     </span>
-
                     <div class="controls span1">
                         ${concursoInstance?.pac?.tipoCompra?.descripcion}
                     </div>
                     <span class="control-label label label-inverse span1">
                         Código cp:
                     </span>
-
                     <div class="controls span1" title=" ${concursoInstance?.pac?.cpp?.descripcion}">
                         ${concursoInstance?.pac?.cpp?.numero}
                     </div>
-
                 </div>
             </div>
 
             <div class="row header">
-                <div class="span10">
-                    <span class="control-label label label-inverse span2" style="width: 135px;">
+                <div class="span12">
+                    <span class="control-label label label-inverse span1">
                         Partida:
                     </span>
-
-                    <div class="controls span7" title="">
+                    <div class="controls span10" title="">
                         ${concursoInstance?.pac?.presupuesto?.numero} (${concursoInstance?.pac?.presupuesto?.descripcion})
                     </div>
                 </div>
-
             </div>
 
             <div class="row header">
-                <div class="span10">
+                <div class="span12">
                     <span class="control-label label label-inverse span1">
                         Descripción:
                     </span>
 
-                    <div class="controls span8" title="">
+                    <div class="controls span10" title="">
                         ${concursoInstance?.pac?.descripcion}
                     </div>
-
                 </div>
-
             </div>
 
             <div class="row header">
@@ -143,47 +138,41 @@
                     <span class="control-label label label-inverse span1">
                         Cantidad:
                     </span>
-
                     <div class="controls span1" title="">
                         ${concursoInstance?.pac?.cantidad}
                     </div>
                     <span class="control-label label label-inverse span1">
                         Unidad:
                     </span>
-
                     <div class="controls span1" title="">
                         ${concursoInstance?.pac?.unidad?.descripcion}
                     </div>
                     <span class="control-label label label-inverse span1">
                         Precio U.:
                     </span>
-
                     <div class="controls span1" title="">
-                        <g:formatNumber number="${concursoInstance?.pac?.costo.round(2)}" type="currency"></g:formatNumber>
-
+                        <g:formatNumber number="${concursoInstance?.pac?.costo?.round(2)}" type="currency"/>
                     </div>
                     <span class="control-label label label-inverse span1">
                         Total:
                     </span>
-
                     <div class="controls span1" title="">
-                        <g:formatNumber number="${(concursoInstance?.pac?.costo * concursoInstance?.pac?.cantidad).round(2)}" type="currency"></g:formatNumber>
-
+                        <g:formatNumber number="${(concursoInstance?.pac?.costo * concursoInstance?.pac?.cantidad)?.round(2)}" type="currency"/>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div style="border-bottom: 1px solid black;padding-left: 50px;position: relative;margin-bottom: 10px;">
+        <div style="border-bottom: 1px solid black;padding-left: 40px;position: relative;margin-bottom: 10px;">
             <p class="css-vertical-text">Proceso de contratación</p>
 
             <div class="linea" style="height: 100%"></div>
 
             <g:form class="form-horizontal" name="frmSave-Concurso" action="save" id="${concursoInstance?.id}">
-                <ul class="nav nav-pills ui-corner-top" id="myTab">
-                    <li class="active"><a href="#datos">Datos proceso</a></li>
-                    <li><a href="#fechas">Fechas del proceso</a></li>
-                    <li><a href="#fechas2">Fechas de control del trámite</a></li>
+                <ul class="nav nav-pills red ui-corner-top" id="myTab">
+                    <li class="active"><a href="#datos" style="color: #000000 !important;">Datos proceso</a></li>
+                    <li><a href="#fechas" style="color: #000000 !important;">Fechas del proceso</a></li>
+                    <li><a href="#fechas2" style="color: #000000 !important;">Fechas de control del trámite</a></li>
                 </ul>
 
                 <div class="tab-content ui-corner-bottom">
@@ -194,7 +183,6 @@
                                 <span class="control-label label label-inverse">
                                     Prefecto
                                 </span>
-
                                 <div style="width: 400px;" class="controls">
                                     <g:hiddenField name="administracion.id" value="${concursoInstance?.administracion?.id}"/>
                                     ${concursoInstance?.administracion?.nombrePrefecto}
@@ -215,9 +203,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="span10">
+                            <div class="span11">
                                 <div class="control-group">
                                     <div>
                                         <span class="control-label label label-inverse">
@@ -226,7 +212,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <g:textArea name="objeto" class="span8" value="${concursoInstance?.objeto}"/>
+                                        <g:textArea name="objeto" class="span9" style="resize: none" value="${concursoInstance?.objeto}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -367,7 +353,7 @@
 
                             </div> <!-- fin col 2-->
 
-                            <div class="span10">
+                            <div class="span11">
                                 <div class="control-group">
                                     <div>
                                         <span class="control-label label label-inverse">
@@ -376,7 +362,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <g:textField name="observaciones" class="span8" value="${concursoInstance?.observaciones}"/>
+                                        <g:textField name="observaciones" class="span9" value="${concursoInstance?.observaciones}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -414,7 +400,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaAceptacionProveedor" class="" value="${concursoInstance?.fechaAceptacionProveedor}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaAceptacionProveedor" class="" value="${concursoInstance?.fechaAceptacionProveedor}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -427,7 +413,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaLimitePreguntas" class="" value="${concursoInstance?.fechaLimitePreguntas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaLimitePreguntas" class="" value="${concursoInstance?.fechaLimitePreguntas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -440,7 +426,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaLimiteRespuestas" class="" value="${concursoInstance?.fechaLimiteRespuestas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaLimiteRespuestas" class="" value="${concursoInstance?.fechaLimiteRespuestas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -453,7 +439,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaLimiteEntregaOfertas" class="" value="${concursoInstance?.fechaLimiteEntregaOfertas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaLimiteEntregaOfertas" class="" value="${concursoInstance?.fechaLimiteEntregaOfertas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -466,7 +452,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaAperturaOfertas" class="" value="${concursoInstance?.fechaAperturaOfertas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaAperturaOfertas" class="" value="${concursoInstance?.fechaAperturaOfertas}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -479,7 +465,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaLimiteSolicitarConvalidacion" class="" value="${concursoInstance?.fechaLimiteSolicitarConvalidacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaLimiteSolicitarConvalidacion" class="" value="${concursoInstance?.fechaLimiteSolicitarConvalidacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -492,7 +478,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaLimiteRespuestaConvalidacion" class="" value="${concursoInstance?.fechaLimiteRespuestaConvalidacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaLimiteRespuestaConvalidacion" class="" value="${concursoInstance?.fechaLimiteRespuestaConvalidacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -508,7 +494,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaInicioEvaluacionOferta" class="" value="${concursoInstance?.fechaInicioEvaluacionOferta}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaInicioEvaluacionOferta" class="" value="${concursoInstance?.fechaInicioEvaluacionOferta}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -521,7 +507,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaLimiteResultadosFinales" class="" value="${concursoInstance?.fechaLimiteResultadosFinales}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaLimiteResultadosFinales" class="" value="${concursoInstance?.fechaLimiteResultadosFinales}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -534,7 +520,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaAdjudicacion" class="" value="${concursoInstance?.fechaAdjudicacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaAdjudicacion" class="" value="${concursoInstance?.fechaAdjudicacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -547,7 +533,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaInicio" class="" value="${concursoInstance?.fechaInicio}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaInicio" class="" value="${concursoInstance?.fechaInicio}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -560,7 +546,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaCalificacion" class="" value="${concursoInstance?.fechaCalificacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaCalificacion" class="" value="${concursoInstance?.fechaCalificacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -573,7 +559,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaInicioPuja" class="" value="${concursoInstance?.fechaInicioPuja}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaInicioPuja" class="" value="${concursoInstance?.fechaInicioPuja}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -586,7 +572,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaFinPuja" class="" value="${concursoInstance?.fechaFinPuja}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaFinPuja" class="" value="${concursoInstance?.fechaFinPuja}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -599,7 +585,7 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false"name="fechaNotificacionAdjudicacion" class="" value="${concursoInstance?.fechaNotificacionAdjudicacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaNotificacionAdjudicacion" class="" value="${concursoInstance?.fechaNotificacionAdjudicacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
@@ -619,8 +605,7 @@
                         </div>
 
                         <fielset id="desc_prep" style="padding-bottom: 10px;border: 1px solid #000000;width: 95%;float: left;margin-left: 33px;padding: 10px;margin-bottom: 20px;" class="ui-corner-all">
-                            <legend style="color:#0088CC;border-color: #0088CC;cursor: pointer" id="label_prep" class="active" title="Minimizar">Etapa Preparatoria</legend>
-
+                            <legend style="color:#876945;border-color: #6f5437;cursor: pointer" id="label_prep" class="active" title="Minimizar">Etapa Preparatoria <i class="icon-arrow-down" style="cursor: pointer" title="Mostrar seguimiento"></i></legend>
                             <div class="row" style="">
                                 <div class="span6">
                                     <div class="control-group">
@@ -650,7 +635,7 @@
                                                             </g:else>
                                                         </g:if>
                                                         <g:else>
-                                                            <g:set var="retraso" value="- ${((new Date()) - (concursoInstance?.fechaInicioPreparatorio + maxPrep))} días de retraso"></g:set>
+                                                            <g:set var="retraso" value="- ${((new Date()) - (concursoInstance?.fechaInicioPreparatorio + maxPrep))} días de retraso"/>
                                                             <div class="rojo" title="Retrasado"></div>
                                                         </g:else>
                                                         <g:if test="${concursoInstance?.fechaFinPreparatorio == null}">
@@ -817,18 +802,6 @@
                 });
             }
 
-/*
-            function seguimiento() {
-                $.ajax({
-                    type    : "POST",
-                    url     : "${g.createLink(action:'seguimiento',controller: 'tramite',id: concursoInstance?.memoRequerimiento)}",
-                    success : function (msg) {
-                        $("#seguimiento").html(msg)
-                    }
-                });
-            }
-            seguimiento();
-*/
             $('#myTab a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');
@@ -845,7 +818,7 @@
                     $(this).attr("title", "Minimizar")
                 }
 
-            })
+            });
 
             $("[name=costo]").click(function () {
                 var id = $(this).attr("id");

@@ -17,7 +17,7 @@
                 Documentos del contrato de la obra: <span style="font-weight: bold;">${contrato.obra.descripcion?.toUpperCase()}</span>
             </g:if>
             <g:else>
-                Documentos de <span style="font-weight: bold; font-style: italic;">${concurso.objeto}</span>
+                Documentos de: <span style="font-weight: bold; font-style: italic; font-size: 12px">${concurso.objeto}</span>
             </g:else>
         </div>
 
@@ -37,20 +37,20 @@
                 <g:if test="${contrato}">
                     <g:if test="${params.show == '1'}">
                         <g:link controller="contrato" action="registroContrato" class="btn" params="[contrato: contrato.id]">
-                            <i class="icon-caret-left"></i>
+                            <i class="icon-arrow-left"></i>
                             Regresar
                         </g:link>
                     </g:if>
                     <g:else>
                         <g:link controller="contrato" action="verContrato" class="btn" params="[contrato: contrato?.id]">
-                            <i class="icon-caret-left"></i>
+                            <i class="icon-arrow-left"></i>
                             Regresar
                         </g:link>
                     </g:else>
                 </g:if>
                 <g:else>
                     <g:link controller="concurso" action="list" class="btn">
-                        <i class="icon-caret-left"></i>
+                        <i class="icon-arrow-left"></i>
                         Regresar
                     </g:link>
                 </g:else>
@@ -183,7 +183,7 @@
                             });
 
                             $("#modalHeader").removeClass("btn-edit btn-show btn-delete");
-                            $("#modalTitle").html("Crear Documento");
+                            $("#modalTitle").html("Agregar documento");
                             $("#modalBody").html(msg);
                             $("#modalFooter").html("").append(btnOk).append(btnSave);
                             $("#modal-DocumentoProceso").modal("show");
@@ -212,7 +212,7 @@
                             });
 
                             $("#modalHeader").removeClass("btn-edit btn-show btn-delete");
-                            $("#modalTitle").html("Crear Documento");
+                            $("#modalTitle").html("Agregar documento");
                             $("#modalBody").html(msg);
                             $("#modalFooter").html("").append(btnOk).append(btnSave);
                             $("#modal-DocumentoProceso").modal("show");
@@ -241,7 +241,7 @@
                             });
 
                             $("#modalHeader").removeClass("btn-edit btn-show btn-delete");
-                            $("#modalTitle").html("Crear Documento");
+                            $("#modalTitle").html("Agregar Documento");
                             $("#modalBody").html(msg);
                             $("#modalFooter").html("").append(btnOk).append(btnSave);
                             $("#modal-DocumentoProceso").modal("show");
