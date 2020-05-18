@@ -1787,12 +1787,12 @@ class CronogramaEjecucionController extends janus.seguridad.Shield {
     }
 
     def creaCrngEjecNuevo() {
-        println "creaCrngEjecNuevo para contrato: $params.id"
+        println "creaCrngEjecNuevo para contrato: $params"
         def contrato = Contrato.get(params.id)
+
         if (!contrato) {
             flash.message = "No se encontró el contrato"
             flash.clase = "alert-error"
-//            println flash.message
             redirect(action: "errores", params: [contrato: params.id])
             return
         }
@@ -1809,6 +1809,7 @@ class CronogramaEjecucionController extends janus.seguridad.Shield {
             redirect(action: "errores", params: [contrato: params.id])
             return
         }
+
 //        println "Id contrato: $contrato, Id obra: $obra"
 
         /** copia el CronogramaContratado (CRCR) a la tabla cronograma de ejecucion (CREO) CrngEjecucionObra

@@ -12,6 +12,7 @@ class PlanillaController extends janus.seguridad.Shield {
     def preciosService
     def buscadorService
     def diasLaborablesService
+    def contratoService
     def dbConnectionService
 
 /*
@@ -1557,7 +1558,11 @@ class PlanillaController extends janus.seguridad.Shield {
             if(params.cntr) {
                 render "ok"
             } else {
-                redirect(controller: "cronogramaEjecucion", action: "creaCrngEjecNuevo", id: contrato.id)
+//                redirect(controller: "cronogramaEjecucion", action: "creaCrngEjecNuevo", id: contrato.id)
+                if(contratoService.creaCrngEjecNuevo(contrato.id) == "creado") {
+                    params.cntr = contrato?.id
+                    redirect(controller: "cronogramaEjecucion", action: "indexNuevo", id: contrato.id)
+                }
             }
         }
     }
