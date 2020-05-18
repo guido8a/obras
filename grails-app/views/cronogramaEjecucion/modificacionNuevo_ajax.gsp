@@ -30,7 +30,7 @@ table th {
         </div>
     </g:if>
     <g:else>
-        ${html}
+        <elm:poneHtml textoHtml="${html}"/>
     </g:else>
 </g:form>
 
