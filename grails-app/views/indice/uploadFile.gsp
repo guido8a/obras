@@ -19,7 +19,7 @@
        <fieldset style="height: 300px">
            <legend>Reporte Indices</legend>
 
-           ${html}
+           <elm:poneHtml textoHtml="${html}"/>
        </fieldset>
 
 

@@ -86,7 +86,7 @@ class FiscalizadorContratoController extends janus.seguridad.Shield {
     } //list
 
     def guardarIndirectos() {
-//        println "guardar indirectos, params: $params"
+        println "guardar indirectos, params: $params"
         def cntr = Contrato.get(params.cntr)
         def pcnt = params.indirectos.trim().toDouble()
         if((pcnt >= 0.0) && (pcnt < 100.0)) {
@@ -96,7 +96,9 @@ class FiscalizadorContratoController extends janus.seguridad.Shield {
             flash.clase = "alert-error"
             flash.message = "Valor no válido: $params.indirectos"
         }
-        render "ok"
+//        render "ok"
+        params.contrato = cntr.id
+        redirect(controller: 'contrato', action: 'verContrato', params: params)
     }
 
     def adicionales() {

@@ -1968,6 +1968,7 @@ class PlanillaController extends janus.seguridad.Shield {
                 planillaInstance.fechaInicio = preciosService.primerDiaDelMes(poAnterior.fechaInicio)
                 planillaInstance.fechaFin = cntr.fechaPedidoRecepcionFiscalizador
             }
+            planillaInstance.avanceFisico = params.avanceFisico.toDouble()
 
 //            session.override = true
         }//es edit
@@ -3821,7 +3822,7 @@ class PlanillaController extends janus.seguridad.Shield {
         } else if(tp == 'R') {
             // si no hay ídices a la fecha de pago se retorma los más recientes
             if(prin){
-                existe = preciosService.verificaIndicesPeriodoTodo(plnl.contrato.id, prin.id).size() == 0
+                existe = preciosService.verificaIndicesPeriodoTodo(plnl.contrato.id, prin?.id).size() == 0
             }
             if(existe) {
 //                println "si existe el prin: ${plnl.periodoIndices}"
@@ -3833,7 +3834,8 @@ class PlanillaController extends janus.seguridad.Shield {
                     println "periodo actual para recalculo de reajuste...: $prin, fcha: ${fcha}, fecha: ${fecha}"
                     fecha = preciosService.primerDiaDelMes(fecha) - 15
                     prin = PeriodosInec.findByFechaInicioLessThanAndFechaFinGreaterThan(fecha, fecha)
-                    existe = preciosService.verificaIndicesPeriodoTodo(plnl.contrato.id, prin.id).size() == 0
+                    println "plnl: ${plnl.contrato?.id}, prin: ${prin?.id}"
+                    existe = preciosService.verificaIndicesPeriodoTodo(plnl.contrato.id, prin?.id).size() == 0
                     if(!max--){
                         return null
                     }

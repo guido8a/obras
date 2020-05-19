@@ -190,6 +190,7 @@
 
     function updateTabla() {
         var divLoad = $("<div style='text-align: center;'></div>").html(spinnerBg).append("<br/>Cargando...Por favor espere...");
+        var tx = "";
         $("#toolbar").hide();
         $("#divTabla").html(divLoad);
         $.ajax({
@@ -202,6 +203,8 @@
             },
             success: function (msg) {
                 $("#divTabla").html(msg);
+                %{--tx = <elm:poneHtml textoHtml="${msg}"/>--}%
+//                $("#divTabla").html(tx);
                 $("#toolbar").show();
             }
         });
@@ -290,6 +293,7 @@
                     $("#modalTitle-forms").html("Ampliación");
                     $("#modalBody-forms").html(msg);
                     $("#modalFooter-forms").html("").append(btnCancel).append(btnSave);
+                    $("#modal-forms").height("420px");
                     $("#modal-forms").modal("show");
 
                 }
@@ -330,6 +334,7 @@
                     $("#modalTitle-forms").html("Terminar Suspensión");
                     $("#modalBody-forms").html(msg);
                     $("#modalFooter-forms").html("").append(btnCancel).append(btnSave);
+                    $("#modal-forms").height("560px");
                     $("#modal-forms").modal("show");
 
                 }
@@ -384,8 +389,8 @@
                     $("#modalTitle-forms").html("Suspensión");
                     $("#modalBody-forms").html(msg);
                     $("#modalFooter-forms").html("").append(btnCancel).append(btnSave);
+                    $("#modal-forms").height("560px");
                     $("#modal-forms").modal("show");
-
                 }
             });
             return false;
@@ -435,6 +440,7 @@
                         $("#modalTitle-forms").html("Modificación");
                         $("#modalBody-forms").html(msg);
                         $("#modalFooter-forms").html("").append(btnCancel).append(btnSave);
+                        $("#modal-forms").height("580px");
                         $("#modal-forms").modal("show");
                     }
                 });

@@ -13,7 +13,8 @@
 
         <div>
             <g:textField name="indirectos" class="number" style="width: 50px"
-                         value="${g.formatNumber(number: cntr?.indirectos, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/> %
+                         value="${g.formatNumber(number: cntr?.indirectos, maxFractionDigits: 2, minFractionDigits: 2,
+                                 format: '##,##0', locale: 'ec')}"/> %
         </div>
     </div>
 </g:form>

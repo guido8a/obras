@@ -771,18 +771,20 @@
                 contrato : "${contrato?.id}"
             },
             success : function (msg) {
-                var $btnOk = $('<a href="#" class="btn">Actualizar Valorobras</a>');
+                var $btnOk = $('<a href="#" class="btn">Aceptar</a>');
                 var $btnCerrar = $('<a href="#" data-dismiss="modal" class="btn">Cerrar</a>');
+                console.log('--aceptar', $("#frmaIndi"));
                 $btnOk.click(function () {
+                    console.log('aceptar');
                     $(this).replaceWith(spinner);
                     $("#frmaIndi").submit();
-                    location.reload(true);
+//                    location.reload(true);
                 });
                 $("#modal_tittle_var").text("Costos Indirectos");
                 $("#modal_body_var").html(msg);
                 $("#fiscalizador").data("contrato", "${contrato?.id}");
                 $("#modal_footer_var").html($btnCerrar).append($btnOk);
-//                        $("#modal_footer_var").html($btnOk);
+//                $("#modal_footer_var").html($btnOk);
                 $("#modal-var").modal("show");
             }
         });
@@ -803,7 +805,7 @@
                     $(this).replaceWith(spinner);
                     submitFormAdicionales();
                 });
-                $("#modal_tittle_var").text("Costos Indirectos");
+                $("#modal_tittle_var").text("Autorización de Obras Adicionales");
                 $("#modal_body_var").html(msg);
                 $("#fiscalizador").data("contrato", "${contrato?.id}");
                 $("#modal_footer_var").html($btnCerrarA).append($btnOkA);
