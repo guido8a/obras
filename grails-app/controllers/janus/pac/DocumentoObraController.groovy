@@ -169,10 +169,10 @@ class DocumentoObraController extends janus.seguridad.Shield {
 
         if (params.id) {
             flash.clase = "alert-success"
-            flash.message = "Se ha actualizado correctamente Documento Obra " + documentoObraInstance.id
+            flash.message = "Se ha actualizado correctamente el documento de la obra: " + documentoObraInstance.obra.descripcion
         } else {
             flash.clase = "alert-success"
-            flash.message = "Se ha creado correctamente Documento Obra " + documentoObraInstance.id
+            flash.message = "Se ha creado correctamente el documento de la obra: " + documentoObraInstance.obra.descripcion
         }
         redirect(action: 'list', id: params.obra.id)
     } //save
@@ -246,7 +246,7 @@ class DocumentoObraController extends janus.seguridad.Shield {
         try {
             documentoObraInstance.delete(flush: true)
             flash.clase = "alert-success"
-            flash.message = "Se ha eliminado correctamente Documento Obra " + documentoObraInstance.id
+            flash.message = "Se ha eliminado correctamente  el documento de la obra: " + documentoObraInstance.obra.descripcion
 
             def folder = pathBiblioteca
             path = servletContext.getRealPath("/") + folder + File.separatorChar + path
@@ -256,7 +256,7 @@ class DocumentoObraController extends janus.seguridad.Shield {
         }
         catch (DataIntegrityViolationException e) {
             flash.clase = "alert-error"
-            flash.message = "No se pudo eliminar Documento Obra " + (documentoObraInstance.id ? documentoObraInstance.id : "")
+            flash.message = "No se pudo eliminar  el documento de la obra: " + documentoObraInstance.obra.descripcion
             params.id = params.obra_id
             redirect(action: "list", id: params.obra_id)
         }
