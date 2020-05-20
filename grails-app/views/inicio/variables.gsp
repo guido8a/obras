@@ -268,19 +268,23 @@
         <div id="tab-indirecto" class="tab">
             <div class="row-fluid" style="margin-top: 20px;">
                 <div class="span4">
-                    Alquiler y depreciación
+                    Dirección de la obra
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceAlquiler" class="inputVar sum1 num" value="${g.formatNumber(number: (paux?.indiceAlquiler), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="1"/>
+                    <g:textField type="text" name="indiceCostosIndirectosObra" class="inputVar sum1 num"
+                       value="${g.formatNumber(number: (paux?.indiceCostosIndirectosObra), maxFractionDigits: 2,
+                               minFractionDigits: 2, format: '##,##0')}" tabindex="1"/>
                 </div>
 
                 <div class="span4">
-                    Cargos de campo
+                    Garantías
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceCampo" class="inputVar sum3 num" value="${g.formatNumber(number: (paux?.indiceCampo), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="7"/>
+                    <g:textField type="text" name="indiceCostosIndirectosGarantias" class="inputVar sum3 num"
+                                 value="${g.formatNumber(number: (paux?.indiceCostosIndirectosGarantias),
+                                         maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="7"/>
                 </div>
             </div>
 
@@ -290,90 +294,111 @@
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="administracion" class="inputVar sum1 num" value="${g.formatNumber(number: (paux?.administracion), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="2"/>
+                    <g:textField type="text" name="administracion" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (paux?.administracion), maxFractionDigits: 2,
+                                         minFractionDigits: 2, format: '##,##0')}" tabindex="2"/>
                 </div>
 
-                <div class="span4">
-                    Financiamiento
-                </div>
-
-                <div class="span2">
-                    <g:textField type="text" name="indiceCostosIndirectosCostosFinancieros" class="inputVar sum3 num" value="${g.formatNumber(number: (paux?.indiceCostosIndirectosCostosFinancieros), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" />
-                </div>
-            </div>
-
-            <div class="row-fluid" style="margin-top: 10px;">
-                <div class="span4">
-                    Cargos Profesionales
-                </div>
-
-                <div class="span2">
-                    <g:textField type="text" name="indiceProfesionales" class="inputVar sum1 num" value="${g.formatNumber(number: (paux?.indiceProfesionales), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="3"/>
-                </div>
-
-                <div class="span4">
-                    Garantías
-                </div>
-
-                <div class="span2">
-                    <g:textField type="text" name="indiceCostosIndirectosGarantias" class="inputVar sum3 num" value="${g.formatNumber(number: (paux?.indiceCostosIndirectosGarantias), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="8"/>
-                </div>
-            </div>
-
-            <div class="row-fluid" style="margin-top: 10px;">
-                <div class="span4">
-                    Materiales de consumo y mantenimiento
-                </div>
-
-                <div class="span2">
-                    <g:textField type="text" name="indiceCostosIndirectosMantenimiento" class="inputVar sum1 num" value="${g.formatNumber(number: (paux?.indiceCostosIndirectosMantenimiento), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="4"/>
-                </div>
-
-                <div class="span4">
-                    Campamento
-                </div>
-
-                <div class="span2">
-                    <g:textField type="text" name="indiceCampamento" class="inputVar sum3  num" value="${g.formatNumber(number: (paux?.indiceCampamento), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="9"/>
-                </div>
-            </div>
-
-            <div class="row-fluid" style="margin-top: 10px;">
                 <div class="span4">
                     Seguros
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceSeguros" class="inputVar sum1 num" value="${g.formatNumber(number: (paux?.indiceSeguros), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="5"/>
-                </div>
-
-                <div class="span4 bold" style="border-top: solid 1px #D3D3D3;">
-                    Gasto Administración de Campo
-                </div>
-
-                <div class="span2">
-                    <g:textField type="text" name="indiceGastoObra" class="inputVar sum2 num" value="${g.formatNumber(number: (totalObra), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="10" readonly=""/>
+                    <g:textField type="text" name="indiceSeguros" class="inputVar sum3 num"
+                                 value="${g.formatNumber(number: (paux?.indiceSeguros), maxFractionDigits: 2,
+                                         minFractionDigits: 2, format: '##,##0')}" />
                 </div>
             </div>
 
             <div class="row-fluid" style="margin-top: 10px;">
                 <div class="span4">
-                    Seguridad
+                    Locales provisionales
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="indiceSeguridad" class="inputVar sum1 num" value="${g.formatNumber(number: (paux?.indiceSeguridad), maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}" tabindex="6"/>
+                    <g:textField type="text" name="indiceAlquiler" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (paux?.indiceAlquiler), maxFractionDigits: 2,
+                                         minFractionDigits: 2, format: '##,##0')}" tabindex="3"/>
                 </div>
 
                 <div class="span4">
-                    Imprevistos
+                    Costos financieros
                 </div>
 
                 <div class="span2">
-                    <g:textField type="text" name="impreso" class="inputVar sum2 num" value="${g.formatNumber(number: (paux?.impreso) ?: 0, maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0', locale: 'ec')}"/>
+                    <g:textField type="text" name="indiceCostosIndirectosCostosFinancieros" class="inputVar sum3 num"
+                                 value="${g.formatNumber(number: (paux?.indiceCostosIndirectosCostosFinancieros),
+                                         maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="8"/>
                 </div>
             </div>
 
+            <div class="row-fluid" style="margin-top: 10px;">
+                <div class="span4">
+                    Vehículos
+                </div>
+
+                <div class="span2">
+                    <g:textField type="text" name="indiceCostosIndirectosVehiculos" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (paux?.indiceCostosIndirectosVehiculos),
+                                         maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="4"/>
+                </div>
+
+                <div class="span4">
+                    Prevención de accidentes
+                </div>
+
+                <div class="span2">
+                    <g:textField type="text" name="indiceSeguridad" class="inputVar sum3  num"
+                                 value="${g.formatNumber(number: (paux?.indiceSeguridad), maxFractionDigits: 2,
+                                         minFractionDigits: 2, format: '##,##0')}" tabindex="9"/>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 10px;">
+                <div class="span4">
+                    Servicios públicos
+                </div>
+
+                <div class="span2">
+                    <g:textField type="text" name="indiceCostosIndirectosTimbresProvinciales" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (paux?.indiceCostosIndirectosTimbresProvinciales),
+                                         maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="5"/>
+                </div>
+
+                <div class="span4 bold" style="border-top: solid 1px #D3D3D3;">
+                    Gasto Administración de Obra
+                </div>
+
+                <div class="span2">
+                    <g:textField type="text" name="indiceGastoObra" class="inputVar sum2 num"
+                                 value="${g.formatNumber(number: (totalObra), maxFractionDigits: 2, minFractionDigits: 2,
+                                         format: '##,##0', locale: 'ec')}" tabindex="10" readonly=""/>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 10px;">
+                <div class="span4">
+                    Promoción
+                </div>
+
+                <div class="span2">
+                    <g:textField type="text" name="indiceCostosIndirectosPromocion" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (paux?.indiceCostosIndirectosPromocion),
+                                         maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="6"/>
+                </div>
+
+                <div class="span4">
+                    Utilidad
+                </div>
+
+                <div class="span2">
+                    <g:textField type="text" name="indiceUtilidad" class="inputVar sum1 num"
+                                 value="${g.formatNumber(number: (paux?.indiceUtilidad),
+                                         maxFractionDigits: 2, minFractionDigits: 2, format: '##,##0')}" tabindex="6"/>
+                </div>
+            </div>
+
+%{--
             <div class="row-fluid"  style="margin-top: 10px;">
                 <div class="span4 bold" style="border-top: solid 1px #D3D3D3;" >
                     Gastos Administración Central
@@ -392,6 +417,7 @@
                 </div>
             </div>
 
+--}%
             <div class="row-fluid"  style="margin-top: 10px;">
                 <div class="span4">
                 </div>
@@ -437,7 +463,7 @@
         (ev.keyCode >= 96 && ev.keyCode <= 105) ||
         ev.keyCode == 190 || ev.keyCode == 110 ||
         ev.keyCode == 8 || ev.keyCode == 46 || ev.keyCode == 9 ||
-        ev.keyCode == 37 || ev.keyCode == 39);
+        ev.keyCode == 37 || ev.keyCode == 39 || ev.keyCode == 188 );
     }
 
     $(".sum1, .sum2, .num").keydown(function (ev) {

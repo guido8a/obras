@@ -27,18 +27,26 @@ class VariablesController  extends janus.seguridad.Shield{
 
         def transporteCamioneta =  Item.findAllByCodigoIlike('tc-%');
         def transporteAcemila =  Item.findAllByCodigoIlike('ta-%');
-        def total1 = (obra?.indiceAlquiler ?: 0) + (obra?.administracion ?: 0) + (obra?.indiceCostosIndirectosMantenimiento ?: 0) + (obra?.indiceProfesionales ?: 0) + (obra?.indiceSeguros ?: 0)  + (obra?.indiceSeguridad ?: 0)
-        def total2 = (obra?.indiceCampo ?: 0) + (obra?.indiceCostosIndirectosCostosFinancieros ?: 0) + (obra?.indiceCostosIndirectosGarantias ?: 0) + (obra?.indiceCampamento ?: 0)
-        def total3 = (total1 ?:0 ) + (total2 ?: 0) + (obra?.impreso ?: 0) + (obra?.indiceUtilidad ?: 0)
+        def total1 = (obra?.indiceCostosIndirectosObra ?: 0) + (obra?.administracion ?: 0) + (obra?.indiceAlquiler ?: 0) +
+                (obra?.indiceCostosIndirectosVehiculos ?: 0) + (obra?.indiceCostosIndirectosTimbresProvinciales ?: 0)  +
+                (obra?.indiceCostosIndirectosPromocion ?: 0) + (obra?.indiceCostosIndirectosGarantias ?: 0)  +
+                (obra?.indiceSeguros ?: 0) + (obra?.indiceCostosIndirectosCostosFinancieros ?: 0) +
+                (obra?.indiceSeguridad ?: 0)
+//        def total2 = (obra?.indiceCampo ?: 0) + (obra?.indiceCostosIndirectosCostosFinancieros ?: 0) + (obra?.indiceCostosIndirectosGarantias ?: 0) + (obra?.indiceCampamento ?: 0)
+        def total3 = (total1 ?:0 ) + (obra?.indiceUtilidad ?: 0)
+        println "total indirectos: $total1 + ${obra?.indiceUtilidad}: $total3"
 
         if(obra.estado != 'R') {
             obra.indiceGastosGenerales = total1
-            obra.indiceGastoObra = total2
+            obra.indiceGastoObra = 0
+            println "pone totales: $total3"
             obra.totales = total3
+            println "-- ${obra?.totales}"
             obra.save(flush: true)
         }
 
-        [choferes: choferes, volquetes: volquetes, obra: obra, par: par, volquetes2: volquetes2, transporteCamioneta: transporteCamioneta, transporteAcemila: transporteAcemila, total1: total1, total2: total2]
+        [choferes: choferes, volquetes: volquetes, obra: obra, par: par, volquetes2: volquetes2,
+         transporteCamioneta: transporteCamioneta, transporteAcemila: transporteAcemila, total1: total1]
     }
 
     def saveVar_ajax() {
