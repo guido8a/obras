@@ -34,14 +34,14 @@ class VariablesController  extends janus.seguridad.Shield{
                 (obra?.indiceSeguridad ?: 0)
 //        def total2 = (obra?.indiceCampo ?: 0) + (obra?.indiceCostosIndirectosCostosFinancieros ?: 0) + (obra?.indiceCostosIndirectosGarantias ?: 0) + (obra?.indiceCampamento ?: 0)
         def total3 = (total1 ?:0 ) + (obra?.indiceUtilidad ?: 0)
-        println "total indirectos: $total1 + ${obra?.indiceUtilidad}: $total3"
+//        println "total indirectos: $total1 + ${obra?.indiceUtilidad}: $total3"
 
         if(obra.estado != 'R') {
             obra.indiceGastosGenerales = total1
             obra.indiceGastoObra = 0
-            println "pone totales: $total3"
+//            println "pone totales: $total3"
             obra.totales = total3
-            println "-- ${obra?.totales}"
+//            println "-- ${obra?.totales}"
             obra.save(flush: true)
         }
 
@@ -50,13 +50,12 @@ class VariablesController  extends janus.seguridad.Shield{
     }
 
     def saveVar_ajax() {
-//        println "save vars aqui"
-        //println params
+//        println params
 
         def obra = Obra.get(params.id)
+        params.totales = params.totales.toDouble()
         obra.properties = params
-//        obra.capacidadVolquete=params.asdas.toDouble()
-//        obra.factorVolumen=params.factorVolumen.toDouble()
+//        println "save obra: total: ${params.totales} --> ${obra.totales}"
         if (!obra.transporteCamioneta) obra.distanciaCamioneta = 0
         if (!obra.transporteAcemila) obra.distanciaAcemila = 0
         if (obra.save(flush: true)) {

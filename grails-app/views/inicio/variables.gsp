@@ -357,7 +357,7 @@
         items.each(function () {
             sum1 += parseFloat($(this).val().replace(',', '.'));
         });
-        update.val(number_format(sum1, 2, ".", ""));
+        update.val(number_format(sum1, 2, ",", ""));
     }
 
     $(function () {
@@ -410,7 +410,7 @@
         smDesglose = parseFloat($("#desgloseEquipo").val()) + parseFloat($("#desgloseRepuestos").val()) +
             parseFloat($("#desgloseCombustible").val()) + parseFloat($("#desgloseMecanico").val()) +
             parseFloat($("#desgloseSaldo").val())
-        $("#totalDesglose").val(number_format(smDesglose, 2, ".", ""));
+        $("#totalDesglose").val(number_format(smDesglose, 2, ",", ""));
     }
 
     $("#btnAceptar").click(function () {
