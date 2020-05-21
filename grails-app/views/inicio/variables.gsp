@@ -355,7 +355,7 @@
     function suma(items, update) {
         var sum1 = 0;
         items.each(function () {
-            sum1 += parseFloat($(this).val());
+            sum1 += parseFloat($(this).val().replace(',', '.'));
         });
         update.val(number_format(sum1, 2, ".", ""));
     }
