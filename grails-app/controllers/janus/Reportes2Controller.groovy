@@ -3258,17 +3258,14 @@ class Reportes2Controller {
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
         headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-        addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
-        addEmptyLine(headersTitulo, 1)
         headersTitulo.add(new Paragraph("COSTOS INDIRECTOS, IMPREVISTOS Y UTILIDAD", times12bold));
-        addEmptyLine(headersTitulo, 1);
         document.add(headersTitulo);
 //
 
         PdfPTable tablaHeader = new PdfPTable(3);
         tablaHeader.setWidthPercentage(100);
-        tablaHeader.setWidths(arregloEnteros([20, 2, 70]))
+        tablaHeader.setWidths(arregloEnteros([18, 2, 80]))
 
         addCellTabla(tablaHeader, new Paragraph(" ", times8bold), prmsHeaderHoja)
         addCellTabla(tablaHeader, new Paragraph(" ", times8bold), prmsHeaderHoja)
@@ -3286,10 +3283,6 @@ class Reportes2Controller {
         addCellTabla(tablaHeader, new Paragraph(" : ", times8bold), prmsHeaderHoja)
         addCellTabla(tablaHeader, new Paragraph(printFecha(obra?.fechaPreciosRubros), times8normal), prmsHeaderHoja)
 
-        addCellTabla(tablaHeader, new Paragraph(" ", times8bold), prmsHeaderHoja)
-        addCellTabla(tablaHeader, new Paragraph(" ", times8bold), prmsHeaderHoja)
-        addCellTabla(tablaHeader, new Paragraph(" ", times8bold), prmsHeaderHoja)
-
         document.add(tablaHeader);
 
         Paragraph headers = new Paragraph();
@@ -3304,75 +3297,71 @@ class Reportes2Controller {
 
         tablaDesgloseBody.setHorizontalAlignment(Element.ALIGN_RIGHT)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Alquiler y depreciación", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Alquiler y depreciación", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceAlquiler, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+
+
+        addCellTabla(tablaDesgloseBody, new Paragraph("Dirección de la Obra", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceAlquiler, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosObra, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
         addCellTabla(tablaDesgloseBody, new Paragraph("Cargos Administrativos", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.administracion, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Cargos Profesionales", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph("Locales Provisionales", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceProfesionales, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceAlquiler, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Materiales de consumo y mantenimiento", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph("Vehículos", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosMantenimiento, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosVehiculos, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Seguros", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph("Servicios Públicos", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceSeguros, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosTimbresProvinciales, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Seguridad", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph("Promoción", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceSeguridad, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
-
-        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph("_______"), prmsDerecha)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
-
-        addCellTabla(tablaDesgloseBody, new Paragraph("Gastos Administración Central", times10bold), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceGastosGenerales, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10bold), prmsDerecha)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
-
-        addCellTabla(tablaDesgloseBody, new Paragraph("Cargos de Campo", times10normal), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCampo, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
-
-        addCellTabla(tablaDesgloseBody, new Paragraph("Financiamiento", times10normal), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosCostosFinancieros, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosPromocion, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
         addCellTabla(tablaDesgloseBody, new Paragraph("Garantías", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosGarantias, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Campamento", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph("Seguros", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCampamento, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceSeguros, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+
+        addCellTabla(tablaDesgloseBody, new Paragraph("Costos Financieros", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosCostosFinancieros, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+
+        addCellTabla(tablaDesgloseBody, new Paragraph("Prevención de Accidentes", times10normal), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceSeguridad, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
@@ -3380,22 +3369,16 @@ class Reportes2Controller {
         addCellTabla(tablaDesgloseBody, new Paragraph("_______"), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Gasto Administración de Campo", times10bold), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph("Gastos Administración de Obra", times10bold), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceGastoObra, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10bold), prmsDerecha)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
-
-        addCellTabla(tablaDesgloseBody, new Paragraph("Imprevistos", times10normal), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.impreso, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceGastosGenerales, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10bold), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
         addCellTabla(tablaDesgloseBody, new Paragraph("Utilidad", times10normal), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceUtilidad, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+                2, maxFractionDigits: 2, format: "##,##0"), times10normal), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
@@ -3403,13 +3386,94 @@ class Reportes2Controller {
         addCellTabla(tablaDesgloseBody, new Paragraph("_______"), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
-        addCellTabla(tablaDesgloseBody, new Paragraph("Costo total de indirectos", times10bold), prmsHeaderHoja)
+        addCellTabla(tablaDesgloseBody, new Paragraph("Costo total de Indirectos", times10bold), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
-        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceGastosGenerales + obra?.indiceGastoObra + obra?.impreso + obra?.indiceUtilidad, minFractionDigits:
-                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10bold), prmsDerecha)
+        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.totales, minFractionDigits:
+                2, maxFractionDigits: 2, format: "##,##0"), times10bold), prmsDerecha)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
 
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Cargos Profesionales", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceProfesionales, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Materiales de consumo y mantenimiento", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosMantenimiento, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+
+
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Seguridad", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceSeguridad, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph("_______"), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Gastos Administración Central", times10bold), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceGastosGenerales, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10bold), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Cargos de Campo", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCampo, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Financiamiento", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCostosIndirectosCostosFinancieros, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Campamento", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceCampamento, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph("_______"), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Gasto Administración de Campo", times10bold), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceGastoObra, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10bold), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Imprevistos", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.impreso, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Utilidad", times10normal), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceUtilidad, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10normal), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph("_______"), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
+//
+//        addCellTabla(tablaDesgloseBody, new Paragraph("Costo total de indirectos", times10bold), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" : "), prmsHeaderHoja)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(g.formatNumber(number: obra?.indiceGastosGenerales + obra?.indiceGastoObra + obra?.impreso + obra?.indiceUtilidad, minFractionDigits:
+//                2, maxFractionDigits: 2, format: "##,##0", locale: "ec"), times10bold), prmsDerecha)
+//        addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
 
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
         addCellTabla(tablaDesgloseBody, new Paragraph(" "), prmsHeaderHoja)
