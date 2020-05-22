@@ -68,29 +68,19 @@
         <div class="tipoReporte">
 
             <fieldset class="borde">
-
                 <legend>Tipo de Reporte</legend>
-
                 <div class="span6" style="margin-bottom: 10px; margin-top: -20px">
-
                     <input type="radio" name="tipoPresupuesto" class="radioPresupuesto uno" value="1" checked="true"/>  Base de Contrato
-
                     <input type="radio" name="tipoPresupuesto" class="radioPresupuesto" value="2"
                            style="margin-left: 220px"/> Presupuesto Referencial
-
                 </div>
                 <div class="span6" style="margin-bottom: 10px; ">
-
                     <input type="radio" name="encabezado" class="encabezado uno" value="1" checked="true"/>  Con encabezado
-
                     <input type="radio" name="encabezado" class="encabezado" value="0"
                            style="margin-left: 220px"/> Sin encabezado
-
                 </div>
             </fieldset>
-
         </div>
-
 
         <div class="piePagina" style="margin-bottom: 10px">
 
@@ -1088,42 +1078,28 @@
                     </div>
 
                     <div class="span8">
-
                         <div class="span5">Costos Indirectos:</div>
-
-                        <div class="span3" style="margin-left: -100px; width: 240px">
-                            %{--<div class="input-append">--}%
-                            %{--<g:textField name="costoPorcentaje" type="number" style="width: 30px" maxlength="3"/>--}%
+                        <div class="span3" style="margin-left: -95px; width: 240px">
                             <input id="costoPorcentaje" name="costoPorcentaje" type="number" style="width: 60px" maxlength="3" max="25" min="0" step="0.1"/>
                             <span class="add-on">%</span>
-                            %{--</div>--}%
                             <g:textField name="costoMemo" style="width: 100px" disabled="true"/>
                         </div>
 
                         <div class="span5">Timbres y costos financieros (para materiales):</div>
-
-                        <div class="span3" style="margin-left: -90px; width: 240px" >
-                            %{--<div class="input-append">--}%
-                            %{--<g:textField name="pcntFinanciero" type="number" style="width: 30px" maxlength="3" max="5" min="0"/>--}%
-                            <input id="pcntFinanciero" name="pcntFinanciero" type="number" style="width: 50px" maxlength="3" max="5" min="0" step="0.1"/>
+                        <div class="span3" style="margin-left: -95px; width: 240px" >
+                            <input id="pcntFinanciero" name="pcntFinanciero" type="number" style="width: 60px" maxlength="3" max="5" min="0" step="0.1"/>
                             <span class="add-on">%</span>
-                            %{--</div>--}%
                             <g:textField name="costoFinanciero" style="width: 100px" disabled="true"/>
                         </div>
-
                     </div>
 
                     <div class="span8">
                         <div class="span5">TOTAL:</div>
-
                         <div class="span2" style="margin-left: 0px"><g:textField name="totalMemoPresu" style="width: 100px" disabled="true"/></div>
                     </div>
                 </div>
-
             </fieldset>
-
         </div>
-
 
         <div class="setFirmas" style="margin-top: -10px">
 
@@ -1504,9 +1480,9 @@
          39         -> flecha der
          */
         return ((ev.keyCode >= 48 && ev.keyCode <= 57) ||
-        (ev.keyCode >= 96 && ev.keyCode <= 105) ||
-        ev.keyCode == 8 || ev.keyCode == 46 || ev.keyCode == 9 ||
-        ev.keyCode == 37 || ev.keyCode == 39);
+            (ev.keyCode >= 96 && ev.keyCode <= 105) ||
+            ev.keyCode == 8 || ev.keyCode == 46 || ev.keyCode == 9 ||
+            ev.keyCode == 37 || ev.keyCode == 39);
     }
 
     function validarNumDec(ev) {
@@ -1523,9 +1499,9 @@
          39         -> flecha der
          */
         return ((ev.keyCode >= 48 && ev.keyCode <= 57) ||
-        (ev.keyCode >= 96 && ev.keyCode <= 105) ||
-        ev.keyCode == 8 || ev.keyCode == 46 || ev.keyCode == 9 ||
-        ev.keyCode == 37 || ev.keyCode == 39 || ev.keyCode == 190 || ev.keyCode == 110);
+            (ev.keyCode >= 96 && ev.keyCode <= 105) ||
+            ev.keyCode == 8 || ev.keyCode == 46 || ev.keyCode == 9 ||
+            ev.keyCode == 37 || ev.keyCode == 39 || ev.keyCode == 190 || ev.keyCode == 110);
     }
 
     $("#mesesReajuste").keydown(function (ev) {
@@ -2034,16 +2010,16 @@
                 firmaCoordinador = idFirmaCoor
                 firmaElaboro = ${obra?.responsableObra?.id}
 
-                        $("#firmasFijasPresu").children("tr").each(function (i) {
-                            if ($(this).data("id")) {
-                                if (firmasFijas != '') {
-                                    firmasFijas += ','
-                                } else {
-                                    firmasFijas += '-1,'
-                                }
-                                firmasFijas += $(this).data("id")
+                    $("#firmasFijasPresu").children("tr").each(function (i) {
+                        if ($(this).data("id")) {
+                            if (firmasFijas != '') {
+                                firmasFijas += ','
+                            } else {
+                                firmasFijas += '-1,'
                             }
-                        });
+                            firmasFijas += $(this).data("id")
+                        }
+                    });
 //           //console.log("1:" + firmasFijas)
 
                 notaValue = $("#piePaginaSel").val();
@@ -2091,10 +2067,10 @@
 //                                $("#divOk").show(msg);
                                 //console.log($(".encabezado:checked").val());
                                 location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObra',id: obra?.id)}?tipoReporte=" + $(".radioPresupuesto:checked").val() +
-                                "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
-                                "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
-                                "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
-                                "&firmaElaboro=" + firmaElaboro + "&encabezado=" + $(".encabezado:checked").val();
+                                    "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
+                                    "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
+                                    "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
+                                    "&firmaElaboro=" + firmaElaboro + "&encabezado=" + $(".encabezado:checked").val();
 
                             }
                         }
@@ -2175,10 +2151,10 @@
                                 %{--+ "&firmasId=" + firmasId + "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses + "&firmasFijas=" +firmasFijas + "&firmaCoordinador=" + firmaCoordinador--}%
 //                                //console.log("LINK 1")
                                 location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraMemo',id: obra?.id)}?tipoReporte=" + '1' +
-                                "&firmasIdMemo=" + firmasIdMemo  + "&totalPresupuesto=" + totalPres + "&proyeccionMemo=" + proyeccionMemo +
-                                "&reajusteIvaMemo=" + reajusteIvaMemo + "&reajusteMesesMemo=" + reajusteMesesMemo +
-                                "&para=" + paraMemo + "&firmasFijasMemo=" + firmasFijasMemo + "&texto=" + textoMemo + "&pie=" + pieMemo +
-                                "&notaValue=" + part[1] + "&firmaCoordinador=" + firmaCoordinador+"&firmaNueva="+$("#tab-memorando").find("#coordinador").val()
+                                    "&firmasIdMemo=" + firmasIdMemo  + "&totalPresupuesto=" + totalPres + "&proyeccionMemo=" + proyeccionMemo +
+                                    "&reajusteIvaMemo=" + reajusteIvaMemo + "&reajusteMesesMemo=" + reajusteMesesMemo +
+                                    "&para=" + paraMemo + "&firmasFijasMemo=" + firmasFijasMemo + "&texto=" + textoMemo + "&pie=" + pieMemo +
+                                    "&notaValue=" + part[1] + "&firmaCoordinador=" + firmaCoordinador+"&firmaNueva="+$("#tab-memorando").find("#coordinador").val()
                             }
                         }
                     });
@@ -2233,7 +2209,7 @@
 //                            //console.log(msg)
                         if (part[0] == 'ok') {
                             location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraFormu',id: obra?.id)}?firmasIdFormu=" + firmasIdFormu + "&totalPresupuesto=" + totalPres + "&firmasFijasFormu=" + firmasFijasFormu
-                            + "&notaFormula=" + $("#notaFormula").val() + "&notaValue=" + part[1] + "&firmaElaboro=" + ${obra?.responsableObra?.id} +"&firmaCoordinador=" + firmaCoordinador
+                                + "&notaFormula=" + $("#notaFormula").val() + "&notaValue=" + part[1] + "&firmaElaboro=" + ${obra?.responsableObra?.id} +"&firmaCoordinador=" + firmaCoordinador
                         }
                     }
                 });
@@ -2268,9 +2244,9 @@
                     firmasFijasMP[i] = $(this).data("id")
                 });
                 location.href = "${g.createLink(controller: 'reportes' ,action: 'reportedocumentosObraMemoAdmi',id: obra?.id)}?firmasIdMP=" +
-                firmasIdMP + "&totalPresupuesto=" + totalPres + "&firmasFijasMP=" + firmasFijasMP + "&materiales=" + materiales +
-                "&manoObra=" + manoObra + "&equipos=" + equipos + "&costoPorcentaje=" + costoPorcentaje + "&costo=" + costo + "&total=" + total +
-                "&texto=" + texto + "&para=" + para + "&de=" + de + "&fecha=" + fecha + "&asunto=" + asunto + "&financiero=" + financiero
+                    firmasIdMP + "&totalPresupuesto=" + totalPres + "&firmasFijasMP=" + firmasFijasMP + "&materiales=" + materiales +
+                    "&manoObra=" + manoObra + "&equipos=" + equipos + "&costoPorcentaje=" + costoPorcentaje + "&costo=" + costo + "&total=" + total +
+                    "&texto=" + texto + "&para=" + para + "&de=" + de + "&fecha=" + fecha + "&asunto=" + asunto + "&financiero=" + financiero
             }
         }
         return false;
@@ -2295,19 +2271,19 @@
                 firmaCoordinador = idFirmaCoor
                 firmaElaboro = ${obra?.responsableObra?.id}
 
-                        $("#firmasFijasPresu").children("tr").each(function (i) {
-                            if ($(this).data("id")) {
-                                if (firmasFijas != '') {
+                    $("#firmasFijasPresu").children("tr").each(function (i) {
+                        if ($(this).data("id")) {
+                            if (firmasFijas != '') {
 
-                                    firmasFijas += ','
-                                } else {
-                                    firmasFijas += '-1,'
-                                }
-                                firmasFijas += $(this).data("id")
-
+                                firmasFijas += ','
+                            } else {
+                                firmasFijas += '-1,'
                             }
+                            firmasFijas += $(this).data("id")
 
-                        });
+                        }
+
+                    });
 //           //console.log("1:" + firmasFijas)
 
                 notaValue = $("#piePaginaSel").val();
@@ -2351,10 +2327,10 @@
                             var part = msg.split('_');
                             if (part[0] == 'ok') {
                                 location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraDscr',id: obra?.id)}?tipoReporte=" + $(".radioPresupuesto:checked").val() +
-                                "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
-                                "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
-                                "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
-                                "&firmaElaboro=" + firmaElaboro + "&encabezado=" + $(".encabezado:checked").val();
+                                    "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
+                                    "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
+                                    "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
+                                    "&firmaElaboro=" + firmaElaboro + "&encabezado=" + $(".encabezado:checked").val();
 
                             }
                         }
@@ -2385,19 +2361,19 @@
                 firmaCoordinador = idFirmaCoor
                 firmaElaboro = ${obra?.responsableObra?.id}
 
-                        $("#firmasFijasPresu").children("tr").each(function (i) {
-                            if ($(this).data("id")) {
-                                if (firmasFijas != '') {
+                    $("#firmasFijasPresu").children("tr").each(function (i) {
+                        if ($(this).data("id")) {
+                            if (firmasFijas != '') {
 
-                                    firmasFijas += ','
-                                } else {
-                                    firmasFijas += '-1,'
-                                }
-                                firmasFijas += $(this).data("id")
-
+                                firmasFijas += ','
+                            } else {
+                                firmasFijas += '-1,'
                             }
+                            firmasFijas += $(this).data("id")
 
-                        });
+                        }
+
+                    });
 //           //console.log("1:" + firmasFijas)
 
                 notaValue = $("#piePaginaSel").val();
@@ -2441,10 +2417,10 @@
                             var part = msg.split('_');
                             if (part[0] == 'ok') {
                                 location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraVae',id: obra?.id)}?tipoReporte=" + $(".radioPresupuesto:checked").val() +
-                                "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
-                                "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
-                                "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
-                                "&firmaElaboro=" + firmaElaboro + "&encabezado=" + $(".encabezado:checked").val();
+                                    "&forzarValue=" + forzarValue + "&notaValue=" + part[1] + "&firmasId=" + firmasId +
+                                    "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses +
+                                    "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador +
+                                    "&firmaElaboro=" + firmaElaboro + "&encabezado=" + $(".encabezado:checked").val();
 
                             }
                         }
@@ -2506,7 +2482,7 @@
                         var part = msg.split('_');
                         if (part[0] == 'ok') {
                             location.href = "${g.createLink(controller: 'reportes5' ,action: 'reporteFormulaExcel',id: obra?.id)}?firmasIdFormu=" + firmasIdFormu + "&totalPresupuesto=" + totalPres + "&firmasFijasFormu="
-                            + firmasFijasFormu + "&notaPoli=" + part[1] +  "&notaFormula=" + $("#notaFormula").val() +"&firmaCoordinador=" + firmaCoordinador
+                                + firmasFijasFormu + "&notaPoli=" + part[1] +  "&notaFormula=" + $("#notaFormula").val() +"&firmaCoordinador=" + firmaCoordinador
                         }
                     }
                 });
@@ -2871,7 +2847,7 @@
                 else {
                     var tipoReporte = tipoClick;
                     location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObra',id: obra?.id)}?tipoReporte=" + tipoReporte + "&forzarValue=" + forzarValue + "&notaValue=" + notaValue
-                    + "&firmasId=" + firmasId + "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses + "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador
+                        + "&firmasId=" + firmasId + "&proyeccion=" + proyeccion + "&iva=" + reajusteIva + "&meses=" + reajusteMeses + "&firmasFijas=" + firmasFijas + "&firmaCoordinador=" + firmaCoordinador
                     $("#reajustePresupuestoDialog").dialog("close");
                 }
             },
@@ -2937,10 +2913,10 @@
                             if (part[0] == 'ok') {
 //                                //console.log("LINK 3 : ", $("#tab-memorando").find("#coordinador"), );
                                 location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteDocumentosObraMemo',id: obra?.id)}?tipoReporte=" + tipoReporte + "&firmasIdMemo=" + firmasIdMemo
-                                + "&totalPresupuesto=" + totalPres + "&proyeccionMemo=" + proyeccionMemo +
-                                "&reajusteIvaMemo=" + reajusteIvaMemo + "&reajusteMesesMemo=" + reajusteMesesMemo + "&para=" + paraMemo1 +
-                                "&firmasFijasMemo=" + firmasFijasMemo + "&texto=" + $("#memo1").val() + "&pie=" + $("#memo2").val() + "&notaValue=" + part[1] +
-                                "&firmaCoordinador=" + firmaCoordinador+"&firmaNueva="+$("#tab-memorando").find("#coordinador").val()
+                                    + "&totalPresupuesto=" + totalPres + "&proyeccionMemo=" + proyeccionMemo +
+                                    "&reajusteIvaMemo=" + reajusteIvaMemo + "&reajusteMesesMemo=" + reajusteMesesMemo + "&para=" + paraMemo1 +
+                                    "&firmasFijasMemo=" + firmasFijasMemo + "&texto=" + $("#memo1").val() + "&pie=" + $("#memo2").val() + "&notaValue=" + part[1] +
+                                    "&firmaCoordinador=" + firmaCoordinador+"&firmaNueva="+$("#tab-memorando").find("#coordinador").val()
 
                             }
                         }
@@ -3166,8 +3142,8 @@
             var total = 0.0
 
             total = parseFloat($("#tMaterial").val()) + parseFloat($("#tMano").val()) +
-            parseFloat($("#tEquipo").val()) + parseFloat($("#costoMemo").val()) +
-            parseFloat($("#costoFinanciero").val())
+                parseFloat($("#tEquipo").val()) + parseFloat($("#costoMemo").val()) +
+                parseFloat($("#costoFinanciero").val())
 
             $("#totalMemoPresu").val(number_format(total, 2, ".", ""))
         }

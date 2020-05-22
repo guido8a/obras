@@ -752,7 +752,7 @@ class Reportes5Controller extends Shield{
 
 
     def reporteFormulaExcel() {
-        println("params " + params)
+//        println("params " + params)
         def auxiliar = Auxiliar.get(1)
         def auxiliarFijo = Auxiliar.get(1)
         def obra = Obra.get(params.id)
@@ -770,7 +770,6 @@ class Reportes5Controller extends Shield{
         def firma2 = obra?.revisor;
         def nota
 
-
         if(params.notaPoli != '-1' || params.notaPoli != -1){
             nota = Nota.get(params.notaPoli)?.texto
         }else {
@@ -785,7 +784,6 @@ class Reportes5Controller extends Shield{
         }
         if (params.firmasFijasFormu.trim().size() > 0) {
             firmaFijaFormu = params.firmasFijasFormu.split(",")
-//            firmaFijaFormu = firmaFijaFormu.toList().unique()
         } else {
             firmaFijaFormu = []
         }
@@ -797,28 +795,19 @@ class Reportes5Controller extends Shield{
         if (obra?.formulaPolinomica == null) {
             obra?.formulaPolinomica = ""
         }
-
         //excel
         WorkbookSettings workbookSettings = new WorkbookSettings()
         workbookSettings.locale = Locale.default
 
         def file = File.createTempFile('myExcelDocument', '.xls')
         file.deleteOnExit()
-//        println "paso"
         WritableWorkbook workbook = Workbook.createWorkbook(file, workbookSettings)
-
         WritableFont font = new WritableFont(WritableFont.ARIAL, 12)
         WritableCellFormat formatXls = new WritableCellFormat(font)
 
         def row = 0
-        WritableSheet sheet = workbook.createSheet('MySheet', 0)
-        // fija el ancho de la columna
-        // sheet.setColumnView(1,40)
 
-//        params.id = params.id.split(",")
-//        if (params.id.class == java.lang.String) {
-//            params.id = [params.id]
-//        }
+        WritableSheet sheet = workbook.createSheet('MySheet', 0)
         WritableFont times16font = new WritableFont(WritableFont.TIMES, 11, WritableFont.BOLD, false);
         WritableCellFormat times16format = new WritableCellFormat(times16font);
         sheet.setColumnView(0, 12)
@@ -834,17 +823,13 @@ class Reportes5Controller extends Shield{
         def number
         def nmro
         def numero = 1;
-
         def fila = 16;
-
         def ultimaFila
 
-        label = new Label(1, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
-
+        label = new Label(1, 2, auxiliar?.titulo, times16format); sheet.addCell(label);
+        label = new Label(1, 3, auxiliar?.memo1, times16format); sheet.addCell(label);
         label = new Label(1, 4, "FÓRMULA POLINÓMICA", times16format); sheet.addCell(label);
-
         label = new Label(1, 6, obra?.formulaPolinomica, times16format); sheet.addCell(label);
-
         label = new Label(1, 8, "De existir variaciones en los costos de los componentes de precios unitarios estipulados en el contrato para la contrucción de:", times16format);
         sheet.addCell(label);
 
