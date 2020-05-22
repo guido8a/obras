@@ -2169,7 +2169,7 @@ class ReportesController {
         txtIzq.setAlignment(Element.ALIGN_LEFT);
 
         if (params.encabezado == "1" || params.encabezado == 1) {
-            if (Persona.get(session.usuario.id).departamento?.codigo == 'UTFPU') {
+            if (Persona.get(session.usuario.id).departamento?.codigo == 'PRSP') {
                 if (obra?.departamentoDestino) {
                     def departamentoDestino = Departamento.get(obra?.departamentoDestino?.id)
                     def direccionDestino = departamentoDestino?.direccion
@@ -2977,7 +2977,7 @@ class ReportesController {
         txtIzq.setAlignment(Element.ALIGN_LEFT);
 
         if (params.encabezado == "1" || params.encabezado == 1) {
-            if (Persona.get(session.usuario.id).departamento?.codigo == 'UTFPU') {
+            if (Persona.get(session.usuario.id).departamento?.codigo == 'PRSP') {
                 if (obra?.departamentoDestino) {
                     def departamentoDestino = Departamento.get(obra?.departamentoDestino?.id)
                     def direccionDestino = departamentoDestino?.direccion
@@ -3781,7 +3781,7 @@ class ReportesController {
         txtIzq.setAlignment(Element.ALIGN_LEFT);
 
         if (params.encabezado == "1" || params.encabezado == 1) {
-            if (Persona.get(session.usuario.id).departamento?.codigo == 'UTFPU') {
+            if (Persona.get(session.usuario.id).departamento?.codigo == 'PRSP') {
                 if (obra?.departamentoDestino) {
                     def departamentoDestino = Departamento.get(obra?.departamentoDestino?.id)
                     def direccionDestino = departamentoDestino?.direccion
@@ -4927,9 +4927,9 @@ class ReportesController {
         document.add(tablaFirmas);
 
         /** todo: poner responsable y revisado por ... usar obrasService.esDuenoObra**/
-        if(obraService.esDuenoObra(obra, session.usuario.id) && (tipo == '1') && (session.usuario.departamento.codigo == 'UTFPU')){
+        if(obraService.esDuenoObra(obra, session.usuario.id) && (tipo == '1') && (session.usuario.departamento.codigo == 'PRSP')){
             def funcionCoord = Funcion.findByCodigo('O')
-            def coordinador = PersonaRol.findByFuncionAndPersonaInList(funcionCoord, Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU')))?.persona
+            def coordinador = PersonaRol.findByFuncionAndPersonaInList(funcionCoord, Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP')))?.persona
             PdfPTable tablaPie = new PdfPTable(2);
             tablaPie.setWidthPercentage(100);
             tablaPie.setWidths(arregloEnteros([3, 60]))
@@ -7987,7 +7987,7 @@ class ReportesController {
 
         pie.add(new Paragraph("", times8normal));
         pie.add(new Paragraph("La institución realiza un estudio de mercado independiente de cualquier proceso de compra de materiales " +
-                "o contratación de obra específico, para lo cual cada cuatro meses la UTFPU, realiza la actualización de los precios de los " +
+                "o contratación de obra específico, para lo cual cada cuatro meses la PRSP, realiza la actualización de los precios de los " +
                 "materiales de construcción, con la colaboración de varias empresas fabricantes, distribuidores y ferreterías que " +
                 "proporcionan un listado de venta al público de sus diferentes productos.", times8normal));
 

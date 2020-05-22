@@ -157,16 +157,16 @@ class Reportes5Controller extends Shield{
 
         def res = filasAvance(params)
 
-        def personasUtfpu = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
+        def personasPRSP = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
         def responsableObra
 
         def obrasFiltradas = []
 
 
-        if(Persona.get(session.usuario.id).departamento?.codigo == 'UTFPU'){
+        if(Persona.get(session.usuario.id).departamento?.codigo == 'PRSP'){
             res.each{
                 responsableObra = it.responsable
-                if((personasUtfpu.contains(Persona.get(responsableObra))) || it.tipo == 'D'){
+                if((personasPRSP.contains(Persona.get(responsableObra))) || it.tipo == 'D'){
                     obrasFiltradas += it
                 }
             }
@@ -1598,16 +1598,16 @@ class Reportes5Controller extends Shield{
         def funcionElab = Funcion.findByCodigo('E')
 
         def personasDep = Persona.findAllByDepartamento(deptoUsu)
-        def personasUtfpu = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
+        def personasPRSP = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
 
         def coordinador = PersonaRol.findByPersonaInListAndFuncion(personasDep,funcionCoor)
-        def coordinadorUtfpu = PersonaRol.findByPersonaInListAndFuncion(personasUtfpu,funcionCoor)
+        def coordinadorPRSP = PersonaRol.findByPersonaInListAndFuncion(personasPRSP,funcionCoor)
 
-        def elabUtfpu = PersonaRol.findAllByPersonaInListAndFuncion(personasUtfpu,funcionElab)
+        def elabPRSP = PersonaRol.findAllByPersonaInListAndFuncion(personasPRSP,funcionElab)
 
         def responsableRol = PersonaRol.findByPersona(Persona.get(obra?.responsableObra?.id))
 
-        elabUtfpu.each {
+        elabPRSP.each {
             if(it?.id == responsableRol?.id){
                 ban = 1
             }
@@ -1644,7 +1644,7 @@ class Reportes5Controller extends Shield{
 
         if(coordinador){
             if(ban == 1){
-                firmaCoordinador = coordinadorUtfpu.persona
+                firmaCoordinador = coordinadorPRSP.persona
                 addCellTabla(tablaFirmas, new Paragraph((firmaCoordinador?.titulo?.toUpperCase() ?: '') + " " + (firmaCoordinador?.nombre?.toUpperCase() ?: '') + " " + (firmaCoordinador?.apellido?.toUpperCase() ?: ''), times8bold), prmsHeaderHoja)
             }else{
                 firmaCoordinador = coordinador.persona

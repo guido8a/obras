@@ -91,7 +91,7 @@
     %{--<button class="btn" id="listaLq"><i class="icon-book"></i> Liquidación</button>--}%
     <button class="btn" id="nuevo"><i class="icon-plus"></i> Nuevo</button>
 
-    <g:if test="${persona?.departamento?.codigo != 'UTFPU'}">
+    <g:if test="${persona?.departamento?.codigo != 'PRSP'}">
 
         <g:if test="${obra?.estado != 'R'}">
             <g:if test="${(obra?.responsableObra?.departamento?.direccion?.id == persona?.departamento?.direccion?.id && duenoObra == 1) || obra?.id == null}">
@@ -150,7 +150,7 @@
             </g:if>
         </g:if>
     </g:if>
-    <g:else>%{-- usuarurio de UTFPU --}%
+    <g:else>%{-- usuarurio de PRSP --}%
 
         <g:if test="${obra?.estado != 'R'}">
             <g:if test="${duenoObra == 1 || obra?.id == null}">
@@ -254,7 +254,7 @@
         </g:if>
 
         <div class="span12" style="margin-top: 0px">
-            <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+            <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
                 <div class="span 1 formato">REQUIRENTE</div>
 
                 <div class="span3">
@@ -416,7 +416,7 @@
 
             %{--${persona?.departamento?.codigo}--}%
 
-                <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+                <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
 
                     <g:select id="programacion" name="programacion.id" class="programacion required" from="${programa}"
                               value="${obra?.programacion?.id}" optionValue="descripcion" optionKey="id"
@@ -450,7 +450,7 @@
             %{--<g:textField name="tipoObra" class="tipoObra" value="${obra?.tipoObjetivo?.descripcion}"  style="margin-left: -60px; width: 280px" title="Tipo de Obra" readonly="true"/>--}%
             %{--</g:else>--}%
 
-                <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+                <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
                     <g:select id="tipoObra" name="tipoObjetivo.id" class="tipoObjetivo required" from="${tipoObra}"
                               value="${obra?.tipoObjetivo?.id}" optionValue="descripcion" optionKey="id"
                               style="margin-left: -60px; width: 290px" title="Tipo de Obra"/>
@@ -483,7 +483,7 @@
             %{--<g:textField name="claseObra" class="claseObra" value="${obra?.claseObra?.descripcion}" style="margin-left: -35px; width: 230px" title="Clase de Obra" readonly="true"/>--}%
             %{--</g:else>--}%
 
-                <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+                <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
                     <g:select id="claseObra" name="claseObra.id" class="claseObra required" from="${claseObra}"
                               value="${obra?.claseObra?.id}" optionValue="descripcion" optionKey="id"
                               style="margin-left: -35px; width: 230px" title="Clase de Obra"/>
@@ -1280,7 +1280,7 @@
 
         var idP
         var idDep1
-        <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+        <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
         <g:if test="${obra}">
         <g:if test="${duenoObra == 1}">
         idP = $("#departamento option:selected").attr("class");
@@ -1557,7 +1557,7 @@
 
         loadPersonas();
 
-        <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+        <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
         loadSalida();
         </g:if>
 
@@ -1824,7 +1824,7 @@
 
             var direccionEl;
 
-            <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+            <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
             <g:if test="${obra}">
             <g:if test="${duenoObra == 1}">
             direccionEl = $("#departamento option:selected").attr("class");

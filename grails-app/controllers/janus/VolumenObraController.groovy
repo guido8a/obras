@@ -29,11 +29,11 @@ class VolumenObraController extends janus.seguridad.Shield {
         def obra = Obra.get(params.id)
         def volumenes = VolumenesObra.findAllByObra(obra)
 
-//        def personasUtfpu = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
+//        def personasPRSP = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
 //        def responsableObra = obra?.responsableObra?.id
         def duenoObra = 0
 
-//        personasUtfpu.each{
+//        personasPRSP.each{
 //            if(it.id == responsableObra ){
 //                duenoObra = 1
 //            }
@@ -288,12 +288,12 @@ class VolumenObraController extends janus.seguridad.Shield {
 //
         def dueno = false
         def funcionElab = Funcion.findByCodigo('E')
-        def personasUtfpu = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU')))
+        def personasPRSP = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP')))
         def responsableRol = PersonaRol.findByPersonaAndFuncion(obra?.responsableObra, funcionElab)
 //
 //        if(responsableRol) {
-////            println personasUtfpu
-//            dueno = personasUtfpu.contains(responsableRol) && session.usuario.departamento.codigo == 'UTFPU'
+////            println personasPRSP
+//            dueno = personasPRSP.contains(responsableRol) && session.usuario.departamento.codigo == 'PRSP'
 //        }
 
 //        println "responsable" + responsableRol + " dueño " + dueno
@@ -307,10 +307,10 @@ class VolumenObraController extends janus.seguridad.Shield {
             if (obra?.responsableObra?.departamento?.direccion?.id == Persona.get(session.usuario.id).departamento?.direccion?.id) {
                 dueno = true
             } else {
-                dueno = personasUtfpu.contains(responsableRol) && session.usuario.departamento.codigo == 'UTFPU'
+                dueno = personasPRSP.contains(responsableRol) && session.usuario.departamento.codigo == 'PRSP'
             }
 */
-            if (personasUtfpu.contains(responsableRol) && session.usuario.departamento.codigo == 'UTFPU') {
+            if (personasPRSP.contains(responsableRol) && session.usuario.departamento.codigo == 'PRSP') {
                 dueno = true
             } else if (obra?.responsableObra?.departamento?.direccion?.id == Persona.get(session.usuario.id).departamento?.direccion?.id) {
                 dueno = true

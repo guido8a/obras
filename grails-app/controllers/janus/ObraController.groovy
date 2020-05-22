@@ -450,8 +450,8 @@ class ObraController extends janus.seguridad.Shield {
         def claseObra
         def duenoObra = 0
         def funcionElab = Funcion.findByCodigo('E')
-        def personasUtfpu1 = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
-        def personasUtfpu = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, personasUtfpu1)
+        def personasPRSP1 = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
+        def personasPRSP = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, personasPRSP1)
         def responsableObra
         def sql = ""
 
@@ -543,7 +543,7 @@ class ObraController extends janus.seguridad.Shield {
             [campos: campos, prov: prov, obra: obra, subs: subs, persona: persona, formula: formula, volumen: volumen,
              matrizOk: matrizOk, verif: verif, verifOK: verifOK, perfil: perfil, programa: programa, tipoObra: tipoObra,
              claseObra: claseObra, grupoDir: grupo, dire  : direccion, depar: departamentos, concurso: concurso,
-             personasUtfpu: personasUtfpu, duenoObra: duenoObra, sbprMF:sbprMF]
+             personasPRSP: personasPRSP, duenoObra: duenoObra, sbprMF:sbprMF]
         } else {
 
             duenoObra = 0
@@ -551,7 +551,7 @@ class ObraController extends janus.seguridad.Shield {
 
             [campos: campos, prov: prov, persona: persona, matrizOk: matrizOk, perfil: perfil, programa: programa,
              tipoObra: tipoObra, claseObra: claseObra, grupoDir: grupo, dire: direccion, depar: departamentos,
-             fcha: fechaPrecio, personasUtfpu: personasUtfpu, duenoObra: duenoObra, sbprMF:sbprMF]
+             fcha: fechaPrecio, personasPRSP: personasPRSP, duenoObra: duenoObra, sbprMF:sbprMF]
         }
     }
 
@@ -561,14 +561,14 @@ class ObraController extends janus.seguridad.Shield {
 /*
         def dueno = false
         def funcionElab = Funcion.findByCodigo('E')
-        def personasUtfpu = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU')))
+        def personasPRSP = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP')))
         def responsableRol = PersonaRol.findByPersonaAndFuncion(obra?.responsableObra, funcionElab)
 
         if (responsableRol) {
             if (obra?.responsableObra?.departamento?.direccion?.id == Persona.get(session.usuario.id).departamento?.direccion?.id) {
                 dueno = true
             } else {
-                dueno = personasUtfpu.contains(responsableRol) && session.usuario.departamento.codigo == 'UTFPU'
+                dueno = personasPRSP.contains(responsableRol) && session.usuario.departamento.codigo == 'PRSP'
             }
         }
         dueno
@@ -1066,9 +1066,9 @@ class ObraController extends janus.seguridad.Shield {
         def personasRolResp = PersonaRol.findAllByFuncionAndPersonaInList(funcionResp, personas)
         def personasRolElab = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, personas)
 
-        def personasUtfpu1 = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
+        def personasPRSP1 = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
 
-        def personasUtfpu = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, personasUtfpu1)
+        def personasPRSP = PersonaRol.findAllByFuncionAndPersonaInList(funcionElab, personasPRSP1)
 
 
         def responsableObra
@@ -1095,7 +1095,7 @@ class ObraController extends janus.seguridad.Shield {
             def responsableRol = PersonaRol.findByPersonaAndFuncion(responsableObra, funcionElab)
 
             if (responsableRol) {
-                personasUtfpu.each {
+                personasPRSP.each {
                     if (it.id == responsableRol.id) {
                         duenoObra = 1
                     } else {
@@ -1111,7 +1111,7 @@ class ObraController extends janus.seguridad.Shield {
 
 //            responsableObra = obra?.responsableObra
 //
-//            personasUtfpu.each{
+//            personasPRSP.each{
 //                if(it.id == responsableObra){
 //                    duenoObra = 1
 //                }else {
@@ -1128,7 +1128,7 @@ class ObraController extends janus.seguridad.Shield {
 
 
         return [personas       : personas, personasRolInsp: personasRolInsp.persona, personasRolRevi: personasRolRevi.persona,
-                personasRolResp: personasRolResp.persona, personasRolElab: personasRolElab.persona, obra: obra, persona: persona, personasUtfpu: personasUtfpu.persona, duenoObra: duenoObra]
+                personasRolResp: personasRolResp.persona, personasRolElab: personasRolElab.persona, obra: obra, persona: persona, personasPRSP: personasPRSP.persona, duenoObra: duenoObra]
     }
 
     def getSalida() {
@@ -1431,7 +1431,7 @@ class ObraController extends janus.seguridad.Shield {
 //            println "busca direccion de usuario ${session.usuario}"
 
             def persona = Persona.get(session.usuario.id)
-            if(session.usuario.departamento?.codigo != 'UTFPU'){
+            if(session.usuario.departamento?.codigo != 'PRSP'){
                 def direccion = Direccion.get(persona.departamento.direccion.id)
                 def departamentos = Departamento.findAllByDireccion(direccion)
                 def personas = Persona.findAllByDepartamentoInList(departamentos, [sort: 'nombre'])
@@ -1446,7 +1446,7 @@ class ObraController extends janus.seguridad.Shield {
                 obraInstance.revisor = personasRolRevi.first().persona
                 obraInstance.responsableObra = personasRolElab.first().persona
             } else {
-                obraInstance.responsableObra = persona   // cambia de dueño al usuario que copia de la UTFPU
+                obraInstance.responsableObra = persona   // cambia de dueño al usuario que copia de la PRSP
             }
 
 

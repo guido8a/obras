@@ -393,7 +393,7 @@ class Reportes4Controller extends Shield {
         def subPres
 
 
-        def personasUtfpu = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
+        def personasPRSP = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
         def responsableObra
 
         params.old = params.criterio
@@ -517,15 +517,15 @@ class Reportes4Controller extends Shield {
         }
 
 //        println("##" + valoresTotales)
-//          println("->" + personasUtfpu)
+//          println("->" + personasPRSP)
 
 
 
-        if(Persona.get(session.usuario.id).departamento?.codigo == 'UTFPU'){
+        if(Persona.get(session.usuario.id).departamento?.codigo == 'PRSP'){
 
             res.each{
                 responsableObra = it.responsable
-                if((personasUtfpu.contains(Persona.get(responsableObra))) || it.tipo == 'D'){
+                if((personasPRSP.contains(Persona.get(responsableObra))) || it.tipo == 'D'){
                     obrasFiltradas += it
                 }
             }
@@ -607,7 +607,7 @@ class Reportes4Controller extends Shield {
 
         def obrasFiltradas = []
 
-        def personasUtfpu = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
+        def personasPRSP = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
         def responsableObra
 
         params.old = params.criterio
@@ -722,10 +722,10 @@ class Reportes4Controller extends Shield {
 
 //        println("##" + valoresTotales)
 
-        if(Persona.get(session.usuario.id).departamento?.codigo == 'UTFPU'){
+        if(Persona.get(session.usuario.id).departamento?.codigo == 'PRSP'){
             res.each{
                 responsableObra = it.responsable
-                if((personasUtfpu.contains(Persona.get(responsableObra))) || it.tipo == 'D'){
+                if((personasPRSP.contains(Persona.get(responsableObra))) || it.tipo == 'D'){
                     obrasFiltradas += it
                 }
             }
@@ -2529,7 +2529,7 @@ class Reportes4Controller extends Shield {
         def obrasFiltradas = []
 
         res.each{
-            if(it.codigodepar == 'UTFPU' || it.tipo == 'D'){
+            if(it.codigodepar == 'PRSP' || it.tipo == 'D'){
                 obrasFiltradas += it
             }
         }

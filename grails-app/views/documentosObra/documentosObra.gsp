@@ -244,11 +244,11 @@
 
                         %{--//nuevo--}%
 
-                        <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+                        <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
                             <g:if test="${duenoObra == 1}">
                                 <tr>
                                     <td>
-                                        <g:select name="coordinador" from="${personasUtfpuCoor}" optionValue="persona" optionKey="id" style="width: 380px"/>
+                                        <g:select name="coordinador" from="${personasPRSPCoor}" optionValue="persona" optionKey="id" style="width: 380px"/>
                                     </td>
                                     <td>
                                         COORDINADOR
@@ -286,8 +286,8 @@
 
                                 <tr>
                                     <td style="color: #ff2a08">
-                                        <g:hiddenField name="coordinador" value="${personasUtfpuCoor[0]?.id}"/>
-                                        <g:textField name="coordinadorText" value="${personasUtfpuCoor[0]?.persona?.nombre + ' ' + personasUtfpuCoor[0]?.persona?.apellido}" readonly="readonly" style="width: 380px"/>
+                                        <g:hiddenField name="coordinador" value="${personasPRSPCoor[0]?.id}"/>
+                                        <g:textField name="coordinadorText" value="${personasPRSPCoor[0]?.persona?.nombre + ' ' + personasPRSPCoor[0]?.persona?.apellido}" readonly="readonly" style="width: 380px"/>
                                     </td>
                                     <td>
                                         COORDINADOR
@@ -325,10 +325,10 @@
 
                         %{--//old--}%
                         %{--<g:if test="${coordinadores != null}">--}%
-                        %{--<g:if test="${duenoObra == 1 && persona?.departamento?.codigo == 'UTFPU'}">--}%
+                        %{--<g:if test="${duenoObra == 1 && persona?.departamento?.codigo == 'PRSP'}">--}%
                         %{--<tr>--}%
                         %{--<td>--}%
-                        %{--<g:select name="coordinador" from="${personasUtfpuCoor}" optionValue="persona" optionKey="id" style="width: 380px"/>--}%
+                        %{--<g:select name="coordinador" from="${personasPRSPCoor}" optionValue="persona" optionKey="id" style="width: 380px"/>--}%
                         %{--</td>--}%
                         %{--<td>--}%
                         %{--COORDINADOR--}%
@@ -561,11 +561,11 @@
 
                         <tbody id="firmasFijasMemo">
 
-                        <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+                        <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
                             <g:if test="${duenoObra == 1}">
                                 <tr>
                                     <td>
-                                        <g:select name="coordinador" from="${personasUtfpuDire}" optionValue="persona" optionKey="id" style="width: 380px"/>
+                                        <g:select name="coordinador" from="${personasPRSPDire}" optionValue="persona" optionKey="id" style="width: 380px"/>
                                     </td>
                                     <td>
                                         DIRECTOR/COORDINADOR
@@ -603,8 +603,8 @@
 
                                 <tr>
                                     <td style="color: #ff2a08">
-                                        <g:hiddenField name="coordinador" value="${personasUtfpuCoor[0]?.id}"/>
-                                        <g:textField name="coordinadorText" value="${personasUtfpuCoor[0]?.persona?.nombre + ' ' + personasUtfpuCoor[0]?.persona?.apellido}" readonly="readonly" style="width: 380px"/>
+                                        <g:hiddenField name="coordinador" value="${personasPRSPCoor[0]?.id}"/>
+                                        <g:textField name="coordinadorText" value="${personasPRSPCoor[0]?.persona?.nombre + ' ' + personasPRSPCoor[0]?.persona?.apellido}" readonly="readonly" style="width: 380px"/>
                                     </td>
                                     <td>
                                         COORDINADOR
@@ -757,11 +757,11 @@
 
                         <tbody id="firmasFijasPoli">
 
-                        <g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+                        <g:if test="${persona?.departamento?.codigo == 'PRSP'}">
                             <g:if test="${duenoObra == 1}">
                                 <tr>
                                     <td>
-                                        <g:select name="coordinador" from="${personasUtfpuCoor}" optionValue="persona" optionKey="id" style="width: 380px"/>
+                                        <g:select name="coordinador" from="${personasPRSPCoor}" optionValue="persona" optionKey="id" style="width: 380px"/>
                                     </td>
                                     <td>
                                         COORDINADOR
@@ -796,8 +796,8 @@
                             <g:if test="${duo == 1}">
                                 <tr>
                                     <td style="color: #ff2a08">
-                                        <g:hiddenField name="coordinador" value="${personasUtfpuCoor[0]?.id}"/>
-                                        <g:textField name="coordinadorText" value="${personasUtfpuCoor[0]?.persona?.nombre + ' ' + personasUtfpuCoor[0]?.persona?.apellido}" readonly="readonly" style="width: 380px"/>
+                                        <g:hiddenField name="coordinador" value="${personasPRSPCoor[0]?.id}"/>
+                                        <g:textField name="coordinadorText" value="${personasPRSPCoor[0]?.persona?.nombre + ' ' + personasPRSPCoor[0]?.persona?.apellido}" readonly="readonly" style="width: 380px"/>
                                     </td>
                                     <td>
                                         COORDINADOR

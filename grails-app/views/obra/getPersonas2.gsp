@@ -1,5 +1,5 @@
 
-<g:if test="${persona?.departamento?.codigo == 'UTFPU'}">
+<g:if test="${persona?.departamento?.codigo == 'PRSP'}">
     <g:if test="${obra?.id == null}">
         <div class="span1">Resp. de las Cantidades</div>
 
@@ -13,8 +13,8 @@
 
         <div class="span1" style="margin-left: -10px">Elaboró presupuesto</div>
 
-        <g:if test="${personasUtfpu}">
-            <div class="span3"><g:select name="responsableObra.id" class="responsable required" from="${personasUtfpu}" optionKey="id" optionValue="${{ (it?.titulo ?: '') + ' ' + it?.nombre + ' ' + it?.apellido }}" value="${obra?.responsableObra?.id}" title="Persona responsable de la Obra"/></div>
+        <g:if test="${personasPRSP}">
+            <div class="span3"><g:select name="responsableObra.id" class="responsable required" from="${personasPRSP}" optionKey="id" optionValue="${{ (it?.titulo ?: '') + ' ' + it?.nombre + ' ' + it?.apellido }}" value="${obra?.responsableObra?.id}" title="Persona responsable de la Obra"/></div>
 
         </g:if>
         <g:else>
@@ -38,8 +38,8 @@
 
             <div class="span1" style="margin-left: -10px">Elaboró presupuesto</div>
 
-            <g:if test="${personasUtfpu}">
-                <div class="span3"><g:select name="responsableObra.id" class="responsable required" from="${personasUtfpu}" optionKey="id" optionValue="${{ (it?.titulo ?: '') + ' ' + it?.nombre + ' ' + it?.apellido }}" value="${obra?.responsableObra?.id}" title="Persona responsable de la Obra"/></div>
+            <g:if test="${personasPRSP}">
+                <div class="span3"><g:select name="responsableObra.id" class="responsable required" from="${personasPRSP}" optionKey="id" optionValue="${{ (it?.titulo ?: '') + ' ' + it?.nombre + ' ' + it?.apellido }}" value="${obra?.responsableObra?.id}" title="Persona responsable de la Obra"/></div>
             </g:if>
             <g:else>
                 <div class="span3"><g:select name="responsableObra.id" class="responsable required" from="" optionKey="id" title="No existen personas responsable de la Obra asignadas!"/></div>
@@ -62,7 +62,7 @@
             <div class="span1">Elaboró Presupuesto</div>
 
 
-        <g:if test="${personasUtfpu}">
+        <g:if test="${personasPRSP}">
             <g:hiddenField name="responsableObra.id" id="hiddenResponsable" value="${obra?.responsableObra?.id}"/>
             <div class="span3"><g:textField name="responsableText" class="responsable required" value="${ (obra?.responsableObra?.titulo ?: '')+ ' ' + obra?.responsableObra?.nombre + " " + obra?.responsableObra?.apellido}" readonly="readonly" title="Persona responsable de la Obra"/></div>
         </g:if>

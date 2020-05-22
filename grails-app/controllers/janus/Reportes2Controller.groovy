@@ -2363,16 +2363,16 @@ class Reportes2Controller {
         def funcionElab = Funcion.findByCodigo('E')
 
         def personasDep = Persona.findAllByDepartamento(deptoUsu)
-        def personasUtfpu = Persona.findAllByDepartamento(Departamento.findByCodigo('UTFPU'))
+        def personasPRSP = Persona.findAllByDepartamento(Departamento.findByCodigo('PRSP'))
 
         def coordinador = PersonaRol.findByPersonaInListAndFuncion(personasDep,funcionCoor)
-        def coordinadorUtfpu = PersonaRol.findByPersonaInListAndFuncion(personasUtfpu,funcionCoor)
+        def coordinadorPRSP = PersonaRol.findByPersonaInListAndFuncion(personasPRSP,funcionCoor)
 
-        def elabUtfpu = PersonaRol.findAllByPersonaInListAndFuncion(personasUtfpu,funcionElab)
+        def elabPRSP = PersonaRol.findAllByPersonaInListAndFuncion(personasPRSP,funcionElab)
 
         def responsableRol = PersonaRol.findByPersona(Persona.get(obra?.responsableObra?.id))
 
-        elabUtfpu.each {
+        elabPRSP.each {
            if(it?.id == responsableRol?.id){
                ban = 1
            }
@@ -2409,7 +2409,7 @@ class Reportes2Controller {
 
         if(coordinador){
                 if(ban == 1){
-                    firmaCoordinador = coordinadorUtfpu.persona
+                    firmaCoordinador = coordinadorPRSP.persona
                     addCellTabla(tablaFirmas, new Paragraph((firmaCoordinador?.titulo?.toUpperCase() ?: '') + " " + (firmaCoordinador?.nombre?.toUpperCase() ?: '') + " " + (firmaCoordinador?.apellido?.toUpperCase() ?: ''), times8bold), prmsHeaderHoja)
                 }else{
                     firmaCoordinador = coordinador.persona
