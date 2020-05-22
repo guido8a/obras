@@ -3902,7 +3902,7 @@ class ReportesRubrosController extends Shield {
 //        Paragraph headers = new Paragraph();
 //        addEmptyLine(headers, 1);
 //        headers.setAlignment(Element.ALIGN_CENTER);
-//        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
+//        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times14bold));
 //        headers.add(new Paragraph( "Acta de ${acta?.nombre} ${acta?.tipo == 'P' ? 'Provisional' : 'Definitiva'} N. ${acta?.numero}", times10bold));
 //        headers.add(new Paragraph("", times14bold));
 //

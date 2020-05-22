@@ -691,7 +691,7 @@ class Reportes3Controller {
 
 //        sheet.setColumnView(4, 30)
 //        sheet.setColumnView(8, 20)
-        def label = new Label(0, 1, "G.A.D. LOS RÍOS".toUpperCase(), times16format); sheet.addCell(label);
+        def label = new Label(0, 1, (Auxiliar.get(1)?.titulo ?: '').toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 2, "DGCP - COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS".toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 3, "ANÁLISIS DE PRECIOS UNITARIOS".toUpperCase(), times16format); sheet.addCell(label);
 
@@ -2221,7 +2221,7 @@ class Reportes3Controller {
         Paragraph headers = new Paragraph();
         headers.setAlignment(Element.ALIGN_CENTER);
 
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold))
+        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times18bold))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("CÁLCULO DEL VALOR POR HORA DE MANO DE OBRA", times14bold ))
         headers.add(new Paragraph(" "))
@@ -2383,7 +2383,7 @@ class Reportes3Controller {
 //        addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
 
-        headers.add(new Paragraph("G.A.D. LOS RÍOS",times18bold ))
+        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''),times18bold ))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("CÁLCULO DEL VALOR POR HORA DE EQUIPOS", times14bold))
         headers.add(new Paragraph(" "))
@@ -2753,7 +2753,7 @@ class Reportes3Controller {
         Paragraph headers = new Paragraph();
 
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold))
+        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times18bold))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS", times14bold ))
         headers.add(new Paragraph(" "))
@@ -2881,7 +2881,7 @@ class Reportes3Controller {
         Paragraph headers = new Paragraph();
 
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold))
+        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times18bold))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS QUE VENCERÁN", times14bold ))
         headers.add(new Paragraph(" "))
@@ -3010,7 +3010,7 @@ class Reportes3Controller {
         Paragraph headers = new Paragraph();
 
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold))
+        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times18bold))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS DEVUELTAS", times14bold ))
         headers.add(new Paragraph(" "))
@@ -3146,7 +3146,7 @@ class Reportes3Controller {
         Paragraph headers = new Paragraph();
 
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold))
+        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times18bold))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS VENCIDAS", times14bold ))
         headers.add(new Paragraph(" "))
@@ -3677,7 +3677,7 @@ class Reportes3Controller {
         sheet.setColumnView(10, 15)
         sheet.setColumnView(11, 15)
 
-        def label = new Label(0, 1, "G.A.D. LOS RÍOS".toUpperCase(), times16format); sheet.addCell(label);
+        def label = new Label(0, 1, (Auxiliar.get(1)?.titulo ?: '').toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 2, "DGCP - COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS".toUpperCase(), times16format); sheet.addCell(label);
         label = new Label(0, 3, "Análisis de precios unitarios".toUpperCase(), times16format); sheet.addCell(label);
 
@@ -4097,7 +4097,7 @@ class Reportes3Controller {
         Paragraph headers = new Paragraph();
 
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times18bold))
+        headers.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times18bold))
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS VENCIDAS", times14bold ))
         headers.add(new Paragraph(" "))

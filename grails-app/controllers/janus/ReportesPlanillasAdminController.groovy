@@ -376,7 +376,7 @@ class ReportesPlanillasAdminController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
         preface.add(new Paragraph("Planilla de materiales de " + obra.nombre, fontTituloGad));
         addEmptyLine(preface, 1);
 //        Paragraph preface2 = new Paragraph();

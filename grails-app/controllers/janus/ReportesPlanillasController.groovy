@@ -203,7 +203,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
         preface.add(new Paragraph("Cuadro de diferencias de volúmenes entre contratados y ejecutados", fontTituloGad));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -744,7 +744,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
 //        preface.add(new Paragraph("AVANCE DE LA OBRA " + obra.nombre + " AL " + fechaConFormato(plnl.fechaFin, "dd MMMM yyyy").toUpperCase(), fontTituloGad));
         preface.add(new Paragraph("AVANCE DE LA OBRA " + obra.nombre + " AL " + fechaConFormato(contrato?.fechaPedidoRecepcionFiscalizador, "dd MMMM yyyy").toUpperCase(), fontTituloGad));
         addEmptyLine(preface, 1);
@@ -1148,7 +1148,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
         preface.add(new Paragraph("AVANCE DE LA OBRA " + obra.nombre + " AL " + fechaConFormato(contrato?.fechaPedidoRecepcionFiscalizador, "dd MMMM yyyy").toUpperCase(), fontTituloGad));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -1522,7 +1522,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
 //        preface.add(new Paragraph("AVANCE DE LA OBRA " + obra.nombre + " AL " + fechaConFormato(plnl.fechaFin, "dd MMMM yyyy").toUpperCase(), fontTituloGad));
         preface.add(new Paragraph("AVANCE DE LA OBRA " + obra.nombre + " AL " + fechaConFormato(contrato.fechaPedidoRecepcionFiscalizador, "dd MMMM yyyy").toUpperCase(), fontTituloGad));
         addEmptyLine(preface, 1);
@@ -1961,7 +1961,7 @@ class ReportesPlanillasController {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 1);
             preface.setAlignment(Element.ALIGN_CENTER);
-            preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+            preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
             preface.add(new Paragraph("PLANILLA DE ${planilla.tipoPlanilla.nombre.toUpperCase()} DE LA OBRA " + obra.nombre, fontTituloGad));
             addEmptyLine(preface, 1);
             Paragraph preface2 = new Paragraph();
@@ -2846,7 +2846,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
         preface.add(new Paragraph("PLANILLA DE ${planilla.tipoPlanilla.nombre.toUpperCase()} DE LA OBRA " + obra.nombre, fontTituloGad));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -3230,7 +3230,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
         preface.add(new Paragraph("MEMO DE PEDIDO DE PAGO ", fontTituloGad));
         preface.add(new Paragraph(obra.nombre, fontTituloGad));
         addEmptyLine(preface, 1);
@@ -3518,7 +3518,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
         preface.add(new Paragraph("MEMO DE PEDIDO DE PAGO DEL ANTICIPO DE LA OBRA ", fontTituloGad));
         preface.add(new Paragraph(obra.nombre, fontTituloGad));
         addEmptyLine(preface, 1);
@@ -3835,7 +3835,7 @@ class ReportesPlanillasController {
             Paragraph preface = new Paragraph();
             addEmptyLine(preface, 1);
             preface.setAlignment(Element.ALIGN_CENTER);
-            preface.add(new Paragraph("G.A.D. LOS RÍOS", fontTituloGad));
+            preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
             preface.add(new Paragraph("OFICIO DE INICIO DE LA OBRA " + obra.nombre, fontTituloGad));
             addEmptyLine(preface, 1);
             document.add(logo)

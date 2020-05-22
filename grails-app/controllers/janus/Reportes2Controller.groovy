@@ -215,7 +215,7 @@ class Reportes2Controller {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), catFont));
         preface.add(new Paragraph("ANEXO DE ESPECIFICACIÓN DE RUBROS DE LA OBRA " + obra.nombre, catFont));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -437,7 +437,7 @@ class Reportes2Controller {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), catFont));
         preface.add(new Paragraph("ANEXO DE ESPECIFICACIÓN DE RUBROS DE LA OBRA " + obra.nombre, catFont));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -733,7 +733,7 @@ class Reportes2Controller {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), catFont));
         preface.add(new Paragraph("ANEXO DE ESPECIFICACIÓN DE RUBROS DE LA OBRA " + obra.nombre, catFont));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -1119,7 +1119,7 @@ class Reportes2Controller {
         def ultimaFila
 
 
-        label = new jxl.write.Label(1, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
+        label = new jxl.write.Label(1, 2, (Auxiliar.get(1)?.titulo ?: ''), times16format); sheet.addCell(label);
         label = new jxl.write.Label(1, 3, "GESTIÓN DE PRESUPUESTOS", times16format); sheet.addCell(label);
         label = new jxl.write.Label(1, 4, "ANÁLISIS DE PRECIOS UNITARIOS", times16format); sheet.addCell(label);
         label = new jxl.write.Label(0, 6, "Fecha Act. P.U.: ", times16format); sheet.addCell(label);
@@ -1676,7 +1676,7 @@ class Reportes2Controller {
             def totalMO = 0;
             def ultimaFila
 
-            label = new jxl.write.Label(1, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(1, 2, (Auxiliar.get(1)?.titulo ?: ''), times16format); sheet.addCell(label);
             label = new jxl.write.Label(1, 4, "COMPOSICIÓN: " + obra?.nombre, times16format); sheet.addCell(label);
             label = new jxl.write.Label(1, 6, obra?.departamento?.direccion?.nombre, times16format);
             sheet.addCell(label);
@@ -1863,7 +1863,7 @@ class Reportes2Controller {
             def totalDirecto = 0;
             def ultimaFila
 
-            label = new jxl.write.Label(1, 2, "G.A.D. LOS RÍOS", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(1, 2, (Auxiliar.get(1)?.titulo ?: ''), times16format); sheet.addCell(label);
             label = new jxl.write.Label(1, 4, "COMPOSICIÓN: " + obra?.nombre, times16format); sheet.addCell(label);
             label = new jxl.write.Label(1, 6, obra?.departamento?.direccion?.nombre, times16format);
             sheet.addCell(label);
@@ -2051,7 +2051,7 @@ class Reportes2Controller {
         def number
         def fila = 8;
 
-        label = new jxl.write.Label(2, 1, "G.A.D. LOS RÍOS".toUpperCase(), times16format);
+        label = new jxl.write.Label(2, 1, (Auxiliar.get(1)?.titulo ?: '').toUpperCase(), times16format);
         sheet.addCell(label);
         label = new jxl.write.Label(2, 2, "REPORTE COSTOS DE: ${grupo.descripcion.toUpperCase()}", times16format);
         sheet.addCell(label);
@@ -2177,7 +2177,7 @@ class Reportes2Controller {
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
 
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont3));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), catFont3));
 
 //        preface.add(new Paragraph("CRONOGRAMA DE ${lbl.toUpperCase()} " + obra.nombre, catFont2));
         preface.add(new Paragraph("CRONOGRAMA", catFont2));
@@ -2754,7 +2754,7 @@ class Reportes2Controller {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
+        headersTitulo.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times14bold));
         addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
         addEmptyLine(headersTitulo, 1)
@@ -3020,7 +3020,7 @@ class Reportes2Controller {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
+        headersTitulo.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times14bold));
         addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
         addEmptyLine(headersTitulo, 1)
@@ -3257,7 +3257,7 @@ class Reportes2Controller {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
+        headersTitulo.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), times14bold));
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
         headersTitulo.add(new Paragraph("COSTOS INDIRECTOS, IMPREVISTOS Y UTILIDAD", times12bold));
         document.add(headersTitulo);
@@ -3584,7 +3584,7 @@ class Reportes2Controller {
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
 
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont3));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), catFont3));
         preface.add(new Paragraph("CRONOGRAMA DE EJECUÓN DE OBRA", catFont2));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -3858,7 +3858,7 @@ class Reportes2Controller {
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
 
-        preface.add(new Paragraph("G.A.D. LOS RÍOS", catFont3));
+        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), catFont3));
         preface.add(new Paragraph("CRONOGRAMA DE EJECUCIÓN DE OBRA", catFont2));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();

@@ -588,7 +588,7 @@ class Reportes6Controller {
 
         document.open();
 
-        com.itextpdf.text.Paragraph parrafoUniversidad = new com.itextpdf.text.Paragraph("G.A.D. LOS RÍOS", fontTitulo)
+        com.itextpdf.text.Paragraph parrafoUniversidad = new com.itextpdf.text.Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTitulo)
         parrafoUniversidad.setAlignment(com.lowagie.text.Element.ALIGN_CENTER)
         com.itextpdf.text.Paragraph parrafoFacultad = new com.itextpdf.text.Paragraph("", fontTitulo)
         parrafoFacultad.setAlignment(com.lowagie.text.Element.ALIGN_CENTER)
