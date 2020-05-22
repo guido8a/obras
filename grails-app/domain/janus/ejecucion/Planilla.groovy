@@ -5,6 +5,8 @@ import janus.Persona
 
 class Planilla {
 
+    static auditable = true
+    
     Contrato contrato
     TipoPlanilla tipoPlanilla
     PeriodosInec periodoIndices
@@ -91,9 +93,6 @@ class Planilla {
     String garantiaTrabajo
     Date fechaSuscripcionTrabajo
 
-
-
-    static auditable = true
     static mapping = {
         table 'plnl'
         cache usage: 'read-write', include: 'non-lazy'

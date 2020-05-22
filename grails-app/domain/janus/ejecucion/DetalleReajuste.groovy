@@ -29,6 +29,7 @@ class DetalleReajuste {
         }
 
     }
+
     static constraints = {
         fpContractual(blank:false, nullable: false)
         reajustePlanilla(blank:false, nullable: false)
