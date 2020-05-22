@@ -74,7 +74,7 @@ class ReportesRubrosController extends Shield {
 
 
     def reporteRubrosTransporteV2(){
-        println("params " + params)
+//        println("params " + params)
         def auxiliar = Auxiliar.get(1)
 
         def obra
@@ -183,8 +183,9 @@ class ReportesRubrosController extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-        headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+        headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
         headers.add(new Paragraph("", times14bold));
         document.add(headers)
 
@@ -557,9 +558,9 @@ class ReportesRubrosController extends Shield {
         Paragraph headers = new Paragraph();
 //        addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-        headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
-//        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+        headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
         headers.add(new Paragraph(" ", times10bold));
         document.add(headers)
 
@@ -928,13 +929,14 @@ class ReportesRubrosController extends Shield {
     }
 
     def reporteRubrosTransporteRegistro(){
-        println("params rrtr " + params)
+//        println("params rrtr " + params)
         def obra = Obra.get(params.obra)
         def fecha1
         def fecha2
         def rubros = []
         def lugar = obra?.lugar
         def indi = obra?.totales
+        def auxiliar = Auxiliar.get(1)
 
         if(obra?.fechaPreciosRubros) {
             fecha1 = obra?.fechaPreciosRubros
@@ -1038,8 +1040,9 @@ class ReportesRubrosController extends Shield {
             Paragraph headers = new Paragraph();
             addEmptyLine(headers, 1);
             headers.setAlignment(Element.ALIGN_CENTER);
-            headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-            headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+            headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+            headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+            headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
             headers.add(new Paragraph("", times14bold));
 
             PdfPTable tablaCoeficiente = new PdfPTable(4);
@@ -1294,7 +1297,7 @@ class ReportesRubrosController extends Shield {
     }
 
     def reporteRubrosVaeRegistro(){
-        println("params rrvr " + params)
+//        println("params rrvr " + params)
 
         def obra = Obra.get(params.obra)
         def fecha1
@@ -1302,6 +1305,7 @@ class ReportesRubrosController extends Shield {
         def rubros = []
         def lugar = obra?.lugar
         def indi = obra?.totales
+        def auxiliar = Auxiliar.get(1)
 
         if(obra?.fechaPreciosRubros) {
             fecha1 = obra?.fechaPreciosRubros
@@ -1407,8 +1411,9 @@ class ReportesRubrosController extends Shield {
             Paragraph headers = new Paragraph();
             addEmptyLine(headers, 1);
             headers.setAlignment(Element.ALIGN_CENTER);
-            headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-            headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+            headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+            headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+            headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
             headers.add(new Paragraph("", times14bold));
 
             PdfPTable tablaCoeficiente = new PdfPTable(6);
@@ -1743,6 +1748,7 @@ class ReportesRubrosController extends Shield {
 
         def rubros = []
         def parts = params.id.split("_")
+        def auxiliar = Auxiliar.get(1)
 
         switch (parts[0]) {
             case "sg":
@@ -1858,8 +1864,9 @@ class ReportesRubrosController extends Shield {
             Paragraph headers = new Paragraph();
             addEmptyLine(headers, 1);
             headers.setAlignment(Element.ALIGN_CENTER);
-            headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-            headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+            headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+            headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+            headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
             headers.add(new Paragraph("", times14bold));
 
             PdfPTable tablaCoeficiente = new PdfPTable(6);
@@ -2116,6 +2123,7 @@ class ReportesRubrosController extends Shield {
         def obra = Obra.get(params.obra)
         def fecha1
         def fecha2
+        def auxiliar = Auxiliar.get(1)
 
         if(params.fecha){
             fecha1 = new Date().parse("dd-MM-yyyy", params.fecha)
@@ -2215,8 +2223,9 @@ class ReportesRubrosController extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-        headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+        headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
         headers.add(new Paragraph("", times14bold));
 
         PdfPTable tablaCoeficiente = new PdfPTable(6);
@@ -2472,12 +2481,13 @@ class ReportesRubrosController extends Shield {
     }
 
     def reporteRubrosVaeVolumen(){
-        println("params rrvv " + params)
+//        println("params rrvv " + params)
 
         def obra = Obra.get(params.obra)
 
         def fecha1
         def fecha2
+        def auxiliar = Auxiliar.get(1)
 
         if(params.fecha){
             fecha1 = new Date().parse("dd-MM-yyyy", params.fecha)
@@ -2582,8 +2592,9 @@ class ReportesRubrosController extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-        headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+        headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
         headers.add(new Paragraph("", times14bold));
 
         PdfPTable tablaCoeficiente = new PdfPTable(6);
@@ -2912,10 +2923,12 @@ class ReportesRubrosController extends Shield {
     }
 
     def reporteRubrosVaeGrupo(){
-        println("params rrvgr " + params)
+//        println("params rrvgr " + params)
 
         def rubros = []
         def parts = params.id.split("_")
+        def auxiliar = Auxiliar.get(1)
+
         switch (parts[0]) {
             case "sg":
                 def departamentos = DepartamentoItem.findAllBySubgrupo(SubgrupoItems.get(parts[1].toLong()))
@@ -3033,8 +3046,9 @@ class ReportesRubrosController extends Shield {
             Paragraph headers = new Paragraph();
             addEmptyLine(headers, 1);
             headers.setAlignment(Element.ALIGN_CENTER);
-            headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-            headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+            headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+            headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+            headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
             headers.add(new Paragraph("", times14bold));
 
             PdfPTable tablaCoeficiente = new PdfPTable(6);
@@ -3361,6 +3375,7 @@ class ReportesRubrosController extends Shield {
 
         def rubros = []
         def parts = params.id.split("_")
+        def auxiliar = Auxiliar.get(1)
 
         switch (parts[0]) {
             case "gr":
@@ -3470,8 +3485,9 @@ class ReportesRubrosController extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-        headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+        headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
         headers.add(new Paragraph("", times14bold));
 
         PdfPTable tablaCoeficiente = new PdfPTable(4);
@@ -3594,6 +3610,7 @@ class ReportesRubrosController extends Shield {
 
         def rubros = []
         def parts = params.id.split("_")
+        def auxiliar = Auxiliar.get(1)
 
         switch (parts[0]) {
             case "gr":
@@ -3691,8 +3708,9 @@ class ReportesRubrosController extends Shield {
         Paragraph headers = new Paragraph();
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
-        headers.add(new Paragraph("G.A.D. LOS RÍOS", times14bold));
-        headers.add(new Paragraph("COORDINACIÓN DE FIJACIÓN DE PRECIOS UNITARIOS - ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
+        headers.add(new Paragraph(auxiliar?.titulo, times14bold));
+        headers.add(new Paragraph(auxiliar?.memo1, times10bold));
+        headers.add(new Paragraph("ANÁLISIS DE PRECIOS UNITARIOS", times10bold));
         headers.add(new Paragraph("", times14bold));
 
         PdfPTable tablaCoeficiente = new PdfPTable(4);

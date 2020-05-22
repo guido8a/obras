@@ -3780,6 +3780,15 @@ class Reportes4Controller extends Shield {
     }
 
 
+    def ingresadas () {
+
+    }
+
+    def tablaIngresadas () {
+
+    }
+
+
 
 
 
