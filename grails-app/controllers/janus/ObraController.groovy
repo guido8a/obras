@@ -1162,7 +1162,7 @@ class ObraController extends janus.seguridad.Shield {
 
         txwh += " and ${campos[cmpo - 1]} ilike '%${params.criterio}%'"
 
-        sqlTx = "${select} ${txwh} order by ${campos[cmpo - 1]} ".toString()
+        sqlTx = "${select} ${txwh} order by ${campos[cmpo - 1]} limit 100 ".toString()
 
         def cn = dbConnectionService.getConnection()
         comunidades = cn.rows(sqlTx)

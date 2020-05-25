@@ -539,8 +539,7 @@
 
         <div class="span12">
 
-            <div class="span1" style="margin-top: 15px; width: 90px;"><button class="btn btn-buscar btn-info"
-                                                                              id="btn-buscar"><i
+            <div class="span1" style="margin-top: 15px; width: 90px;"><button class="btn btn-buscar btn-info" id="btn-buscar"><i
                         class="icon-globe"></i> Buscar
             </button>
             </div>
