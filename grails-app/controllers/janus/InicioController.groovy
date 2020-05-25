@@ -71,7 +71,7 @@ class InicioController extends janus.seguridad.Shield {
     /** carga datos desde un CSV - utf-8: si ya existe lo actualiza
      * */
     def leeCSV() {
-        println ">>leeCSV.."
+//        println ">>leeCSV.."
         def contador = 0
         def cn = dbConnectionService.getConnection()
         def estc
@@ -120,11 +120,11 @@ class InicioController extends janus.seguridad.Shield {
 
                         rgst = line.split(',')
                         rgst = rgst*.trim()
-                        println "***** $rgst"
+//                        println "***** $rgst"
 
                         inserta = cargaData(rgst)
                         cont += inserta.insertados
-//                        repetidos += inserta.repetidos
+                        repetidos += inserta.repetidos
 
                         if (rgst.size() > 2 && rgst[-2] != 0) cuenta++  /* se cuentan sólo si hay valores */
 
@@ -135,10 +135,10 @@ class InicioController extends janus.seguridad.Shield {
                     print " --- file: ${arch} "
                     archivoSubido(arch, cont, repetidos)
                 }
-                println "--> cont: $cont, repetidos: $repetidos"
+//                println "--> cont: $cont, repetidos: $repetidos"
 
             }
-//            println "---> archivo: ${ar.toString()} --> cont: $cont, repetidos: $repetidos"
+            println "---> archivo: ${ar.toString()} --> cont: $cont, repetidos: $repetidos"
         }
 //        return "Se han cargado ${cont} líneas de datos y han existido : <<${repetidos}>> repetidos"
         render "Se han cargado ${cont} líneas de datos y han existido : <<${repetidos}>> repetidos"
@@ -155,19 +155,20 @@ class InicioController extends janus.seguridad.Shield {
         def sql = ""
         def parr = 0
 
-        println "\n inicia cargado de datos para $rgst"
+//        println "\n inicia cargado de datos para $rgst"
         cnta = 0
         if (rgst[1].toString().size() > 0) {
             sqlParr = "select parr__id from parr where parrcdgo = '${rgst[0]}'"
-            println "sqlParr: $sqlParr"
+//            println "sqlParr: $sqlParr"
             parr = cn.rows(sqlParr.toString())[0]?.parr__id
-            if (parr) {
-                sql = "insert into cmnd (cmnd__id, parr__id, cmndnmbr) values(default, ${parr}, '${rgst[1]}') " +
-                        "on conflict (parr__id, cmndnmbr) DO NOTHING"
-//                            "do update set .."
+            sql = "select count(*) nada from cmnd where parr__id = ${parr} and cmndnmbr = '${rgst[1]}'"
+            cnta = cn.rows(sql.toString())[0]?.nada
+            if (parr && (cnta == 0)) {
+                sql = "insert into cmnd (cmnd__id, parr__id, cmndnmbr) values(default, ${parr}, '${rgst[1]}') "
+//                        "on conflict (parr__id, cmndnmbr) DO NOTHING"
 
             }
-            println "sql: $sql"
+//            println "sql: $sql"
 
             try {
                     cn.execute(sql.toString())
