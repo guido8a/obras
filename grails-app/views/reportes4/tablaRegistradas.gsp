@@ -6,7 +6,17 @@
   Time: 12:10 PM
 --%>
 
-
+<style type="text/css">
+table {
+    table-layout: fixed;
+    overflow-x: scroll;
+}
+th, td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+</style>
 
 
 %{--<div class="" style="width: 99.7%;height: 270px; overflow-y: auto;float: right; margin-top: -20px">--}%
@@ -75,8 +85,13 @@
 %{--    </div>--}%
 %{--</div>--}%
 
-<div class="row-fluid"  style="width: 100%;height: 600px;overflow-y: auto;float: right; margin-top: -20px">
-    <table class="table table-bordered table-striped table-condensed table-hover">
+%{--<div class="row-fluid"  style="width: 100%; height: 600px;overflow-y: auto; margin-top: -20px">--}%
+%{--    <table class="table table-bordered table-striped table-condensed table-hover">--}%
+
+<div class="" style="width: 99.7%;height: 600px; overflow-y: auto;float: right; margin-top: -20px">
+    <table class="table-bordered table-condensed table-striped table-hover" style="width: 100%">
+
+
     %{--            <thead>--}%
     %{--            <tr>--}%
     %{--                <th style="width: 80px;">--}%
@@ -111,26 +126,22 @@
 
         <g:each in="${obras}" var="obra" status="j">
             <tr class="obra_row" id="${obra.obra__id}">
-                %{--                    <td style="width: 11% !important;">${obra.obracdgo}</td>--}%
-                %{--                    <td style="width: 21% !important;;">${obra.obranmbr}</td>--}%
-                %{--                    <td style="width: 11% !important;;">${obra.tpobdscr}</td>--}%
-                %{--                    <td style="width: 11% !important;;"><g:formatDate date="${obra.obrafcha}" format="dd-MM-yyyy"/></td>--}%
-                %{--                    <td style="width: 21% !important;;">${obra.cntnnmbr} - ${obra.parrnmbr} - ${obra.cmndnmbr}</td>--}%
-                %{--                    <td style="text-align: right; width: 11% !important;">${obra.obravlor}</td>--}%
-                %{--                    <td style="width: 11% !important;;">${obra.dptodscr}</td>--}%
-                %{--                    <td style="width: 11% !important;;">${obra.obrarefe}</td>--}%
-                %{--                    <td style="width: 15% !important;;">${obra.estado}</td>--}%
-
-                <td style="width: 80px ">${obra.obracdgo}</td>
-                <td style="width: 250px">${obra.obranmbr}</td>
-                <td style="width: 120px">${obra.tpobdscr}</td>
-                <td style="width: 80px"><g:formatDate date="${obra.obrafcha}" format="dd-MM-yyyy"/></td>
-                <td style="width: 250px">${obra.cntnnmbr} - ${obra.parrnmbr} - ${obra.cmndnmbr}</td>
-                <td style="text-align: right; width: 100px">${obra.obravlor}</td>
-                <td style="width: 230px">${obra.dptodscr}</td>
-                <td style="width: 70px">${obra.obrarefe}</td>
-                <td style="width: 100px">${obra.estado}</td>
-                <td style="width: 1px"></td>
+                <td style="width: 10% !important;">${obra.obracdgo}</td>
+                <td style="width: 25% !important;">${obra.obranmbr}</td>
+                <td style="width: 13% !important;">${obra.tpobdscr}</td>
+                <td style="width: 8% !important;"><g:formatDate date="${obra.obrafcha}" format="dd-MM-yyyy"/></td>
+                <td style="width: 21% !important;">${obra.cntnnmbr} - ${obra.parrnmbr} - ${obra.cmndnmbr}</td>
+                <td style="text-align: right; width: 9% !important;">${obra.obravlor}</td>
+                <td style="width: 16% !important;">${obra.dptodscr}</td>
+                <td style="width: 11% !important;">${obra.obrarefe}</td>
+            %{--                                    <td style="width: 10% !important;">${obra.estado}</td>--}%
+                <g:if test="${obras?.size() < 9}">
+                    <td style="width: 9% !important;">${obra.estado}</td>
+                    <td style="width: 1%"></td>
+                </g:if>
+                <g:else>
+                    <td style="width: 10% !important;">${obra.estado}</td>
+                </g:else>
             </tr>
         </g:each>
     </table>
@@ -141,14 +152,17 @@
     var checkeados = [];
 
     $("#buscar").click(function(){
+
         var datos = "si=${"si"}&buscador=" + $("#buscador_con").val() + "&criterio=" + $("#criterio_con").val() +
             "&operador=" + $("#oprd").val();
         var interval = loading("detalle");
-        $.ajax({type : "POST", url : "${g.createLink(controller: 'reportes4',action:'tablaRegistradas')}",
+        $.ajax({
+            type : "POST",
+            url : "${g.createLink(controller: 'reportes4',action:'tablaRegistradas')}",
             data     : datos,
             success  : function (msg) {
                 clearInterval(interval);
-                $("#detalle").html(msg)
+                $("#detalle").html(msg);
             }
         });
     });

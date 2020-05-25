@@ -1100,7 +1100,7 @@
                 </div>
             </fieldset>
         </div>
-.
+
         <div class="setFirmas" style="margin-top: -10px">
 
             <fieldset class="borde">

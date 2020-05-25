@@ -79,36 +79,35 @@
 </div>
 
 <div style="margin-top: 15px; min-height: 300px" class="vertical-container">
-%{--    <p class="css-vertical-text">Obras ingresadas</p>--}%
     <div class="linea"></div>
     <table class="table table-bordered table-hover table-condensed" style="width: 100%; background-color: #a39e9e">
         <thead>
         <tr>
-            <th style="width: 11%;">
+            <th style="width: 10%;">
                 Código
             </th>
-            <th style="width: 17%;">
+            <th style="width: 25%;">
                 Nombre
             </th>
-            <th style="width: 10%;">
+            <th style="width: 13%;">
                 Tipo
             </th>
-            <th style="width: 9%">
+            <th style="width: 8%">
                 Fecha Reg
             </th>
-            <th style="width: 17%">
+            <th style="width: 21%">
                 Cantón-Parroquia-Comunidad
             </th>
-            <th style="width: 8%">
+            <th style="width: 9%">
                 Valor
             </th>
-            <th style="width: 10%">
+            <th style="width: 16%">
                 Elaborado
             </th>
-            <th style="width: 13%">
+            <th style="width: 11%">
                 Doc.Referencia
             </th>
-            <th style="width: 10%">
+            <th style="width: 9%">
                 Estado
             </th>
             <th style="width: 1%">
@@ -122,6 +121,7 @@
 
 
 <script type="text/javascript">
+
     function loading(div) {
         y = 0;
         $("#" + div).html("<div class='tituloChevere' id='loading'>Cargando, Espere por favor</div>");
