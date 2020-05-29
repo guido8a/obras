@@ -64,7 +64,14 @@ class PresupuestoController extends janus.seguridad.Shield {
             return
         }
 
-        render "${presupuestoInstance.id}&${presupuestoInstance.numero}&${presupuestoInstance.descripcion}&${presupuestoInstance.fuente}&${presupuestoInstance.programa}&${presupuestoInstance.subPrograma}&${presupuestoInstance.proyecto}"
+/*
+        println "${presupuestoInstance.id}&${presupuestoInstance.numero}&${presupuestoInstance.descripcion}&" +
+                "${presupuestoInstance.fuente}&${presupuestoInstance.programa}&${presupuestoInstance.subPrograma}&" +
+                "${presupuestoInstance.proyecto}"
+*/
+        render "${presupuestoInstance.id}&${presupuestoInstance.numero}&${presupuestoInstance.descripcion}&" +
+                "${presupuestoInstance.fuente}&${presupuestoInstance.programa}&${presupuestoInstance.subPrograma}&" +
+                "${presupuestoInstance.proyecto}"
         return
     } //save
 

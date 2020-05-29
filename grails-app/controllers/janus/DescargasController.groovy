@@ -25,7 +25,7 @@ class DescargasController extends janus.seguridad.Shield {
     }
 
     def manualAdmnOfrt() {
-        def filePath = "Manual sep-oferentes gadpp.pdf"
+        def filePath = "Manual sep-oferentes GADLR.pdf"
         def path = servletContext.getRealPath("/") + File.separatorChar + filePath
         def file = new File(path)
         def b = file.getBytes()

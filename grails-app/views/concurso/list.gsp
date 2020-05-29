@@ -42,7 +42,7 @@
             </div>
         </div>
         <span style="color: navy;"> * Haga clic con el botón derecho del ratón sobre el concurso para acceder al menú de acciones.</span>
-        <br/><span style="color: navy;"> * Recuerde que el formato del código del proceso es: MCO-<strong>número</strong>-GADPP-17</span>
+        <br/><span style="color: navy;"> * Recuerde que el formato del código del proceso es: MCO-<strong>número</strong>-GADLR-20</span>
 
         <g:form action="delete" name="frmDelete-Concurso">
             <g:hiddenField name="id"/>

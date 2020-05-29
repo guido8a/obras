@@ -217,13 +217,13 @@
 %{--<!-- pg 4 --><br>--}%
 
 %{--<p>El proceso de registro de informaci&oacuten en el sistema conforme las--}%
-%{--necesidades del GADPP es el siguiente:</p>--}%
+%{--necesidades del GADLR es el siguiente:</p>--}%
 
-%{--<p>El GADPP recibe las solicitudes de obra, estas obras potenciales son analizadas--}%
+%{--<p>El GADLR recibe las solicitudes de obra, estas obras potenciales son analizadas--}%
 %{--por los organismos pertinentes para determinar si se ejecutan o no, el sistema no--}%
 %{--registrar&iacutea las obras solicitadas que no se vayan a ejecutar (se puede sin--}%
 %{--embargo registrar todas, y s&oacutelo las obras a ejecutarse seguir&iacutean el--}%
-%{--proceso normal). Dentro del organigrama del GADPP figuran:--}%
+%{--proceso normal). Dentro del organigrama del GADLR figuran:--}%
 %{--</p> <br>--}%
 
 %{--<div class="centrado">--}%
@@ -293,7 +293,7 @@
     <h2 class="cursiva">Ingreso al Sistema</h2>
 
     <p>El sistema funciona en la plataforma web, de modo que puede ser accedido
-    desde dentro del GADPP utilizando una intranet o desde el Internet.
+    desde dentro del GADLR utilizando una intranet o desde el Internet.
         <br>Para poder ingresar al sistema colocamos el nombre de usuario y password
     en los campos solicitados, a continuaci&oacuten damos clic en &#34Continuar&#34.
     </p>

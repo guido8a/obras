@@ -384,7 +384,7 @@
 
 <div class="centrado">
     <p>
-        Listado de contratistas que han firmado contratos de obras y consultoría con el GADPP.
+        Listado de contratistas que han firmado contratos de obras y consultoría con el GADLR.
     </p>
 
     <img src="${resource(dir: 'images/imagenesManuales/imagenesReportes', file: 'img018.png')}" style="width: 800px"/>

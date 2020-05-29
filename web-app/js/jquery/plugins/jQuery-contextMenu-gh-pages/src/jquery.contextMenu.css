@@ -38,7 +38,7 @@
 
 .context-menu-item {
     padding: 2px 5px 5px 24px;
-    background-color: #498FCD;
+    background-color: #7d6738;
     position: relative;
     -webkit-user-select: none;
        -moz-user-select: -moz-none;
@@ -62,11 +62,11 @@
 
 .context-menu-item.hover {
     cursor: pointer;
-    background-color: #39F;
+    background-color: #b69e71;
 }
 
 .context-menu-item.disabled {
-    color: #666;
+    color: #bfb5b5;
 }
 
 .context-menu-input.hover,

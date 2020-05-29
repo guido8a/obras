@@ -23,7 +23,7 @@
 
             <div id="gnrl" class="ui-widget-content" style="height: 580px">
                 <div class="item" texto="admn">
-                    <g:link controller="administracion" action="list">Administración</g:link> del GADPP, autoridad principal.
+                    <g:link controller="administracion" action="list">Administración</g:link> del GADLR, autoridad principal.
                 </div><br>
                 <div class="item" texto="grgf">
                     <g:link controller="canton"
@@ -260,9 +260,9 @@
 </div>
 
 <div id="admn" style="display:none">
-    <h3>Autoridad del GADPP</h3><br>
+    <h3>Autoridad del GADLR</h3><br>
 
-    <p>Administración presente del GADPP</p>
+    <p>Administración presente del GADLR</p>
 </div>
 <div id="grgf" style="display:none">
     <h3>Divisi&oacute;n geogr&aacute;fica del Pa&iacute;s</h3><br>
@@ -303,7 +303,7 @@
 <div id="dire" style="display:none">
     <h3>Direcciones</h3><br>
 
-    <p>Distribución administrativa de la institución: Direcciones o según el organigrama del GADPP, nivel de Secretarías.</p>
+    <p>Distribución administrativa de la institución: Direcciones o según el organigrama del GADLR, nivel de Secretarías.</p>
 </div>
 
 <div id="func" style="display:none">

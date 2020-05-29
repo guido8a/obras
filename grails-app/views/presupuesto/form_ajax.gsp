@@ -13,7 +13,8 @@
             </div>
 
             <div class="controls">
-                <g:textField name="numero" maxlength="50" style="width: 300px" class=" required" value="${presupuestoInstance?.numero}"/>
+                <g:textField name="numero" maxlength="50" style="width: 400px" class=" required"
+                             value="${presupuestoInstance?.numero}"/>
                 <span class="mandatory">*</span>
                 <p class="help-block ui-helper-hidden"></p>
             </div>
@@ -27,7 +28,8 @@
             </div>
 
             <div class="controls">
-                <g:select name="anio.id" from="${janus.pac.Anio.list([sort: "anio"])}" optionKey="id" optionValue="anio"></g:select>
+                <g:select name="anio.id" from="${janus.pac.Anio.list([sort: "anio"])}" style="width: 80px"
+                          optionKey="id" optionValue="anio"></g:select>
                 <span class="mandatory">*</span>
                 <p class="help-block ui-helper-hidden"></p>
             </div>
@@ -40,7 +42,8 @@
             </div>
 
             <div class="controls">
-                <g:textArea name="descripcion" cols="40" rows="7" maxlength="255" class=" required" style="resize: none;width: 300px;" value="${presupuestoInstance?.descripcion}"/>
+                <g:textArea name="descripcion" cols="40" rows="3" maxlength="255" class=" required"
+                            style="resize: none;width: 500px;" value="${presupuestoInstance?.descripcion}"/>
                 <span class="mandatory">*</span>
                 <p class="help-block ui-helper-hidden"></p>
             </div>

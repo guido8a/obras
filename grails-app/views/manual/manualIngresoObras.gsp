@@ -140,7 +140,7 @@
             <h2 class="cursiva">Ingreso al Sistema</h2>
 
             <p>El sistema funciona en la plataforma web, de modo que puede ser accedido
-            desde dentro del GADPP utilizando una intranet o desde el Internet.
+            desde dentro del GADLR utilizando una intranet o desde el Internet.
                 <br>Para poder ingresar al sistema colocamos el nombre de usuario y password
             en los campos solicitados, a continuaci&oacuten damos clic en &#34Continuar&#34.
             </p>

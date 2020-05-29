@@ -343,6 +343,7 @@ class CantonController extends janus.seguridad.Shield {
 
 
     String makeBasicTree(tipo, id) {
+        println "params: $params"
         String tree = "", clase = ""
         switch (tipo) {
             case "init": //cargo "Division politica"
@@ -451,8 +452,6 @@ class CantonController extends janus.seguridad.Shield {
 
     def arbol () {
 
-
-
     }
 
 
@@ -466,8 +465,6 @@ class CantonController extends janus.seguridad.Shield {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [cantonInstanceList: Canton.list(params), cantonInstanceTotal: Canton.count(), params: params]
     } //list
-
-
 
 
     def form_ajax() {

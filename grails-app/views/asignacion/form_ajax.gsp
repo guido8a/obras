@@ -66,7 +66,7 @@
 
                     <input type="hidden" id="item_prsp" name="prespuesto.id">
                     %{--<br>--}%
-                    <input class="span4" type="text" style="width: 400px;;font-size: 12px;margin-top: 0px;"
+                    <input class="span4" type="text" style="width: 400px; font-size: 12px;margin-top: 0px;"
                            id="item_desc" disabled="true">
                     <a href="#" class="btn btn-warning" title="Crear nueva partida" id="item_agregar_prsp">
                         <i class="icon-edit"></i>
@@ -78,9 +78,7 @@
                     </a>
 
                     <div class="span2 dato" style="width: 100px;">Fuente:</div> <input class="span4 dato" type="text"
-                                                                                       style="width: 360px;;font-size: 12px;margin-top: 0px;"
-                                                                                       id="item_fuente"
-                                                                                       disabled="true"> <br>
+                          style="width: 360px;;font-size: 12px;margin-top: 0px;" id="item_fuente" disabled="true"> <br>
 
                     <div class="span2 dato" style="width: 100px;">Programa:</div> <input class="span4 dato" type="text"
                                                                                          style="width: 510px;;font-size: 12px;margin-top: 0px;"
@@ -179,7 +177,8 @@
 <script type="text/javascript">
     function cargarTecho() {
         if ($("#item_prsp").val() * 1 > 0) {
-            $.ajax({type: "POST", url: "${g.createLink(controller: 'asignacion',action:'cargarTecho')}",
+            $.ajax({
+                type: "POST", url: "${g.createLink(controller: 'asignacion',action:'cargarTecho')}",
                 data: "id=" + $("#item_prsp").val() + "&anio=" + $("#anio").val(),
                 success: function (msg) {
                     $("#valor").val(number_format(msg, 2, ".", ""))
@@ -211,7 +210,7 @@
             data: {
                 id: $("#item_prsp").val()
             },
-            url: "${createLink(action:'form_ajax',controller: 'presupuesto')}",
+            url: "${createLink(action:'form_ajax', controller:'presupuesto')}",
             success: function (msg) {
                 var btnOk = $('<a href="#" data-dismiss="modal" class="btn">Cancelar</a>');
                 var btnSave = $('<a href="#"  class="btn btn-success"><i class="icon-ok"></i> Guardar</a>');
@@ -220,7 +219,8 @@
                     if ($("#frmSave-presupuestoInstance").valid()) {
                         btnSave.replaceWith(spinner);
                     }
-                    $.ajax({type: "POST", url: "${g.createLink(controller: 'presupuesto',action:'saveAjax')}",
+                    $.ajax({
+                        type: "POST", url: "${g.createLink(controller: 'presupuesto', action:'saveAjax')}",
                         data: $("#frmSave-presupuestoInstance").serialize(),
                         success: function (msg) {
 //                            ////console.log(msg)
@@ -289,7 +289,7 @@
     $("#item_agregar_prsp").click(function () {
         $.ajax({
             type: "POST",
-            url: "${createLink(action:'form_ajax',controller: 'presupuesto')}",
+            url: "${createLink(action:'form_ajax', controller: 'presupuesto')}",
             success: function (msg) {
                 var btnOk = $('<a href="#" data-dismiss="modal" class="btn">Cancelar</a>');
                 var btnSave = $('<a href="#"  class="btn btn-success"><i class="icon-ok"></i> Guardar</a>');
@@ -298,10 +298,11 @@
                     if ($("#frmSave-presupuestoInstance").valid()) {
                         btnSave.replaceWith(spinner);
                     }
-                    $.ajax({type: "POST", url: "${g.createLink(controller: 'presupuesto',action:'saveAjax')}",
+                    $.ajax({
+                        type: "POST", url: "${g.createLink(controller: 'presupuesto',action:'saveAjax')}",
                         data: $("#frmSave-presupuestoInstance").serialize(),
                         success: function (msg) {
-//                            ////console.log(msg)
+                            console.log(msg)
                             var parts = msg.split("&")
                             $("#item_prsp").val(parts[0])
                             $("#item_presupuesto").val(parts[1])
@@ -332,10 +333,11 @@
         $("#modalFooter").html("").append(btnOk);
         $(".contenidoBuscador").html("")
         $("#modal-ccp").modal("show");
-
     });
+
     %{--list-Asignacion--}%
-    $.ajax({type: "POST", url: "${g.createLink(controller: 'asignacion', action:'tabla')}",
+    $.ajax({
+        type: "POST", url: "${g.createLink(controller: 'asignacion', action:'tabla')}",
         data: "",
         success: function (msg) {
             $("#list-Asignacion").html(msg)

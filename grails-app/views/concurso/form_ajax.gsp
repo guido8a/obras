@@ -151,13 +151,13 @@
                         Precio U.:
                     </span>
                     <div class="controls span1" title="">
-                        <g:formatNumber number="${concursoInstance?.pac?.costo?.round(2)}" type="currency"/>
+                        <g:formatNumber number="${concursoInstance?.pac?.costo?.round(2)}" type="number"/>
                     </div>
                     <span class="control-label label label-inverse span1">
                         Total:
                     </span>
                     <div class="controls span1" title="">
-                        <g:formatNumber number="${(concursoInstance?.pac?.costo * concursoInstance?.pac?.cantidad)?.round(2)}" type="currency"/>
+                        <g:formatNumber number="${(concursoInstance?.pac?.costo * concursoInstance?.pac?.cantidad)?.round(2)}" type="number"/>
                     </div>
                 </div>
             </div>
@@ -170,9 +170,9 @@
 
             <g:form class="form-horizontal" name="frmSave-Concurso" action="save" id="${concursoInstance?.id}">
                 <ul class="nav nav-pills red ui-corner-top" id="myTab">
-                    <li class="active"><a href="#datos" style="color: #000000 !important;">Datos proceso</a></li>
-                    <li><a href="#fechas" style="color: #000000 !important;">Fechas del proceso</a></li>
-                    <li><a href="#fechas2" style="color: #000000 !important;">Fechas de control del trámite</a></li>
+                    <li class="active"><a href="#datos">Datos proceso</a></li>
+                    <li><a href="#fechas">Fechas del proceso</a></li>
+                    %{--<li><a href="#fechas2" style="color: #000000 !important;">Fechas de control del trámite</a></li>--}%
                 </ul>
 
                 <div class="tab-content ui-corner-bottom">

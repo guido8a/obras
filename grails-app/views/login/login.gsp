@@ -90,7 +90,7 @@
             <img src="${resource(dir: 'images', file: 'logotipo.png')}"/>
         </div>
         <div style="text-align: center ; color:#002040; margin-top:0px; ">
-            %{--(Logotipo proporcionado por la COORDINACION DE INFORMACION Y MEDIOS del GADPP)--}%
+            %{--(Logotipo proporcionado por la COORDINACION DE INFORMACION Y MEDIOS del GADLR)--}%
         </div>
 
         <div style="width: 100%;height: 30px;float: left;margin-top: 40px;text-align: center">
@@ -101,7 +101,7 @@
         </div>
 
         <div style="text-align: center ; color:#4a3810; margin-top:90px; ">
-            Desarrollado por: TEDEIN S.A. Versión ${message(code: 'version', default: '1.1.0x')}</div>
+            <a href="http://www.tedein.com.ec" style="text-decoration: none; color: inherit">Desarrollado por: TEDEIN S.A. Versión ${message(code: 'version', default: '1.1.0x')}</a></div>
 
     </div>
 </div>

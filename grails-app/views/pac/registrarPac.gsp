@@ -177,7 +177,7 @@
             </div>
         </div>
 
-        <div class="modal hide fade" id="modal-presupuesto">
+        <div class="modal hide fade" id="modal-presupuesto" style="width: 780px">
             <div class="modal-header btn-warning">
                 <button type="button" class="close" data-dismiss="modal">×</button>
 
@@ -254,7 +254,7 @@
                 $("#item_agregar_prsp").click(function () {
                     $.ajax({
                         type    : "POST",
-                        url     : "${createLink(action:'form_ajax',controller: 'presupuesto')}",
+                        url     : "${createLink(action:'form_ajax', controller:'presupuesto')}",
                         success : function (msg) {
                             var btnOk = $('<a href="#" data-dismiss="modal" class="btn">Cancelar</a>');
                             var btnSave = $('<a href="#"  class="btn btn-success"><i class="icon-ok"></i> Guardar</a>');

@@ -107,7 +107,7 @@
                         class="link">
                     <i class="icon-print"></i> Contratistas:
                 </g:link>
-                Listado de contratistas que han firmado contratos de obras y consultoría con el GADPP.
+                Listado de contratistas que han firmado contratos de obras y consultoría con el GADLR.
             </li>
 
             <li text="asgr" class="item" texto="asgr">
@@ -198,7 +198,7 @@
 
     <div id="prve" style="display: none">
         <h3>Contratistas</h3><br>
-        <p>  Listado de contratistas que han firmado contratos de ejecución de obras y cnsultorías con el GADPP.</p>
+        <p>  Listado de contratistas que han firmado contratos de ejecución de obras y cnsultorías con el GADLR.</p>
     </div>
 
     <div id="asgr" style="display: none">

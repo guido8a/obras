@@ -17,7 +17,7 @@
         <script type="text/javascript" src="${resource(dir: 'js/jquery/plugins/box/js', file: 'jquery.luz.box.js')}"></script>
         <link href='${resource(dir: "js/jquery/plugins/box/css", file: "jquery.luz.box.css")}' rel='stylesheet' type='text/css'>
 
-        <title>División Política de la Provincia de Pichincha</title>
+        <title>Los Ríos</title>
 
 
         <style type="text/css">
@@ -426,7 +426,8 @@
                     "plugins"     : ["themes", "html_data", "ui", "hotkeys", "cookies", "types", "contextmenu", "json_data", "search"/*, "crrm", "wholerow"*/],
                     open_parents  : false,
                     "html_data"   : {
-                        "data" : "<ul type='provincia'><li id='provincia_1' class='provincia jstree-closed' rel='provincia'><a href='#' class='label_arbol'>Pichincha</a></ul>",
+                        "data" : "<ul type='provincia'><li id='provincia_21' class='provincia jstree-closed' " +
+                                 "rel='provincia'><a href='#' class='label_arbol'>Los Ríos</a></ul>",
                         "ajax" : {
                             "url"   : "${createLink(action: 'loadTreePart')}",
                             "data"  : function (n) {
