@@ -213,24 +213,9 @@ class PersonaController extends janus.seguridad.Shield {
 
         /* departamento de OFERENTES: id = 13 */
         def departamento = Departamento.get(13)
+        def personaList = Persona.findAllByDepartamentoNotEqual(departamento, [sort: 'apellido'])
 
-////        def perfil1 = Prfl.get(1);
-////
-////        def perfil2 = Prfl.get(2);
-//
-//        def lista = Persona.withCriteria {
-////           ne('sesiones', perfil)
-//
-//            sesiones{
-//
-//                ne('id', 4.toLong())
-//
-//            }
-//
-//        }
-
-//        [personaInstanceList: Persona.list(params), personaInstanceTotal: Persona.count(), params: params]
-        [personaInstanceList: Persona.findAllByDepartamentoNotEqual(departamento), personaInstanceTotal: Persona.count(), params: params]
+        [personaInstanceList: personaList , personaInstanceTotal: Persona.count(), params: params]
     } //list
 
     def listOferente() {

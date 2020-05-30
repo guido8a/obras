@@ -11,6 +11,7 @@ class TipoPlanillaController extends janus.seguridad.Shield {
     } //index
 
     def list() {
+        params.max = 16
         [tipoPlanillaInstanceList: TipoPlanilla.list(params), params: params]
     } //list
 

@@ -169,10 +169,12 @@
                     dentro del período contractual.
                 </div><br>
 
+%{--
                 <div class="item" texto="mnda">
                     <g:link controller="moneda" action="list">Moneda</g:link>
                     en la cual se recibe la garantía.
                 </div><br>
+--}%
 
                 <div class="item" texto="tpas">
                     <g:link controller="tipoAseguradora" action="list">Tipo de aseguradora</g:link>
@@ -211,8 +213,8 @@
 
             <div id="ejec" class="ui-widget-content" style="height: 560px">
                 <div class="item" texto="edpl">
-                    <g:link controller="estadoPlanilla" action="list">Estado de la planilla</g:link> que puede
-                    tener dentro del proceso de ejecución de la obra: ingresada, pagada, anulada.
+                    <g:link controller="tipoMulta" action="list">Tipo de multa de la planilla</g:link> que puede
+                    tener dentro del proceso de ejecución de la obra.
                 </div><br>
 
                 <div class="item" texto="tppl">
@@ -445,8 +447,8 @@
 
 
 <div id="edpl" style="display:none">
-    <h3>Estado de la Planilla</h3><br>
-    <p>Estado que puede tener una planilla dentro del proceso de ejecución de la obra: ingresada, pagada, anulada.</p>
+    <h3>Tipo de multa de la Planilla</h3><br>
+    <p>Tipos de muilta que puede tener una planilla dentro del proceso de ejecución de la obra: ingresada, pagada, anulada.</p>
 </div>
 <div id="tppl" style="display:none">
     <h3>Tipo de Planilla</h3><br>
