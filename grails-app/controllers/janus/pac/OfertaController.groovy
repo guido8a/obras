@@ -51,6 +51,9 @@ class OfertaController extends janus.seguridad.Shield {
         if (params.fechaEntrega) {
             params.fechaEntrega = new Date().parse('dd-MM-yyyy', params.fechaEntrega)
         }
+        if (params.monto) {
+            params.monto = params.monto.toDouble()
+        }
         def ofertaInstance
         if (params.id) {
             ofertaInstance = Oferta.get(params.id)

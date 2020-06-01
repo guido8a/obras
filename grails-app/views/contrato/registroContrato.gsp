@@ -366,7 +366,7 @@
             <div class="span2 formato">Monto del contrato</div>
 
             <div class="span3"><g:textField name="monto" class="monto activo"
-                                            value="${g.formatNumber(number: contrato?.monto, maxFractionDigits: 2, minFractionDigits: 2, locale: 'ec')}"/></div>
+                                            value="${contrato?.monto}"/></div>
 
             <div class="span2 formato">Plazo</div>
 

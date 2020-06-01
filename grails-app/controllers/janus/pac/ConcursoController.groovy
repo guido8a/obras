@@ -49,7 +49,9 @@ class ConcursoController extends janus.seguridad.Shield {
 
 
     def concursos() {
-        def campos = ["codigo": ["Contrato No.", "string"], "objeto": ["Objeto", "string"], "fechaInicio": ["Fecha inicio", "string"], "presupuestoReferencial": ["Presupuesto", "string"], "obra": ["Obra", "string"]]
+        def campos = ["codigo": ["Contrato No.", "string"], "objeto": ["Objeto", "string"],
+                      "fechaInicio": ["Fecha inicio", "string"], "presupuestoReferencial": ["Presupuesto",
+                      "string"], "obra": ["Obra", "string"]]
         [campos: campos]
     }
 
@@ -573,7 +575,11 @@ class ConcursoController extends janus.seguridad.Shield {
             params.memoSif = params.memoSif.toString().toUpperCase()
         }
 
-//        println "params "+params
+        if (params.presupuestoReferencial) {
+            params.presupuestoReferencial = params.presupuestoReferencial.toDouble()
+        }
+
+        println "params ${params.presupuestoReferencial}"
         def concursoInstance
         if (params.id) {
             concursoInstance = Concurso.get(params.id)

@@ -341,7 +341,15 @@
 
                                 <div class="controls">
                                     <div class="input-append">
-                                        <g:field type="text" name="presupuestoReferencial" class="required number" value="${g.formatNumber(number:concursoInstance?.presupuestoReferencial ?: 0, format: '##0.00',maxFractionDigits: 2,minFractionDigits: 2)}" style="text-align: right;width: 180px;"/>
+%{--
+                                        <g:field type="text" name="presupuestoReferencial" class="required number"
+                                                 value="${g.formatNumber(number:concursoInstance?.presupuestoReferencial ?: 0,
+                                                 format: '##0.00',maxFractionDigits: 2,minFractionDigits: 2)}"
+                                                 style="text-align: right;width: 180px;"/>
+--}%
+                                        <g:field type="text" name="presupuestoReferencial" class="required number"
+                                                 value="${concursoInstance?.presupuestoReferencial ?: 0}"
+                                                 style="text-align: right;width: 180px;"/>
                                         <span class="add-on">$</span>
                                     </div>
 
