@@ -538,7 +538,7 @@
             </div>
 
             <div class="span3">
-                <input type="text" style="width: 50px;" id="dist_p1" value="10.00">
+                <input type="text" style="width: 50px;" id="dist_p1" value="0.00">
             </div>
 
             <div class="span4">
@@ -546,7 +546,7 @@
             </div>
 
             <div class="span3">
-                <input type="text" style="width: 50px;" id="dist_v1" value="20.00">
+                <input type="text" style="width: 50px;" id="dist_v1" value="0.00">
             </div>
 
         </div>
@@ -557,7 +557,7 @@
             </div>
 
             <div class="span3">
-                <input type="text" style="width: 50px;" id="dist_p2" value="10.00">
+                <input type="text" style="width: 50px;" id="dist_p2" value="0.00">
             </div>
 
             <div class="span4">
@@ -565,7 +565,7 @@
             </div>
 
             <div class="span3">
-                <input type="text" style="width: 50px;" id="dist_v2" value="20.00">
+                <input type="text" style="width: 50px;" id="dist_v2" value="0.00">
             </div>
         </div>
 
@@ -579,7 +579,7 @@
             </div>
 
             <div class="span3">
-                <input type="text" style="width: 50px;" id="dist_v3" value="20.00">
+                <input type="text" style="width: 50px;" id="dist_v3" value="0.00">
             </div>
         </div>
 
@@ -595,7 +595,8 @@
             </div>
 
             <div class="span4">
-                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=1')}" optionKey="id" optionValue="descripcion" class="span10" id="lista_1"/>
+                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=1')}"
+                          optionKey="id" optionValue="descripcion" class="span10" id="lista_1"/>
             </div>
 
             <div class="span3">
@@ -603,7 +604,8 @@
             </div>
 
             <div class="span4">
-                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=3')}" optionKey="id" optionValue="descripcion" class="span10" id="lista_3"/>
+                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=3')}"
+                          optionKey="id" optionValue="descripcion" class="span10" id="lista_3"/>
             </div>
         </div>
 
@@ -613,7 +615,8 @@
             </div>
 
             <div class="span4">
-                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=2')}" optionKey="id" optionValue="descripcion" class="span10" id="lista_2"/>
+                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=2')}"
+                          optionKey="id" optionValue="descripcion" class="span10" id="lista_2"/>
             </div>
 
             <div class="span3">
@@ -621,7 +624,8 @@
             </div>
 
             <div class="span4">
-                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=4')}" optionKey="id" optionValue="descripcion" class="span10" id="lista_4"/>
+                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=4')}"
+                          optionKey="id" optionValue="descripcion" class="span10" id="lista_4"/>
             </div>
         </div>
 
@@ -633,7 +637,8 @@
             </div>
 
             <div class="span4">
-                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=5')}" optionKey="id" optionValue="descripcion" class="span10" id="lista_5"/>
+                <g:select name="item.ciudad.id" from="${janus.Lugar.findAll('from Lugar  where tipoLista=5')}"
+                          optionKey="id" optionValue="descripcion" class="span10" id="lista_5"/>
             </div>
         </div>
 
@@ -650,7 +655,8 @@
 
             <div class="span4" style="margin-top: 10px">
                 Se imprime a la Fecha de:
-                <elm:datepicker  name="fechaSalida" class="span8" id="fechaSalidaId" value="${rubro?.fechaModificacion}" style="width: 100px"/>
+                <elm:datepicker  name="fechaSalida" class="span8" id="fechaSalidaId" value="${rubro?.fechaModificacion}"
+                                 style="width: 100px"/>
             </div>
 
             <div class="span4" style="margin-top: 10px;">
