@@ -942,6 +942,7 @@ class ContratoController extends janus.seguridad.Shield {
         funcionJs += 'cargarCombo();'
         funcionJs += 'cargarCanton();'
         funcionJs += '}'
+
 //        extras+= " and codigo like '%OF'"
         def numRegistros = 20
 
@@ -963,7 +964,9 @@ class ContratoController extends janus.seguridad.Shield {
                     lista.remove(i);
                 }*/
             }
-//            println "lista2 "+lista
+            println "lista2 "+lista
+            println "lista2 "+nuevaLista
+
             render(view: '../tablaBuscador', model: [listaTitulos: listaTitulos, listaCampos: listaCampos, lista: nuevaLista,
                    funciones: funciones, url: url, controller: "llamada", numRegistros: numRegistros, funcionJs: funcionJs,
                                                      width: 1800, paginas: 12])
