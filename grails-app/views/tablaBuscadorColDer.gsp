@@ -12,9 +12,11 @@
                 </thead>
                 <tbody id="paginate">
                     <g:each var="reg" in="${lista}" status="i">
+
                         <g:set var="propiedades" value=""></g:set>
                         <tr style="font-size: 10px !important;">
-
+                            %{--<g:set var="propiedades" value="${elm.ponePropiedades([campos: listaCampos, objeto: reg])}"/>--}%
+                            %{--"${propiedades}"--}%
                             <g:each in="${listaCampos}" var="nombre" status="j">
                                 <g:set var="propiedades" value="${propiedades += " prop_" + nombre + "=" + reg.properties[nombre] + ""}"></g:set>
                                 <g:if test="${funciones}">
@@ -33,7 +35,8 @@
                                 </td>
                             </g:each>
                             <td style="text-align: right;width: 40px">
-                                <a class="ok btn btn-small btn-success btn-ajax" href="#" rel="tooltip" style="margin-right: 5px" title="Seleccionar" id="reg_${i}" regId="${reg?.id}" txtReg="${reg.toString()}" ${propiedades}>
+                                <a class="ok btn btn-small btn-success btn-ajax" href="#" rel="tooltip" style="margin-right: 5px"
+                                   title="Seleccionar" id="reg_${i}" regId="${reg?.id}" txtReg="${reg.toString()}" "${propiedades}">
                                     <i class="icon-share"></i>
                                 </a>
                                 %{--<div style="float: right; margin-right: 5px;" class="ok btnpq ui-state-default ui-corner-all" id="reg_${i}" regId="${reg?.id}" txtReg="${reg.toString()}" ${propiedades}>--}%

@@ -908,5 +908,28 @@ class ElementosTagLib {
         out << html
     }
 
+    def poneSelector = { attrs ->
+        def objeto = attrs.objeto
+        def html = "<input type=\"hidden\" class=\"props\" "
+        def txto = ""
+        attrs.campos.each { c ->
+            txto += " prop_$c=\"${objeto.properties[c]}\""
+        }
+//        println "html: $html --> txto $txto"
+        html += " ${txto}>"
+        out << html
+    }
+
+    def ponePropiedades = { attrs ->
+        def objeto = attrs.objeto
+        def txto = ""
+
+        attrs.campos.each { c ->
+            txto += " prop_$c=\"${objeto.properties[c]}\""
+        }
+//        println "txto $txto"
+        out << txto
+    }
+
 
 }

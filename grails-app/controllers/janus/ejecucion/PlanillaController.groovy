@@ -935,6 +935,10 @@ class PlanillaController extends janus.seguridad.Shield {
 
 //        def obraDpto = obra.departamento
         def adminContrato = contrato.administrador
+        def director
+        if(session.usuario.id.toInteger() in [69, 317]) {
+            director = session.usuario
+        }
         def fiscContrato = contrato.fiscalizador
 //        fiscContrato = null
         if (!adminContrato) {
@@ -962,11 +966,14 @@ class PlanillaController extends janus.seguridad.Shield {
         def dptoFiscalizacion = Departamento.findAllByCodigo("FISC")
 //        def dptoDirFinanciera = Departamento.findAllByCodigo("FINA")
         def dptoDirFinanciera
+/*
         if(params.tipo in ['4', '5']) {
             dptoDirFinanciera = Departamento.findAllByCodigo("FINA")
         } else {
             dptoDirFinanciera = Departamento.findAllByCodigo("AP")
         }
+*/
+        dptoDirFinanciera = Departamento.findAllByCodigo("FINA")
         println "params.tipo: ${params.tipo}, dpto: ${dptoDirFinanciera[0]}, size: ${dptoDirFinanciera.size()}"
 
         if (dptoFiscalizacion.size() == 1) {
@@ -995,6 +1002,7 @@ class PlanillaController extends janus.seguridad.Shield {
 
         switch (tipo) {
             case "2":
+                println "--> 2"
                 lblMemo = "Memo de salida"
                 lblFecha = "Fecha de memo de salida"
                 fechaMin = planilla.fechaOficioEntradaPlanilla
@@ -1010,6 +1018,7 @@ class PlanillaController extends janus.seguridad.Shield {
                         tipoTramite = tt
                     }
                 }
+                println "tipoTramite: ${tipoTramite}, obraDpto: ${obraDpto}"
                 especial = "PARA"
                 fiscalizador = "DE"
                 if (!tipoTramite) {
@@ -1087,20 +1096,22 @@ class PlanillaController extends janus.seguridad.Shield {
                 tiposTramite.each { tt ->
                     def dptoDe = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("DE"))
 //                    def dptoPara = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("PARA"))
+                    println "dptoDe: ${dptoDe?.departamento?.id} == ${obraDpto.id}"
                     if (dptoDe?.departamento == obraDpto) {
 //                        println "SIP"
                         tipoTramite = tt
                     }
                 }
                 especial = "DE"
+                println "tipoTramite: ${tipoTramite?.id}"
                 if (!tipoTramite) {
                     println "NOP: crear un tipo de tramite con codigo PDPG, de: " + obraDpto
                     //////////////////////////////////
                     def tiposTramitePadre = TipoTramite.findAllByCodigo("ENRJ")
                     def tipoTramitePadre
                     tiposTramitePadre.each { tt ->
-//                        def dptoDe = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("DE"))
                         def dptoPara = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("PARA"))
+                        println "dptoPara: ${dptoPara.departamento.descripcion} obraDpto: ${obraDpto.descripcion}"
                         if (dptoPara.departamento == obraDpto) {
 //                        println "SIP"
                             tipoTramitePadre = tt
@@ -1148,6 +1159,7 @@ class PlanillaController extends janus.seguridad.Shield {
                     eq("rolTramite", RolTramite.findByCodigo("PARA"))
                     eq("departamento", dptoDirFinanciera)
                 }
+                println "dDe: ${dDe}, tipoTramite: ${tipoTramite?.id},departamento: ${dptoDirFinanciera?.id} --> dPara: ${dPara}"
                 if (!dDe) {
                     render "No se encontró el departamento que envía el trámite. Por favor asegúrese de que el tipo de trámite " + tipoTramite.descripcion + " tenga como departamento" +
                             "que envía a ${obraDpto}"
@@ -1265,12 +1277,17 @@ class PlanillaController extends janus.seguridad.Shield {
 
 
         def roles = DepartamentoTramite.findAllByTipoTramite(tipoTramite)
-//        println "roles: $roles"
+        println "roles: $roles"
         roles.each { rol ->    // procesa para quien envia y quien recibe
             def personas = Persona.findAllByDepartamento(rol.departamento)
 
             if (rol.rolTramite.codigo.trim() == especial.trim()) {
-                personas = [adminContrato]
+                if(tipo == 3) {
+//                    personas = [adminContrato]
+                    personas = [director]
+                } else {
+                    personas = [adminContrato]
+                }
             }
             if (rol.rolTramite.codigo.trim() == fiscalizador?.trim()) {
                 personas = [fiscContrato]
@@ -1303,6 +1320,7 @@ class PlanillaController extends janus.seguridad.Shield {
         fechaMin = "new Date(${y},${m},${d})"
         fechaMax = "new Date(${y + 2},${m},${d})"
 
+        println "nombres: ${nombres}"
         [planilla: planilla, tipo: tipo, lblMemo: lblMemo, lblFecha: lblFecha, fechaMin: fechaMin, fechaMax: fechaMax,
          extra: extra, fecha: fecha, nombres: nombres]
     }
@@ -4040,8 +4058,13 @@ class PlanillaController extends janus.seguridad.Shield {
 //            println "valores BoOf: $valorBoOf, periodo: $valorBoPr, Fr: $valorFr"
             /** calcular valores de reajuste y actualizar rjpl **/
 //            rj.valor  = PlanillaPo.findByPlanillaAndPeriodo()
-            rj.factor = valorFr
-            rj.valorReajustado = Math.round((valorFr * rj.valorPo - rj.valorPo)*100)/100
+            if(plnl.contrato.aplicaReajuste) {
+                rj.factor = valorFr
+                rj.valorReajustado = Math.round((valorFr * rj.valorPo - rj.valorPo)*100)/100
+            } else {
+                rj.factor = valorFr
+                rj.valorReajustado = 0
+            }
             rj.fechaReajuste = new Date()
             rj.save(flush: true)
         }
@@ -4153,8 +4176,13 @@ class PlanillaController extends janus.seguridad.Shield {
 //            println "valores BoOf: $valorBoOf, periodo: $valorBoPr, Fr: $valorFr"
             /** calcular valores de reajuste y actualizar rjpl **/
 //            rj.valor  = PlanillaPo.findByPlanillaAndPeriodo()
-            rj.factor = valorFr
-            rj.valorReajustado = Math.round((valorFr * rj.valorPo - rj.valorPo)*100)/100
+            if(plnl.contrato.aplicaReajuste) {
+                rj.factor = valorFr
+                rj.valorReajustado = Math.round((valorFr * rj.valorPo - rj.valorPo)*100)/100
+            } else {
+                rj.factor = valorFr
+                rj.valorReajustado = 0
+            }
             rj.fechaReajuste = new Date()
             rj.save(flush: true)
         }
@@ -4510,7 +4538,7 @@ class PlanillaController extends janus.seguridad.Shield {
             def sql = "select sum((prejfcfn - prejfcin) + 1) dias from prej where cntr__id = ${plnl.contrato.id} and prejtipo in ('P', 'C')"
             println "sql: $sql"
             dias  = (int) cn.rows(sql.toString())[0].dias
-            sql = "select sum(mdcedias) dias from mdce where cntr__id = ${plnl.contrato.id} and mdcetipo = 'A'"
+            sql = "select coalesce(sum(mdcedias),0) dias from mdce where cntr__id = ${plnl.contrato.id} and mdcetipo = 'A'"
             def ampliacion = (int) cn.rows(sql.toString())[0].dias?:0
 
             println "...dias: $dias, ampliacion: $ampliacion, plazo: ${plnl.contrato.plazo}"

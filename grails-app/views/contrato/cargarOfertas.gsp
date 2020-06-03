@@ -38,7 +38,7 @@
             var parts = cl.split("_");
             var m = parts[0];
             var p = parts[1];
-            $("#monto").val(number_format(m, 2,"."));
+            $("#monto").val(m);
 //            $("#plazo").val(number_format(p, 0,"."));
             $("#plazo").val(p);
 //            $("#ofertaId").val($(this).val());

@@ -62,12 +62,15 @@ class AsignacionController extends janus.seguridad.Shield {
         def url = g.createLink(action: "buscaPrsp")
         def funcionJs = "function(){"
         funcionJs += '$("#modal-ccp").modal("hide");'
-        funcionJs += '$("#item_prsp").val($(this).attr("regId"));$("#item_presupuesto").val($(this).attr("prop_numero"));' +
-                '$("#item_presupuesto").attr("title",$(this).attr("prop_descripcion"));' +
-                '$("#item_desc").val($(this).attr("prop_descripcion"));$("#item_fuente").val($(this).attr("prop_fuente"));' +
-                '$("#item_prog").val($(this).attr("prop_programa"));$("#item_spro").val($(this).attr("prop_subprograma"));' +
-                '$("#item_proy").val($(this).attr("prop_proyecto"));cargarTecho();'
+        funcionJs += '$("#item_prsp").val($(this).attr("regId"));$("#item_presupuesto").val($(this).parent().parent().find(".props").attr("prop_numero"));' +
+                '$("#item_presupuesto").attr("title",$(this).parent().parent().find(".props").attr("prop_numero"));' +
+                '$("#item_desc").val($(this).parent().parent().find(".props").attr("prop_descripcion"));' +
+                '$("#item_fuente").val($(this).parent().parent().find(".props").attr("prop_fuente"));' +
+                '$("#item_prog").val($(this).parent().parent().find(".props").attr("prop_programa"));' +
+                '$("#item_spro").val($(this).parent().parent().find(".props").attr("prop_subprograma"));' +
+                '$("#item_proy").val($(this).parent().parent().find(".props").attr("prop_proyecto"));cargarTecho();'
         funcionJs += '}'
+
         def numRegistros = 20
         def extras = ""
 //        if (!params.reporte) {
@@ -98,9 +101,15 @@ class AsignacionController extends janus.seguridad.Shield {
                 def lista = buscadorService.buscar(janus.Presupuesto, "Presupuesto", "excluyente", params, true, extras)
                 println "lista: $lista"
                 lista.pop()
-                render(view: '../tablaBuscadorColDer', model: [listaTitulos: listaTitulos, listaCampos: listaCampos,
+/*
+                render(view: '../tablaBuscador', model: [listaTitulos: listaTitulos, listaCampos: listaCampos,
                     lista: lista, funciones: funciones, url: url, controller: "llamada", numRegistros: numRegistros,
                     funcionJs: funcionJs])
+*/
+                render(view: '../tablaBuscador', model: [listaTitulos: listaTitulos, listaCampos: listaCampos,
+                    lista: lista, funciones: funciones, url: url, controller: "llamada", numRegistros: numRegistros,
+                    funcionJs: funcionJs, width: 1800, paginas: 12])
+
             }
         } else {
             /*De esto solo cambiar el dominio, el parametro tabla, el paramtero titulo y el tamaño de las columnas (anchos)*/

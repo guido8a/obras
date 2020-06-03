@@ -87,7 +87,7 @@
 </g:form>
 
 <div id="list-Planilla" role="main" style="margin-top: 10px;">
-
+%{--${session.usuario.id.toInteger()}--}%
     <table class="table table-bordered table-striped table-condensed table-hover">
         <thead>
         <tr>
@@ -284,12 +284,16 @@
                                 %{--<g:set var="lblBtn" value="${3}"/>--}%
                                 <g:if test="${garantia >= planillaInstance.fechaFin}">
 
-                                    <g:if test="${(contrato.administrador.id == session.usuario.id) && ((janus.ejecucion.ReajustePlanilla.countByPlanilla(planillaInstance) > 0) || (planillaInstance.tipoPlanilla.codigo == 'C'))}">
+                                    %{--<g:if test="${(contrato.administrador.id == session.usuario.id) && ((janus.ejecucion.ReajustePlanilla.countByPlanilla(planillaInstance) > 0) || (planillaInstance.tipoPlanilla.codigo == 'C'))}">--}%
+                                    <g:if test="${(session.usuario.id.toInteger() in [69, 317]) && ((janus.ejecucion.ReajustePlanilla.countByPlanilla(planillaInstance) > 0) || (planillaInstance.tipoPlanilla.codigo == 'C'))}">
                                         <a href="#" class="btn btn-pagar pg_${lblBtn}" data-id="${planillaInstance.id}"
                                            data-tipo="${lblBtn}">
                                             Pedir pago
                                         </a>
                                     </g:if>
+                                    <g:else>
+                                        Pedir el pago
+                                    </g:else>
                                 </g:if>
                                 <g:else>
                                     No se ha ingresado la garantía de este contrato, no es posible pedir el pago

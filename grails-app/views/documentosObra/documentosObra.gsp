@@ -1144,23 +1144,6 @@
                         <g:if test="${firmaDirector != null}">
                             <tr data-id="${firmaDirector?.persona?.id}">
 
-                                %{--<td>--}%
-
-                                %{--</td>--}%
-
-                                %{--<td id="${obra?.inspector?.nombre + " " + obra?.inspector?.apellido + " " + " (INSPECTOR)" }">--}%
-
-                                %{--${obra?.inspector?.nombre + " " + obra?.inspector?.apellido + " " + " (INSPECTOR)" }--}%
-
-                                %{--</td>--}%
-                                %{--<td>--}%
-                                %{--${obra?.inspector?.cargo}--}%
-
-                                %{--</td>--}%
-                                %{--<td>--}%
-                                %{--<a href='#' class='btn btn-danger borrarFirmaMemoPresu'><i class='icon-trash icon-large'></i></a>--}%
-                                %{--</td>--}%
-
                                 <td id="${firmaDirector?.persona?.nombre + " " + firmaDirector?.persona?.apellido}">
 
                                     ${firmaDirector?.persona?.nombre + " " + firmaDirector?.persona?.apellido}

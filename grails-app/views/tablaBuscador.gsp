@@ -18,13 +18,18 @@
                     <tr style="font-size: 10px !important;">
                         <td style="text-align: right;width: 50px">
                             <g:if test="${planilla != titulos}">
-                                <a class="ok btn btn-small btn-success btn-ajax" href="#" rel="tooltip" style="margin-right: 5px" title="Seleccionar" id="reg_${i}" regId="${reg?.id}" txtReg="${reg.toString()}" ${propiedades}>
+                                <a class="ok btn btn-small btn-success btn-ajax" href="#" rel="tooltip" style="margin-right: 5px"
+                                   title="Seleccionar" id="reg_${i}" regId="${reg?.id}" txtReg="${reg.toString()}" ${propiedades}>
                                     <i class="icon-share"></i>
                                 </a>
                             </g:if>
                         </td>
+                        %{--<elm:ponePropiedades campos="${listaCampos}" objeto="${reg}"/>--}%
+                        %{--<g:set var="propiedades" value="${elm.ponePropiedades([campos: listaCampos, objeto: reg])}"/>--}%
+
                         <g:each in="${listaCampos}" var="nombre" status="j">
                             <g:set var="propiedades" value="${propiedades += " prop_" + nombre + "=" + reg.properties[nombre]}"/>
+
                             <g:if test="${funciones}">
                                 <g:if test="${funciones[j]}">
                                     <g:set var="prop" value="${bsc.operacion(propiedad: nombre, funcion: funciones[j], registro: reg)}"/>
@@ -40,7 +45,8 @@
                                 ${prop}
                             </td>
                         </g:each>
-                        <input type="hidden" class="props" ${propiedades}>
+                        <elm:poneSelector campos="${listaCampos}" objeto="${reg}"/>
+                        %{--<input type="hidden" class="props" ${propiedades}>--}%
                         <script type="text/javascript">
                             $("#reg_${i}")
                         </script>

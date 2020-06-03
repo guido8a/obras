@@ -88,12 +88,10 @@ class ContratoController extends janus.seguridad.Shield {
 //            println "directores:" + directores + "  usurio: $session.usuario id:" + session.usuario.id
                 def esDirector = directores.contains(session.usuario.id) ? "S" : "N"
 
-                println "esDirector: $esDirector directores: $directores"
-
-
-                def personalFis = Persona.findAllByDepartamento(Departamento.findByCodigo('FISC'))
+                def personalFis = Persona.findAllByDepartamento(Departamento.findByCodigo('DGI'))
                 def directoresFis = PersonaRol.findAllByFuncionAndPersonaInList(Funcion.findByCodigo("D"), personalFis).persona.id
                 def esDirFis = directoresFis.contains(session.usuario.id) ? "S" : "N"
+                println "esDirector: $esDirector directores: $directores, dirFis: ${esDirFis}"
 
                 def campos = ["codigo": ["Contrato No.", "string"], "nombre": ["Nombre", "string"], "prov": ["Contratista", "string"]]
 
@@ -150,14 +148,12 @@ class ContratoController extends janus.seguridad.Shield {
         def obra = contrato.obra
 
         def errores = ""
-
-        //tiene q tener cronograma y formula polinomica
-//        def detalle = VolumenesObra.findAllByObra(obra, [sort: "orden"])
         def detalle = VolumenContrato.findAllByObra(obra, [sort: "volumenOrden"])
-//        def cronos = CronogramaContrato.findAllByVolumenObraInList(detalle)
         def cronos = CronogramaContratado.findAllByVolumenContratoInList(detalle)
 
-        println "suma de la obra: ${cronos.precio.sum()}, valor de la obra: ${contrato.monto}"
+        println "suma de la obra: ${cronos.precio.sum()}, valor de la obra: ${contrato.monto} " +
+                "--> ${cronos?.precio?.sum()?.round(2)} == ${contrato?.monto?.round(2)}"
+
         if (cronos?.precio?.sum()?.round(2) != contrato?.monto?.round(2)) {
             errores += "<li>No cuadra los totales del cronograma ${cronos.precio.sum()} con el valor del contrato: ${contrato.monto}</li>"
         }
@@ -917,7 +913,7 @@ class ContratoController extends janus.seguridad.Shield {
     }
 
     def buscarObra() {
-//        println "buscar obra "+params
+        println "buscar obra "+params
         def extras = " "
         def parr = { p ->
             return p.parroquia?.nombre
@@ -925,9 +921,12 @@ class ContratoController extends janus.seguridad.Shield {
         def comu = { c ->
             return c.comunidad?.nombre
         }
-        def listaTitulos = ["Código", "Nombre", "Descripción", "Fecha Reg.", "M. ingreso", "M. salida", "Sitio", "Plazo", "Parroquia", "Comunidad", "Clase", "Estado Obra"]
-        def listaCampos = ["codigo", "nombre", "descripcion", "fechaCreacionObra", "oficioIngreso", "oficioSalida", "sitio", "plazo", "parroquia", "comunidad", "claseObra", "estadoObra"]
-        def funciones = [null, null, null, ["format": ["dd/MM/yyyy hh:mm"]], null, null, null, null, ["closure": [parr, "&"]], ["closure": [comu, "&"]], null, null, null, null]
+        def listaTitulos = ["Código", "Nombre", "Descripción", "Fecha Reg.", "M. ingreso", "M. salida", "Sitio",
+                            "Plazo", "Parroquia", "Comunidad", "Clase", "Estado Obra"]
+        def listaCampos = ["codigo", "nombre", "descripcion", "fechaCreacionObra", "oficioIngreso", "oficioSalida",
+                           "sitio", "plazo", "parroquia", "comunidad", "claseObra", "estadoObra"]
+        def funciones = [null, null, null, ["format": ["dd/MM/yyyy hh:mm"]], null, null, null, null, ["closure": [parr, "&"]],
+                         ["closure": [comu, "&"]], null, null, null, null]
         def url = g.createLink(action: "buscarObra", controller: "contrato")
         def funcionJs = "function(){"
         funcionJs += '$("#modal-busqueda").modal("hide");'
@@ -964,8 +963,8 @@ class ContratoController extends janus.seguridad.Shield {
                     lista.remove(i);
                 }*/
             }
-            println "lista2 "+lista
-            println "lista2 "+nuevaLista
+//            println "lista2 "+lista
+//            println "lista2 ${nuevaLista[0].class}"
 
             render(view: '../tablaBuscador', model: [listaTitulos: listaTitulos, listaCampos: listaCampos, lista: nuevaLista,
                    funciones: funciones, url: url, controller: "llamada", numRegistros: numRegistros, funcionJs: funcionJs,
@@ -977,7 +976,10 @@ class ContratoController extends janus.seguridad.Shield {
             session.funciones = funciones
             def anchos = [7, 10, 7, 7, 7, 7, 7, 4, 7, 7, 7, 7, 7, 7]
             /*el ancho de las columnas en porcentajes... solo enteros*/
-            redirect(controller: "reportes", action: "reporteBuscador", params: [listaCampos: listaCampos, listaTitulos: listaTitulos, tabla: "Obra", orden: params.orden, ordenado: params.ordenado, criterios: params.criterios, operadores: params.operadores, campos: params.campos, titulo: "Obras", anchos: anchos, extras: extras, landscape: true])
+            redirect(controller: "reportes", action: "reporteBuscador", params: [listaCampos: listaCampos,
+               listaTitulos: listaTitulos, tabla: "Obra", orden: params.orden, ordenado: params.ordenado,
+               criterios: params.criterios, operadores: params.operadores, campos: params.campos, titulo: "Obras",
+               anchos: anchos, extras: extras, landscape: true])
         }
 
     }
@@ -1076,6 +1078,9 @@ class ContratoController extends janus.seguridad.Shield {
 
 //        println("oferta " + oferta + " " + params."oferta.id")
 
+        params.monto = params.monto.toDouble()
+        params.anticipo = params.anticipo.toDouble()
+        
         if (params.id) {
             contratoInstance = Contrato.get(params.id)
             contratoInstance.properties = params
@@ -1280,6 +1285,7 @@ class ContratoController extends janus.seguridad.Shield {
 
     // copia true: copia FP de la obra, false, ya existe FP contractual
     def copiaFpDesdeObra(cntr, copia) {
+        println "cntr: $cntr, copia: $copia"
         def fpReajuste = FormulaPolinomicaReajuste.findByContrato(cntr)
         def tipo = TipoFormulaPolinomica.get(1)
 

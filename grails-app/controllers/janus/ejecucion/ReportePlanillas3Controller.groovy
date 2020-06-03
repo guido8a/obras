@@ -1851,6 +1851,14 @@ class ReportePlanillas3Controller {
                 pdfs.add(pl.toByteArray())
                 contador++
             }
+        } else {
+            println "no hay reajuste contador: $contador"
+            pl = rpSinTablas(planilla)
+            pdfs.add(pl.toByteArray())
+//            pl = resumenAnticipo(planilla)
+//            pdfs.add(pl.toByteArray())
+            contador++
+            println "planilla --> ${pl.size()}, contador: $contador"
         }
         if(planilla.tipoPlanilla.codigo in ['P', 'Q', 'R', 'L']) {
             println "invoca multas"
@@ -2417,6 +2425,142 @@ class ReportePlanillas3Controller {
 //        imprimirFirmas([tipo: "otro", orientacion: "vertical"])
         document.add(firmas("otro", "vertical", planilla))
         /* ------------------------- Fin Tabla Fr ---------------------------*/
+
+        document.close();
+        pdfw.close()
+        return baos
+/*
+        byte[] b = baos.toByteArray();
+        response.setContentType("application/pdf")
+        response.setHeader("Content-disposition", "attachment; filename=" + name)
+        response.setContentLength(b.length)
+        response.getOutputStream().write(b)
+*/
+    }
+
+    def rpSinTablas(planilla) {
+        println "reporteTablas de la planilla ${planilla.id} y sin Reajuste"
+        def obra = planilla.contrato.obra
+        def contrato = planilla.contrato
+        def reajustesPlanilla = ReajustePlanilla.findAllByPlanilla(planilla, [sort: "periodo", order: "asc"])
+        def rjpl = reajustesPlanilla.first()
+//        println "reajustesPlanilla: $reajustesPlanilla, Po: ${reajustesPlanilla.valorPo}"
+
+        /* crea el PDF */
+        def baos = new ByteArrayOutputStream()
+//        def name = "planilla_" + new Date().format("ddMMyyyy_hhmm") + ".pdf";
+        Font fontTituloGad = new Font(Font.TIMES_ROMAN, 12, Font.BOLD);
+        Font info = new Font(Font.TIMES_ROMAN, 10, Font.NORMAL)
+        Font fontTitle = new Font(Font.TIMES_ROMAN, 14, Font.BOLD);
+        Font fontTh = new Font(Font.TIMES_ROMAN, 7, Font.BOLD);
+        Font fontTd = new Font(Font.TIMES_ROMAN, 8, Font.NORMAL);
+
+        Document document
+        document = new Document(PageSize.A4.rotate());
+        document.setMargins(50,30,30,28)  // 28 equivale a 1 cm: izq, derecha, arriba y abajo
+        def pdfw = PdfWriter.getInstance(document, baos);
+        document.resetHeader()
+        document.resetFooter()
+
+        document.open();
+        document.addTitle("Planillas de la obra " + obra.nombre + " " + new Date().format("dd_MM_yyyy"));
+        document.addSubject("Generado por el sistema Janus");
+        document.addKeywords("reporte, janus, planillas");
+        document.addAuthor("Janus");
+        document.addCreator("Tedein SA");
+
+        def bordeThDerecho = [border: Color.BLACK, bcr: Color.LIGHT_GRAY, bwr: 0.1, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def bordeThIzquierdo = [border: Color.BLACK, bcl: Color.LIGHT_GRAY, bwl: 0.1, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+        def bordeThRecuadro = [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE]
+
+        def bordeTdSinBorde = [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE]
+        def bordeTdRecuadro = [border: Color.BLACK, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE]
+        def bordeTdRecuadroDer = [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
+
+
+//        headerPlanilla([size: 10])
+        /* ---------------------- Fin Header planilla --------------------------*/
+
+//        document.add(titlLogo())
+//        document.add(titlInst(1, planilla, obra));
+//        document.add(titlSbtt(planilla.fechaIngreso));
+//        document.add(encabezado(2, 10, planilla, ""))
+
+
+        /* ***************************************************** Tabla P0 *****************************************************************/
+
+//        document.newPage()
+//        headerPlanilla([size: 10, espacio: 2])
+        document.add(titlLogo())
+        document.add(titlInst(1, planilla, obra));
+        document.add(titlSbtt(planilla.fechaIngreso));
+        document.add(encabezado(2, 10, planilla, ""))
+
+        Paragraph tituloP0 = new Paragraph();
+        addEmptyLine(tituloP0, 1);
+        tituloP0.setAlignment(Element.ALIGN_CENTER);
+//        tituloP0.add(new Paragraph("Cálculo de P0 ${rjpl.fpReajuste.descripcion}", fontTitle));
+        tituloP0.add(new Paragraph("Cálculo de P0", fontTitle));
+        addEmptyLine(tituloP0, 1);
+        document.add(tituloP0);
+
+        PdfPTable tablaP0 = new PdfPTable(7);
+        tablaP0.setWidths(arregloEnteros([20, 10, 10, 10, 10, 10, 10]))
+        tablaP0.setWidthPercentage(100);
+
+        tablaP0.setSpacingAfter(5f);
+
+        addCellTabla(tablaP0, new Paragraph("Mes y año", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        PdfPTable inner1 = new PdfPTable(2);
+        addCellTabla(inner1, new Paragraph("Cronograma", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        addCellTabla(inner1, new Paragraph("Parcial", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(inner1, new Paragraph("Acumulado", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaP0, inner1, [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        PdfPTable inner2 = new PdfPTable(2);
+        addCellTabla(inner2, new Paragraph("Planillado", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        addCellTabla(inner2, new Paragraph("Parcial", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(inner2, new Paragraph("Acumulado", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaP0, inner2, [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        addCellTabla(tablaP0, new Paragraph("Valor P0", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, rowspan: 2])
+
+        def tbPo = planillasService.armaTablaPo(rjpl.planilla.id, rjpl.fpReajuste.id)
+//        def tbPo = planillasService.armaTablaPo(reajustesPlanilla.planilla.id, reajustesPlanilla.fpReajuste.id)
+        def totCrono = 0
+        def totPlan = 0
+        def totlPo = 0
+
+//        println "----> tbpo: $tbPo"
+        for(i in 0..tbPo.size()-1 ){
+            def tipo = ""
+            if(tbPo[i].tipo.indexOf(' ') > 0) {
+                tipo = "${tbPo[i].tipo.substring(0, tbPo[i].tipo.indexOf(' '))}"
+            } else {
+                tipo = "${tbPo[i].tipo}"
+            }
+            addCellTabla(tablaP0, new Paragraph(tipo, fontTh), [border: Color.BLACK, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+
+            addCellTabla(tablaP0, new Paragraph(tbPo[i].mes, fontTh), [border: Color.BLACK, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaP0, new Paragraph(tbPo[i].crpa >= 0 ? numero(tbPo[i].crpa, 2) : '', fontTd), [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaP0, new Paragraph(tbPo[i].crpa >= 0 ? numero(tbPo[i].crac, 2) : '', fontTd), [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaP0, new Paragraph(tbPo[i].crpa >= 0 ? numero(tbPo[i].plpa, 2) : '', fontTd), [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaP0, new Paragraph(tbPo[i].crpa >= 0 ? numero(tbPo[i].plac, 2) : '', fontTd), [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaP0, new Paragraph(numero(tbPo[i].po, 2), fontTd), [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE,])
+            totCrono = tbPo[i].crac
+            totPlan = tbPo[i].plac
+            totlPo += tbPo[i].po
+        }
+
+        addCellTabla(tablaP0, new Paragraph("TOTAL", fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        addCellTabla(tablaP0, new Paragraph(numero(totCrono, 2) , fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        addCellTabla(tablaP0, new Paragraph(numero(totPlan, 2), fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        addCellTabla(tablaP0, new Paragraph(numero(totlPo, 2), fontTh), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+
+        document.add(tablaP0);
+
+//        imprimirFirmas([tipo: "otro", orientacion: "horizontal"])
+        document.add(firmas("otro", "horizontal", planilla))
+        /* --------------------------- Fin Tabla P0 ----------------------------*/
+
 
         document.close();
         pdfw.close()
@@ -4379,7 +4523,7 @@ class ReportePlanillas3Controller {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
+        preface.add(new Paragraph((janus.Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
         preface.add(new Paragraph("PLANILLA DE ${planilla.tipoPlanilla.nombre.toUpperCase()} DE LA OBRA " + obra.nombre, fontTituloGad));
         addEmptyLine(preface, espacio);
 

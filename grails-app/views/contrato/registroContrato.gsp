@@ -365,8 +365,12 @@
 
             <div class="span2 formato">Monto del contrato</div>
 
-            <div class="span3"><g:textField name="monto" class="monto activo"
-                                            value="${contrato?.monto}"/></div>
+%{--
+            <div class="span3"><g:textField name="monto" class="monto activo number"
+                                            value="${g.formatNumber(number: contrato?.monto, maxFractionDigits: 2, minFractionDigits: 2, format: '##,###')}"/></div>
+--}%
+            <div class="span3"><g:textField name="monto" class="monto activo number"
+                 value="${contrato?.monto}"/></div>
 
             <div class="span2 formato">Plazo</div>
 
@@ -414,14 +418,14 @@
 
             <div class="span4">
                 <g:select name="depAdministrador.id" from="${janus.Departamento.list([sort: 'descripcion'])}" optionKey="id"
-                          optionValue="descripcion"  value="${contrato?.depAdministrador?.id}" class="required span4"/>
+                          optionValue="descripcion"  value="${contrato?.depAdministrador?.id?:1}" class="required span4"/>
             </div>
 
             <div class="span2 formato">Indirectos</div>
 
             <div class="span1">
                 <g:textField name="indirectos" class="anticipo activo"
-                             value="${g.formatNumber(number: contrato?.indirectos ?: 0, maxFractionDigits: 0, minFractionDigits: 0, locale: 'ec')}"
+                             value="${g.formatNumber(number: contrato?.indirectos ?: 20, maxFractionDigits: 0, minFractionDigits: 0, locale: 'ec')}"
                              style="width: 30px; text-align: right"/> %
             </div>
 

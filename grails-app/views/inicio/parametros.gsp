@@ -391,7 +391,7 @@
 
 <div id="tpcr" style="display:none">
     <h3>Tipo de contrato</h3><br>
-    <p>Tipo de contrato que se puede registrar en el sistema, por ejemplo: COntrato, escritura pública, convenio.</p>
+    <p>Tipo de contrato que se puede registrar en el sistema, por ejemplo: Contrato principal y Complementario.</p>
 </div>
 <div id="tpgr" style="display:none">
     <h3>Tipo de garantía</h3><br>
