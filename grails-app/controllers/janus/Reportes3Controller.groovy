@@ -2225,7 +2225,7 @@ class Reportes3Controller {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("CÁLCULO DEL VALOR POR HORA DE MANO DE OBRA", times14bold ))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("QUITO, " + fechaCalculo, times12bold));
+        headers.add(new Paragraph("Babahoyo, " + fechaCalculo, times12bold));
         headers.add(new Paragraph(" ", times10bold));
         headers.add(new Paragraph(item.nombre, times12bold));
         headers.add(new Paragraph(" ", times10bold));
@@ -2387,7 +2387,7 @@ class Reportes3Controller {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("CÁLCULO DEL VALOR POR HORA DE EQUIPOS", times14bold))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("Quito, " + printFecha(new Date()), times12bold));
+        headers.add(new Paragraph("Babahoyo, " + printFecha(new Date()), times12bold));
         headers.add(new Paragraph(" ", times10bold));
         headers.add(new Paragraph("Equipo:" + item.nombre, times12bold));
         headers.add(new Paragraph(" ", times10bold));
@@ -2757,7 +2757,7 @@ class Reportes3Controller {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS", times14bold ))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("QUITO, " + printFecha(new Date()), times12bold));
+        headers.add(new Paragraph("Babahoyo, " + printFecha(new Date()), times12bold));
 //        headers.add(new Paragraph("QUITO, " + new Date().format("dd-MM-yyyy"), times12bold));
         headers.add(new Paragraph(" ", times10bold));
 
@@ -2885,7 +2885,7 @@ class Reportes3Controller {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS QUE VENCERÁN", times14bold ))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("QUITO, " + printFecha(new Date()), times12bold));
+        headers.add(new Paragraph("Babahoyo, " + printFecha(new Date()), times12bold));
         headers.add(new Paragraph(" ", times10bold));
 
         PdfPTable tablaGarantia = new PdfPTable(10);
@@ -3014,7 +3014,7 @@ class Reportes3Controller {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS DEVUELTAS", times14bold ))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("QUITO, " + printFecha(new Date()), times12bold));
+        headers.add(new Paragraph("Babahoyo, " + printFecha(new Date()), times12bold));
         headers.add(new Paragraph(" ", times10bold));
 
         PdfPTable tablaGarantia = new PdfPTable(10);
@@ -3150,7 +3150,7 @@ class Reportes3Controller {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS VENCIDAS", times14bold ))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("QUITO, " + printFecha(new Date()), times12bold));
+        headers.add(new Paragraph("Babahoyo, " + printFecha(new Date()), times12bold));
         headers.add(new Paragraph(" ", times10bold));
 
         PdfPTable tablaGarantia = new PdfPTable(12);
@@ -4101,7 +4101,7 @@ class Reportes3Controller {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("REPORTE DE GARANTÍAS VENCIDAS", times14bold ))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("QUITO, " + printFecha(new Date()), times12bold));
+        headers.add(new Paragraph("Babahoyo, " + printFecha(new Date()), times12bold));
         headers.add(new Paragraph(" ", times10bold));
 
         PdfPTable tablaGarantia = new PdfPTable(12);

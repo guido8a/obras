@@ -278,7 +278,7 @@ class Reportes5Controller extends Shield{
         headersTitulo.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), titleFont2));
         addEmptyLine(headersTitulo, 1);
         headersTitulo.add(new Paragraph("REPORTE DE AVANCE DE OBRAS", titleFont));
-        headersTitulo.add(new Paragraph("Quito, " + fechaConFormato(new Date(), "dd MMMM yyyy").toUpperCase(), titleFont3));
+        headersTitulo.add(new Paragraph("Babahoyo, " + fechaConFormato(new Date(), "dd MMMM yyyy").toUpperCase(), titleFont3));
         addEmptyLine(headersTitulo, 1);
         addEmptyLine(headersTitulo, 1);
 

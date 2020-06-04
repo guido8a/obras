@@ -459,7 +459,7 @@ class ReportesController {
             addEmptyLine(headers, 1);
             headers.add(new Paragraph("" + params.titulo, times12bold));
             addEmptyLine(headers, 1);
-            headers.add(new Paragraph("Quito, al " + printFecha(new Date()).toUpperCase(), times12bold));
+            headers.add(new Paragraph("Babahoyo, al " + printFecha(new Date()).toUpperCase(), times12bold));
             addEmptyLine(headers, 1);
 
             document.add(headers);
@@ -519,7 +519,7 @@ class ReportesController {
             addEmptyLine(preface, 1);
             preface.add(new Paragraph("REPORTE DE OBRAS REGISTRADAS", catFont));
             addEmptyLine(preface, 1);
-            preface.add(new Paragraph("Quito, " + printFecha(new Date()).toUpperCase(), catFont));
+            preface.add(new Paragraph("Babahoyo, " + printFecha(new Date()).toUpperCase(), catFont));
             addEmptyLine(preface, 1);
 
             addContent(document, catFont, listaCampos.size(), listaTitulos, params.anchos, listaCampos, funciones, lista);
@@ -1851,7 +1851,7 @@ class ReportesController {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("TRÁMITES EN PROCESO"))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("Quito, " + formatDate(date: new Date(), format: "dd-MM-yyyy"), times10bold));
+        headers.add(new Paragraph("Babahoyo, " + formatDate(date: new Date(), format: "dd-MM-yyyy"), times10bold));
         headers.add(new Paragraph(" ", times10bold));
 
         PdfPTable tablaVolObra = new PdfPTable(8);
@@ -1969,7 +1969,7 @@ class ReportesController {
         headers.add(new Paragraph(" "))
         headers.add(new Paragraph("TRÁMITES POR OBRA"))
         headers.add(new Paragraph(" "))
-        headers.add(new Paragraph("Quito, " + formatDate(date: new Date(), format: "dd-MM-yyyy"), times10bold));
+        headers.add(new Paragraph("Babahoyo, " + formatDate(date: new Date(), format: "dd-MM-yyyy"), times10bold));
 //        headers.add(new Paragraph(" ", times10bold));
 
 
@@ -2158,7 +2158,7 @@ class ReportesController {
         headerFecha.setAlignment(Element.ALIGN_RIGHT);
         addEmptyLine(headerFecha, 1);
         addEmptyLine(headerFecha, 1);
-        headerFecha.add(new Paragraph("Quito, " + printFecha(obra?.fechaOficioSalida), times13bold));
+        headerFecha.add(new Paragraph("Babahoyo, " + printFecha(obra?.fechaOficioSalida), times13bold));
         addEmptyLine(headerFecha, 1);
 
         Paragraph txtIzq = new Paragraph();
@@ -2963,7 +2963,7 @@ class ReportesController {
         headerFecha.setAlignment(Element.ALIGN_RIGHT);
         addEmptyLine(headerFecha, 1);
         addEmptyLine(headerFecha, 1);
-        headerFecha.add(new Paragraph("Quito, " + printFecha(obra?.fechaOficioSalida), times13bold));
+        headerFecha.add(new Paragraph("Babahoyo, " + printFecha(obra?.fechaOficioSalida), times13bold));
         addEmptyLine(headerFecha, 1);
 
         Paragraph txtIzq = new Paragraph();
@@ -3765,7 +3765,7 @@ class ReportesController {
         headerFecha.setAlignment(Element.ALIGN_RIGHT);
         addEmptyLine(headerFecha, 1);
         addEmptyLine(headerFecha, 1);
-        headerFecha.add(new Paragraph("Quito, " + printFecha(obra?.fechaOficioSalida), times13bold));
+        headerFecha.add(new Paragraph("Babahoyo, " + printFecha(obra?.fechaOficioSalida), times13bold));
         addEmptyLine(headerFecha, 1);
 
         Paragraph txtIzq = new Paragraph();
@@ -4571,7 +4571,7 @@ class ReportesController {
         tablaQuito.setWidths(arregloEnteros([4, 60]))
 
         addCellTabla(tablaQuito, new Paragraph(" ", times8bold), prmsHeaderHoja)
-        addCellTabla(tablaQuito, new Paragraph("Quito, " + printFecha(obra?.fechaOficioSalida), times10bold), prmsHeaderHoja)
+        addCellTabla(tablaQuito, new Paragraph("Babahoyo, " + printFecha(obra?.fechaOficioSalida), times10bold), prmsHeaderHoja)
 
         addCellTabla(tablaQuito, new Paragraph(" ", times8bold), prmsHeaderHoja)
         addCellTabla(tablaQuito, new Paragraph(" ", times8bold), prmsHeaderHoja)
