@@ -361,8 +361,6 @@ class ContratoController extends janus.seguridad.Shield {
 
         /** retorna el id  de la obra terminada en OF o la del cuncurso **/
         def obra = contrato.obra
-
-
         def fr = FormulaPolinomicaContractual.findAllByContrato(contrato)
 
         def fpB0
@@ -375,50 +373,6 @@ class ContratoController extends janus.seguridad.Shield {
             }
 
             copiaFpDesdeObra(contrato, true)  //true copia FP desde obra
-
-/*
-            def fpReajuste = FormulaPolinomicaReajuste.findByContrato(contrato)
-
-            if(fpReajuste == null){
-                def fprj = new FormulaPolinomicaReajuste(contrato: contrato,
-                        tipoFormulaPolinomica: tipo,
-                        descripcion: "Fórmula polinómica del contrato principal")
-                if(!fprj.save(flush: true)){
-                    println "error al crear la FP del contrato, errores: " + fprj.errors
-                } else {
-                    println "fprj creada pero sin fprj"
-                    fpReajuste =  fprj
-                }
-            }
-
-            fp.each {
-                if (it.valor > 0) ()def frpl = new FormulaPolinomicaContractual()
-                    frpl.valor = it.valor
-                    frpl.contrato = contrato
-                    frpl.indice = it.indice
-                    frpl.tipoFormulaPolinomica = tipo
-                    frpl.numero = it.numero
-                    frpl.reajuste = fpReajuste
-                    if (!frpl.save(flush: true)) {
-                        println "error frpl" + frpl.errors
-                    }
-                }
-            }
-
-            FormulaPolinomicaContractual.findAllByContrato(contrato).each { f ->
-                f.reajuste = fprj
-                f.save(flush: true)
-            }
-            println "fin de actualización de frpl"
-            // inserta valores en fpsp: FormulaSubpresupuesto
-            def sbpr = VolumenesObra.findAllByObra(obra, [sort: "orden"]).subPresupuesto.unique()
-            println "inserta fpsp, sbpr: $sbpr"
-            sbpr.each {
-                def fpsp = new FormulaSubpresupuesto(reajuste: fpReajuste, subPresupuesto: it)
-                fpsp.save(flush: true)
-            }
-*/
-
         }
 
         //return la tabla para editar
@@ -1333,9 +1287,12 @@ class ContratoController extends janus.seguridad.Shield {
         // inserta valores en fpsp: FormulaSubpresupuesto
         def sbpr = VolumenesObra.findAllByObra(cntr.obra, [sort: "orden"]).subPresupuesto.unique()
 //        println "inserta fpsp, sbpr: $sbpr"
-        sbpr.each {
-            def fpsp = new FormulaSubpresupuesto(reajuste: fpReajuste, subPresupuesto: it)
-            fpsp.save(flush: true)
+        def fpspInstance = FormulaSubpresupuesto.findByReajuste(fpReajuste)
+        if(!fpspInstance) {
+            sbpr.each {
+                def fpsp = new FormulaSubpresupuesto(reajuste: fpReajuste, subPresupuesto: it)
+                fpsp.save(flush: true)
+            }
         }
 
     }

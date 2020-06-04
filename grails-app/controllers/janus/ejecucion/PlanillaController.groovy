@@ -1096,7 +1096,7 @@ class PlanillaController extends janus.seguridad.Shield {
                 tiposTramite.each { tt ->
                     def dptoDe = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("DE"))
 //                    def dptoPara = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("PARA"))
-                    println "dptoDe: ${dptoDe?.departamento?.id} == ${obraDpto.id}"
+//                    println "dptoDe: ${dptoDe?.departamento?.id} == ${obraDpto.id}"
                     if (dptoDe?.departamento == obraDpto) {
 //                        println "SIP"
                         tipoTramite = tt
@@ -1199,7 +1199,7 @@ class PlanillaController extends janus.seguridad.Shield {
                     def tipoTramitePadre
                     tiposTramitePadre.each { tt ->
                         def dptoDe = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("DE"))
-                        println "dptode "+dptoDe +"   "+tt
+//                        println "dptode "+dptoDe +"   "+tt
 //                    def dptoPara = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("PARA"))
                         if (dptoDe?.departamento == obraDpto) {
 //                        println "SIP"
@@ -1282,7 +1282,7 @@ class PlanillaController extends janus.seguridad.Shield {
             def personas = Persona.findAllByDepartamento(rol.departamento)
 
             if (rol.rolTramite.codigo.trim() == especial.trim()) {
-                if(tipo == 3) {
+                if(tipo == "3") {
 //                    personas = [adminContrato]
                     personas = [director]
                 } else {
