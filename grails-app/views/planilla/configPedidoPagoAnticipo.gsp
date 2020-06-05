@@ -28,7 +28,7 @@
 
     <body>
         <div class="tituloTree">
-            Pedido de pago del anticipo de la obra ${obra.descripcion}
+            Pedido de pago del anticipo de la obra: ${obra.descripcion}
         </div>
 
         <div class="row" style="margin-bottom: 15px;">
@@ -63,11 +63,9 @@
             <g:form action="savePedidoPagoAnticipo" id="${planilla.id}" name="frmInicio" style="width: 1000px;">
                 <div class="alert alert-info info">
                     <i class="icon icon-info-sign icon-5x pull-left"></i>
-
                     <p>
-                        No se ha configurado el pedido de pago del anticipo. A continuación se presenta el texto por defecto. Realice las modifcaciones necesarias y haga cilck en el botón Guardar.
+                        * No se ha configurado el pedido de pago del anticipo. A continuación se presenta el texto por defecto. <br/> * Realice las modifcaciones necesarias y haga cilck en el botón <strong>Guardar</strong>.
                     </p>
-
                     <p>
                         <span style="font-size: larger; font-weight: bold;">Tenga en cuenta que una vez guardado no se podrá modificar.</span>
                     </p>
@@ -83,7 +81,7 @@
                                     <g:set var="i" value="${i + 1}"/>
                                 </g:if>
                                 <g:else>
-                                    ${elem.string}
+                                   <elm:poneHtml textoHtml="${elem.string}"/>
                                 </g:else>
                             </g:each>
                         </p>
@@ -92,12 +90,10 @@
                     <g:textArea name="extra" value="" style="width: 940px; height: 80px;"/>
                     <div class="row" style="margin-left: 5px">
                         <div style="width:80px;float: left">CC:</div>
-
                         <div style="width:300px;float: left">
                             <input type="text" name="copia" class="form-control ">
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
@@ -110,7 +106,6 @@
         <g:else>
             <div class="alert alert-info">
                 <i class="icon icon-info-sign icon-3x pull-left"></i>
-
                 <p>
                     El pedido de pago del anticipo ya se ha configurado por lo que no podrá ser modificado.
                 </p>
@@ -118,27 +113,22 @@
 
             <div class="well">
                 <p>
-                    ${texto.parrafo1}
+                    <elm:poneHtml textoHtml="${texto.parrafo1}"/>
                 </p>
-
                 <p>
-                    ${texto.parrafo2}
+                    <elm:poneHtml textoHtml="${texto.parrafo2}"/>
                 </p>
-
                 <p>
-                    ${texto.parrafo3}
+                    <elm:poneHtml textoHtml="${texto.parrafo3}"/>
                 </p>
-
                 <p>
-                    ${tabla}
+                    <elm:poneHtml textoHtml="${tabla}"/>
                 </p>
-
                 <p>
-                    ${texto.parrafo4}
+                    <elm:poneHtml textoHtml="${texto.parrafo4}"/>
                 </p>
-
                 <p>
-                    ${texto.parrafo5}
+                    <elm:poneHtml textoHtml="${texto.parrafo5}"/>
                 </p>
             </div>
         </g:else>
@@ -169,6 +159,5 @@
                 });
             });
         </script>
-
     </body>
 </html>
