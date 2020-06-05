@@ -1,5 +1,6 @@
 package janus.pac
 
+import grails.converters.deep.JSON
 import groovy.json.JsonBuilder
 import janus.Contrato
 import org.springframework.dao.DataIntegrityViolationException
@@ -94,10 +95,11 @@ class GarantiaController extends janus.seguridad.Shield {
                     estadoTxt: garantia.estado.descripcion,
                     estadoCdgo: garantia.estado.codigo,
                     estado: garantia.estadoId,
-                    padre: garantia.padre ? garantia.padre.codigo.trim() : "",
-                    observaciones: garantia.observaciones
+                    padre: garantia.padre ? garantia?.padre?.codigo?.trim() : "sin",
+                    observaciones: garantia.observaciones ?: "sin"
             ])
         }
+
         def json = new JsonBuilder(garantias)
 
         def estadosGarantia = EstadoGarantia.withCriteria {

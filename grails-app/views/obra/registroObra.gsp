@@ -567,7 +567,7 @@
 
             <div class="span2" style="width: 355px; margin-left: 10px;">Sitio
             %{--<div class="span4"><g:textField name="sitio" class="sitio" value="${obra?.sitio}" style="width: 200px; margin-left: 0px;" maxlength="63" title="Sitio urbano o rural"/></div>--}%
-            <g:textField style="width: 355px;margin-left:0px;" name="sitio" class="sitio" value="${obra?.sitio}" maxlength="63" title="Sitio urbano o rural"/>
+            <g:textField style="width: 355px;margin-left:0px;" name="sitio" class="sitio required" value="${obra?.sitio}" maxlength="63" title="Sitio urbano o rural"/>
             </div>
 
         </div>

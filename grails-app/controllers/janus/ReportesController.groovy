@@ -40,11 +40,11 @@ class ReportesController {
 
     def garantiasContrato() {
 //        println "reporte garantiasContrato $params"
+        def auxiliar = Auxiliar.get(1)
         def contrato = Contrato.get(params.id)
         def garantias = Garantia.findAllByContrato(contrato)
-        return [contrato: contrato, garantias: garantias]
+        return [contrato: contrato, garantias: garantias, auxiliar:auxiliar]
     }
-
 
     def rubro = {
         return [algo: "algo"]

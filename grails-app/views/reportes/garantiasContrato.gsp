@@ -77,14 +77,12 @@
 
             <div class="tituloPdf">
                 <p>
-                    <b style="font-size: 18px">G.A.D. LOS RÍOS</b>
+                    <b style="font-size: 18px">${auxiliar?.titulo ?: ''}</b>
                 </p>
-
-                <p style="font-size: 14px">
+                <p style="font-size: 14px;margin-top: -14px">
                     COORDINACIÓN DE COMPRAS PÚBLICAS
                 </p>
-
-                <p style="font-size: 14px">
+                <p style="font-size: 14px;margin-top: -14px">
                     GARANTÍAS DE CONTRATO
                 </p>
             </div>

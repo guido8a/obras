@@ -394,10 +394,11 @@
     }
 
     function rowsIniciales() {
-        var g = ${garantias};
+        var g = <elm:poneHtml textoHtml='${garantias}'/>;
         for (var i = 0; i < g.length; i++) {
             addRow(g[i], "last");
         }
+        console.log()
     }
 
     function reset() {
@@ -545,7 +546,6 @@
     }
 
     function addRow(data, position) {
-//                ////console.log("add row");
         var $tr = $("<tr></tr>").data(data).attr("id", data.id).addClass(data.estadoTxt).addClass(data.estadoCdgo).attr('etdo',data.estadoTxt);
         //Tipo  #   aseguradora     docu        estado      emision     vencimiento     monto
         var $tipo = $("<td class='tipoGarantiaTxt'></td>").text(data.tipoGarantiaTxt);
