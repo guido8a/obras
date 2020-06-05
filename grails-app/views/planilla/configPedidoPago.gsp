@@ -56,8 +56,8 @@
                     <i class="icon icon-info-sign icon-5x pull-left"></i>
 
                     <p>
-                        No se ha configurado el pedido de pago de la planilla. A continuación se presenta el texto por
-                        defecto. Realice las modifcaciones necesarias y haga cilck en el botón Guardar.
+                        * No se ha configurado el pedido de pago de la planilla. A continuación se presenta el texto por
+                        defecto. <br/> * Realice las modifcaciones necesarias y haga cilck en el botón Guardar.
                     </p>
 
                     <p>
@@ -76,7 +76,7 @@
                                     <g:set var="i" value="${i + 1}"/>
                                 </g:if>
                                 <g:else>
-                                    ${elem.string}
+                                    <elm:poneHtml textoHtml="${elem.string}"/>
                                 </g:else>
                             </g:each>
                         </p>
@@ -96,32 +96,32 @@
         <g:else>
             <div class="alert alert-info">
                 <i class="icon icon-info-sign icon-3x pull-left"></i>
-                <p>El pedido de pago de la planilla ya se ha configurado por lo que no podrá ser modificado.</p>
+                <p> * El pedido de pago de la planilla ya se ha configurado por lo que no podrá ser modificado.</p>
             </div>
 
             <div class="well">
                 <p>
-                    ${texto.parrafo1}
+                    <elm:poneHtml textoHtml="${texto.parrafo1}"/>
                 </p>
 
                 <p>
-                    ${texto.parrafo2}
+                    <elm:poneHtml textoHtml="${texto.parrafo2}"/>
                 </p>
 
                 <p>
-                    ${texto.parrafo3}
+                    <elm:poneHtml textoHtml="${texto.parrafo3}"/>
                 </p>
 
                 <p>
-                    ${tabla}
+                    <elm:poneHtml textoHtml="${tabla}"/>
                 </p>
 
                 <p>
-                    ${texto.parrafo4}
+                    <elm:poneHtml textoHtml="${texto.parrafo4}"/>
                 </p>
 
                 <p>
-                    ${texto.parrafo5}
+                    <elm:poneHtml textoHtml="${texto.parrafo5}"/>
                 </p>
             </div>
         </g:else>
