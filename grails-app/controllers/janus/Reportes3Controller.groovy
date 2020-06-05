@@ -52,11 +52,10 @@ class Reportes3Controller {
         def subPre
         def fechaNueva = obra?.fechaCreacionObra?.format("dd-MM-yyyy");
         def fechaPU = (obra?.fechaPreciosRubros?.format("dd-MM-yyyy"));
+        def auxiliar = Auxiliar.get(1);
 
         if (params.sub != '-1'){
-
             subPre= SubPresupuesto.get(params.sub).descripcion
-
         }else {
             subPre= -1
         }
@@ -81,7 +80,6 @@ class Reportes3Controller {
         }
 
         nombres.each {
-
             def text = (it ?: '')
 //        println "--------------------------------------------------------------"
 //        println text
@@ -100,36 +98,23 @@ class Reportes3Controller {
 //            text = text.replaceAll(/&gt;/,/>/ )
 
              corregidos += text
-
         }
 
-
         valores.eachWithIndex{ j,i->
-
-
             j.rbronmbr = corregidos[i]
-
         }
 
         valores.each {
             prueba += it.rbronmbr
-
         }
-
-//
-//        println("nombres" + nombres)
-//        println("corregidos" + corregidos)
-//        println("prueba" + prueba)
 
         def subPres = VolumenesObra.findAllByObra(obra, [sort: "orden"]).subPresupuesto.unique()
         def precios = [:]
         def indirecto = obra.totales / 100
         preciosService.ac_rbroObra(obra.id)
 
-        [detalle: detalle, precios: precios, subPres: subPres, subPre: subPre, obra: obra, indirectos: indirecto * 100, valores: valores, fechaNueva: fechaNueva, fechaPU: fechaPU, corregidos: corregidos]
-
+        [detalle: detalle, precios: precios, subPres: subPres, subPre: subPre, obra: obra, indirectos: indirecto * 100, valores: valores, fechaNueva: fechaNueva, fechaPU: fechaPU, corregidos: corregidos, auxiliar: auxiliar]
     }
-
 
     def imprimirTablaSubVae () {
         //        println "imprimir tabla sub "+params

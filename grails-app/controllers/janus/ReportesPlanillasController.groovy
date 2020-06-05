@@ -1043,7 +1043,7 @@ class ReportesPlanillasController {
 
         def monto = plnl.contrato.monto
         def cmpl = Contrato.findByPadre(plnl.contrato)
-        monto += cmpl.monto
+        monto += (cmpl?.monto ?: 0)
 
         if (!params.id) {
             flash.message = "No se puede mostrar el reporte de avance sin seleccionar un contrato."
@@ -1088,7 +1088,7 @@ class ReportesPlanillasController {
         def prej = PeriodoEjecucion.findAllByObra(obra, [sort: 'fechaInicio', order: "asc"])
 
         def anticipoDescontado = planillasAvance.sum { it.descuentos } ?: 0
-        def prctAnticipo = 100 * anticipoDescontado / (contrato.anticipo + cmpl.anticipo);
+        def prctAnticipo = 100 * anticipoDescontado / (contrato.anticipo + (cmpl?.anticipo ?: 0));
 
         def detalles = VolumenContrato.findAllByObra(obra, [sort: "volumenOrden"])
         def crej = CrngEjecucionObra.withCriteria {
@@ -1184,10 +1184,10 @@ class ReportesPlanillasController {
         addCellTabla(tablaGeneralidades, new Paragraph(contrato.codigo, fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
         addCellTabla(tablaGeneralidades, new Paragraph("MONTO DEL CONTRATO COMPLEMENTARIO" + '$.', fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-        addCellTabla(tablaGeneralidades, new Paragraph(numero(cmpl.monto, 2), fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaGeneralidades, new Paragraph(numero((cmpl?.monto ?: 0), 2), fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
         addCellTabla(tablaGeneralidades, new Paragraph("NÚMERO CONTRATO COMPLEMENTARIO", fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-        addCellTabla(tablaGeneralidades, new Paragraph(cmpl.codigo, fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaGeneralidades, new Paragraph(cmpl?.codigo ?: '', fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
         addCellTabla(tablaGeneralidades, new Paragraph("MODALIDAD", fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
         addCellTabla(tablaGeneralidades, new Paragraph(contrato.tipoContrato.descripcion + " y Complementario", fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
@@ -1215,10 +1215,10 @@ class ReportesPlanillasController {
         addCellTabla(tablaDetalle, new Paragraph("2.- DETALLE DE PLAZOS", fontTitle), [padding: 3, pb: 5, border: Color.WHITE, bg: Color.LIGHT_GRAY, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 4])
 
         addCellTabla(tablaDetalle, new Paragraph("PLAZO CONTRACTUAL PRINCIPAL", fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-        addCellTabla(tablaDetalle, new Paragraph(numero(contrato.plazo - cmpl.plazo, 0) + " DÍAS CALENDARIO", fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 3])
+        addCellTabla(tablaDetalle, new Paragraph(numero(contrato.plazo - (cmpl?.plazo ?: 0), 0) + " DÍAS CALENDARIO", fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 3])
 
         addCellTabla(tablaDetalle, new Paragraph("PLAZO CONTRATO COMPLEMENTARIO", fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-        addCellTabla(tablaDetalle, new Paragraph(numero(cmpl.plazo, 0) + " DÍAS CALENDARIO", fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 3])
+        addCellTabla(tablaDetalle, new Paragraph(numero((cmpl?.plazo ?: 0), 0) + " DÍAS CALENDARIO", fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 3])
 
         addCellTabla(tablaDetalle, new Paragraph("FECHA TRÁMITE ANTICIPO", fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
         addCellTabla(tablaDetalle, new Paragraph(fechaConFormato(planillaAnticipo.fechaOficioEntradaPlanilla, formatoFechasTabla), fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
@@ -1281,7 +1281,7 @@ class ReportesPlanillasController {
         addCellTabla(tablaEvaluacion, new Paragraph("3.- EVALUACIÓN DEL AVANCE FÍSICO", fontTitle), [padding: 3, pb: 5, border: Color.WHITE, bg: Color.LIGHT_GRAY, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 3])
 
         addCellTabla(tablaEvaluacion, new Paragraph("VALOR DEL ANTICIPO", fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-        addCellTabla(tablaEvaluacion, new Paragraph(numero(contrato.anticipo + cmpl.anticipo, 2) + ' $', fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaEvaluacion, new Paragraph(numero(contrato.anticipo + (cmpl?.anticipo ?: 0), 2) + ' $', fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
         addCellTabla(tablaEvaluacion, new Paragraph(numero(contrato.porcentajeAnticipo, 2) + '%', fontTd), [border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
         addCellTabla(tablaEvaluacion, new Paragraph("ANTICIPO DESCONTADO", fontTh), [pl: 20, border: Color.BLACK, bcl: Color.WHITE, bwl: 0.1, bcr: Color.WHITE, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])

@@ -2029,7 +2029,7 @@ class ReportesController {
 
 
     def reporteDocumentosObra() {
-        println "*****--->reporteDocumentosObra: $params"
+//        println "*****--->reporteDocumentosObra: $params"
 
         def cd
         def auxiliar = janus.Auxiliar.get(1);
@@ -2140,11 +2140,9 @@ class ReportesController {
         addEmptyLine(headers, 1);
         headers.setAlignment(Element.ALIGN_CENTER);
         headers.add(new Paragraph(auxiliar.titulo, times14bold));
-//        addEmptyLine(headers, 1);
         if(session.perfil.id == 16){
             headers.add(new Paragraph(obra?.departamento?.codigo + " - Presupuesto borrador", times10bold));
         }else{
-//            headers.add(new Paragraph("DGCP - Coordinación de Fijación de Precios Unitarios", times12bold));
             headers.add(new Paragraph(auxiliar?.memo1, times12bold));
         }
 
