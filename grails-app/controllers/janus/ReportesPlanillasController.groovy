@@ -3255,7 +3255,7 @@ class ReportesPlanillasController {
         addCellTabla(tablaDatosObra, new Paragraph(obra.nombre, fontTdHeaderGris), [bg: bgObra, border: bgObra, bct: Color.BLACK, bwt: 0.1, bcr: Color.BLACK, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 4])
 
         addCellTabla(tablaDatosObra, new Paragraph("Lugar", fontThHeaderGris), [bg: bgObra, border: bgObra, bcl: Color.BLACK, bwl: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-        addCellTabla(tablaDatosObra, new Paragraph(obra.barrio, fontTdHeaderGris), [bg: bgObra, border: bgObra, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 2])
+        addCellTabla(tablaDatosObra, new Paragraph(obra?.sitio ?: '', fontTdHeaderGris), [bg: bgObra, border: bgObra, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 2])
 //        addCellTabla(tablaDatosObra, new Paragraph("", fontThHeaderGris), [bg: bgObra, border: bgObra, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
         addCellTabla(tablaDatosObra, new Paragraph("Planilla", fontThHeaderGris), [bg: bgObra, border: bgObra, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
@@ -3543,7 +3543,7 @@ class ReportesPlanillasController {
         addCellTabla(tablaDatosObra, new Paragraph(obra.nombre, fontTdHeaderGris), [bg: bgObra, border: bgObra, bct: Color.BLACK, bwt: 0.1, bcr: Color.BLACK, bwr: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 4])
 
         addCellTabla(tablaDatosObra, new Paragraph("Lugar", fontThHeaderGris), [bg: bgObra, border: bgObra, bcl: Color.BLACK, bwl: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-        addCellTabla(tablaDatosObra, new Paragraph((obra.lugar?.descripcion ?: ""), fontTdHeaderGris), [bg: bgObra, border: bgObra, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+        addCellTabla(tablaDatosObra, new Paragraph((obra?.sitio ?: ""), fontTdHeaderGris), [bg: bgObra, border: bgObra, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
         addCellTabla(tablaDatosObra, new Paragraph("", fontThHeaderGris), [bg: bgObra, border: bgObra, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
 //        addCellTabla(tablaDatosObra, new Paragraph("Planilla", fontThHeaderGris), [bg: bgObra, border: bgObra, bcl: Color.BLACK, bwl: 0.1, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
