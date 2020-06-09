@@ -19,13 +19,21 @@ environments {
     development {
         dataSource {
             dbCreate = "update"
-//            url = "jdbc:postgresql://192.168.100.9:5432/casa"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr"
-            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_prba"
+//            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_prba"
+//            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_simul"
+            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_sm2"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_brre1"
-//            url = "jdbc:postgresql://192.168.100.9:5432/casa_prba"
             username = "postgres"
             password = "postgres"
+        }
+        dataSource_oferentes {
+            dialect = org.hibernate.dialect.PostgreSQLDialect
+            driverClassName = 'org.postgresql.Driver'
+            username = 'postgres'
+            password = 'postgres'
+            url = 'jdbc:postgresql://127.0.0.1:5432/oferentes'
+            dbCreate = 'update'
         }
     }
     test {
@@ -63,6 +71,15 @@ environments {
                defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
             }
         }
+
+        dataSource_oferentes {
+            dialect = org.hibernate.dialect.PostgreSQLDialect
+            driverClassName = 'org.postgresql.Driver'
+            url = "jdbc:postgresql://127.0.0.1:5432/oferentes"
+            username = "postgres"
+            password = "januslr"
+            dbCreate = 'update'
+        }
     }
     pruebas {
         dataSource {
@@ -90,6 +107,15 @@ environments {
                jdbcInterceptors = "ConnectionState"
                defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
             }
+        }
+
+        dataSource_oferentes {
+            dialect = org.hibernate.dialect.PostgreSQLDialect
+            driverClassName = 'org.postgresql.Driver'
+            url = "jdbc:postgresql://127.0.0.1:5432/oferentes"
+            username = "postgres"
+            password = "januslr"
+            dbCreate = 'update'
         }
     }
 }
