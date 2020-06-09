@@ -3819,7 +3819,7 @@ class ReportesPlanillasController {
 
             // headers and footers must be added before the document is opened
             HeaderFooter footer1 = new HeaderFooter(
-                    new Phrase("Dirección Calle N. 13-45 y Calle N. 2 / Teléfonos troncal: (000-2)252 0000 - 000 0000 / www.prueba.gob.ec", new Font(times8normal)), false);
+                    new Phrase("Av. Universitaria (4ta) y Clemente Baquerizo (calle 35) #0401 - Telf: (05)3701625 - Los Ríos - Ecuador", new Font(times8normal)), false);
             // true aqui pone numero de pagina
             footer1.setBorder(Rectangle.NO_BORDER);
             footer1.setBorder(Rectangle.TOP);
