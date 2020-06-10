@@ -8,7 +8,7 @@
 
     %{--<g:select id="fiscalizador" name="fiscalizador.id" from="${janus.Persona.findAllByActivo(1, [sort: 'apellido'])}"--}%
     <g:select id="fiscalizador" name="fiscalizador.id" from="${janus.Persona.findAllByActivoAndDepartamentoInList(1,
-            janus.Departamento.findAllByCodigoInList(['FISC', 'DFZLAB', 'DFZCCO', 'DGFDIA', 'DGFDV']), [sort: 'apellido'])}"
+            janus.Departamento.findAllByCodigoInList(['FISC', 'DFZLAB', 'DFZCCO', 'DGFDIA', 'DGFDV', 'DGRPRS']), [sort: 'apellido'])}"
               optionKey="id" class="many-to-one required" optionValue="${{ it.apellido + ' ' + it.nombre }}"
               noSelection="['null': 'Seleccione ...']" style="width:300px; margin-right: 20px;"/>
     Desde: <elm:datepicker value="${new Date()}" name="desde" class="input-small"/>

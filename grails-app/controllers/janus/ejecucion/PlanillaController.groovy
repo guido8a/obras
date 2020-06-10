@@ -1154,6 +1154,7 @@ class PlanillaController extends janus.seguridad.Shield {
                     eq("rolTramite", RolTramite.findByCodigo("DE"))
                     eq("departamento", obraDpto)
                 }
+                println "tipoTramite: ${tipoTramite.id}, rolTramite: ${RolTramite.findByCodigo("PARA").id}, departamento: ${dptoDirFinanciera.id}"
                 def dPara = DepartamentoTramite.withCriteria {
                     eq("tipoTramite", tipoTramite)
                     eq("rolTramite", RolTramite.findByCodigo("PARA"))
