@@ -120,7 +120,8 @@ class ReportesPlanillasController {
         def indirecto = obra.totales / 100
         preciosService.ac_rbroObra(obra.id)
         def detalles = [:]
-        def volumenes = VolumenesObra.findAllByObra(obra, [sort: "item"])
+//        def volumenes = VolumenesObra.findAllByObra(obra, [sort: "item"])
+        def volumenes = VolumenContrato.findAllByObra(obra, [sort: "item"])
 
         volumenes.each { vol ->
             vol.refresh()
@@ -145,16 +146,17 @@ class ReportesPlanillasController {
                         ]
                 ]
             }
-            detalles[vol.item].cantidad.contratado += vol.cantidad
-            detalles[vol.item].valor.contratado += ((vol.cantidad * precio).toDouble().round(2))
+            detalles[vol.item].cantidad.contratado += vol.volumenCantidad
+            detalles[vol.item].valor.contratado += ((vol.volumenCantidad * precio).toDouble().round(2))
         }
 
         planillasAvance.each { pla ->
-            def det = DetallePlanilla.findAllByPlanilla(pla)
+//            def det = DetallePlanilla.findAllByPlanilla(pla)
+            def det = DetallePlanillaEjecucion.findAllByPlanilla(pla)
             det.each { dt ->
-                if (detalles[dt.volumenObra.item]) {
-                    detalles[dt.volumenObra.item].cantidad.ejecutado += dt.cantidad
-                    detalles[dt.volumenObra.item].valor.ejecutado += dt.monto
+                if (detalles[dt.volumenContrato.item]) {
+                    detalles[dt.volumenContrato.item].cantidad.ejecutado += dt.cantidad
+                    detalles[dt.volumenContrato.item].valor.ejecutado += dt.monto
                 } else {
                     println "no existe detalle para " + dt.volumenObra.item + "???"
                 }
@@ -163,17 +165,17 @@ class ReportesPlanillasController {
 
         def baos = new ByteArrayOutputStream()
         def name = "diferencias_" + new Date().format("ddMMyyyy_hhmm") + ".pdf";
-        Font fontTituloGad = new Font(Font.TIMES_ROMAN, 12, Font.BOLD);
-        Font info = new Font(Font.TIMES_ROMAN, 10, Font.NORMAL)
+        com.lowagie.text.Font fontTituloGad = new com.lowagie.text.Font(com.lowagie.text.Font.TIMES_ROMAN, 12, com.lowagie.text.Font.BOLD);
+        com.lowagie.text.Font info = new com.lowagie.text.Font(com.lowagie.text.Font.TIMES_ROMAN, 10, com.lowagie.text.Font.NORMAL)
 
-        Font fontTh = new Font(Font.TIMES_ROMAN, 8, Font.BOLD);
-        Font fontTd = new Font(Font.TIMES_ROMAN, 8, Font.NORMAL);
-        Font fontNombre = new Font(Font.TIMES_ROMAN, 7, Font.NORMAL);
+        com.lowagie.text.Font fontTh = new com.lowagie.text.Font(com.lowagie.text.Font.TIMES_ROMAN, 8, com.lowagie.text.Font.BOLD);
+        com.lowagie.text.Font fontTd = new com.lowagie.text.Font(com.lowagie.text.Font.TIMES_ROMAN, 8, com.lowagie.text.Font.NORMAL);
+        com.lowagie.text.Font fontNombre = new com.lowagie.text.Font(com.lowagie.text.Font.TIMES_ROMAN, 7, com.lowagie.text.Font.NORMAL);
 
         def prmsTdNoBorder = [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE]
 
-        Font fontThHeader = new Font(Font.TIMES_ROMAN, 10, Font.BOLD);
-        Font fontTdHeader = new Font(Font.TIMES_ROMAN, 10, Font.NORMAL);
+        com.lowagie.text.Font fontThHeader = new com.lowagie.text.Font(com.lowagie.text.Font.TIMES_ROMAN, 10, com.lowagie.text.Font.BOLD);
+        com.lowagie.text.Font fontTdHeader = new com.lowagie.text.Font(com.lowagie.text.Font.TIMES_ROMAN, 10, com.lowagie.text.Font.NORMAL);
 
         def formatoFechasTabla = "dd-MM-yyyy"
 
@@ -203,7 +205,7 @@ class ReportesPlanillasController {
         Paragraph preface = new Paragraph();
         addEmptyLine(preface, 1);
         preface.setAlignment(Element.ALIGN_CENTER);
-        preface.add(new Paragraph((Auxiliar.get(1)?.titulo ?: ''), fontTituloGad));
+        preface.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", fontTituloGad));
         preface.add(new Paragraph("Cuadro de diferencias de volúmenes entre contratados y ejecutados", fontTituloGad));
         addEmptyLine(preface, 1);
         Paragraph preface2 = new Paragraph();
@@ -223,7 +225,7 @@ class ReportesPlanillasController {
         addCellTabla(tablaHeaderPlanilla, new Paragraph(obra.nombre, fontTdHeader), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 4])
 
         addCellTabla(tablaHeaderPlanilla, new Paragraph("Lugar", fontThHeader), prmsTdNoBorder)
-        addCellTabla(tablaHeaderPlanilla, new Paragraph((obra?.sitio ?: ""), fontTdHeader), prmsTdNoBorder)
+        addCellTabla(tablaHeaderPlanilla, new Paragraph((obra.lugar?.descripcion ?: ""), fontTdHeader), prmsTdNoBorder)
         addCellTabla(tablaHeaderPlanilla, new Paragraph("", fontThHeader), prmsTdNoBorder)
         addCellTabla(tablaHeaderPlanilla, new Paragraph("", fontThHeader), prmsTdNoBorder)
         addCellTabla(tablaHeaderPlanilla, new Paragraph("", fontTdHeader), prmsTdNoBorder)
