@@ -17,7 +17,7 @@ class Reportes5Controller extends Shield{
 
     def dbConnectionService
     def preciosService
-//    def reportesService
+    def reportesService
 
     def meses = ['', "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
