@@ -72,7 +72,7 @@
 <g:if test="${flash.message}">
     <div class="alert alert-info" role="status">
         <a class="close" data-dismiss="alert" href="#">×</a>
-        ${flash.message}
+        <elm:poneHtml textoHtml="${flash.message}"/>
     </div>
 </g:if>
 
@@ -120,7 +120,7 @@
                 <g:if test="${flash.message}">
                     <div class="alert alert-info" role="status">
                         <a class="close" data-dismiss="alert" href="#">×</a>
-                        ${flash.message}
+                        <elm:poneHtml textoHtml="${flash.message}"/>
                     </div>
                 </g:if>
 

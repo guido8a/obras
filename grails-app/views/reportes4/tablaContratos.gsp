@@ -10,7 +10,7 @@
     <div class="span12" style="height: 35px;margin-bottom: 10px; margin-left: -25px">
         <div class="alert ${flash.clase ?: 'alert-info'}" role="status" style="text-align: center">
             <a class="close" data-dismiss="alert" href="#">×</a>
-            ${flash.message}
+            <elm:poneHtml textoHtml="${flash.message}"/>
         </div>
     </div>
 </g:if>

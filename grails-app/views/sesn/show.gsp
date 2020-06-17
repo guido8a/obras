@@ -25,7 +25,9 @@
 
     <div class="body">
         <g:if test="${flash.message}">
-            <div class="message ui-state-highlight ui-corner-all">${flash.message}</div>
+            <div class="message ui-state-highlight ui-corner-all">
+                <elm:poneHtml textoHtml="${flash.message}"/>
+            </div>
         </g:if>
         <div>
 

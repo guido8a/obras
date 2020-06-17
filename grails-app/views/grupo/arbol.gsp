@@ -33,7 +33,7 @@
     <div class="span12">
         <div class="alert ${flash.clase ?: 'alert-info'}" role="status">
             <a class="close" data-dismiss="alert" href="#">×</a>
-            ${flash.message}
+            <elm:poneHtml textoHtml="${flash.message}"/>
         </div>
     </div>
 </g:if>
