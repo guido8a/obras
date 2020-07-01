@@ -382,7 +382,7 @@
                         %{--<div id="cols" style="float: left;">--}%
 
                         <g:set var="minHour" value="${8}"/>
-                        <g:set var="maxHour" value="${17}"/>
+                        <g:set var="maxHour" value="${20}"/>
                         <g:set var="stepMin" value="${10}"/>
 
                         <div class="row">
@@ -395,7 +395,9 @@
                                     </div>
 
                                     <div class="controls">
-                                        <elm:datetimepicker showTime="false" name="fechaPublicacion" class="" value="${concursoInstance?.fechaPublicacion}" controlType="select" minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
+                                        <elm:datetimepicker showTime="false" name="fechaPublicacion" class=""
+                                          value="${concursoInstance?.fechaPublicacion}" controlType="select"
+                                          minHour="${minHour}" maxHour="${maxHour}" stepMinute="${stepMin}"/>
                                         <p class="help-block ui-helper-hidden"></p>
                                     </div>
                                 </div>
