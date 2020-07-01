@@ -595,6 +595,13 @@ class ConcursoController extends janus.seguridad.Shield {
             concursoInstance = new Concurso(params)
         } //es create
 
+        if(params.costoBases) {
+            concursoInstance.costoBases = params.costoBases.toDouble()
+        }
+        if(params.costoBases) {
+            concursoInstance.porMilBases = params.porMilBases.toDouble()
+        }
+
 
         if (!concursoInstance.save(flush: true)) {
             println "errores concurso " + concursoInstance.errors
