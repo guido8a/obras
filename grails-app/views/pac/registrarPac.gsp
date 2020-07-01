@@ -263,7 +263,7 @@
                                 if ($("#frmSave-presupuestoInstance").valid()) {
                                     btnSave.replaceWith(spinner);
                                 }
-                                $.ajax({type : "POST", url : "${g.createLink(controller: 'presupuesto',action:'saveAjax')}",
+                                $.ajax({type : "POST", url : "${g.createLink(controller:'presupuesto', action:'saveAjax')}",
                                     data     : $("#frmSave-presupuestoInstance").serialize(),
                                     success  : function (msg) {
 
@@ -400,7 +400,7 @@
                             }
                         });
                     } else {
-                        $.ajax({type : "POST", url : "${g.createLink(controller: 'pac',action:'regPac')}",
+                        $.ajax({type : "POST", url : "${g.createLink(controller: 'pac', action:'regPac')}",
                             data     : {
                                 "departamento.id"      : dpto,
                                 "anio.id"              : anio,

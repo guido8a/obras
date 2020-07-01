@@ -394,7 +394,7 @@
     }
 
     function rowsIniciales() {
-        var g = <elm:poneHtml textoHtml='${garantias}'/>;
+        var g = <elm:poneHtml textoHtml='${garantias}'/>
         for (var i = 0; i < g.length; i++) {
             addRow(g[i], "last");
         }

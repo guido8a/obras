@@ -464,7 +464,7 @@ class PacController extends janus.seguridad.Shield {
 
 
     def regPac() {
-//        println params
+        println "regPac: $params"
 
         def pac
         if (params.id != "" && params.id)
@@ -472,12 +472,12 @@ class PacController extends janus.seguridad.Shield {
         else
             pac = new Pac()
         pac.properties = params
+        pac.cantidad = params.cantidad.toDouble()
+        pac.costo = params.costo.toDouble()
         if (!pac.save(flush: true))
             println "errors " + pac.errors
         else
             render "ok"
-
-
     }
 
     def eliminarPac() {
