@@ -1297,12 +1297,13 @@ class MantenimientoItemsController extends Shield {
         def b = precioAnt
 
         def ap = b * 12 * 0.1215
-        ap = new DecimalFormat("#.##").format(ap).toDouble()
+//        ap = new DecimalFormat("#.##").format(ap).toDouble()
         def ta = 14 * b + u + ap
         def jr = ta / 235
 
         def nuevoCosto = jr / 8
-        nuevoCosto = new DecimalFormat("#.##").format(nuevoCosto).toDouble()
+//        nuevoCosto = new DecimalFormat("#.##").format(nuevoCosto).toDouble()
+        nuevoCosto = nuevoCosto.toDouble()
 
         return nuevoCosto
     }
