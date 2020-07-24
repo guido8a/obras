@@ -45,6 +45,9 @@ class BuscadorTagLib {
     }
 
     def buscador = {atr ->
+
+        println("atr " + atr)
+
         def name = atr.name ? atr.name : " "
         def value = atr.value
         def campos
@@ -151,6 +154,8 @@ class BuscadorTagLib {
         salida += ' $("#buscarDialog").click();'
         salida += ' }'
         salida += '});'
+
+
 
 
         salida += '</script>'

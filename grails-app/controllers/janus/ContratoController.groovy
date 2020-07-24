@@ -6,7 +6,6 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ContratoController extends janus.seguridad.Shield {
 
-
     def buscadorService
     def preciosService
     def dbConnectionService
@@ -707,7 +706,7 @@ class ContratoController extends janus.seguridad.Shield {
 
     def buscarContrato2() {
 
-//        println "buscar contrato 2 " + params
+        println "buscar contrato 2 " + params
 
         def extraObra = ""
         if (params.campos instanceof java.lang.String) {
@@ -807,7 +806,7 @@ class ContratoController extends janus.seguridad.Shield {
             }
         }
 
-//        println "extra obra "+extraObra
+        println "extra obra "+extraObra
 
         def codObra = { contrato ->
             return contrato?.oferta?.concurso?.obra?.codigo

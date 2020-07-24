@@ -14,9 +14,9 @@ import java.awt.*
 
 //import java.awt.Label
 
+
 //class ReportesController extends Shield {
 class ReportesController {
-
 
     def index() {
 
@@ -6787,7 +6787,6 @@ class ReportesController {
         response.setHeader("Content-disposition", "attachment; filename=" + name)
         response.setContentLength(b.length)
         response.getOutputStream().write(b)
-
 
     }
 
