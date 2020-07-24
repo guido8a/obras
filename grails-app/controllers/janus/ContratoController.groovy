@@ -6,6 +6,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ContratoController extends janus.seguridad.Shield {
 
+
     def buscadorService
     def preciosService
     def dbConnectionService

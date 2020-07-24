@@ -14,9 +14,9 @@ import java.awt.*
 
 //import java.awt.Label
 
-
 //class ReportesController extends Shield {
 class ReportesController {
+
 
     def index() {
 

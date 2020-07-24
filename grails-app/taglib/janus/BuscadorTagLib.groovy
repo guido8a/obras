@@ -153,8 +153,6 @@ class BuscadorTagLib {
         salida += '});'
 
 
-
-
         salida += '</script>'
 
         return salida

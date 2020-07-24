@@ -30,7 +30,7 @@ class PdfService {
 
         FontFactory.registerDirectories();
 
-        String html_file = new File("/home/guido/tmp/rubro.html").toURI().toURL().toString()
+//        String html_file = new File("/home/guido/tmp/rubro.html").toURI().toURL().toString()
 
         def pf = pathFonts + "${g.resource(dir: 'fonts/PT/PT_Sans')}/"
         def font = pf + "PT_Sans-Web-Regular.ttf"
