@@ -499,14 +499,17 @@ class ObraController extends janus.seguridad.Shield {
         if (params.obra) {
             obra = Obra.get(params.obra)
 //            cn.eachRow("select distinct sbpr__id from mfrb where obra__id = ${obra.id} order by sbpr__id".toString()) { d ->
-            sql = "SELECT distinct sbpr__id FROM vlobitem WHERE obra__id = ${obra.id}"
+            sql = "SELECT distinct sbpr__id FROM vlobitem WHERE obra__id = ${obra.id} order by 1"
             println "sql: $sql"
             cn.eachRow(sql.toString()) { d ->
-                if(d.sbpr__id == 0)
+                if(d.sbpr__id == 0) {
                     sbprMF << ["0" : 'Todos los subpresupuestos']
-                else
+                } else {
                     sbprMF << ["${d.sbpr__id}" : SubPresupuesto.get(d.sbpr__id).descripcion]
+                }
+//                println "sbprMF: ${sbprMF}"
             }
+
 
 //            def subs = VolumenesObra.findAllByObra(obra, [sort: "orden"]).subPresupuesto.unique()
             def subs = VolumenesObra.findAllByObra(obra).subPresupuesto.unique().sort{it.id}
@@ -539,6 +542,7 @@ class ObraController extends janus.seguridad.Shield {
             duenoObra = esDuenoObra(obra) ? 1 : 0
 
             println "dueÑo: $duenoObra, concurso: $concurso"
+//            println "sbprMF: ${sbprMF}"
 
             [campos: campos, prov: prov, obra: obra, subs: subs, persona: persona, formula: formula, volumen: volumen,
              matrizOk: matrizOk, verif: verif, verifOK: verifOK, perfil: perfil, programa: programa, tipoObra: tipoObra,
