@@ -1,6 +1,8 @@
 package janus.pac
 
 import janus.*
+import janus.ejecucion.PeriodosInec
+import janus.ejecucion.ValorIndice
 import org.springframework.dao.DataIntegrityViolationException
 
 class CronogramaContratoController extends janus.seguridad.Shield {
@@ -625,5 +627,127 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         }
 
     }
+
+
+    def editarVocr() {
+        println "--> $params"
+        def sbpr = []
+        def sql = "select distinct sbpr__id from vocr where cntr__id = ${params.id}"
+        def cn = dbConnectionService.getConnection()
+        cn.eachRow(sql.toString()) { d ->
+            sbpr.add( SubPresupuesto.get(d.sbpr__id) )
+        }
+        [subpresupuestos: sbpr, cntr: params.id]
+    }
+
+    def tablaValores() {
+        def cn = dbConnectionService.getConnection()
+        def cn1 = dbConnectionService.getConnection()
+        def suma = 0
+        def totl = ""
+        println params
+
+        def sqlTx = "select vocr__id id, itemnmbr, unddcdgo, vocrcntd, vocrpcun, vocrsbtt from vocr, item, undd " +
+                "where item.item__id = vocr.item__id and undd.undd__id = item.undd__id and " +
+                "cntr__id = ${params.cntr} "
+        if(params.sbpr != '0') {
+            sqlTx += "and sbpr__id = ${params.sbpr} order by vocrordn"
+        } else {
+            sqlTx += "order by vocrordn"
+        }
+
+        def txValor = ""
+        def editar = ""
+        println sqlTx
+
+        def html = "<table class=\"table table-bordered table-striped table-hover table-condensed\" id=\"tablaPrecios\">"
+        html += "<thead>"
+        html += "<tr>"
+        html += "<th>Indice_id</th>"
+        html += "<th>Nombre del Indice</th>"
+        html += "<th>Cantidad</th>"
+        html += "<th>Precio</th>"
+        html += "<th>Parcial</th>"
+
+        def body = ""
+        cn.eachRow(sqlTx.toString()) { d ->
+            body += "<tr>"
+            body += "<td>${d.id}</td>"
+            body += "<td>${d.itemnmbr}</td>"
+
+            def sbtt = ""
+                editar = "editable"
+                sbtt = g.formatNumber(number: d.vocrsbtt, maxFractionDigits: 2, minFractionDigits: 2, format: "##,##0", locale: "ec")
+                body += "<td class='${editar} number' data-original='${d.vocrcntd}' data-cmpo='vocrcntd' " +
+                        "data-id='${d.id}' data-valor='${d.vocrcntd}'>" + d.vocrcntd + '</td>'
+                body += "<td class='${editar} number' data-original='${d.vocrpcun}' data-cmpo='vocrpcun' " +
+                        "data-id='${d.id}' data-valor='${d.vocrpcun}'>" + d.vocrpcun + '</td>'
+                body += "<td style='text-align:center' id=tt${d.id}>${sbtt}</td>"
+
+            suma += d.vocrsbtt
+        }
+        html += "</tr>"
+        html += "</thead>"
+        html += "<tbody>"
+        //println html
+
+        cn.close()
+        cn1.close()
+        html += body
+
+        totl = g.formatNumber(number: suma, maxFractionDigits: 2, minFractionDigits: 2, format: "##,##0", locale: "ec")
+        html += "<tr style='font-weight: bolder' class='text-info'><td colspan='4'>Total</td><td>${totl}</td></tr>"
+
+        html += "</tbody>"
+        html += "</table>"
+        //println html
+        [html: html]
+    }
+
+
+    def actualizaVlin() {
+        println "actualizaVlin: " + params
+//        println("clase " + params?.item?.class)
+        //formato de id:###/new _ prin _ indc _ valor
+        if(params?.item?.class == java.lang.String) {
+            params?.item = [params?.item]
+        }
+
+        def oks = "", nos = ""
+
+        params.item.each {
+//            println "Procesa: " + it
+
+            def vlor = it.split("_")
+            println "vlor: ${vlor}"
+            def vocr = VolumenContrato.get(vlor[0].toInteger())
+
+            if(vlor[1] == 'vocrcntd') {
+                vocr.volumenCantidad = vlor[2].toDouble()
+                println "cantidad: ${vocr.item.nombre} --> ${vlor[2]}"
+            } else {
+                vocr.volumenPrecio = vlor[2].toDouble()
+                println "precio: ${vocr.item.nombre} --> ${vlor[2]}"
+            }
+
+            vocr.volumenSubtotal = vocr.volumenCantidad * vocr.volumenPrecio
+
+            if (!vocr.save(flush: true)) {
+                println "error: " + vlor
+                if (nos != "") {
+                    nos += ","
+                }
+                nos += "#" + vlor[0]
+            } else {
+                if (oks != "") {
+                    oks += ","
+                }
+                oks += "#" + vlor[0]
+            }
+        }
+
+        render "ok"
+    }
+
 
 } //fin controller

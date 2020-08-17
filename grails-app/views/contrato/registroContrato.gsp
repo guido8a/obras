@@ -34,6 +34,9 @@
     .comple{
         background-color: #254897;
     }
+    .contratado{
+        background-color: #3d9794;
+    }
 
     .adm{
         background-color: #4341c9;
@@ -514,6 +517,12 @@
                             </a>
                         </li>
                     </g:if>
+                    <li>
+                        <g:link class="contratado" controller="cronogramaContrato" action="editarVocr" id="${contrato?.id}"
+                                title="Nuevo Cronograma Contrato Complementario">
+                            <i class="icon-th"></i> Valores Contratados
+                        </g:link>
+                    </li>
                     <li>
                         <g:link class="comple" controller="cronogramaContrato" action="nuevoCronograma" id="${contrato?.id}"
                                 title="Nuevo Cronograma Contrato Complementario">

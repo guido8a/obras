@@ -50,11 +50,11 @@
 
 
         <!-- Le fav and touch icons -->
-        <link rel="shortcut icon" href="${resource(dir: 'images/ico', file: 'janus_16.png')}">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${resource(dir: 'images/ico', file: 'janus_144.png')}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${resource(dir: 'images/ico', file: 'janus_114.png')}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${resource(dir: 'images/ico', file: 'janus_72.png')}">
-        <link rel="apple-touch-icon-precomposed" href="${resource(dir: 'images/ico', file: 'janus_57.png')}">
+        %{--<link rel="shortcut icon" href="${resource(dir: 'images/ico', file: 'janus_16.png')}">--}%
+        %{--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="${resource(dir: 'images/ico', file: 'janus_144.png')}">--}%
+        %{--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="${resource(dir: 'images/ico', file: 'janus_114.png')}">--}%
+        %{--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="${resource(dir: 'images/ico', file: 'janus_72.png')}">--}%
+        %{--<link rel="apple-touch-icon-precomposed" href="${resource(dir: 'images/ico', file: 'janus_57.png')}">--}%
 
         <script src="${resource(dir: 'js', file: 'functions.js')}"></script>
         <g:layoutHead/>
