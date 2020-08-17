@@ -179,6 +179,7 @@
                         }
                         var val = valor ? valor : data1;
                         data += "item=" + id + "_" + cmpo + "_" + valor;
+                        $(this).siblings("td").last().text(number_format(valor, 2, ".", ","));
                         $(this).addClass("changed")
                     }
                     //console.log("item: " + data)
