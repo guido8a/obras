@@ -145,7 +145,7 @@
                             var parts = msg.split("_");
                             var ok = parts[0];
                             var no = parts[1];
-
+                            location.reload();
                             $(ok).each(function () {
                                 var $tdChk = $(this).siblings(".chk");
                                 var chk = $tdChk.children("input").is(":checked");
@@ -179,8 +179,14 @@
                         }
                         var val = valor ? valor : data1;
                         data += "item=" + id + "_" + cmpo + "_" + valor;
-                        $(this).siblings("td").last().text(number_format(valor, 2, ".", ","));
-                        $(this).addClass("changed")
+//                        var parcial = $(this).siblings("td").last().text(number_format(valor, 2, ".", ","));
+                        var parcial = $(this).siblings("td").last();
+                        var cantidad = parcial.prev().data("valor");
+                        var precio   = parcial.prev().prev().data("valor");
+                        var subtotal = Math.round(cantidad * precio * 100);
+                        parcial.text(number_format(subtotal/100, 2, ".", ","));
+                        $(this).siblings("td").addClass("changed")
+
                     }
                     //console.log("item: " + data)
                 });

@@ -529,6 +529,12 @@
                             <i class="icon-th"></i> Cronograma Total
                         </g:link>
                     </li>
+                    <li>
+                        <g:link class="comple" controller="cronogramaContrato" action="corrigeCrcr" id="${contrato?.id}"
+                                title="Nuevo Cronograma Contrato Complementario">
+                            <i class="icon-th"></i> Corregir decimales Crono.
+                        </g:link>
+                    </li>
                     <g:if test="${complementario}">
                         <li>
                             <a href="#" class="comple" name="integrarFP_name" id="integrarFP"

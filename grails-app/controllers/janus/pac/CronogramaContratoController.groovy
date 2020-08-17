@@ -749,5 +749,28 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         render "ok"
     }
 
+    def corrigeCrcr() {
+        def cn = dbConnectionService.getConnection()
+        def suma = 0
+        def totl = ""
+        println params
+
+        def sql = "update crcr set crcrprco = crcrprct * (select vocrsbtt/100 from vocr " +
+                "where vocr.vocr__id = crcr.vocr__id) "
+        cn.execute(sql.toString())
+
+        sql = "update crcr set crcrcntd = crcrprct * (select vocrcntd/100 from vocr " +
+                "where vocr.vocr__id = crcr.vocr__id) "
+        cn.execute(sql.toString())
+
+        sql = "select * from corrige_crcr(${params.id})"
+        cn.execute(sql.toString())
+
+        flash.message = "Cronograma corregido.."
+        def url = "/contrato/registroContrato?contrato=" + params.id
+
+        redirect( url: url)
+    }
+
 
 } //fin controller
