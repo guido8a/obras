@@ -33,10 +33,10 @@
         }
 
         .changed {
-            background-color : #C3DBC3 !important;
+            background-color : #e5c78e !important;
         }
         .grabado {
-            background-color : #b69e71 !important;
+            background-color : #C3DBC3 !important;
         }
         </style>
     </head>
@@ -65,8 +65,8 @@
 
                 <div class="btn-group span1" style="margin-left: 5px; margin-right: 10px; width: 200px;">
                     <a href="#" class="btn btn-consultar"><i class="icon-search"></i> Ver</a>
-                    <a href="#" class="btn btn-verificar btn-success"><i class="icon-check"></i> Verificar</a>
-                    <a href="#" class="btn btn-grabar btn-info"><i class="icon-save"></i> Guardar</a>
+                    <a href="#" class="btn btn-verificar btn-info"><i class="icon-check"></i> Verificar</a>
+                    <a href="#" class="btn btn-grabar btn-success"><i class="icon-save"></i> Guardar</a>
 
                 </div>
                 %{--<div> <b>NOTA:</b> No se puede guardar valores iguales a <b> 0</b></div>--}%
