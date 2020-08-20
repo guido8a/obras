@@ -56,6 +56,8 @@ class ContratoController extends janus.seguridad.Shield {
         def complementario
 
         println "params de verContrato: $params"
+        println "perfil: ${session.perfil.codigo}"
+        /* si es FISCALIZADOR EXTERNO no tiene acceso a otros contratos */
         if(params.id) params.contrato = params.id
         if (params.contrato) {
             contrato = Contrato.get(params.contrato)
@@ -64,6 +66,17 @@ class ContratoController extends janus.seguridad.Shield {
 //            println "ANT " + contrato
 
             if (contrato) {
+                println "fiscalizador: ${contrato.fiscalizador}  --> ${session.usuario}"
+
+                if(session.perfil.codigo == 'FSEX') {
+                    if(contrato.fiscalizador.id == session.usuario.id) {
+                        println "si puede ver"
+                    } else {
+                        println "no puede ver"
+                        redirect(controller: "shield", action: "ataques")
+                    }
+                }
+
                 if (!contrato?.anticipo) {
 //                println "...no tiene anticipo....."
                     if (contrato.monto && contrato.porcentajeAnticipo) {
