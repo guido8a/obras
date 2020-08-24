@@ -647,7 +647,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         def totl = ""
         println params
 
-        def sqlTx = "select vocr__id id, itemnmbr, unddcdgo, vocrcntd, vocrpcun, vocrsbtt from vocr, item, undd " +
+        def sqlTx = "select vocr__id id, vocrordn, itemnmbr, unddcdgo, vocrcntd::numeric(14,2), vocrpcun, vocrsbtt from vocr, item, undd " +
                 "where item.item__id = vocr.item__id and undd.undd__id = item.undd__id and " +
                 "cntr__id = ${params.cntr} "
         if(params.sbpr != '0') {
@@ -663,7 +663,8 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         def html = "<table class=\"table table-bordered table-striped table-hover table-condensed\" id=\"tablaPrecios\">"
         html += "<thead>"
         html += "<tr>"
-        html += "<th>Indice_id</th>"
+//        html += "<th>Id</th>"
+        html += "<th>Orden</th>"
         html += "<th>Nombre del Indice</th>"
         html += "<th>Cantidad</th>"
         html += "<th>Precio</th>"
@@ -672,7 +673,8 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         def body = ""
         cn.eachRow(sqlTx.toString()) { d ->
             body += "<tr>"
-            body += "<td>${d.id}</td>"
+//            body += "<td>${d.id}</td>"
+            body += "<td>${d.vocrordn}</td>"
             body += "<td>${d.itemnmbr}</td>"
 
             def sbtt = ""
@@ -680,6 +682,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                 sbtt = g.formatNumber(number: d.vocrsbtt, maxFractionDigits: 2, minFractionDigits: 2, format: "##,##0", locale: "ec")
                 body += "<td class='${editar} number' data-original='${d.vocrcntd}' data-cmpo='vocrcntd' " +
                         "data-id='${d.id}' data-valor='${d.vocrcntd}'>" + d.vocrcntd + '</td>'
+//                body += "<td style='text-align:center'>${d.vocrcntd}</td>"
                 body += "<td class='${editar} number' data-original='${d.vocrpcun}' data-cmpo='vocrpcun' " +
                         "data-id='${d.id}' data-valor='${d.vocrpcun}'>" + d.vocrpcun + '</td>'
                 body += "<td style='text-align:center' id=tt${d.id}>${sbtt}</td>"
