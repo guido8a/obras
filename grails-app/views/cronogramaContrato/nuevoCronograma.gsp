@@ -352,7 +352,9 @@
         <div class="well">
             <div class="row" style="margin-bottom: 10px;">
                 <div class="span5">
-                    Períodos   <input id="periodosDesde" class="spinner"/> al <input id="periodosHasta" class="spinner" value="${meses}"/>
+                    %{--Períodos   <input id="periodosDesde" class="spinner"/> al <input id="periodosHasta" class="spinner" value="${meses}"/>--}%
+                    Períodos   <input id="periodosDesde" type="text" class="input-mini tf"/> al
+                    <input id="periodosHasta" type="text" class="input-mini tf" value="${meses}"/>
                 </div>
             </div>
 
