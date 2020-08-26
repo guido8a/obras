@@ -1086,6 +1086,7 @@
                         if (validar2()) {
                             $btnOk.replaceWith(spinner);
 
+/*
                             $(".item_row.rowSelected").each(function () {
                                 var id = $(this).data("id");
                                 $.ajax({
@@ -1101,6 +1102,7 @@
                                     }
                                 });
                             });
+*/
 
                             var dataAjax = "";
 
