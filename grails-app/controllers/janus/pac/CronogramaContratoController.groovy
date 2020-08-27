@@ -3,6 +3,12 @@ package janus.pac
 import janus.*
 import janus.ejecucion.PeriodosInec
 import janus.ejecucion.ValorIndice
+import jxl.Workbook
+import jxl.WorkbookSettings
+import jxl.write.WritableCellFormat
+import jxl.write.WritableFont
+import jxl.write.WritableSheet
+import jxl.write.WritableWorkbook
 import org.springframework.dao.DataIntegrityViolationException
 
 class CronogramaContratoController extends janus.seguridad.Shield {
@@ -680,9 +686,11 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             def sbtt = ""
                 editar = "editable"
                 sbtt = g.formatNumber(number: d.vocrsbtt, maxFractionDigits: 2, minFractionDigits: 2, format: "##,##0", locale: "ec")
+/*
                 body += "<td class='${editar} number' data-original='${d.vocrcntd}' data-cmpo='vocrcntd' " +
                         "data-id='${d.id}' data-valor='${d.vocrcntd}'>" + d.vocrcntd + '</td>'
-//                body += "<td style='text-align:center'>${d.vocrcntd}</td>"
+*/
+                body += "<td style='text-align:right'>${d.vocrcntd}</td>"
                 body += "<td class='${editar} number' data-original='${d.vocrpcun}' data-cmpo='vocrpcun' " +
                         "data-id='${d.id}' data-valor='${d.vocrpcun}'>" + d.vocrpcun + '</td>'
                 body += "<td style='text-align:center' id=tt${d.id}>${sbtt}</td>"
@@ -774,6 +782,91 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 
         redirect( url: url)
     }
+
+    def cantidadObra() {
+        println "cantidadObra: $params"
+
+        def sql = "select vocr__id id, vocrordn, itemnmbr, unddcdgo, vocrcntd::numeric(14,2), vocrpcun, vocrsbtt " +
+                "from vocr, item, undd " +
+                "where item.item__id = vocr.item__id and undd.undd__id = item.undd__id and " +
+                "cntr__id = ${params.id} order by vocrordn "
+        println sql
+
+        def cn = dbConnectionService.getConnection()
+
+        def res = cn.rows(sql.toString())
+
+//        println("--->>" + res)
+        def errores = ""
+        if (res.size() != 0) {
+
+            //excel
+            WorkbookSettings workbookSettings = new WorkbookSettings()
+            workbookSettings.locale = Locale.default
+
+            def file = File.createTempFile('myExcelDocument', '.xls')
+            file.deleteOnExit()
+            WritableWorkbook workbook = Workbook.createWorkbook(file, workbookSettings)
+
+            WritableFont font = new WritableFont(WritableFont.ARIAL, 12)
+            WritableCellFormat formatXls = new WritableCellFormat(font)
+
+            def row = 0
+            WritableSheet sheet = workbook.createSheet('Composicion', 0)
+
+            WritableFont times16font = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD, false);
+            WritableCellFormat times16format = new WritableCellFormat(times16font);
+            sheet.setColumnView(0, 10)
+            sheet.setColumnView(1, 10)
+            sheet.setColumnView(2, 60)
+            sheet.setColumnView(3, 8)
+            sheet.setColumnView(4, 15)
+            sheet.setColumnView(5, 15)
+            sheet.setColumnView(6, 15)
+            sheet.setColumnView(7, 20)
+
+            def label
+            def number
+            def fila = 1;
+            def ultimaFila
+
+            label = new jxl.write.Label(0, 0, "CODIGO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(1, 0, "NUMERO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(2, 0, "RUBRO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(3, 0, "UNIDAD", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(4, 0, "CANTIDAD", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(5, 0, "P.UNITARIO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(6, 0, "SUBTOTAL", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(7, 0, "PRECIO CONST.", times16format); sheet.addCell(label);
+
+            res.each {
+                label = new jxl.write.Label(0, fila, it?.id.toString()); sheet.addCell(label);
+                label = new jxl.write.Label(1, fila, it?.vocrordn.toString()); sheet.addCell(label);
+                label = new jxl.write.Label(2, fila, it?.itemnmbr.toString()); sheet.addCell(label);
+                label = new jxl.write.Label(3, fila, it?.unddcdgo ? it?.unddcdgo.toString() : ""); sheet.addCell(label);
+                number = new jxl.write.Number(4, fila, it?.vocrcntd.toDouble() ?: 0); sheet.addCell(number);
+                number = new jxl.write.Number(5, fila, it?.vocrpcun.toDouble().round(6) ?: 0); sheet.addCell(number);
+                number = new jxl.write.Number(6, fila, it?.vocrsbtt.toDouble() ?: 0); sheet.addCell(number);
+                number = new jxl.write.Number(7, fila,0); sheet.addCell(number);
+
+                fila++
+
+                ultimaFila = fila
+            }
+
+            workbook.write();
+            workbook.close();
+            def output = response.getOutputStream()
+            def header = "attachment; filename=" + "valorContratado.xls";
+            response.setContentType("application/octet-stream")
+            response.setHeader("Content-Disposition", header);
+            output.write(file.getBytes());
+        } else {
+            flash.message = "Ha ocurrido un error!"
+            redirect(action: "errores")
+        }
+    }
+
 
 
 } //fin controller
