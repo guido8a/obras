@@ -75,11 +75,11 @@
                 style="margin-left: 80px;">
                     <i class="icon-table"></i> Generar Archivo Excel
                 </g:link>
-                <g:link controller="cronogramaContrato" action="cantidadObra2" class="btn btn-print btnExcel"
+                <g:link controller="cronogramaContrato" action="subirExcel" class="btn btn-print btnExcel"
                         id="${cntr}"
                         title="Exportar a excel para definir las cantidades reales de Materiales, M.O. y Equipos"
                 style="margin-left: 0px;">
-                    <i class="icon-table"></i> Cargar desde Excel
+                    <i class="icon-arrow-up"></i> Cargar desde Excel
                 </g:link>
                 %{--<div> <b>NOTA:</b> No se puede guardar valores iguales a <b> 0</b></div>--}%
 
