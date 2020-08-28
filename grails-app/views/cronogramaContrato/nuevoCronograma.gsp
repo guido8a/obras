@@ -66,6 +66,12 @@
             style="margin-left: 80px;">
         <i class="icon-table"></i> Generar Archivo Excel
     </g:link>
+    <g:link controller="cronogramaContrato" action="subirExcelCronograma" class="btn btn-print btnExcel"
+            id="${contrato?.id}"
+            title="Subir archivo excel"
+            style="margin-left: 0px;">
+        <i class="icon-arrow-up"></i> Cargar desde Excel
+    </g:link>
     </div>
 </div>
 

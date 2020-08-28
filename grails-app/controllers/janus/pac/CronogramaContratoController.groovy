@@ -988,7 +988,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                 if (errores != "") {
                     str += "<ol>" + errores + "</ol>"
                 }
-                str += doneHtml
+//                str += doneHtml
 
                 flash.message = str
 
@@ -1068,12 +1068,12 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             label = new jxl.write.Label(6, 0, "SUBTOTAL", times16format); sheet.addCell(label);
 
             while (columna < (7 + periodos)) {
-//                label = new jxl.write.Label((6 + it, 0,("." + it), times16format); sheet.addCell(label);
                 label = new jxl.write.Label(columna, 0, "Periodo ${columna - 6}", times16format); sheet.addCell(label)
                 columna++
             }
 
             res.each {
+                def columna2 = 7
                 label = new jxl.write.Label(0, fila, it?.id.toString()); sheet.addCell(label);
                 label = new jxl.write.Label(1, fila, it?.vocrordn.toString()); sheet.addCell(label);
                 label = new jxl.write.Label(2, fila, it?.itemnmbr.toString()); sheet.addCell(label);
@@ -1081,9 +1081,13 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                 number = new jxl.write.Number(4, fila, it?.vocrcntd.toDouble() ?: 0); sheet.addCell(number);
                 number = new jxl.write.Number(5, fila, it?.vocrpcun.toDouble().round(6) ?: 0); sheet.addCell(number);
                 number = new jxl.write.Number(6, fila, it?.vocrsbtt.toDouble() ?: 0); sheet.addCell(number);
+                while (columna2 < (7 + periodos)) {
+                    def periodoCrono = CronogramaContratado.findByVolumenContratoAndPeriodo(VolumenContrato.get(it.id), (columna2 - 6))
+                    number = new jxl.write.Number(columna2, fila, periodoCrono?.precio ?: 0); sheet.addCell(number);
+                    columna2++
+                }
 
                 fila++
-
                 ultimaFila = fila
             }
 
@@ -1097,6 +1101,146 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         } else {
             flash.message = "Ha ocurrido un error!"
             redirect(action: "errores")
+        }
+    }
+
+    def subirExcelCronograma(){
+        def contrato = Contrato.get(params.id)
+        return[contrato:contrato]
+    }
+
+    def mensajeUploadCronograma() {
+        def contrato = Contrato.get(params.id)
+        return[contrato:contrato]
+    }
+
+    def uploadFileCronograma() {
+        def obra = Obra.get(params.id)
+        def path = servletContext.getRealPath("/") + "xlsCronograma/"   //web-app/archivos
+        new File(path).mkdirs()
+
+        def f = request.getFile('file')  //archivo = name del input type file
+        if (f && !f.empty) {
+            def fileName = f.getOriginalFilename() //nombre original del archivo
+            def ext
+
+            def parts = fileName.split("\\.")
+            fileName = ""
+            parts.eachWithIndex { obj, i ->
+                if (i < parts.size() - 1) {
+                    fileName += obj
+                } else {
+                    ext = obj
+                }
+            }
+
+            if (ext == "xls") {
+//                fileName = fileName.tr(/áéíóúñÑÜüÁÉÍÓÚàèìòùÀÈÌÒÙÇç .!¡¿?&#°"'/, "aeiounNUuAEIOUaeiouAEIOUCc_")
+
+                fileName = "xlsCronograma_" + new Date().format("yyyyMMdd_HHmmss")
+
+                def fn = fileName
+                fileName = fileName + "." + ext
+
+                def pathFile = path + fileName
+                def src = new File(pathFile)
+
+                def i = 1
+                while (src.exists()) {
+                    pathFile = path + fn + "_" + i + "." + ext
+                    src = new File(pathFile)
+                    i++
+                }
+
+                f.transferTo(new File(pathFile)) // guarda el archivo subido al nuevo path
+
+                //procesar excel
+                def htmlInfo = "", errores = "", doneHtml = "", done = 0
+                def file = new File(pathFile)
+                Workbook workbook = Workbook.getWorkbook(file)
+
+                workbook.getNumberOfSheets().times { sheet ->
+                    if (sheet == 0) {
+                        Sheet s = workbook.getSheet(sheet)
+                        if (!s.getSettings().isHidden()) {
+//                            println s.getName() + "  " + sheet
+                            htmlInfo += "<h2>Hoja " + (sheet + 1) + ": " + s.getName() + "</h2>"
+                            Cell[] row = null
+                            s.getRows().times { j ->
+                                def ok = true
+//                                if (j > 19) {
+//                                println ">>>>>>>>>>>>>>>" + (j + 1)
+                                row = s.getRow(j)
+//                                println row*.getContents()
+//                                println row.length
+                                if (row.length >= 8) {
+                                    def cod = row[0].getContents()
+                                    def numero = row[1].getContents()
+                                    def rubro = row[2].getContents()
+                                    def unidad = row[3].getContents()
+                                    def cantidad = row[4].getContents()
+                                    def punitario = row[5].getContents()
+                                    def subtotal = row[6].getContents()
+                                    def precioConst = row[7].getContents()
+
+                                    println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
+                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal + "\tnuevo:" + precioConst
+
+//                                    if (cod != "CODIGO") {
+//                                        cantidad = cantidad.replaceAll(",",".")
+////                                        println("cantidad " + cantidad)
+////                                        println("-->" + Math.round(cantidad.toDouble() * 100) / 100)
+//                                        def vc = VolumenContrato.get(cod)
+////
+//                                        if(!vc){
+//                                            errores += "<li>No se encontró volumen contrato con id ${cod} (l. ${j + 1})</li>"
+//                                            println "No se encontró volumen contrato con id ${cod}"
+//                                            ok = false
+//                                        }else{
+//
+//                                            vc.volumenPrecio = precioConst.toDouble()
+//                                            vc.volumenCantidad = Math.round(cantidad.toDouble() * 100) / 100
+//                                            vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 100) / 100)
+//                                        }
+//
+//                                        if(!vc.save(flush:true)){
+//                                            println "No se pudo guardar valor contrato con id ${vc.id}: " + vc.errors
+//                                            errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
+//                                        }else{
+//                                            done++
+//                                            println "Modificado vocr: ${vc.id}"
+//                                            doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
+//                                        }
+//                                    }
+                                } //row ! empty
+//                                }//row > 7 (fila 9 + )
+                            } //rows.each
+                        } //sheet ! hidden
+                    }//solo sheet 0
+                } //sheets.each
+                if (done > 0) {
+                    doneHtml = "<div class='alert alert-success'>Se han ingresado correctamente " + done + " registros</div>"
+                }
+
+                def str = doneHtml
+
+                str += htmlInfo
+
+                if (errores != "") {
+                    str += "<ol>" + errores + "</ol>"
+                }
+//                str += doneHtml
+
+                flash.message = str
+                println "DONE!!"
+                redirect(action: "mensajeUploadCronograma", id: params.id)
+            } else {
+                flash.message = "Seleccione un archivo Excel xls para procesar (archivos xlsx deben ser convertidos a xls primero)"
+                redirect(action: 'formArchivo')
+            }
+        } else {
+            flash.message = "Seleccione un archivo para procesar"
+            redirect(action: 'subirExcel')
         }
     }
 
