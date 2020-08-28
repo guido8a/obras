@@ -1048,8 +1048,8 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             def row = 0
             WritableSheet sheet = workbook.createSheet('Cronograma', 0)
 
-            WritableFont times16font = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD, false);
-            WritableCellFormat times16format = new WritableCellFormat(times16font);
+            WritableFont times12font = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD, false);
+            WritableCellFormat times16format = new WritableCellFormat(times12font);
             sheet.setColumnView(0, 10)
             sheet.setColumnView(1, 10)
             sheet.setColumnView(2, 60)
@@ -1223,6 +1223,8 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 
                                                 if(!subtotal){
                                                     subtotal = 0
+                                                } else {
+                                                    subtotal = subtotal.replaceAll(",",".")
                                                 }
 
                                                 if(!cantidad){
@@ -1234,7 +1236,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                                 if(subtotal?.toDouble() != 0){
                                                     if(valorPeriodo?.toDouble() != 0){
 //                                                        porcentajeCrono = (valorPeriodo.toDouble() / subtotal)
-                                                        porcentajeCrono = ((Math.round(valorPeriodo.toDouble() * 100) / 100) / subtotal)
+                                                        porcentajeCrono = ((Math.round(valorPeriodo.toDouble() * 100) / 100) / subtotal.toDouble())
                                                     }else{
                                                         porcentajeCrono = 0
                                                     }
