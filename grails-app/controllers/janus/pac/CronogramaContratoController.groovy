@@ -959,6 +959,14 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                             ok = false
                                         }else{
 
+                                            if(!precioConst){
+                                                precioConst = 0
+                                            }
+
+                                            if(!cantidad){
+                                                cantidad = 0
+                                            }
+
                                             vc.volumenPrecio = precioConst.toDouble()
                                             vc.volumenCantidad = Math.round(cantidad.toDouble() * 100) / 100
                                             vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 100) / 100)
@@ -1206,7 +1214,21 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                             def cantidadCrono = 0
                                             while (columna2 < (7 + periodos)) {
                                                 valorPeriodo = row[columna2].getContents()
-                                                valorPeriodo = valorPeriodo.replaceAll(",",".")
+
+                                                if(valorPeriodo){
+                                                    valorPeriodo = valorPeriodo.replaceAll(",",".")
+                                                }else{
+                                                    valorPeriodo = 0
+                                                }
+
+                                                if(!subtotal){
+                                                    subtotal = 0
+                                                }
+
+                                                if(!cantidad){
+                                                    cantidad = 0
+                                                }
+
                                                 println("vp " + cod + " - "  + valorPeriodo)
 
                                                 if(subtotal?.toDouble() != 0){
