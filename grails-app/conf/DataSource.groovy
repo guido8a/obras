@@ -21,7 +21,8 @@ environments {
             dbCreate = "update"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_prba"
-            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_simul"
+            url = "jdbc:postgresql://192.168.100.9:5432/gadlr_prba2"
+//            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_sm2"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_riego"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_simul"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_brre1"
@@ -33,8 +34,7 @@ environments {
             driverClassName = 'org.postgresql.Driver'
             username = 'postgres'
             password = 'postgres'
-//            url = 'jdbc:postgresql://127.0.0.1:5432/oferentes'
-            url = 'jdbc:postgresql://127.0.0.1:5432/ofrt_brre'
+            url = 'jdbc:postgresql://192.168.100.9:5432/oferentes_rios'
             dbCreate = 'update'
         }
     }
@@ -56,7 +56,7 @@ environments {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
                initialSize = 5
-               maxActive = 10
+               maxActive = 50
                minIdle = 5
                maxIdle = 25
                maxWait = 10000
@@ -93,7 +93,7 @@ environments {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
                initialSize = 5
-               maxActive = 10
+               maxActive = 50
                minIdle = 5
                maxIdle = 25
                maxWait = 10000

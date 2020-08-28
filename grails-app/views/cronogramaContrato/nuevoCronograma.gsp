@@ -57,6 +57,16 @@
             </a>
         </div>
     %{--</g:if>--}%
+
+
+    <div class="btn-group">
+    <g:link controller="cronogramaContrato" action="excelCronograma" class="btn btn-print btnExcel"
+            id="${contrato?.id}"
+            title="Exportar a excel el cronograma"
+            style="margin-left: 80px;">
+        <i class="icon-table"></i> Generar Archivo Excel
+    </g:link>
+    </div>
 </div>
 
 <div style="margin-bottom: 5px;">

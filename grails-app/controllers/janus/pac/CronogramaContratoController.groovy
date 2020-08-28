@@ -947,8 +947,6 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                     println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
                                     println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal + "\tnuevo:" + precioConst
 
-
-
                                     if (cod != "CODIGO") {
                                         cantidad = cantidad.replaceAll(",",".")
 //                                        println("cantidad " + cantidad)
@@ -1010,6 +1008,91 @@ class CronogramaContratoController extends janus.seguridad.Shield {
     def mensajeUploadContrato() {
         def contrato = Contrato.get(params.id)
         return[contrato:contrato]
+    }
+
+    def excelCronograma() {
+        println "cantidadObra: $params"
+
+        def sql = "select vocr__id id, vocrordn, itemnmbr, unddcdgo, vocrcntd::numeric(14,2), vocrpcun, vocrsbtt " +
+                "from vocr, item, undd " +
+                "where item.item__id = vocr.item__id and undd.undd__id = item.undd__id and " +
+                "cntr__id = ${params.id} order by vocrordn "
+
+        def cn = dbConnectionService.getConnection()
+        def res = cn.rows(sql.toString())
+
+        def c = CronogramaContratado.findAllByIdIsNotNull().periodo.max()
+
+        def errores = ""
+        if (res.size() != 0) {
+
+            //excel
+            WorkbookSettings workbookSettings = new WorkbookSettings()
+            workbookSettings.locale = Locale.default
+
+            def file = File.createTempFile('myExcelDocument', '.xls')
+            file.deleteOnExit()
+            WritableWorkbook workbook = Workbook.createWorkbook(file, workbookSettings)
+
+            WritableFont font = new WritableFont(WritableFont.ARIAL, 12)
+            WritableCellFormat formatXls = new WritableCellFormat(font)
+
+            def row = 0
+            WritableSheet sheet = workbook.createSheet('Cronograma', 0)
+
+            WritableFont times16font = new WritableFont(WritableFont.ARIAL, 11, WritableFont.BOLD, false);
+            WritableCellFormat times16format = new WritableCellFormat(times16font);
+            sheet.setColumnView(0, 10)
+            sheet.setColumnView(1, 10)
+            sheet.setColumnView(2, 60)
+            sheet.setColumnView(3, 8)
+            sheet.setColumnView(4, 15)
+            sheet.setColumnView(5, 15)
+            sheet.setColumnView(6, 15)
+            sheet.setColumnView(7, 20)
+
+            def label
+            def number
+            def fila = 1;
+            def ultimaFila
+
+            label = new jxl.write.Label(0, 0, "CODIGO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(1, 0, "NUMERO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(2, 0, "RUBRO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(3, 0, "UNIDAD", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(4, 0, "CANTIDAD", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(5, 0, "P.UNITARIO", times16format); sheet.addCell(label);
+            label = new jxl.write.Label(6, 0, "SUBTOTAL", times16format); sheet.addCell(label);
+            [1..c].each {
+                println("m " + it)
+                label = new jxl.write.Label((6.plus(it)).toInteger(), 0, ("." + it), times16format); sheet.addCell(label);
+            }
+
+            res.each {
+                label = new jxl.write.Label(0, fila, it?.id.toString()); sheet.addCell(label);
+                label = new jxl.write.Label(1, fila, it?.vocrordn.toString()); sheet.addCell(label);
+                label = new jxl.write.Label(2, fila, it?.itemnmbr.toString()); sheet.addCell(label);
+                label = new jxl.write.Label(3, fila, it?.unddcdgo ? it?.unddcdgo.toString() : ""); sheet.addCell(label);
+                number = new jxl.write.Number(4, fila, it?.vocrcntd.toDouble() ?: 0); sheet.addCell(number);
+                number = new jxl.write.Number(5, fila, it?.vocrpcun.toDouble().round(6) ?: 0); sheet.addCell(number);
+                number = new jxl.write.Number(6, fila, it?.vocrsbtt.toDouble() ?: 0); sheet.addCell(number);
+
+                fila++
+
+                ultimaFila = fila
+            }
+
+            workbook.write();
+            workbook.close();
+            def output = response.getOutputStream()
+            def header = "attachment; filename=" + "excelCronograma.xls";
+            response.setContentType("application/octet-stream")
+            response.setHeader("Content-Disposition", header);
+            output.write(file.getBytes());
+        } else {
+            flash.message = "Ha ocurrido un error!"
+            redirect(action: "errores")
+        }
     }
 
 } //fin controller
