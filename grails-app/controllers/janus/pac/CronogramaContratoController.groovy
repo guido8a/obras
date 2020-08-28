@@ -1266,7 +1266,6 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                                     periodoCrono.cantidad = cantidadCrono
                                                 }
 
-
                                                 if(valorPeriodo != 0){
                                                     periodoCrono.precio = (Math.round(valorPeriodo.toDouble() * 100) / 100)
                                                 }else{
