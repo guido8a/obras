@@ -1248,29 +1248,40 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 
                                                 def periodoCrono = CronogramaContratado.findByVolumenContratoAndPeriodo(vc, (columna2 - 6))
 
-                                                if(periodoCrono){
-//                                                    println("pc " + periodoCrono)
 
+
+                                                if(periodoCrono){
                                                     periodoCrono.porcentaje = porcentajeCrono
                                                     periodoCrono.cantidad = cantidadCrono
-
-                                                    if(valorPeriodo != 0){
-                                                        periodoCrono.precio = (Math.round(valorPeriodo.toDouble() * 100) / 100)
-                                                    }else{
-                                                        periodoCrono.precio = 0
-                                                    }
-
-                                                    if(!periodoCrono.save(flush:true)){
-                                                        println "No se pudo guardar valor del cronograma con id ${periodoCrono.id}: " + periodoCrono.errors
-                                                        errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
-                                                    }else{
-                                                        done++
-                                                        println "Modificado vocr: ${periodoCrono.id}"
-                                                        doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
-                                                    }
                                                 }else{
                                                     println("no existe crcr")
+                                                    println("creando....")
+
+                                                    periodoCrono = new CronogramaContratado()
+
+                                                    periodoCrono.contrato = vc.contrato
+                                                    periodoCrono.volumenContrato = vc
+                                                    periodoCrono.periodo = (columna2 - 6)
+                                                    periodoCrono.porcentaje = porcentajeCrono
+                                                    periodoCrono.cantidad = cantidadCrono
                                                 }
+
+
+                                                if(valorPeriodo != 0){
+                                                    periodoCrono.precio = (Math.round(valorPeriodo.toDouble() * 100) / 100)
+                                                }else{
+                                                    periodoCrono.precio = 0
+                                                }
+
+                                                if(!periodoCrono.save(flush:true)){
+                                                    println "No se pudo guardar valor del cronograma con id ${periodoCrono.id}: " + periodoCrono.errors
+                                                    errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
+                                                }else{
+                                                    done++
+                                                    println "Modificado vocr: ${periodoCrono.id}"
+                                                    doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
+                                                }
+
                                                 columna2++
                                             }
 
