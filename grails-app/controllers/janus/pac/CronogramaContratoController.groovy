@@ -1021,7 +1021,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         def cn = dbConnectionService.getConnection()
         def res = cn.rows(sql.toString())
 
-        def c = CronogramaContratado.findAllByIdIsNotNull().periodo.max()
+        def periodos = CronogramaContratado.findAllByIdIsNotNull().periodo.max()
 
         def errores = ""
         if (res.size() != 0) {
@@ -1049,11 +1049,14 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             sheet.setColumnView(4, 15)
             sheet.setColumnView(5, 15)
             sheet.setColumnView(6, 15)
-            sheet.setColumnView(7, 20)
+            periodos.times {
+                sheet.setColumnView(it+1, 15)
+            }
 
             def label
             def number
-            def fila = 1;
+            def fila = 1
+            def columna = 7
             def ultimaFila
 
             label = new jxl.write.Label(0, 0, "CODIGO", times16format); sheet.addCell(label);
@@ -1063,9 +1066,11 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             label = new jxl.write.Label(4, 0, "CANTIDAD", times16format); sheet.addCell(label);
             label = new jxl.write.Label(5, 0, "P.UNITARIO", times16format); sheet.addCell(label);
             label = new jxl.write.Label(6, 0, "SUBTOTAL", times16format); sheet.addCell(label);
-            [1..c].each {
-                println("m " + it)
-                label = new jxl.write.Label((6.plus(it)).toInteger(), 0, ("." + it), times16format); sheet.addCell(label);
+
+            while (columna < (7 + periodos)) {
+//                label = new jxl.write.Label((6 + it, 0,("." + it), times16format); sheet.addCell(label);
+                label = new jxl.write.Label(columna, 0, "Periodo ${columna - 6}", times16format); sheet.addCell(label)
+                columna++
             }
 
             res.each {
