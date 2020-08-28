@@ -58,14 +58,23 @@
                             SUBTOTAL
                         </th>
                         <th>
-                            PRECIO CONST.
+                            PERIODO 1
+                        </th>
+                        <th>
+                            PERIODO 2
+                        </th>
+                        <th>
+                            PERIODO 3
+                        </th>
+                        <th>
+                            ...
                         </th>
                     </tr>
                 </table>
 
-                El ítem es ubicado por código<br/>
-                La columna que va a ser tomada para modificar la cantidad de cada rubro es la "Precio Const."
-                (la columna que esté en la columna H del archivo Excel)<br/>
+                El rubro es ubicado por el número de orden<br/>
+                Los valores detallados en cada periodo se subirán al cronograma para el rubro y period correspondiente
+               <br/>
             </div>
         </div>
 
