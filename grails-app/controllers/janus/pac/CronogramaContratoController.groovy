@@ -944,54 +944,37 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                     def subtotal = row[6].getContents()
                                     def precioConst = row[7].getContents()
 
-//                                    println "\t\tcod:" + cod + "\tnombre:" + nombre + "\tcant:" + cant + "\tnCant:" + nuevaCant
+                                    println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
+                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal + "\tnuevo:" + precioConst
 
-//                                    if (cod != "CODIGO") {
-//                                        def item = Item.findAllByCodigo(cod)
-//                                        if (item.size() == 1) {
-//                                            item = item[0]
-//                                        } else if (item.size() == 0) {
-//                                            errores += "<li>No se encontró item con código ${cod} (l. ${j + 1})</li>"
-//                                            println "No se encontró item con código ${cod}"
-//                                            ok = false
-//                                        } else {
-//                                            println "Se encontraron ${item.size()} items con código ${cod}!! ${item.id}"
-//                                            errores += "<li>Se encontraron ${item.size()} items con código ${cod}!! (l. ${j + 1})</li>"
-//                                            ok = false
-//                                        }
-//                                        if (ok) {
-//                                            def comp = Composicion.withCriteria {
-//                                                eq("item", item)
-//                                                eq("obra", obra)
-//                                            }
-//                                            if (comp.size() == 1) {
-//                                                comp = comp[0]
-//                                                comp.cantidad = nuevaCant.toDouble()
+
+
+                                    if (cod != "CODIGO") {
+                                        cantidad = cantidad.replaceAll(",",".")
+//                                        println("cantidad " + cantidad)
+//                                        println("-->" + Math.round(cantidad.toDouble() * 100) / 100)
+                                        def vc = VolumenContrato.get(cod)
 //
-//                                                if (comp.save(flush: true)) {
-//                                                    done++
-////                                                    println "Modificado comp: ${comp.id}"
-//                                                    doneHtml += "<li>Se ha modificado la cantidad para el item ${nombre}</li>"
-//                                                } else {
-//                                                    println "No se pudo guardar comp ${comp.id}: " + comp.errors
-//                                                    errores += "<li>Ha ocurrido un error al guardar la cantidad para el item ${nombre} (l. ${j + 1})</li>"
-//                                                }
-////                                            println comp
-////                                            /** **/
-////                                            row.length.times { k ->
-////                                                if (!row[k].isHidden()) {
-////                                                    println "k:" + k + "      " + row[k].getContents()
-////                                                }// row ! hidden
-////                                            } //row.legth.each
-//                                            } else if (comp.size() == 0) {
-//                                                println "No se encontró composición para el item ${nombre}"
-//                                                errores += "<li>No se encontró composición para el item ${nombre} (l. ${j + 1})</li>"
-//                                            } else {
-//                                                println "Se encontraron ${comp.size()} composiciones para el item ${nombre}: ${comp.id}"
-//                                                errores += "<li>Se encontraron ${comp.size()} composiciones para el item ${nombre} (l. ${j + 1})</li>"
-//                                            }
-//                                        }
-//                                    }
+                                        if(!vc){
+                                            errores += "<li>No se encontró volumen contrato con id ${cod} (l. ${j + 1})</li>"
+                                            println "No se encontró volumen contrato con id ${cod}"
+                                            ok = false
+                                        }else{
+
+                                            vc.volumenPrecio = precioConst.toDouble()
+                                            vc.volumenCantidad = Math.round(cantidad.toDouble() * 100) / 100
+                                            vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 100) / 100)
+                                        }
+
+                                        if(!vc.save(flush:true)){
+                                            println "No se pudo guardar valor contrato con id ${vc.id}: " + vc.errors
+                                                    errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
+                                        }else{
+                                            done++
+                                            println "Modificado vocr: ${vc.id}"
+                                                    doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
+                                        }
+                                   }
                                 } //row ! empty
 //                                }//row > 7 (fila 9 + )
                             } //rows.each
