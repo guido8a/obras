@@ -1050,7 +1050,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             sheet.setColumnView(5, 15)
             sheet.setColumnView(6, 15)
             periodos.times {
-                sheet.setColumnView(it+1, 15)
+                sheet.setColumnView(it+7, 15)
             }
 
             def label
