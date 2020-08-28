@@ -216,17 +216,17 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 //                    println "procesa: $crono, $cont  plazo: $plazoMesesContrato"
 //                    if (cont < plazoMesesContrato) {
 //                        println "....2"
-                        if (CronogramaContratado.countByPeriodoAndVolumenContrato(crono.periodo, vol) == 0) {
+                    if (CronogramaContratado.countByPeriodoAndVolumenContrato(crono.periodo, vol) == 0) {
 //                            println "....3"
-                            def cronogramaContratado = new CronogramaContratado()
+                        def cronogramaContratado = new CronogramaContratado()
 //                            cronogramaContratado.properties = crono.properties
-                            cronogramaContratado.volumenContrato = vol
-                            cronogramaContratado.contrato = contrato
-                            cronogramaContratado.periodo = crono.periodo
-                            cronogramaContratado.cantidad = crono.cantidad
-                            cronogramaContratado.precio = crono.precio
-                            cronogramaContratado.porcentaje = crono.porcentaje
-                            cronogramaContratado.precio = crono.precio
+                        cronogramaContratado.volumenContrato = vol
+                        cronogramaContratado.contrato = contrato
+                        cronogramaContratado.periodo = crono.periodo
+                        cronogramaContratado.cantidad = crono.cantidad
+                        cronogramaContratado.precio = crono.precio
+                        cronogramaContratado.porcentaje = crono.porcentaje
+                        cronogramaContratado.precio = crono.precio
 
 //                            def pf, cf, df
 //                        println "resto... " + resto
@@ -245,10 +245,10 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 //                            cronogramaContratado.cantidad = cf?.toDouble()
 //                            cronogramaContratado.precio = df?.toDouble()
 
-                            if (!cronogramaContratado.save(flush: true)) {
-                                println "Error al guardar el crono contrato del crono " + crono.id
-                                println cronogramaContratado.errors
-                            }
+                        if (!cronogramaContratado.save(flush: true)) {
+                            println "Error al guardar el crono contrato del crono " + crono.id
+                            println cronogramaContratado.errors
+                        }
 
 //                        }
 //                        else {
@@ -686,16 +686,16 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             body += "<td>${d.itemnmbr}</td>"
 
             def sbtt = ""
-                editar = "editable"
-                sbtt = g.formatNumber(number: d.vocrsbtt, maxFractionDigits: 2, minFractionDigits: 2, format: "##,##0", locale: "ec")
+            editar = "editable"
+            sbtt = g.formatNumber(number: d.vocrsbtt, maxFractionDigits: 2, minFractionDigits: 2, format: "##,##0", locale: "ec")
 /*
                 body += "<td class='${editar} number' data-original='${d.vocrcntd}' data-cmpo='vocrcntd' " +
                         "data-id='${d.id}' data-valor='${d.vocrcntd}'>" + d.vocrcntd + '</td>'
 */
-                body += "<td style='text-align:right'>${d.vocrcntd}</td>"
-                body += "<td class='${editar} number' data-original='${d.vocrpcun}' data-cmpo='vocrpcun' " +
-                        "data-id='${d.id}' data-valor='${d.vocrpcun}'>" + d.vocrpcun + '</td>'
-                body += "<td style='text-align:center' id=tt${d.id}>${sbtt}</td>"
+            body += "<td style='text-align:right'>${d.vocrcntd}</td>"
+            body += "<td class='${editar} number' data-original='${d.vocrpcun}' data-cmpo='vocrpcun' " +
+                    "data-id='${d.id}' data-valor='${d.vocrpcun}'>" + d.vocrpcun + '</td>'
+            body += "<td style='text-align:center' id=tt${d.id}>${sbtt}</td>"
 
             suma += d.vocrsbtt
         }
@@ -966,13 +966,13 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 
                                         if(!vc.save(flush:true)){
                                             println "No se pudo guardar valor contrato con id ${vc.id}: " + vc.errors
-                                                    errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
+                                            errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
                                         }else{
                                             done++
                                             println "Modificado vocr: ${vc.id}"
-                                                    doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
+                                            doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
                                         }
-                                   }
+                                    }
                                 } //row ! empty
 //                                }//row > 7 (fila 9 + )
                             } //rows.each
@@ -1116,6 +1116,8 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 
     def uploadFileCronograma() {
         def obra = Obra.get(params.id)
+        def periodos = CronogramaContratado.findAllByIdIsNotNull().periodo.max()
+
         def path = servletContext.getRealPath("/") + "xlsCronograma/"   //web-app/archivos
         new File(path).mkdirs()
 
@@ -1173,7 +1175,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                 row = s.getRow(j)
 //                                println row*.getContents()
 //                                println row.length
-                                if (row.length >= 8) {
+                                if (row.length >= periodos) {
                                     def cod = row[0].getContents()
                                     def numero = row[1].getContents()
                                     def rubro = row[2].getContents()
@@ -1181,39 +1183,76 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                     def cantidad = row[4].getContents()
                                     def punitario = row[5].getContents()
                                     def subtotal = row[6].getContents()
-                                    def precioConst = row[7].getContents()
+//                                    (1..periodos).each{
+//                                        def mes = row[]
+//                                    }
 
                                     println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
-                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal + "\tnuevo:" + precioConst
+                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal
 
-//                                    if (cod != "CODIGO") {
-//                                        cantidad = cantidad.replaceAll(",",".")
-////                                        println("cantidad " + cantidad)
-////                                        println("-->" + Math.round(cantidad.toDouble() * 100) / 100)
-//                                        def vc = VolumenContrato.get(cod)
-////
-//                                        if(!vc){
-//                                            errores += "<li>No se encontró volumen contrato con id ${cod} (l. ${j + 1})</li>"
-//                                            println "No se encontró volumen contrato con id ${cod}"
-//                                            ok = false
-//                                        }else{
-//
-//                                            vc.volumenPrecio = precioConst.toDouble()
-//                                            vc.volumenCantidad = Math.round(cantidad.toDouble() * 100) / 100
-//                                            vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 100) / 100)
-//                                        }
-//
-//                                        if(!vc.save(flush:true)){
-//                                            println "No se pudo guardar valor contrato con id ${vc.id}: " + vc.errors
-//                                            errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
-//                                        }else{
-//                                            done++
-//                                            println "Modificado vocr: ${vc.id}"
-//                                            doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
-//                                        }
-//                                    }
+                                    if (cod != "CODIGO") {
+                                        cantidad = cantidad.replaceAll(",",".")
+
+                                        def vc = VolumenContrato.get(cod)
+
+                                        if(!vc){
+                                            errores += "<li>No se encontró volumen contrato con id ${cod} (l. ${j + 1})</li>"
+                                            println "No se encontró volumen contrato con id ${cod}"
+                                            ok = false
+                                        }else{
+                                            def valorPeriodo = 0
+                                            def columna2 = 7
+                                            def porcentajeCrono = 0
+                                            def cantidadCrono = 0
+                                            while (columna2 < (7 + periodos)) {
+                                                valorPeriodo = row[columna2].getContents()
+                                                valorPeriodo = valorPeriodo.replaceAll(",",".")
+                                                println("vp " + cod + " - "  + valorPeriodo)
+
+                                                if(subtotal?.toDouble() != 0){
+                                                    if(valorPeriodo?.toDouble() != 0){
+//                                                        porcentajeCrono = (valorPeriodo.toDouble() / subtotal)
+                                                        porcentajeCrono = ((Math.round(valorPeriodo.toDouble() * 100) / 100) / subtotal)
+                                                    }else{
+                                                        porcentajeCrono = 0
+                                                    }
+                                                }else{
+                                                    porcentajeCrono = 0
+                                                }
+
+                                                cantidadCrono = (porcentajeCrono * (Math.round(cantidad.toDouble() * 100) / 100))
+
+                                                def periodoCrono = CronogramaContratado.findByVolumenContratoAndPeriodo(vc, (columna2 - 6))
+
+                                                if(periodoCrono){
+//                                                    println("pc " + periodoCrono)
+
+                                                    periodoCrono.porcentaje = porcentajeCrono
+                                                    periodoCrono.cantidad = cantidadCrono
+
+                                                    if(valorPeriodo != 0){
+                                                        periodoCrono.precio = (Math.round(valorPeriodo.toDouble() * 100) / 100)
+                                                    }else{
+                                                        periodoCrono.precio = 0
+                                                    }
+
+                                                    if(!periodoCrono.save(flush:true)){
+                                                        println "No se pudo guardar valor del cronograma con id ${periodoCrono.id}: " + periodoCrono.errors
+                                                        errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
+                                                    }else{
+                                                        done++
+                                                        println "Modificado vocr: ${periodoCrono.id}"
+                                                        doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
+                                                    }
+                                                }else{
+                                                    println("no existe crcr")
+                                                }
+                                                columna2++
+                                            }
+
+                                        }
+                                    }
                                 } //row ! empty
-//                                }//row > 7 (fila 9 + )
                             } //rows.each
                         } //sheet ! hidden
                     }//solo sheet 0
