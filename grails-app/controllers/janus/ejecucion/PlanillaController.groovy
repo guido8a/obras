@@ -951,7 +951,8 @@ class PlanillaController extends janus.seguridad.Shield {
                     "activo para continuar con el trámite."
             return
         }
-        def obraDpto = adminContrato.departamento
+//        def obraDpto = adminContrato.departamento
+        def obraDpto = Departamento.get(73)
 
         def especial = "DE"
         def fiscalizador = null
@@ -1093,12 +1094,13 @@ class PlanillaController extends janus.seguridad.Shield {
                 extra = "Fecha de memo de salida: " + fechaMin.format("dd-MM-yyyy")
 //                tipoTramite = TipoTramite.findByCodigo("PDPG")
                 tiposTramite = TipoTramite.findAllByCodigo("PDPG")
+                println "tiposTramite: ${tiposTramite.id}"
                 tiposTramite.each { tt ->
                     def dptoDe = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("DE"))
 //                    def dptoPara = DepartamentoTramite.findByTipoTramiteAndRolTramite(tt, RolTramite.findByCodigo("PARA"))
-//                    println "dptoDe: ${dptoDe?.departamento?.id} == ${obraDpto.id}"
+                    println "dptoDe: ${dptoDe?.departamento?.id} == ${obraDpto.id}"
                     if (dptoDe?.departamento == obraDpto) {
-//                        println "SIP"
+                        println "SIP"
                         tipoTramite = tt
                     }
                 }

@@ -286,6 +286,7 @@
 
                                     %{--<g:if test="${(contrato.administrador.id == session.usuario.id) && ((janus.ejecucion.ReajustePlanilla.countByPlanilla(planillaInstance) > 0) || (planillaInstance.tipoPlanilla.codigo == 'C'))}">--}%
                                     <g:if test="${(session.usuario.id.toInteger() in [69, 317]) && ((janus.ejecucion.ReajustePlanilla.countByPlanilla(planillaInstance) > 0) || (planillaInstance.tipoPlanilla.codigo == 'C'))}">
+                                    %{--<g:if test="${(session.usuario.id.toInteger() in [317]) && ((janus.ejecucion.ReajustePlanilla.countByPlanilla(planillaInstance) > 0) || (planillaInstance.tipoPlanilla.codigo == 'C'))}">--}%
                                         <a href="#" class="btn btn-pagar pg_${lblBtn}" data-id="${planillaInstance.id}"
                                            data-tipo="${lblBtn}">
                                             Pedir pago

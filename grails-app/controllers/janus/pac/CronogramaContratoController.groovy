@@ -300,7 +300,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 //            it.refresh()
 //            def res = preciosService.rbro_pcun_v2_item(obra.id, it.subPresupuesto.id, it.item.id)
             def res = it.volumenPrecio * it.volumenCantidad
-            println "---- res: $res"
+//            println "---- res: $res"
             precios.put(it.id.toString(), res)
         }
 
@@ -954,7 +954,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                         def vc = VolumenContrato.get(cod)
 //
                                         if(!vc){
-                                            errores += "<li>No se encontró volumen contrato con id ${cod} (l. ${j + 1})</li>"
+                                            errores += "<li>No se encontró volumen contrato con id ${cod} (linea: ${j + 1})</li>"
                                             println "No se encontró volumen contrato con id ${cod}"
                                             ok = false
                                         }else{
@@ -1178,11 +1178,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                             Cell[] row = null
                             s.getRows().times { j ->
                                 def ok = true
-//                                if (j > 19) {
-//                                println ">>>>>>>>>>>>>>>" + (j + 1)
                                 row = s.getRow(j)
-//                                println row*.getContents()
-//                                println row.length
                                 if (row.length >= periodos) {
                                     def cod = row[0].getContents()
                                     def numero = row[1].getContents()
@@ -1190,13 +1186,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                     def unidad = row[3].getContents()
                                     def cantidad = row[4].getContents()
                                     def punitario = row[5].getContents()
-                                    def subtotal = row[6].getContents()
-//                                    (1..periodos).each{
-//                                        def mes = row[]
-//                                    }
-
-                                    println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
-                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal
+                                    def subtotal = row[6].getContents().replaceAll(',', '.')
 
                                     if (cod != "CODIGO") {
                                         cantidad = cantidad.replaceAll(",",".")
@@ -1207,81 +1197,48 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                             errores += "<li>No se encontró volumen contrato con id ${cod} (l. ${j + 1})</li>"
                                             println "No se encontró volumen contrato con id ${cod}"
                                             ok = false
-                                        }else{
+                                        } else {
                                             def valorPeriodo = 0
-                                            def columna2 = 7
+                                            def columna = 7
                                             def porcentajeCrono = 0
                                             def cantidadCrono = 0
-                                            while (columna2 < (7 + periodos)) {
-                                                valorPeriodo = row[columna2].getContents()
 
-                                                if(valorPeriodo){
-                                                    valorPeriodo = valorPeriodo.replaceAll(",",".")
-                                                }else{
-                                                    valorPeriodo = 0
-                                                }
+                                            while (columna < (7 + periodos)) {
+//                                                println "*** ${row[columna].getContents()}"
+                                                def periodoCrono = CronogramaContratado.findByVolumenContratoAndPeriodo(vc, (columna - 6))
+                                                valorPeriodo = row[columna].getContents()
+                                                valorPeriodo = valorPeriodo? valorPeriodo.replaceAll(",",".") : null
+                                                valorPeriodo = valorPeriodo? valorPeriodo.toDouble() : 0
 
-                                                if(!subtotal){
-                                                    subtotal = 0
-                                                } else {
-                                                    subtotal = subtotal.replaceAll(",",".")
-                                                }
+                                                if(valorPeriodo > 0){
+//                                                    println "id: $cod --> $valorPeriodo --> prdo: ${periodoCrono?.periodo}"
+                                                    if(subtotal?.toDouble() != 0){
+                                                        porcentajeCrono = ((Math.round(valorPeriodo.toDouble() * 100) / 100) / subtotal.toDouble()*100)
+                                                        cantidadCrono = (porcentajeCrono * (Math.round(cantidad.toDouble() * 100) / 100)) / 100
+                                                        if(!periodoCrono) {
+                                                            periodoCrono = new CronogramaContratado()
+                                                        }
+                                                        periodoCrono.contrato = vc.contrato
+                                                        periodoCrono.volumenContrato = vc
+                                                        periodoCrono.periodo = (columna - 6)
+                                                        periodoCrono.porcentaje = porcentajeCrono
+                                                        periodoCrono.cantidad = cantidadCrono
+                                                        periodoCrono.precio = valorPeriodo
+                                                        if(!periodoCrono.save(flush:true)){
+                                                            println "No se pudo guardar valor del cronograma con id ${periodoCrono.id}: " + periodoCrono.errors
+                                                            errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
+                                                        }else{
+                                                            done++
+//                                                            println "Modificado vocr: ${periodoCrono.id}"
+                                                            doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
+                                                        }
 
-                                                if(!cantidad){
-                                                    cantidad = 0
-                                                }
-
-                                                println("vp " + cod + " - "  + valorPeriodo)
-
-                                                if(subtotal?.toDouble() != 0){
-                                                    if(valorPeriodo?.toDouble() != 0){
-//                                                        porcentajeCrono = (valorPeriodo.toDouble() / subtotal)
-                                                        porcentajeCrono = ((Math.round(valorPeriodo.toDouble() * 100) / 100) / subtotal.toDouble())
-                                                    }else{
-                                                        porcentajeCrono = 0
                                                     }
-                                                }else{
-                                                    porcentajeCrono = 0
+                                                } else if(periodoCrono){  //se elimina si existía antes
+                                                    periodoCrono.delete(flush: true)
                                                 }
 
-                                                cantidadCrono = (porcentajeCrono * (Math.round(cantidad.toDouble() * 100) / 100))
-
-                                                def periodoCrono = CronogramaContratado.findByVolumenContratoAndPeriodo(vc, (columna2 - 6))
-
-
-
-                                                if(periodoCrono){
-                                                    periodoCrono.porcentaje = porcentajeCrono
-                                                    periodoCrono.cantidad = cantidadCrono
-                                                }else{
-                                                    println("no existe crcr")
-                                                    println("creando....")
-
-                                                    periodoCrono = new CronogramaContratado()
-
-                                                    periodoCrono.contrato = vc.contrato
-                                                    periodoCrono.volumenContrato = vc
-                                                    periodoCrono.periodo = (columna2 - 6)
-                                                    periodoCrono.porcentaje = porcentajeCrono
-                                                    periodoCrono.cantidad = cantidadCrono
-                                                }
-
-                                                if(valorPeriodo != 0){
-                                                    periodoCrono.precio = (Math.round(valorPeriodo.toDouble() * 100) / 100)
-                                                }else{
-                                                    periodoCrono.precio = 0
-                                                }
-
-                                                if(!periodoCrono.save(flush:true)){
-                                                    println "No se pudo guardar valor del cronograma con id ${periodoCrono.id}: " + periodoCrono.errors
-                                                    errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
-                                                }else{
-                                                    done++
-                                                    println "Modificado vocr: ${periodoCrono.id}"
-                                                    doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
-                                                }
-
-                                                columna2++
+                                                columna++
                                             }
 
                                         }

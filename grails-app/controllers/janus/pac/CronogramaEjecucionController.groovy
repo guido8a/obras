@@ -2584,7 +2584,9 @@ class CronogramaEjecucionController extends janus.seguridad.Shield {
                 if(diasrsto < diasPrdo) {
                     fctr = diasrsto / diasPrdo
                     println "+++++ se debe dividir en otro mes ++++++"
-                    sql = "select prej__id from prej_t where cntr__id = ${cntr.id} and prejtipo in ('P', 'C', 'A') and " +
+//                    sql = "select prej__id from prej_t where cntr__id = ${cntr.id} and prejtipo in ('P', 'C', 'A') and " +
+//                            "prejnmro = ${prdo} order by 1;"
+                    sql = "select prej__id from prej_t where cntr__id = ${cntr.id} and prejtipo = '${prejtipo}' and " +
                             "prejnmro = ${prdo} order by 1;"
                     def prej = ""
                     cn.eachRow(sql.toString()) {d ->
@@ -2611,7 +2613,9 @@ class CronogramaEjecucionController extends janus.seguridad.Shield {
                     println "NuevoPrej: ${obra.id}, $prdo, $prejtipo, $fcin, $fcfn, ${cntr.id}"
                     nuevoId = insertaPrejNuevo(obra, prdo, prejtipo, fcin, fcfn, cntr)
 
-                    sql = "select prej__id from prej_t where cntr__id = ${cntr.id} and prejtipo in ('P', 'C', 'A') and " +
+//                    sql = "select prej__id from prej_t where cntr__id = ${cntr.id} and prejtipo in ('P', 'C', 'A') and " +
+//                            "prejnmro = ${prdo} order by 1;"
+                    sql = "select prej__id from prej_t where cntr__id = ${cntr.id} and prejtipo = '${prejtipo}' and " +
                             "prejnmro = ${prdo} order by 1;"
                     def prej = ""
                     cn.eachRow(sql.toString()) {d ->
