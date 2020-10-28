@@ -918,8 +918,11 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                 //procesar excel
                 def htmlInfo = "", errores = "", doneHtml = "", done = 0
                 def file = new File(pathFile)
-                Workbook workbook = Workbook.getWorkbook(file)
 
+                WorkbookSettings ws = new WorkbookSettings();
+//                ws.setEncoding("Cp1252");
+//                Workbook workbook = Workbook.getWorkbook(file, ws)
+                Workbook workbook = Workbook.getWorkbook(file)
                 workbook.getNumberOfSheets().times { sheet ->
                     if (sheet == 0) {
                         Sheet s = workbook.getSheet(sheet)
@@ -944,11 +947,12 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                     def subtotal = row[6].getContents()
                                     def precioConst = row[7].getContents()
 
-                                    println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
-                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal + "\tnuevo:" + precioConst
+//                                    println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
+//                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal + "\tnuevo:" + precioConst
 
                                     if (cod != "CODIGO") {
                                         cantidad = cantidad.replaceAll(",",".")
+                                        precioConst = precioConst.replaceAll(",",".")
 //                                        println("cantidad " + cantidad)
 //                                        println("-->" + Math.round(cantidad.toDouble() * 100) / 100)
                                         def vc = VolumenContrato.get(cod)
@@ -966,7 +970,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                             if(!cantidad){
                                                 cantidad = 0
                                             }
-
+//                                            println "precio: ${precioConst.toDouble()}"
                                             vc.volumenPrecio = precioConst.toDouble()
                                             vc.volumenCantidad = Math.round(cantidad.toDouble() * 100) / 100
                                             vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 100) / 100)
@@ -977,7 +981,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                             errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
                                         }else{
                                             done++
-                                            println "Modificado vocr: ${vc.id}"
+//                                            println "Modificado vocr: ${vc.id}"
                                             doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
                                         }
                                     }
