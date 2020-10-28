@@ -284,6 +284,7 @@
                     var no = parts[1];
                     doHighlight({elem : $(ok), clase : "ok"});
                     doHighlight({elem : $(no), clase : "no"});
+                    location.reload(true);
                 }
             });
         }
