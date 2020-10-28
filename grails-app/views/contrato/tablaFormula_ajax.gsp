@@ -5,6 +5,13 @@
   Time: 03:16 PM
 --%>
 
+%{--<script src="${resource(dir: 'js/jquery/plugins/jgrowl', file: 'jquery.jgrowl.js')}"></script>--}%
+%{--<link href="${resource(dir: 'js/jquery/plugins/jgrowl', file: 'jquery.jgrowl.css')}" rel="stylesheet"/>--}%
+%{--<link href="${resource(dir: 'js/jquery/plugins/jgrowl', file: 'jquery.jgrowl.customThemes.css')}" rel="stylesheet"/>--}%
+
+
+<script src="${resource(dir: 'js/jquery/plugins/box/js', file: 'jquery.luz.box.js')}"></script>
+<link href="${resource(dir: 'js/jquery/plugins/box/css', file: 'jquery.luz.box.css')}" rel="stylesheet">
 
  <div id="tabs" style="width: 700px; height: 700px; text-align: center">
 
@@ -23,10 +30,11 @@
 
                     <table class="table table-bordered table-striped table-hover table-condensed" id="tablaPoliContrato">
                         <thead>
-                        <tr>
-                            <th style="width: 20px; text-align: center">Coeficiente</th>
-                            <th style="width: 70px">Nombre del Indice (INEC)</th>
-                            <th style="width: 40px">Valor</th>
+                        <tr style="width: 100%">
+                            <th style="width: 10%; text-align: center">Coeficiente</th>
+                            <th style="width: 65%">Nombre del Indice (INEC)</th>
+                            <th style="width: 15%">Valor</th>
+                            <th style="width: 15%">Editar</th>
                         </tr>
                         </thead>
                         <tbody id="bodyPoliContrato">
@@ -35,8 +43,22 @@
                             <tr>
                                 <td>${i?.numero}</td>
                                 <td>${i?.indice?.descripcion}</td>
-                                <td class="editable" data-tipo="p" data-id="${i.id}" id="${i.id}" data-original="${i.valor}" data-valor="${i.valor}" style="text-align: right; width: 40px">
-                                    ${g.formatNumber(number: i?.valor, minFractionDigits: 3, maxFractionDigits: 3)}
+                                <g:if test="${i.indice.id == 143}">
+                                    <td class="editable" data-tipo="p" data-id="${i.id}" id="${i.id}" data-original="${i.valor}" data-valor="${i.valor}" style="text-align: right; width: 40px">
+                                        ${g.formatNumber(number: i?.valor, minFractionDigits: 3, maxFractionDigits: 3)}
+                                    </td>
+                                </g:if>
+                                <g:else>
+                                    <td data-tipo="p" data-valor="${i.valor}"style="text-align: right; width: 40px">
+                                        ${g.formatNumber(number: i?.valor, minFractionDigits: 3, maxFractionDigits: 3)}
+                                    </td>
+                                </g:else>
+                                <td style="text-align: center">
+                                    <g:if test="${i.indice.id != 143}">
+                                        <a href="#" data-id="${i.id}" class="btn btn-xs btn-success btnEditarIndice" title="Editar índice">
+                                            <i class="icon-pencil"></i>
+                                        </a>
+                                    </g:if>
                                 </td>
                                 <g:set var="tot" value="${tot + i.valor}"/>
                             </tr>
@@ -46,6 +68,7 @@
                         <tr>
                             <th colspan="2">TOTAL</th>
                             <th class="total p" style="text-align: right; ">${g.formatNumber(number: tot, maxFractionDigits: 3, minFractionDigits: 3)}</th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>
@@ -89,11 +112,122 @@
         </div>
     </div>
 
+<div class="modal hide fade mediumModal" id="modal-var" style="overflow: hidden">
+    <div class="modal-header btn-primary">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+
+        <h3 id="modal_tittle_var">
+
+        </h3>
+
+    </div>
+
+    <div class="modal-body" id="modal_body_var">
+
+    </div>
+
+    <div class="modal-footer" id="modal_footer_var">
+
+    </div>
+
+</div>
+
 
 <script type="text/javascript" src="${resource(dir: 'js', file: 'tableHandlerBody.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js', file: 'tableHandler.js')}"></script>
 
 <script type="text/javascript">
+
+    function log(msg, error) {
+        var sticky = false;
+        var theme = "success";
+        if (error) {
+            sticky = true;
+            theme = "error";
+        }
+        $.jGrowl(msg, {
+            speed: 'slow',
+            sticky: sticky,
+            theme: theme,
+            themeState: ''
+        });
+    }
+
+
+    $(".btnEditarIndice").click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            type    : "POST",
+            url     : "${createLink(controller: 'contrato', action: 'editarIndice_ajax')}",
+            data    : {
+                id : id
+            },
+            success : function (msg) {
+                var $btnSave = $('<a href="#" class="btn btn-success"><i class="icon icon-save"></i> Guardar</a>');
+                var $btnCerrar = $('<a href="#" data-dismiss="modal" class="btn">Cerrar</a>');
+                $btnSave.click(function () {
+                    $(this).replaceWith(spinner);
+                    var indiceNuevo = $("#indice").val();
+                    var valorNuevo = $("#valor").val();
+                    $.ajax({
+                        type    : "POST",
+                        url     : "${createLink(action:'guardarNuevoIndice')}",
+                        data    : {
+                            id   : id,
+                            indice: indiceNuevo,
+                            valor: valorNuevo
+                        },
+                        success : function (msg) {
+                            $("#modal-var").modal("hide");
+                            if(msg == 'ok'){
+                                $.box({
+                                    imageClass: "box_info",
+                                    text: "Guardado correctamente",
+                                    title: "Guardado",
+                                    iconClose: false,
+                                    dialog: {
+                                        resizable: false,
+                                        draggable: false,
+                                        width: 400,
+                                        buttons: {
+                                            "Aceptar": function () {
+                                                location.reload(true);
+                                            }
+                                        }
+                                    }
+                                });
+                            }else{
+                                $.box({
+                                    imageClass: "box_info",
+                                    text: "Error al guardar!",
+                                    title: "Error",
+                                    iconClose: false,
+                                    dialog: {
+                                        resizable: false,
+                                        draggable: false,
+                                        width: 400,
+                                        buttons: {
+                                            "Aceptar": function () {
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+
+                        }
+                    });
+                });
+                $("#modal_tittle_var").text("Editar índice");
+                $("#modal_body_var").html(msg);
+                $("#modal_footer_var").html($btnCerrar).append($btnSave);
+                $("#modal-var").modal("show");
+            }
+        });
+        return false;
+    });
+
+
+
     decimales = 3;
     tabla = $(".table");
 

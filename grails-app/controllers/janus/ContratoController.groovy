@@ -1449,4 +1449,49 @@ class ContratoController extends janus.seguridad.Shield {
         }
     }
 
+
+    def editarIndice_ajax(){
+        println("params " + params)
+        def indiceActual = FormulaPolinomicaContractual.get(params.id)
+
+        def indicesP = FormulaPolinomicaContractual.withCriteria {
+            ilike("numero", "p%")
+            ne("numero", "P0")
+            order("numero", "asc")
+        }
+
+        def tipoIndice = TipoIndice.findByCodigo('M')
+        def indices = Indice.findAllByTipoIndiceAndIdNotEqual(tipoIndice, 143).sort{it.descripcion}
+//        def mano = Indice.findByCodigo('MO')
+//        def indices = Indice.findAllByTipoIndice(tipoIndice).sort{it.descripcion}
+//        def i = indices.id - mano.id
+//        def ind = Indice.findAllByIdInList(i)
+
+        return [indices: indices, indiceActual: indiceActual]
+
+    }
+
+    def guardarNuevoIndice(){
+        println("params gni " + params)
+
+        def indice = Indice.get(params.indice)
+        def fpc
+
+        if(params.id){
+            fpc = FormulaPolinomicaContractual.get(params.id)
+        }else{
+            fpc = new FormulaPolinomicaContractual()
+        }
+
+        fpc.indice = indice
+        fpc.valor = params.valor.toDouble()
+
+        if(!fpc.save(flush:true)){
+            println("error al guardar la formula pol contractual " + fpc.errors)
+            render "no"
+        }else{
+            render "ok"
+        }
+    }
+
 } //fin controller
