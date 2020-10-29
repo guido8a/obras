@@ -1451,14 +1451,7 @@ class ContratoController extends janus.seguridad.Shield {
 
 
     def editarIndice_ajax(){
-        println("params " + params)
         def indiceActual = FormulaPolinomicaContractual.get(params.id)
-
-        def indicesP = FormulaPolinomicaContractual.withCriteria {
-            ilike("numero", "p%")
-            ne("numero", "P0")
-            order("numero", "asc")
-        }
 
         def tipoIndice = TipoIndice.findByCodigo('M')
         def indices = Indice.findAllByTipoIndiceAndIdNotEqual(tipoIndice, 143).sort{it.descripcion}
@@ -1468,11 +1461,20 @@ class ContratoController extends janus.seguridad.Shield {
 //        def ind = Indice.findAllByIdInList(i)
 
         return [indices: indices, indiceActual: indiceActual]
-
     }
 
+    def editarIndiceC_ajax(){
+        def indiceActual = FormulaPolinomicaContractual.get(params.id)
+
+        def tipoIndice = TipoIndice.findByCodigo('O')
+        def indices = Indice.findAllByTipoIndice(tipoIndice).sort{it.descripcion}
+
+        return [indices: indices, indiceActual: indiceActual]
+    }
+
+
     def guardarNuevoIndice(){
-        println("params gni " + params)
+//        println("params gni " + params)
 
         def indice = Indice.get(params.indice)
         def fpc
