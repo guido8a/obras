@@ -313,7 +313,7 @@
                                 Informar pago
                             </g:if>
                             <g:if test="${lblBtn == 5}">
-                                <g:if test="${planillaInstance.tipoPlanilla.codigo == 'A'}">
+                                <g:if test="${planillaInstance.tipoPlanilla.codigo == 'A' && contrato.administrador.id == session.usuario.id}">
                                     <a href="#" class="btn btn-pagar pg_${lblBtn}" data-id="${planillaInstance.id}"
                                        data-tipo="${lblBtn}">
                                         Iniciar Obra

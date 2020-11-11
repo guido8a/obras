@@ -3470,15 +3470,15 @@ class ReportesPlanillasController {
         def prsn = PersonasTramite.findAllByTramite(tramite, [sort: "rolTramite"])
 
         def detalle = VolumenesObra.findAllByObra(obra, [sort: "orden"])
-        def precios = [:]
-        def indirecto = obra.totales / 100
+//        def precios = [:]
+//        def indirecto = obra.totales / 100
 
-        preciosService.ac_rbroObra(obra.id)
+//        preciosService.ac_rbroObra(obra.id)
 
-        detalle.each {
-            def res = preciosService.precioUnitarioVolumenObraSinOrderBy("sum(parcial)+sum(parcial_t) precio ", obra.id, it.item.id)
-            precios.put(it.id.toString(), (res["precio"][0] + res["precio"][0] * indirecto).toDouble().round(2))
-        }
+//        detalle.each {
+//            def res = preciosService.precioUnitarioVolumenObraSinOrderBy("sum(parcial)+sum(parcial_t) precio ", obra.id, it.item.id)
+//            precios.put(it.id.toString(), (res["precio"][0] + res["precio"][0] * indirecto).toDouble().round(2))
+//        }
 
         def baos = new ByteArrayOutputStream()
         def name = "memo_pedido_pago_anticipo_" + new Date().format("ddMMyyyy_hhmm") + ".pdf";

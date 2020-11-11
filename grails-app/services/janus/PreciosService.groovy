@@ -372,7 +372,7 @@ class PreciosService {
     def precioUnitarioVolumenObraSinOrderBy(select, obra, item) {
         def cn = dbConnectionService.getConnection()
         def sql = "select ${select} from vlob_pcun_v2(${obra},${item}) "
-//        println "sql pcvl "+sql
+        println "sql pcvl "+sql
         def result = []
         cn.eachRow(sql.toString()) { r ->
             result.add(r.toRowResult())

@@ -552,6 +552,10 @@ class PlanillaController extends janus.seguridad.Shield {
                 redirect(action: 'listFiscalizador', id: params.id)
                 return
                 break;
+            case "FSEX":
+                redirect(action: 'listFiscEx', id: params.id)
+                return
+                break;
         }
 
         def contrato = Contrato.get(params.id)
@@ -566,7 +570,8 @@ class PlanillaController extends janus.seguridad.Shield {
         println "listFiscalizador: $params"
 //        params.max = 15 //controlao por javascript $(".paginate").paginate(...
         def codigoPerfil = session.perfil.codigo
-//        println codigoPerfil
+        println codigoPerfil
+/*
         switch (codigoPerfil) {
             case "FINA":
                 redirect(action: 'listFinanciero', id: params.id)
@@ -584,6 +589,61 @@ class PlanillaController extends janus.seguridad.Shield {
                 redirect(action: 'list', id: params.id)
                 return
         }
+*/
+        def contrato = Contrato.get(params.id)
+        def obra = contrato.oferta.concurso.obra
+
+//        def fp = janus.FormulaPolinomica.findAllByObra(obra)
+//        println fp
+        def firma = Persona.findAllByCargoIlike("Direct%");
+//        def planillaInstanceList = Planilla.findAllByContrato(contrato, [sort: 'id'], [max: 25])
+        def planillaInstanceList = Planilla.findAllByContrato(contrato, [sort: 'id'])
+
+//        def tipoAvance = TipoPlanilla.findByCodigo('P')
+        def liquidacion = Planilla.findByContratoAndTipoPlanilla(contrato, TipoPlanilla.findByCodigo('Q'))?.id > 0
+
+//        println "---> $params"
+        def listaAdicionales = []
+
+        planillaInstanceList.each{
+            def cn = dbConnectionService.getConnection()
+            def sql = "select rbrocdgo, rbronmbr, unddcdgo, vocrcntd, cntdacml - cntdantr - vocrcntd diff, vocrpcun, vloracml-vlorantr-vocrsbtt vlor from detalle(${it.contrato.id}, ${it.contrato.obra.id}, ${it.id}, 'P') where (cntdacml - cntdantr) > vocrcntd ;"
+            def res = cn.rows(sql.toString())
+
+            if(res){
+                listaAdicionales.add(it.id)
+            }
+
+        }
+
+        return [contrato: contrato, obra: contrato.oferta.concurso.obra, planillaInstanceList: planillaInstanceList,
+                firma: firma, liquidacion: liquidacion, adicionales: listaAdicionales]
+    }
+
+    def listFiscEx() {
+        println "listFiscalizadorEx: $params"
+//        params.max = 15 //controlao por javascript $(".paginate").paginate(...
+        def codigoPerfil = session.perfil.codigo
+        println codigoPerfil
+/*
+        switch (codigoPerfil) {
+            case "FINA":
+                redirect(action: 'listFinanciero', id: params.id)
+                return
+                break;
+            case "ADCT":
+                redirect(action: 'listAdmin', id: params.id)
+                return
+                break;
+            case "FISC":
+//                redirect(action: 'listFiscalizador', id: params.id)
+//                return
+                break;
+            default:
+                redirect(action: 'list', id: params.id)
+                return
+        }
+*/
         def contrato = Contrato.get(params.id)
         def obra = contrato.oferta.concurso.obra
 
