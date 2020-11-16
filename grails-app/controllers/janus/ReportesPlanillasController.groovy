@@ -3938,10 +3938,10 @@ class ReportesPlanillasController {
             def firma = firmas?.titulo ? firmas?.titulo + " " : ""
             firma += firmas?.nombre + " " + firmas?.apellido
 
-            def firmaFiscalizador = contrato?.fiscalizador?.titulo ? contrato?.fiscalizador?.titulo : ''
+            def firmaFiscalizador = contrato?.fiscalizador?.titulo ? contrato?.fiscalizador?.titulo + " " : ''
             firmaFiscalizador += contrato?.fiscalizador?.nombre + " " + contrato?.fiscalizador?.apellido
 
-            def firmaContratista= contrato?.contratista?.titulo ? contrato?.fiscalizador?.titulo : ''
+            def firmaContratista= contrato?.contratista?.titulo ? contrato?.contratista?.titulo + " " : ''
             firmaContratista += contrato?.contratista?.nombre + " " + ''
 
             PdfPTable tablaFirmas = new PdfPTable(5);
