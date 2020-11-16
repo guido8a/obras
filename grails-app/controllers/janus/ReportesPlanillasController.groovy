@@ -3942,7 +3942,7 @@ class ReportesPlanillasController {
             firmaFiscalizador += contrato?.fiscalizador?.nombre + " " + contrato?.fiscalizador?.apellido
 
             def firmaContratista= contrato?.contratista?.titulo ? contrato?.contratista?.titulo + " " : ''
-            firmaContratista += contrato?.contratista?.nombre + " " + ''
+            firmaContratista += contrato?.contratista?.nombreContacto + " " + contrato?.contratista?.nombreContacto
 
             PdfPTable tablaFirmas = new PdfPTable(5);
             tablaFirmas.setWidthPercentage(100);
