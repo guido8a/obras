@@ -31,6 +31,7 @@ public  java.lang.Object reportePlanillaNuevo() { return null;}
 public  java.lang.Object rptPlnlEntrega() { return null;}
 public  java.lang.Object reportePlanillaTotal() { return null;}
 public  java.lang.Object reporteTablas(java.lang.Object planilla, java.lang.Object fpReajuste) { return null;}
+public  java.lang.Object rpSinTablas(java.lang.Object planilla) { return null;}
 public  java.lang.Object ponePeriodoPlanilla(java.lang.Object plnl) { return null;}
 public  java.lang.Object resumenAnticipo(java.lang.Object planilla) { return null;}
 public  java.lang.Object multas(java.lang.Object planilla, java.lang.Object tipo) { return null;}

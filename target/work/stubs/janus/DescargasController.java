@@ -26,5 +26,4 @@ public  java.lang.Object manualEjec() { return null;}
 public  java.lang.Object manualAPU() { return null;}
 public  java.lang.Object manualRprt() { return null;}
 public  java.lang.Object manualAdmnDire() { return null;}
-public  java.lang.Object materiales() { return null;}
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="obras dev" uuid="3b23d45a-f8fa-46b1-b155-f94bc48e86a1">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>grails
+
+/home/fabricio/IdeaProjects/obras/grails-app/conf/DataSource.groovy</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://192.168.100.9:5432/gadlr_prba2</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="gadlr@192.168.100.9" uuid="322aa387-b8d7-43af-a637-a89f438ae1c8">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://192.168.100.9:5432/gadlr</jdbc-url>
+    </data-source>
+  </component>
+</project>

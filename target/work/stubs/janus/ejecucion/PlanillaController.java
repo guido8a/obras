@@ -24,6 +24,8 @@ public  java.lang.Object getBuscadorService() { return null;}
 public  void setBuscadorService(java.lang.Object value) { }
 public  java.lang.Object getDiasLaborablesService() { return null;}
 public  void setDiasLaborablesService(java.lang.Object value) { }
+public  java.lang.Object getContratoService() { return null;}
+public  void setContratoService(java.lang.Object value) { }
 public  java.lang.Object getDbConnectionService() { return null;}
 public  void setDbConnectionService(java.lang.Object value) { }
 public  java.lang.Object configPedidoPagoAnticipo() { return null;}

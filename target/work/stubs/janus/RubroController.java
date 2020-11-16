@@ -54,4 +54,7 @@ public  java.lang.Object downloadFileAres() { return null;}
 public  java.lang.Object uploadFile() { return null;}
 public  java.lang.Object verificaRubro() { return null;}
 public  java.lang.Object copiaRubro() { return null;}
+public  java.lang.Object registrar_ajax() { return null;}
+public  java.lang.Object desregistrar_ajax() { return null;}
+public  java.lang.Object precio_ajax() { return null;}
 }

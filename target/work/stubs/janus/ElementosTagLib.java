@@ -43,6 +43,12 @@ public  java.lang.Object getFavicon() { return null;}
 public  void setFavicon(java.lang.Object value) { }
 public  java.lang.Object getFuncionOk() { return null;}
 public  void setFuncionOk(java.lang.Object value) { }
+public  java.lang.Object getPoneHtml() { return null;}
+public  void setPoneHtml(java.lang.Object value) { }
+public  java.lang.Object getPoneSelector() { return null;}
+public  void setPoneSelector(java.lang.Object value) { }
+public  java.lang.Object getPonePropiedades() { return null;}
+public  void setPonePropiedades(java.lang.Object value) { }
 public  java.lang.String renderAttributes(java.lang.Object attrs) { return (java.lang.String)null;}
 public  void outputAttributes(java.lang.Object attrs, java.lang.Object writer, boolean useNameAsIdIfIdDoesNotExist) { }
 public  java.lang.Object renderNoSelectionOptionImpl(java.lang.Object out, java.lang.Object noSelectionKey, java.lang.Object noSelectionValue, java.lang.Object value) { return null;}

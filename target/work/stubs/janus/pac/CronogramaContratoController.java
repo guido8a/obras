@@ -38,8 +38,16 @@ public  java.lang.Object deleteRubroNuevo_ajax() { return null;}
 public  java.lang.Object deleteCronogramaNuevo_ajax() { return null;}
 public  java.lang.Object modificarCantidad_ajax() { return null;}
 public  java.lang.Object guardarCantidad_ajax() { return null;}
-public  java.lang.Object preciosCntr() { return null;}
 public  java.lang.Object editarVocr() { return null;}
 public  java.lang.Object tablaValores() { return null;}
 public  java.lang.Object actualizaVlin() { return null;}
+public  java.lang.Object corrigeCrcr() { return null;}
+public  java.lang.Object cantidadObra() { return null;}
+public  java.lang.Object subirExcel() { return null;}
+public  java.lang.Object uploadFile() { return null;}
+public  java.lang.Object mensajeUploadContrato() { return null;}
+public  java.lang.Object excelCronograma() { return null;}
+public  java.lang.Object subirExcelCronograma() { return null;}
+public  java.lang.Object mensajeUploadCronograma() { return null;}
+public  java.lang.Object uploadFileCronograma() { return null;}
 }

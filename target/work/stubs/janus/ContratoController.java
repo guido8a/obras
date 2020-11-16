@@ -65,4 +65,6 @@ public  java.lang.Object copiaFpDesdeObra(java.lang.Object cntr, java.lang.Objec
 public  java.lang.Object validaCdgo() { return null;}
 public  java.lang.Object integrarCrono() { return null;}
 public  java.lang.Object integrarFP() { return null;}
+public  java.lang.Object editarIndice_ajax() { return null;}
+public  java.lang.Object guardarNuevoIndice() { return null;}
 }

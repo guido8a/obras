@@ -16,6 +16,8 @@ public  void setMetaClass(groovy.lang.MetaClass mc) { }
 public  java.lang.Object invokeMethod(java.lang.String method, java.lang.Object arguments) { return null;}
 public  java.lang.Object getProperty(java.lang.String property) { return null;}
 public  void setProperty(java.lang.String property, java.lang.Object value) { }
+public static  java.lang.Object getAuditable() { return null;}
+public static  void setAuditable(java.lang.Object value) { }
 public  janus.Contrato getContrato() { return (janus.Contrato)null;}
 public  void setContrato(janus.Contrato value) { }
 public  janus.ejecucion.TipoPlanilla getTipoPlanilla() { return (janus.ejecucion.TipoPlanilla)null;}
@@ -108,8 +110,6 @@ public  java.lang.String getGarantiaTrabajo() { return (java.lang.String)null;}
 public  void setGarantiaTrabajo(java.lang.String value) { }
 public  java.util.Date getFechaSuscripcionTrabajo() { return (java.util.Date)null;}
 public  void setFechaSuscripcionTrabajo(java.util.Date value) { }
-public static  java.lang.Object getAuditable() { return null;}
-public static  void setAuditable(java.lang.Object value) { }
 public static  java.lang.Object getMapping() { return null;}
 public static  void setMapping(java.lang.Object value) { }
 public static  java.lang.Object getConstraints() { return null;}

@@ -69,4 +69,6 @@ public  java.lang.Object reporteExcelGarantias() { return null;}
 public  java.lang.Object presupuestadas() { return null;}
 public  java.lang.Object buscarObraPre() { return null;}
 public  java.lang.Object reporteExcelItemsVae() { return null;}
+public  java.lang.Object ingresadas() { return null;}
+public  java.lang.Object tablaIngresadas() { return null;}
 }

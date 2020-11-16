@@ -28,4 +28,6 @@ public  java.lang.Object index() { return null;}
 public  java.lang.Object inicio() { return null;}
 public  java.lang.Object arbol() { return null;}
 public  java.lang.Object variables() { return null;}
+public  java.lang.Object leeCSV() { return null;}
+public  java.lang.Object cargaData(java.lang.Object rgst) { return null;}
 }

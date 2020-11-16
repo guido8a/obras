@@ -70,6 +70,8 @@ public  java.lang.String getCodigoEspecificacion() { return (java.lang.String)nu
 public  void setCodigoEspecificacion(java.lang.String value) { }
 public  janus.pac.CodigoComprasPublicas getCodigoComprasPublicas() { return (janus.pac.CodigoComprasPublicas)null;}
 public  void setCodigoComprasPublicas(janus.pac.CodigoComprasPublicas value) { }
+public  java.lang.String getAprobado() { return (java.lang.String)null;}
+public  void setAprobado(java.lang.String value) { }
 public static  java.lang.Object getAuditable() { return null;}
 public static  void setAuditable(java.lang.Object value) { }
 public static  java.lang.Object getMapping() { return null;}
