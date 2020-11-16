@@ -3909,19 +3909,19 @@ class ReportesPlanillasController {
             document.add(prueba3);
             document.add(prueba4);
 
-            PdfPTable tablaFirmas = new PdfPTable(1);
-            tablaFirmas.setWidthPercentage(100);
-            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
-            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
-            addCellTabla(tablaFirmas, new Paragraph("______________________________________", times8bold), prmsHeaderHoja)
+//            PdfPTable tablaFirmas = new PdfPTable(1);
+//            tablaFirmas.setWidthPercentage(100);
+//            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+//            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+//            addCellTabla(tablaFirmas, new Paragraph("______________________________________", times8bold), prmsHeaderHoja)
 
 //            def firmas = obra.firmaInicioObra
 //            addCellTabla(tablaFirmas, new Paragraph(firmas?.titulo + " " + firmas?.nombre + " " + firmas?.apellido, times12bold), prmsHeaderHoja)
 //            addCellTabla(tablaFirmas, new Paragraph(firmas?.cargo.toUpperCase(), times12bold), prmsHeaderHoja)
 //            document.add(tablaFirmas);
-            def firmas = contrato.administrador
-            def firma = firmas?.titulo ? firmas?.titulo + " " : ""
-            firma += firmas?.nombre + " " + firmas?.apellido
+//            def firmas = contrato.administrador
+//            def firma = firmas?.titulo ? firmas?.titulo + " " : ""
+//            firma += firmas?.nombre + " " + firmas?.apellido
 //            println "***************************************"
 //            println contrato.administrador
 //            println firmas
@@ -3930,8 +3930,48 @@ class ReportesPlanillasController {
 //            println firmas.apellido
 //            println firma
 //            println "***************************************"
-            addCellTabla(tablaFirmas, new Paragraph(firma, times12bold), prmsHeaderHoja)
-            addCellTabla(tablaFirmas, new Paragraph("Administrador del Contrato - Delegado", times12bold), prmsHeaderHoja)
+//            addCellTabla(tablaFirmas, new Paragraph(firma, times12bold), prmsHeaderHoja)
+//            addCellTabla(tablaFirmas, new Paragraph("Administrador del Contrato - Delegado", times12bold), prmsHeaderHoja)
+//            document.add(tablaFirmas);
+
+            def firmas = contrato.administrador
+            def firma = firmas?.titulo ? firmas?.titulo + " " : ""
+            firma += firmas?.nombre + " " + firmas?.apellido
+
+            def firmaFiscalizador = contrato?.fiscalizador?.titulo ? contrato?.fiscalizador?.titulo : ''
+            firmaFiscalizador += contrato?.fiscalizador?.nombre + " " + contrato?.fiscalizador?.apellido
+
+            def firmaContratista= contrato?.contratista?.titulo ? contrato?.fiscalizador?.titulo : ''
+            firmaContratista += contrato?.contratista?.nombre + " " + ''
+
+            PdfPTable tablaFirmas = new PdfPTable(5);
+            tablaFirmas.setWidthPercentage(100);
+            tablaFirmas.setWidths(arregloEnteros([30,5,30,5,30]))
+
+            addCellTabla(tablaFirmas, new Paragraph(" ", times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times8bold), prmsHeaderHoja)
+
+            addCellTabla(tablaFirmas, new Paragraph("_______________________________", times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph("_______________________________", times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph("_______________________________", times8bold), prmsHeaderHoja)
+
+            addCellTabla(tablaFirmas, new Paragraph(firma, times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(firmaFiscalizador, times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(firmaContratista, times8bold), prmsHeaderHoja)
+
+            addCellTabla(tablaFirmas, new Paragraph("Administrador del Contrato - Delegado", times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph("Fiscalizador", times8bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph(" ", times10bold), prmsHeaderHoja)
+            addCellTabla(tablaFirmas, new Paragraph("Contratista", times8bold), prmsHeaderHoja)
+
             document.add(tablaFirmas);
 
 //        def footer = new PdfPTable(1);
