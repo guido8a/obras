@@ -155,7 +155,7 @@
                         <g:formatNumber number="${vol.volumenPrecio}" format="##,##0" minFractionDigits="2" maxFractionDigits="2" locale="ec"/>
                     </td>
                     %{--<g:set var="parcial" value="${precios[vol.id.toString()]}"/>--}%
-                    <g:set var="parcial" value="${Math.round( (vol.volumenCantidad + vol.cantidadComplementaria)* vol.volumenPrecio*100)/100}"/>
+                    <g:set var="parcial" value="${Math.round( (vol.volumenCantidad + vol.cantidadComplementaria)* vol.volumenPrecio*10000)/10000}"/>
                     <td class="num subtotal" data-valor="${parcial}">
                         <g:formatNumber number="${parcial}" format="##,##0" minFractionDigits="2" maxFractionDigits="2" locale="ec"/>
                         <g:set var="sum" value="${sum + parcial}"/>

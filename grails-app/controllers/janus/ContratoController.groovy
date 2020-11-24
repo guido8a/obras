@@ -165,9 +165,10 @@ class ContratoController extends janus.seguridad.Shield {
         def cronos = CronogramaContratado.findAllByVolumenContratoInList(detalle)
 
         println "suma de la obra: ${cronos.precio.sum()}, valor de la obra: ${contrato.monto} " +
-                "--> ${cronos?.precio?.sum()?.round(2)} == ${contrato?.monto?.round(2)}"
+                "--> ${cronos?.precio?.sum()?.round(4) - contrato?.monto?.round(2)}"
 
-        if (cronos?.precio?.sum()?.round(2) != contrato?.monto?.round(2)) {
+//        if (cronos?.precio?.sum()?.round(2) != contrato?.monto?.round(4)) {
+        if (Math.abs(cronos?.precio?.sum()?.round(4) - contrato?.monto?.round(2)) > 0.02) {
             errores += "<li>No cuadra los totales del cronograma ${cronos.precio.sum()} con el valor del contrato: ${contrato.monto}</li>"
         }
         def pcs = FormulaPolinomicaContractual.withCriteria {
