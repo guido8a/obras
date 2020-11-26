@@ -165,7 +165,8 @@
             var anterior = 0;
 
             function initRows() {
-                var rows = ${detalles};
+                %{--var rows = ${detalles};--}%
+                var rows = <elm:poneHtml textoHtml="${detalles}"/>;
                 for (var i = 0; i < rows.length; i++) {
                     var data = rows[i];
                     addRow(data, false);

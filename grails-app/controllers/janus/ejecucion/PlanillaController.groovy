@@ -661,7 +661,11 @@ class PlanillaController extends janus.seguridad.Shield {
 
         planillaInstanceList.each{
             def cn = dbConnectionService.getConnection()
-            def sql = "select rbrocdgo, rbronmbr, unddcdgo, vocrcntd, cntdacml - cntdantr - vocrcntd diff, vocrpcun, vloracml-vlorantr-vocrsbtt vlor from detalle(${it.contrato.id}, ${it.contrato.obra.id}, ${it.id}, 'P') where (cntdacml - cntdantr) > vocrcntd ;"
+            def sql = "select rbrocdgo, rbronmbr, unddcdgo, vocrcntd, cntdacml - cntdantr - vocrcntd diff, vocrpcun, " +
+                    "vloracml-vlorantr-vocrsbtt vlor " +
+                    "from detalle(${it.contrato.id}, ${it.contrato.obra.id}, ${it.id}, 'P') " +
+                    "where (cntdacml - cntdantr) > vocrcntd ;"
+            println "sql: $sql"
             def res = cn.rows(sql.toString())
 
             if(res){
@@ -3548,7 +3552,7 @@ class PlanillaController extends janus.seguridad.Shield {
 //        println json.toPrettyString()
         println "max: $max, totalAnterior: $totalAnterior, anteriores: ${anteriores.valor} "
 
-
+        println "detalles: $detalles, size: ${detalles.size()}"
 
         return [planilla: planilla, obra: obra, contrato: contrato,
                 editable: editable, detalles: json, iva: iva, detallesSize: detalles.size(), max: max]
