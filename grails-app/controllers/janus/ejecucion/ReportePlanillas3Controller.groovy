@@ -2341,7 +2341,7 @@ class ReportePlanillas3Controller {
             addCellTabla(tablaFr, new Paragraph(txto, fontTd), [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
 
             for(i in 1..planillas){
-                txto = numero(d["indc$i"], 3) + "\n" + numero(d["indc$i"]/d.indice*d.coeficiente)
+                txto = numero(d["indc$i"], 3) + "\n" + numero(d["indc$i"]/d.indice*d.coeficiente, 4)
                 addCellTabla(tablaFr, new Paragraph(txto, fontTd), [border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
             }
         }
@@ -2349,7 +2349,7 @@ class ReportePlanillas3Controller {
         addCellTabla(tablaFr, new Paragraph("Sumatoria", fontTh), bordeTdRecuadroDer + [bg: Color.LIGHT_GRAY])
         addCellTabla(tablaFr, new Paragraph(numero(1), fontTh), bordeTdRecuadroDer + [bg: Color.LIGHT_GRAY])
         for(i in 0..planillas-1) {
-            addCellTabla(tablaFr, new Paragraph(numero(reajustesPlanilla[i].factor), fontTh), bordeTdRecuadroDer + [bg: Color.LIGHT_GRAY])
+            addCellTabla(tablaFr, new Paragraph(numero(reajustesPlanilla[i].factor, 4), fontTh), bordeTdRecuadroDer + [bg: Color.LIGHT_GRAY])
         }
 
         def reajusteTotal = 0
@@ -2387,9 +2387,9 @@ class ReportePlanillas3Controller {
             tb.setWidths(arregloEnteros([10]))
             tb.setWidthPercentage(100);
 
-            addCellTabla(tb, new Paragraph(numero(reajustesPlanilla[i].factor), fontTd), bordeTdRecuadroDer + [bg: Color.LIGHT_GRAY])
-            addCellTabla(tb, new Paragraph(numero(reajustesPlanilla[i].factor - 1), fontTd), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
-            addCellTabla(tb, new Paragraph(numero(reajustesPlanilla[i].valorPo, 2), fontTd), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tb, new Paragraph(numero(reajustesPlanilla[i].factor, 4), fontTd), bordeTdRecuadroDer + [bg: Color.LIGHT_GRAY])
+            addCellTabla(tb, new Paragraph(numero(reajustesPlanilla[i].factor - 1, 4), fontTd), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tb, new Paragraph(numero(reajustesPlanilla[i].valorPo, 2, 4), fontTd), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tb, new Paragraph(numero(reajustesPlanilla[i].valorReajustado, 2), fontTd), [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
 
             reajusteTotal += reajustesPlanilla[i].valorReajustado

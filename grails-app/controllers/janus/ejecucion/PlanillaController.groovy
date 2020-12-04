@@ -4065,8 +4065,8 @@ class PlanillaController extends janus.seguridad.Shield {
                 /** calcula valores para halla Bo **/
                 inof = valorIndice(fp.indice , plnl.contrato.periodoInec)
                 inpr = valorIndice(fp.indice , rj.periodoInec)
-                vlof = Math.round(inof * fp.valor *1000)/1000
-                vlpr = Math.round(inpr * fp.valor *1000)/1000
+                vlof = Math.round(inof * fp.valor *10000)/10000
+                vlpr = Math.round(inpr * fp.valor *10000)/10000
                 valorBoOf += vlof
                 valorBoPr += vlpr
 //                println "${fp} coef: ${fp.valor} oferta: $vlof, actual: $vlpr, factor: $valor"
@@ -4106,9 +4106,9 @@ class PlanillaController extends janus.seguridad.Shield {
                     inof = valorIndice(fp.indice , plnl.contrato.periodoInec)
                     inpr = valorIndice(fp.indice , rj.periodoInec)
                 }
-                vlof = Math.round(inof * fp.valor *1000)/1000
-                vlpr = Math.round(inpr * fp.valor *1000)/1000
-                valor = Math.round(vlpr / vlof * fp.valor * 1000)/1000
+                vlof = Math.round(inof * fp.valor *10000)/10000
+                vlpr = Math.round(inpr * fp.valor *10000)/10000
+                valor = Math.round(vlpr / vlof * fp.valor * 10000)/10000
                 valorFr += valor
 //                println "${fp} coef: ${fp.valor} oferta: $vlof, actual: $vlpr, factor: $valor"
 
@@ -4186,8 +4186,8 @@ class PlanillaController extends janus.seguridad.Shield {
                 }
 
                 inpr = valorIndice(fp.indice , rj.periodoInec)
-                vlof = Math.round(inof * fp.valor *1000)/1000
-                vlpr = Math.round(inpr * fp.valor *1000)/1000
+                vlof = Math.round(inof * fp.valor *10000)/10000
+                vlpr = Math.round(inpr * fp.valor *10000)/10000
                 valorBoOf += vlof
                 valorBoPr += vlpr
 //                println "${fp} coef: ${fp.valor} oferta: $vlof, actual: $vlpr, factor: $valor"
@@ -4223,9 +4223,9 @@ class PlanillaController extends janus.seguridad.Shield {
                     inpr = valorIndice(fp.indice , rj.periodoInec)
                 }
 
-                vlof = Math.round(inof * fp.valor *1000)/1000
-                vlpr = Math.round(inpr * fp.valor *1000)/1000
-                valor = Math.round(vlpr / vlof * fp.valor * 1000)/1000
+                vlof = Math.round(inof * fp.valor *10000)/10000
+                vlpr = Math.round(inpr * fp.valor *10000)/10000
+                valor = Math.round(vlpr / vlof * fp.valor * 10000)/10000
                 valorFr += valor
 
 //                println "${fp} coef: ${fp.valor} oferta: $vlof, actual: $vlpr, factor: $valor, Fr: $valorFr"
@@ -5376,6 +5376,7 @@ class PlanillaController extends janus.seguridad.Shield {
 
     //calcula el total sbpr que apica a esta FP
     def prorrateaPo(fprj, cntr, plnl) {
+/*
         println "prorrateaPo: fprj: $fprj, obra: ${cntr.obraContratada.id}, valor: $plnl"
         def cn = dbConnectionService.getConnection()
         def sql= "select sum(vlobsbtt) suma from fpsp, vlob where vlob.sbpr__id = fpsp.sbpr__id and " +
@@ -5384,6 +5385,8 @@ class PlanillaController extends janus.seguridad.Shield {
         def valor = cn.rows(sql.toString())[0].suma * plnl/cntr.monto
         println "valor: $valor"
         return valor
+*/
+        return plnl
     }
 
     /**
