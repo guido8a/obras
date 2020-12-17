@@ -40,7 +40,8 @@
                     Planillas
                 </g:link>
 
-                <g:if test="${planillaInstance?.fechaOrdenPago == null}">
+                %{--<g:if test="${planillaInstance?.fechaOrdenPago == null}">--}%
+                <g:if test="${planillaInstance?.fechaPago == null}">
 
                     <a href="#" id="btnPagar" class="btn btn-success" rel="tooltip" title="Pagar planilla">
                         <i class="icon-money"></i>
@@ -233,8 +234,8 @@
                 </div>
 
                 <div class="span3">
-
-                    ${planillaInstance?.memoOrdenPago}
+                    %{--${planillaInstance?.memoOrdenPago}--}%
+                    ${planillaInstance?.memoPedidoPagoPlanilla}
                 </div>
 
             </div>
@@ -264,12 +265,12 @@
                     <div class="control-group">
                         <div>
                             <span class="control-label label label-inverse">
-                                Memorando orden de pago
+                                Memorando pedido de pago
                             </span>
                         </div>
 
                         <div class="controls">
-                            <g:textField name="memoOrdenPago" maxlength="20" id="memorandoOP" value="${planillaInstance?.memoOrdenPago}"/>
+                            <g:textField name="memoPedidoPagoPlanilla" maxlength="20" id="memorandoOP" value="${planillaInstance?.memoPedidoPagoPlanilla}"/>
                         </div>
 
                     </div>

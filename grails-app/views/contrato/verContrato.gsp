@@ -98,12 +98,15 @@
                 <i class="icon-print"></i>
                 Imp. Rubros y VAE
             </a>
+            
+%{--
             <g:if test="${contrato?.anticipo == 0}">
                 <a href="#" class="btn btn-warning" id="inicioObra">
                     <i class="icon-check text_info"></i>
                     Inicio de Obra
                 </a>
             </g:if>
+--}%
         </g:if>
 
     </div>

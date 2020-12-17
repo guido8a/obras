@@ -1944,7 +1944,7 @@ class CronogramaEjecucionController extends janus.seguridad.Shield {
                             } else {
                                 mes = 30
                             }
-                            println "dias: $dias, restan: ${contrato.plazo - 30 * (crono.periodo - 1)}, mes = $mes, ultimo: $ultimo"
+//                            println "dias: $dias, restan: ${contrato.plazo - 30 * (crono.periodo - 1)}, mes = $mes, ultimo: $ultimo"
                         }
 
                         if (prco > 0) {
@@ -1977,10 +1977,12 @@ class CronogramaEjecucionController extends janus.seguridad.Shield {
             /** una vez cargado el cronograma ejecuta la creacion de periods mensuales, lo cual puede asimilarse dentro de PREJ **/
             params.cntr = contrato?.id
             actualizaPrej()  /** pone para cada prej los valores de cronograma **/
-        } //if cronogramas == 0
+            render ("<h1>Cronograma valorado de ejecución generado exitosamente</h1><br>")
+            return
+        } else {
+            redirect(action: "indexNuevo", params: [obra: obra, id: contrato.id, ini: fcin])
+        }//if cronogramas == 0
 
-//        println "finalizado creaCrngEjec"
-        redirect(action: "indexNuevo", params: [obra: obra, id: contrato.id, ini: fcin])
     }
 
     def insertaPrej(prmt) {

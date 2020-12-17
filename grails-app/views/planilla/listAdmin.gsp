@@ -39,16 +39,15 @@
         </g:link>
 
         %{--cambio junio-2017--}%
-%{--
+
         <g:if test="${anticipo == 0}">
             <g:if test="${contrato?.administrador?.id == session.usuario.id}">
                 <g:link action="form" class="btn" params="[contrato: contrato.id]">
                     <i class="icon-file"></i>
-                    Nueva planilla
+                    Generar Anticipo
                 </g:link>
             </g:if>
         </g:if>
---}%
 
 
     %{--<g:link action="form" class="btn" params="[contrato: contrato.id]">--}%
@@ -146,7 +145,6 @@
                 %{--<i class="icon-zoom-in icon-large"></i>--}%
                 %{--</a>--}%
                     %{--cambio junio-2017--}%
-%{--
                     <g:if test="${eliminable && planillaInstance.tipoPlanilla.codigo == 'A'}">
                         <g:link action="form" class="btn btn-small" rel="tooltip" title="Editar"
                                 params="[contrato: contrato.id]" id="${planillaInstance.id}">
@@ -158,7 +156,6 @@
                             </div>
                         </g:if>
                     </g:if>
---}%
 
                     <g:if test="${planillaInstance.tipoPlanilla.codigo == 'P'}">
                         <g:link action="detalle" id="${planillaInstance.id}" params="[contrato: contrato.id]"
@@ -224,29 +221,42 @@
                             <i class="icon-print"></i>
                         </g:link>
                     </g:if>
+
+                %{--pago    --}%
                 %{--<g:if test="${!planillaInstance.fechaOrdenPago}">--}%
-                %{--<g:link action="ordenPago" class="btn btn-small btn-success btn-ajax" rel="tooltip" title="Ordenar pago" id="${planillaInstance.id}">--}%
-                %{--<i class="icon-money icon-large"></i>--}%
-                %{--</g:link>--}%
-                %{--</g:if>--}%
-                %{--<g:else>--}%
                 %{--<g:if test="${!planillaInstance.fechaPago}">--}%
-                %{--<g:link action="pagar" class="btn btn-small btn-ajax" rel="tooltip" title="Pagar" id="${planillaInstance.id}">--}%
-                %{--<i class="icon-money icon-large"></i>--}%
-                %{--</g:link>--}%
-                %{--</g:if>--}%
-                %{--<g:else>--}%
-                %{--<g:link action="pagar" class="btn btn-small btn-ajax" rel="tooltip" title="Ver pago" id="${planillaInstance.id}">--}%
-                %{--<i class="icon-money icon-large"></i>--}%
-                %{--</g:link>--}%
-                %{--</g:else>--}%
-                %{--</g:else>--}%
+                <g:if test="${!obra.fechaInicio}">
+                    <a href="#" class="btn btn-small btn-ajax btn-success" id="inicioObra" title="Iniciar Obra">
+                        <i class="icon-money icon-large"> Inicio Obra</i>
+                    </a>
+%{--
+                    <g:link action="ordenPago" class="btn btn-small btn-success btn-ajax" rel="tooltip" title="Ordenar pago"
+                        id="${planillaInstance.id}">
+                        <i class="icon-money icon-large"></i>
+                    </g:link>
+--}%
+                </g:if>
+%{--
+                <g:else>
+                    <g:if test="${!planillaInstance.fechaPago}">
+                        <g:link action="pagar" class="btn btn-small btn-ajax" rel="tooltip" title="Pagar" id="${planillaInstance.id}">
+                            <i class="icon-money icon-large"></i>
+                        </g:link>
+                    </g:if>
+                    <g:else>
+                        <g:link action="pagar" class="btn btn-small btn-ajax" rel="tooltip" title="Ver pago" id="${planillaInstance.id}">
+                            <i class="icon-money icon-large"></i>
+                        </g:link>
+                    </g:else>
+                </g:else>
+--}%
                 %{--<a class="btn btn-small btn-edit btn-ajax" href="#" rel="tooltip" title="Editar" data-id="${planillaInstance.id}">--}%
                 %{--<i class="icon-pencil icon-large"></i>--}%
                 %{--</a>--}%
                 %{--<a class="btn btn-small btn-delete" href="#" rel="tooltip" title="Eliminar" data-id="${planillaInstance.id}">--}%
                 %{--<i class="icon-trash icon-large"></i>--}%
                 %{--</a>--}%
+
 
                 </td>
                 <td style="text-align: center;">
@@ -373,6 +383,30 @@
         </div>
     </fieldset>
 </div>
+
+
+<div class="modal hide fade mediumModal" id="modal-var" style="overflow: hidden">
+    <div class="modal-header btn-primary">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+
+        <h3 id="modal_tittle_var">
+
+        </h3>
+
+    </div>
+
+    <div class="modal-body" id="modal_body_var">
+
+    </div>
+
+    <div class="modal-footer" id="modal_footer_var">
+        registro
+    </div>
+
+</div>
+
+
+
 
 <script type="text/javascript">
     var url = "${resource(dir:'images', file:'spinner_24.gif')}";
@@ -622,6 +656,49 @@
             }
 
         });
+
+        $("#inicioObra").click(function () {
+            $.ajax({
+                type    : "POST",
+                url     : "${g.createLink(controller: 'planilla', action:'iniObraNoReajuste')}",
+                data    : {
+                    id : "${contrato?.id}"
+                },
+                success : function (msg) {
+                    var $btnSave = $('<a href="#" class="btn btn-success"><i class="icon icon-save"></i> Guardar</a>');
+                    var $btnCerrar = $('<a href="#" data-dismiss="modal" class="btn">Cerrar</a>');
+                    $btnSave.click(function () {
+                        $(this).replaceWith(spinner);
+                        var fcha = $("#fecha").val()
+                        var memo = $("#memo").val()
+                        console.log('...va inicio',fcha, memo)
+                        $.ajax({
+                            type    : "POST",
+                            url     : "${createLink(controller: 'planilla', action:'iniciarObra')}",
+                            data    : {
+                                cntr  : "${contrato?.id}",
+                                fecha  : fcha,
+                                memo  : memo
+                            },
+                            success : function (msg) {
+                                if(msg == "ok") {
+                                    location.reload(true);
+                                } else {
+                                    log("Un error ha ocurrido al iniciar la obra", success)
+                                }
+                            }
+                        });
+                    });
+                    $("#modal_tittle_var").text("Proceso de Inicio de Obra");
+                    $("#modal_body_var").html(msg);
+                    $("#modal_footer_var").html($btnCerrar).append($btnSave);
+                    $("#modal-var").modal("show");
+                }
+            });
+            return false;
+        });
+
+
     });
 
 </script>
