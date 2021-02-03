@@ -4745,7 +4745,7 @@ class ReportePlanillas3Controller {
             def tablaHeaderDetalles = new PdfPTable(11);
             tablaHeaderDetalles.setWidthPercentage(100);
 //            tablaHeaderDetalles.setWidths(arregloEnteros([13, 35, 5, 10, 11, 10, 10, 10, 13, 13, 14]))
-            tablaHeaderDetalles.setWidths(arregloEnteros([7, 3, 22, 3, 12, 3, 22, 3, 12, 3, 22]))
+            tablaHeaderDetalles.setWidths(arregloEnteros([14, 1, 27, 1, 15, 1, 27, 1, 15, 1, 10]))
 
             addCellTabla(tablaHeaderDetalles, new Paragraph("Obra", fontThTiny), prmsTdNoBorder)
             addCellTabla(tablaHeaderDetalles, new Paragraph(obra.nombre, fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 10])
@@ -4930,7 +4930,7 @@ class ReportePlanillas3Controller {
                 rowsCurPag++
             }
 
-            addCellTabla(tablaDetalles, new Paragraph(vo.rbrocdgo, fontTdTiny), frmtDtIz2)
+            addCellTabla(tablaDetalles, new Paragraph(vo.vocrordn.toString(), fontTdTiny), frmtDtIz2)
             addCellTablaWrap(tablaDetalles, new Paragraph(vo.rbronmbr, fontTdTiny), frmtDtIz2)
             addCellTabla(tablaDetalles, new Paragraph(vo.unddcdgo, fontTdTiny), frmtDtDr2)
             addCellTabla(tablaDetalles, new Paragraph(numero(vo.vocrcntd, 2, "hide"), fontTdTiny), frmtDtDr2)
@@ -4945,7 +4945,7 @@ class ReportePlanillas3Controller {
 
             addCellTabla(tablaDetalles, new Paragraph(numero(vo.cntdacml, 2, "hide"), fontTdTiny), frmtDtDrBorde2)
             addCellTabla(tablaDetalles, new Paragraph(numero(vo.vloracml, 2, "hide"), fontTdTiny), [bwt: 0.1, bct: Color.BLACK, bwb: 0.1, bcb: Color.WHITE, height: height, border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
-            addCellTabla(tablaDetalles, new Paragraph(numero(0, 2, "hide"), fontTdTiny), [bwt: 0.1, bct: Color.BLACK, bwb: 0.1, bcb: Color.WHITE, height: height, border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaDetalles, new Paragraph(numero(((vo.vloracml/vo.vocrsbtt)*100), 2, "hide"), fontTdTiny), [bwt: 0.1, bct: Color.BLACK, bwb: 0.1, bcb: Color.WHITE, height: height, border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
 
 //            currentRows++
             currentRows += vo.vocrlnea
