@@ -4747,8 +4747,9 @@ class ReportePlanillas3Controller {
 //            tablaHeaderDetalles.setWidths(arregloEnteros([13, 35, 5, 10, 11, 10, 10, 10, 13, 13, 14]))
             tablaHeaderDetalles.setWidths(arregloEnteros([14, 1, 27, 1, 15, 1, 27, 1, 15, 1, 10]))
 
-            addCellTabla(tablaHeaderDetalles, new Paragraph("Obra", fontThTiny), prmsTdNoBorder)
-            addCellTabla(tablaHeaderDetalles, new Paragraph(obra.nombre, fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 10])
+            addCellTabla(tablaHeaderDetalles, new Paragraph("OBRA: ", fontThTiny), prmsTdNoBorder)
+            addCellTabla(tablaHeaderDetalles, new Paragraph("", fontThTiny), prmsTdNoBorder)
+            addCellTabla(tablaHeaderDetalles, new Paragraph(obra.nombre, fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 9])
 
             addCellTabla(tablaHeaderDetalles, new Paragraph("Ubicación:", fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaHeaderDetalles, new Paragraph("", fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
@@ -4811,7 +4812,7 @@ class ReportePlanillas3Controller {
             addCellTabla(tablaHeaderDetalles, new Paragraph("", fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
             addCellTabla(tablaDetalles, logo, [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-            addCellTabla(tablaDetalles, tablaHeaderDetalles, [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 10, pl: 40])
+            addCellTabla(tablaDetalles, tablaHeaderDetalles, [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 10, pl: 40, pb:10])
             addCellTabla(tablaDetalles, new Paragraph(" ", fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 11])
 
             PdfPTable innerS = new PdfPTable(6);
@@ -4864,7 +4865,7 @@ class ReportePlanillas3Controller {
         tablaDetalles = new PdfPTable(13);
         tablaDetalles.setWidthPercentage(100);
 //        tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11]))
-        tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11,10,10]))
+        tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]))
         tablaDetalles.setSpacingAfter(1f);
         tablaDetalles.setSplitLate(false);
         def currentPag = 1
@@ -4977,8 +4978,8 @@ class ReportePlanillas3Controller {
                 document.newPage()
                 tablaDetalles = new PdfPTable(13);
                 tablaDetalles.setWidthPercentage(100);
-//                tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11]))
-                tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11,5,5]))
+//                tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11,5,5]))
+                tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]))
                 tablaDetalles.setSpacingAfter(1f);
                 printHeaderDetalle([pag: currentPag, total: totalPags])
                 rowsCurPag = 1
@@ -5079,7 +5080,6 @@ class ReportePlanillas3Controller {
             plnlIn = "${planilla.id}"
         }
 
-        /* Todo: incluir planillas de complementario  ---- */
         sql = "select sum(mlplmnto) suma from mlpl where plnl__id in (select plnl__id from plnl where " +
                 "cntr__id = ${planilla.contrato.id} and plnlfcfn < '${planilla.fechaInicio.format('yyyy-MM-dd')}' " +
                 " and plnltipo = '${planilla.tipoContrato}')"
