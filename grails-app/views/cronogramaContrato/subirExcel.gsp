@@ -22,7 +22,8 @@
     </div>
 </g:if>
 
-<g:uploadForm action="uploadFile" method="post" name="frmUploadContratado" id="${contrato?.id}">
+%{--<g:uploadForm action="uploadFile" method="post" name="frmUploadContratado" id="${contrato?.id}">--}%
+<g:uploadForm action="subeArchivo" method="post" name="frmUploadContratado" id="${contrato?.id}">
     <div id="list-grupo" class="span12" role="main" style="margin: 10px 0 0 0;">
         <div class="row-fluid" style="margin: 0 0 20px 0;">
             <div class="span9">
