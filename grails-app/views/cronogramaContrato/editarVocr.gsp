@@ -72,7 +72,7 @@
                 <g:link controller="cronogramaContrato" action="cantidadObra" class="btn btn-print btnExcel"
                         id="${cntr}"
                         title="Exportar a excel para definir las cantidades reales de Materiales, M.O. y Equipos"
-                style="margin-left: 80px;">
+                        style="margin-left: 80px;">
                     <i class="icon-table"></i> Generar Archivo Excel
                 </g:link>
                 <g:link controller="cronogramaContrato" action="subirExcel" class="btn btn-print btnExcel"

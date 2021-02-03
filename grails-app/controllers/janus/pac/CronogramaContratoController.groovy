@@ -4,6 +4,8 @@ import janus.*
 import janus.ejecucion.PeriodosInec
 import janus.ejecucion.ValorIndice
 import jxl.Cell
+import jxl.CellType
+import jxl.NumberCell
 import jxl.Sheet
 import jxl.Workbook
 import jxl.WorkbookSettings
@@ -11,6 +13,10 @@ import jxl.write.WritableCellFormat
 import jxl.write.WritableFont
 import jxl.write.WritableSheet
 import jxl.write.WritableWorkbook
+import org.apache.poi.xssf.usermodel.XSSFCell
+import org.apache.poi.xssf.usermodel.XSSFRow
+import org.apache.poi.xssf.usermodel.XSSFSheet
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.dao.DataIntegrityViolationException
 
 class CronogramaContratoController extends janus.seguridad.Shield {
@@ -184,7 +190,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
             def sqlCopia = "insert into vocr(sbpr__id, cntr__id, obra__id, item__id, vocrcntd, vocrordn, vocrpcun, vocrsbtt, vocrrtcr, vocrcncp)\n" +
                     "select sbpr__id, ${contrato?.id}, ${contrato?.obra?.id}, item__id, vlobcntd, vlobordn, vlobpcun, vlobsbtt, vlobrtcr, 0 \n" +
                     "from vlob where obra__id = ${contrato?.obra?.id}"
-
+            println "sql: $sqlCopia"
             cn.execute(sqlCopia.toString());
             cn.close()
         }
@@ -196,7 +202,9 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         }
         //solo copia si esta vacio el cronograma del contrato
         def cronoCntr = CronogramaContratado.countByContrato(contrato)
+        println "cronoCntr: ${cronoCntr}, obra: ${obra.id}"
         def detalle = VolumenContrato.findAllByObra(obra, [sort: "volumenOrden"])
+        println "detalle: ${detalle.size()}"
 //        def detalleV = VolumenesObra.findAllByObra(obra, [sort: "orden"])
         def plazoDiasContrato = contrato.plazo
         def plazoMesesContrato = Math.ceil(plazoDiasContrato / 30);
@@ -920,6 +928,8 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                 def file = new File(pathFile)
 
                 WorkbookSettings ws = new WorkbookSettings();
+                ws.setLocale(new Locale("en", "EN"));
+                ws.setEncoding("Cp1252");
 //                ws.setEncoding("Cp1252");
 //                Workbook workbook = Workbook.getWorkbook(file, ws)
                 Workbook workbook = Workbook.getWorkbook(file)
@@ -935,7 +945,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
 //                                if (j > 19) {
 //                                println ">>>>>>>>>>>>>>>" + (j + 1)
                                 row = s.getRow(j)
-//                                println row*.getContents()
+                                println row*.getContents()
 //                                println row.length
                                 if (row.length >= 8) {
                                     def cod = row[0].getContents()
@@ -946,6 +956,9 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                     def punitario = row[5].getContents()
                                     def subtotal = row[6].getContents()
                                     def precioConst = row[7].getContents()
+
+//                                    NumberCell nc = (NumberCell) row[7]
+//                                    println "--> ${nc.getValue()}"
 
 //                                    println "\t\tcod:" + cod + "\tnumero:" + numero + "\trubro:" + rubro + "\tunidad:" + unidad
 //                                    println "\t\tcantidad:" + cantidad + "\tpunitario:" + punitario + "\tsub:" + subtotal + "\tnuevo:" + precioConst
@@ -970,10 +983,10 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                                             if(!cantidad){
                                                 cantidad = 0
                                             }
-//                                            println "precio: ${precioConst.toDouble()}"
+                                            println "precio: ${precioConst.toDouble()}"
                                             vc.volumenPrecio = precioConst.toDouble()
                                             vc.volumenCantidad = Math.round(cantidad.toDouble() * 100) / 100
-                                            vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 100) / 100)
+                                            vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 10000) / 10000)
                                         }
 
                                         if(!vc.save(flush:true)){
@@ -1008,6 +1021,140 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                 redirect(action: "mensajeUploadContrato", id: params.id)
             } else {
                 flash.message = "Seleccione un archivo Excel xls para procesar (archivos xlsx deben ser convertidos a xls primero)"
+                redirect(action: 'formArchivo')
+            }
+        } else {
+            flash.message = "Seleccione un archivo para procesar"
+            redirect(action: 'subirExcel')
+//            println "NO FILE"
+        }
+    }
+
+    def subeArchivo() {
+        def obra = Obra.get(params.id)
+        def path = servletContext.getRealPath("/") + "xlsContratos/"   //web-app/archivos
+        new File(path).mkdirs()
+
+        def f = request.getFile('file')  //archivo = name del input type file
+        if (f && !f.empty) {
+            def fileName = f.getOriginalFilename() //nombre original del archivo
+            def ext
+
+            def parts = fileName.split("\\.")
+            fileName = ""
+            parts.eachWithIndex { obj, i ->
+                if (i < parts.size() - 1) {
+                    fileName += obj
+                } else {
+                    ext = obj
+                }
+            }
+
+            if (ext == "xlsx") {
+                fileName = "xlsContratado_" + new Date().format("yyyyMMdd_HHmmss")
+                def fn = fileName
+                fileName = fileName + "." + ext
+
+                def pathFile = path + fileName
+                def src = new File(pathFile)
+
+                def i = 1
+                while (src.exists()) {
+                    pathFile = path + fn + "_" + i + "." + ext
+                    src = new File(pathFile)
+                    i++
+                }
+
+                f.transferTo(new File(pathFile)) // guarda el archivo subido al nuevo path
+
+                //procesar excel
+                def htmlInfo = "", errores = "", doneHtml = "", done = 0
+                def file = new File(pathFile)
+
+                InputStream ExcelFileToRead = new FileInputStream(pathFile);
+                XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
+
+                XSSFSheet sheet1 = wb.getSheetAt(0);
+                XSSFRow rowd;
+                XSSFCell cell;
+
+                Iterator rows = sheet1.rowIterator();
+                while (rows.hasNext()) {
+                    rowd = (XSSFRow) rows.next()
+                    Iterator cells = rowd.cellIterator()
+
+                    def rgst = []
+                    while (cells.hasNext()) {
+                        cell = (XSSFCell) cells.next()
+//                        println "cell: ${cell}"
+                        if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
+                            if (cell.toString().contains('-')) {
+                                rgst.add(cell.getDateCellValue())
+                            } else
+                                rgst.add(cell.getNumericCellValue())
+                        } else {
+                            rgst.add(cell.getStringCellValue())
+                        }
+                    }
+//                    println "--> $rgst"
+
+                    def cod = rgst[0]
+                    def rubro = rgst[2]
+                    def cantidad = rgst[4]
+                    def precioConst = rgst[7]
+
+                    if (cod != "CODIGO") {
+                        def vc = VolumenContrato.get(cod)
+//
+                        if(!vc){
+                            errores += "<li>No se encontró volumen contrato con id ${cod} (linea: ${j + 1})</li>"
+                            println "No se encontró volumen contrato con id ${cod}"
+                            ok = false
+                        }else{
+
+                            if(!precioConst){
+                                precioConst = 0
+                            }
+
+                            if(!cantidad){
+                                cantidad = 0
+                            }
+//                            println "precio: ${precioConst.toDouble()}"
+                            vc.volumenPrecio = precioConst.toDouble()
+                            vc.volumenCantidad = Math.round(cantidad.toDouble() * 100) / 100
+                            vc.volumenSubtotal = precioConst.toDouble() * (Math.round(cantidad.toDouble() * 10000) / 10000)
+                        }
+
+                        if(!vc.save(flush:true)){
+                            println "No se pudo guardar valor contrato con id ${vc.id}: " + vc.errors
+                            errores += "<li>Ha ocurrido un error al guardar los valores para ${rubro} (l. ${j + 1})</li>"
+                        }else{
+                            done++
+//                                            println "Modificado vocr: ${vc.id}"
+                            doneHtml += "<li>Se ha modificado los valores para el item ${rubro}</li>"
+                        }
+                    }
+
+
+                } //sheet ! hidden
+
+                if (done > 0) {
+                    doneHtml = "<div class='alert alert-success'>Se han ingresado correctamente " + done + " registros</div>"
+                }
+
+                def str = doneHtml
+                str += htmlInfo
+                if (errores != "") {
+                    str += "<ol>" + errores + "</ol>"
+                }
+//                str += doneHtml
+
+                flash.message = str
+
+                println "DONE!!"
+                redirect(action: "mensajeUploadContrato", id: params.id)
+            } else {
+                flash.message = "Seleccione un archivo Excel xlsx para procesar (archivos xls deben ser convertidos a xlsx primero)"
                 redirect(action: 'formArchivo')
             }
         } else {
