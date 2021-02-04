@@ -5015,7 +5015,7 @@ class ReportePlanillas3Controller {
         addCellTabla(tablaDetalles, new Paragraph("SUBTOTAL POR ORDEN DE CAMBIO", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(totalOrdenCambioAnterior , 2), fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
-        addCellTabla(tablaDetalles, new Paragraph(numero(totalOrdenCambioActual, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph(numero((totalOrdenCambio - totalOrdenCambioAnterior ?: 0), 2), fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(totalOrdenCambio, 2), fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
