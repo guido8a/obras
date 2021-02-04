@@ -4869,13 +4869,17 @@ class ReportePlanillas3Controller {
         tablaDetalles = new PdfPTable(13);
         tablaDetalles.setWidthPercentage(100);
 //        tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11]))
-        tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 5, 5, 4]))
+        tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 4, 6, 4]))
         tablaDetalles.setSpacingAfter(1f);
         tablaDetalles.setSplitLate(false);
         def currentPag = 1
         def sumaPrclAntr = 0, sumaTotlAntr = 0
         def sumaPrclActl = 0, sumaTotlActl = 0
         def sumaPrclAcml = 0, sumaTotlAcml = 0
+        def totalOrdenCambioAnterior = 0
+        def totalOrdenCambioActual = 0
+        def totalOrdenCambio = 0
+
 
         def frmtSbpr = [height: height, bwr: borderWidth, bwt: 0.1, bct: Color.LIGHT_GRAY, bwb: 0.1, bcb: Color.LIGHT_GRAY,
                         border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 13]
@@ -4907,30 +4911,28 @@ class ReportePlanillas3Controller {
 
 
         Font fontThFooter = new Font(Font.TIMES_ROMAN, 8, Font.BOLD);
-        def frmtCol8 = [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 8]
+        def frmtCol8 = [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 10]
+        def frmtCol7 = [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 7]
         def frmtCol11 = [border: Color.BLACK, bg: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 13]
         def frmtSuma = [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE]
-        def printFooterDetalle = { params ->
-
-            def txt = "AVANCE DE OBRA PARCIAL"
-            if (params.completo) {
-                txt = "AVANCE DE OBRA"
-            }
-
-            addCellTabla(tablaDetalles, new Paragraph(txt, fontThFooter), frmtCol8)
-            addCellTabla(tablaDetalles, new Paragraph(numero(params.ant, 2), fontThFooter), frmtSuma)
-            addCellTabla(tablaDetalles, new Paragraph(numero(params.act, 2), fontThFooter), frmtSuma)
-            addCellTabla(tablaDetalles, new Paragraph(numero(params.acu, 2), fontThFooter), frmtSuma)
-        }
+//        def printFooterDetalle = { params ->
+//
+//            def txt = "AVANCE DE OBRA PARCIAL"
+//            if (params.completo) {
+//                txt = "AVANCE DE OBRA"
+//            }
+//
+//            addCellTabla(tablaDetalles, new Paragraph(txt, fontThFooter), frmtCol8)
+//            addCellTabla(tablaDetalles, new Paragraph(numero(params.ant, 2), fontThFooter), frmtSuma)
+//            addCellTabla(tablaDetalles, new Paragraph(numero(params.act, 2), fontThFooter), frmtSuma)
+//            addCellTabla(tablaDetalles, new Paragraph(numero(params.acu, 2), fontThFooter), frmtSuma)
+//        }
 
         sp = 0
-//        println("---- " + vocr.size())
         vocr.each {vo ->
             if (sp != vo.sbpr__id) {
                 addCellTabla(tablaDetalles, new Paragraph('Subpresupuesto: ' + vo.sbprdscr, fontThTiny), frmtSbpr)
-
                 sp = vo.sbpr__id
-//                currentRows++
                 currentRows += vo.vocrlnea
                 rowsCurPag++
             }
@@ -4952,7 +4954,6 @@ class ReportePlanillas3Controller {
             addCellTabla(tablaDetalles, new Paragraph(numero(vo.vloracml, 2, "hide"), fontTdTiny), [bwt: 0.1, bct: Color.BLACK, bwb: 0.1, bcb: Color.WHITE, height: height, border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaDetalles, new Paragraph(numero(((vo.vloracml/vo.vocrsbtt)*100), 2, "hide"), fontTdTiny), [bwt: 0.1, bct: Color.BLACK, bwb: 0.1, bcb: Color.WHITE, height: height, border: Color.BLACK, align: Element.ALIGN_RIGHT, valign: Element.ALIGN_MIDDLE])
 
-//            currentRows++
             currentRows += vo.vocrlnea
             rowsCurPag++
             sumaTotlAntr += vo.vlorantr
@@ -4963,9 +4964,11 @@ class ReportePlanillas3Controller {
             sumaPrclActl += vo.vloractl
             sumaPrclAcml += vo.vloracml
 
-//            println "currentRows $currentRows, maxRows $maxRows"
+            totalOrdenCambioAnterior += (vo.vocrsbtt  - vo.vlorantr)
+            totalOrdenCambio += (vo.vocrsbtt - vo.vloracml)
+
             if(currentRows >= (maxRows) ) {
-                printFooterDetalle([ant: sumaPrclAntr, act: sumaPrclActl, acu: sumaPrclAcml])
+//                printFooterDetalle([ant: sumaPrclAntr, act: sumaPrclActl, acu: sumaPrclAcml])
 
                 sumaPrclAntr = 0
                 sumaPrclActl = 0
@@ -4973,24 +4976,19 @@ class ReportePlanillas3Controller {
                 currentRows = 0
 
                 document.add(tablaDetalles)
-
-                document.add(firmas("detalle", "vertical", planilla))
-//                printFirmas([tipo: "detalle", orientacion: "vertical"])
                 currentPag++
 
-                //-------------------
                 document.newPage()
                 tablaDetalles = new PdfPTable(13);
                 tablaDetalles.setWidthPercentage(100);
-//                tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11,5,5]))
-                tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 5, 5, 4]))
+                tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 4, 6, 4]))
                 tablaDetalles.setSpacingAfter(1f);
                 printHeaderDetalle([pag: currentPag, total: totalPags])
                 rowsCurPag = 1
             }
         }
 
-        printFooterDetalle([ant: sumaTotlAntr,  act: sumaTotlActl, acu: sumaTotlAcml, completo: true])
+//        printFooterDetalle([ant: sumaTotlAntr,  act: sumaTotlActl, acu: sumaTotlAcml, completo: true])
 
 
         def rjplAntr = planillasService.reajusteAnterior(planilla)
@@ -5005,15 +5003,37 @@ class ReportePlanillas3Controller {
             rjplActl = rjplAcml - rjplAntr
         }
 
-        addCellTabla(tablaDetalles, new Paragraph("REAJUSTE DE PRECIOS", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("REAJUSTE DE PRECIOS", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(rjplAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(rjplActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(rjplAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
 
-        addCellTabla(tablaDetalles, new Paragraph("SUBTOTAL", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("SUBTOTAL POR ORDEN DE CAMBIO", fontThFooter), frmtCol7)
+        addCellTabla(tablaDetalles, new Paragraph(numero(totalOrdenCambioAnterior , 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph(numero(totalOrdenCambioActual, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph(numero(totalOrdenCambio, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+
+        addCellTabla(tablaDetalles, new Paragraph("SUBTOTAL", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAntr + rjplAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlActl + rjplActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAcml + rjplAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+
+        addCellTabla(tablaDetalles, new Paragraph("PORCENTAJE DE EJECUCIÓN", fontThFooter), frmtCol7)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph(numero(((sumaTotlAcml + rjplAcml) / (planilla.contrato.monto.toDouble()) * 100), 2), fontThFooter), frmtSuma)
 
         sql = "select sum(plnlmnto) suma from plnl where cntr__id = ${planilla.contrato.id} and " +
                 "tppl__id = 5 and plnlfcfn < '${planilla.fechaInicio.format('yyy-MM-yy')}'"
@@ -5021,28 +5041,36 @@ class ReportePlanillas3Controller {
         def cstoAntr = cn.rows(sql.toString())[0].suma?:0
         sql = "select plnlmnto from plnl where plnl__id = (select plnl__id from plnl " +
                 "where plnlpdcs = ${planilla.id})"
-//        println "sql.....: $sql"
         def cstoActl = cn.rows(sql.toString())[0]?.plnlmnto?:0
         def cstoAcml = cstoAntr + cstoActl
 
-        addCellTabla(tablaDetalles, new Paragraph("RUBROS NO CONTRACTUALES COSTO + PORCENTAJE", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("RUBROS NO CONTRACTUALES COSTO + PORCENTAJE", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(cstoAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(cstoActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(cstoAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
 
-        addCellTabla(tablaDetalles, new Paragraph("SUMATORIA DE AVANCE DE OBRA Y COSTO + PORCENTAJE", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("SUMATORIA DE AVANCE DE OBRA Y COSTO + PORCENTAJE", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAntr + cstoAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlActl + cstoActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAcml + cstoAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
 
         sumaTotlAntr += rjplAntr + cstoAntr
         sumaTotlActl += rjplActl + cstoActl
         sumaTotlAcml += rjplAcml + cstoAcml
 
-        addCellTabla(tablaDetalles, new Paragraph("TOTAL PLANILLA REAJUSTADA INCLUIDO COSTO + PORCENTAJE", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("TOTAL PLANILLA REAJUSTADA INCLUIDO COSTO + PORCENTAJE", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
 
         addCellTabla(tablaDetalles, new Paragraph("DESCUENTOS CONTRACTUALES", fontThFooter), frmtCol11)
 
@@ -5072,10 +5100,13 @@ class ReportePlanillas3Controller {
             antcAcml = antcAntr + antcActl
         }
 
-        addCellTabla(tablaDetalles, new Paragraph("ANTICIPO", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("ANTICIPO", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(antcAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(antcActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(antcAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
 
         def plnlIn = ""
         if(tipoRprt == 'T'){
@@ -5108,10 +5139,13 @@ class ReportePlanillas3Controller {
         def mltaAcml = mltaAntr + mltaActl
 
 
-        addCellTabla(tablaDetalles, new Paragraph("MULTAS", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("MULTAS", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(mltaAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(mltaActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(mltaAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
 
         sql = "select sum(plnlnpvl) suma from plnl where cntr__id = ${planilla.contrato.id} and " +
                 "plnlfcfn < '${planilla.fechaInicio.format('yyyy-MM-dd')}'"
@@ -5126,16 +5160,22 @@ class ReportePlanillas3Controller {
 
 //        println "nopgAntr $nopgAntr, nopgActl $nopgActl, nopgAcml $nopgAcml"
         if((nopgAntr + nopgActl + nopgAcml) > 0) {
-            addCellTabla(tablaDetalles, new Paragraph(planilla.noPago?:" ", fontThFooter), frmtCol8)
+            addCellTabla(tablaDetalles, new Paragraph(planilla.noPago?:" ", fontThFooter), frmtCol7)
             addCellTabla(tablaDetalles, new Paragraph(numero(nopgAntr,2), fontThFooter), frmtSuma)
+            addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
             addCellTabla(tablaDetalles, new Paragraph(numero(nopgActl, 2), fontThFooter), frmtSuma)
+            addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
             addCellTabla(tablaDetalles, new Paragraph(numero(nopgAcml, 2), fontThFooter), frmtSuma)
+            addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         }
 
-        addCellTabla(tablaDetalles, new Paragraph("VALOR LIQUIDO A PAGAR", fontThFooter), frmtCol8)
+        addCellTabla(tablaDetalles, new Paragraph("VALOR LIQUIDO A PAGAR", fontThFooter), frmtCol7)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAntr, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlActl, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
         addCellTabla(tablaDetalles, new Paragraph(numero(sumaTotlAcml, 2), fontThFooter), frmtSuma)
+        addCellTabla(tablaDetalles, new Paragraph("", fontThFooter), frmtSuma)
 
         document.add(tablaDetalles)
 
