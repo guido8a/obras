@@ -4964,8 +4964,9 @@ class ReportePlanillas3Controller {
             sumaPrclActl += vo.vloractl
             sumaPrclAcml += vo.vloracml
 
-            totalOrdenCambioAnterior += (vo.vocrsbtt  - vo.vlorantr)
-            totalOrdenCambio += (vo.vocrsbtt - vo.vloracml)
+            totalOrdenCambioAnterior += (((vo.vloracml/vo.vocrsbtt)*100) > 100 ? (vo.vocrsbtt  - vo.vlorantr) : 0)
+            totalOrdenCambio += (((vo.vloracml/vo.vocrsbtt)*100) > 100 ? (vo.vloracml - vo.vocrsbtt) : 0)
+//            totalOrdenCambio += (vo.vocrsbtt - vo.vloracml)
 
             if(currentRows >= (maxRows) ) {
 //                printFooterDetalle([ant: sumaPrclAntr, act: sumaPrclActl, acu: sumaPrclAcml])
