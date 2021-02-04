@@ -4820,6 +4820,8 @@ class ReportePlanillas3Controller {
             addCellTabla(tablaDetalles, innerS, [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 6])
 
             PdfPTable innerContrato = new PdfPTable(6);
+            innerContrato.setWidthPercentage(100);
+            innerContrato.setWidths(arregloEnteros([5, 65, 7, 11, 11, 11]))
             addCellTabla(innerContrato, new Paragraph("N°", fontThTiny), [bwb: 0.1, bcb: Color.BLACK, border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
             addCellTabla(innerContrato, new Paragraph("Rubro Descripción", fontThTiny), [bwb: 0.1, bcb: Color.BLACK, border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
             addCellTabla(innerContrato, new Paragraph("Unidad", fontThTiny), [bwb: 0.1, bcb: Color.BLACK, border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
@@ -4833,6 +4835,8 @@ class ReportePlanillas3Controller {
             addCellTabla(tablaDetalles, innerC, [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 9])
 
             PdfPTable innerAnterior = new PdfPTable(2);
+            innerAnterior.setWidthPercentage(100);
+            innerAnterior.setWidths(arregloEnteros([50, 50]))
             addCellTabla(innerAnterior, new Paragraph("Hasta planilla anterior", fontThTiny), [border: Color.BLACK, bwr: borderWidth, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 3])
             addCellTabla(innerAnterior, new Paragraph("Cantidad", fontThTiny), [bwb: 0.1, bcb: Color.BLACK, border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
             addCellTabla(innerAnterior, new Paragraph("V.Total", fontThTiny), [bwb: 0.1, bcb: Color.BLACK, border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
@@ -4865,7 +4869,7 @@ class ReportePlanillas3Controller {
         tablaDetalles = new PdfPTable(13);
         tablaDetalles.setWidthPercentage(100);
 //        tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11]))
-        tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]))
+        tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 5, 5, 4]))
         tablaDetalles.setSpacingAfter(1f);
         tablaDetalles.setSplitLate(false);
         def currentPag = 1
@@ -4979,7 +4983,7 @@ class ReportePlanillas3Controller {
                 tablaDetalles = new PdfPTable(13);
                 tablaDetalles.setWidthPercentage(100);
 //                tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11,5,5]))
-                tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]))
+                tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 5, 5, 4]))
                 tablaDetalles.setSpacingAfter(1f);
                 printHeaderDetalle([pag: currentPag, total: totalPags])
                 rowsCurPag = 1
