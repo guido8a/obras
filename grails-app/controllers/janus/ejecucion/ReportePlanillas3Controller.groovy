@@ -4758,7 +4758,7 @@ class ReportePlanillas3Controller {
             addCellTabla(tablaHeaderDetalles, new Paragraph("Tipo de Planilla:", fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaHeaderDetalles, new Paragraph(planilla.tipoPlanilla.nombre, fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaHeaderDetalles, new Paragraph("Fecha de suscripción:", fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-            addCellTabla(tablaHeaderDetalles, new Paragraph(planilla?.contrato?.fechaSubscripcion?.format("dd/MM/yyyy"), fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaHeaderDetalles, new Paragraph(planilla?.contrato?.fechaSubscripcion?.format("dd-MM-yyyy"), fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
             addCellTabla(tablaHeaderDetalles, new Paragraph("Contrato:", fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaHeaderDetalles, new Paragraph(planilla?.contrato?.codigo, fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
@@ -4786,9 +4786,9 @@ class ReportePlanillas3Controller {
 //            addCellTabla(tablaHeaderDetalles, new Paragraph("Anticipo:".toString(), fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaHeaderDetalles, new Paragraph("${planilla?.contrato?.anticipo}", fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaHeaderDetalles, new Paragraph("Fecha de Inicio:", fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-            addCellTabla(tablaHeaderDetalles, new Paragraph(planilla?.contrato?.obra?.fechaInicio?.format("dd/MM/yyyy"), fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaHeaderDetalles, new Paragraph(planilla?.contrato?.obra?.fechaInicio?.format("dd-MM-yyyy"), fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaHeaderDetalles, new Paragraph("% de ejecución a la fecha:", fontThTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
-            addCellTabla(tablaHeaderDetalles, new Paragraph("", fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaHeaderDetalles, new Paragraph("${porcentajeAvance(cntr, planilla, tipoRprt)}", fontTdTiny), [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
 
             addCellTabla(tablaDetalles, logo, [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE])
             addCellTabla(tablaDetalles, tablaHeaderDetalles, [border: Color.WHITE, align: Element.ALIGN_LEFT, valign: Element.ALIGN_MIDDLE, colspan: 10, pl: 40, pb:10])
@@ -4943,8 +4943,10 @@ class ReportePlanillas3Controller {
             sumaPrclActl += vo.vloractl
             sumaPrclAcml += vo.vloracml
 
-            totalOrdenCambioAnterior += (((vo.vloracml/vo.vocrsbtt)*100) > 100 ? (vo.vocrsbtt  - vo.vlorantr) : 0)
-            totalOrdenCambio += (((vo.vloracml/vo.vocrsbtt)*100) > 100 ? (vo.vloracml - vo.vocrsbtt) : 0)
+//            totalOrdenCambioAnterior += (((vo.vloracml/vo.vocrsbtt)*100) > 100 ? (vo.vocrsbtt  - vo.vlorantr) : 0)
+            totalOrdenCambioAnterior += ((vo.vlorantr > vo.vocrsbtt) ? (vo.vlorantr  - vo.vocrsbtt) : 0)
+//            totalOrdenCambio += (((vo.vloracml/vo.vocrsbtt)*100) > 100 ? (vo.vloracml - vo.vocrsbtt) : 0)
+            totalOrdenCambio += ((vo.vloracml > vo.vocrsbtt) ? (vo.vloracml - vo.vocrsbtt) : 0)
 //            totalOrdenCambio += (vo.vocrsbtt - vo.vloracml)
 
             if(currentRows >= (maxRows) ) {
@@ -5199,6 +5201,13 @@ class ReportePlanillas3Controller {
 //        def fcha = contrato.obra.fechaInicio + contrato.plazo
         def fcha = contrato.obra.fechaInicio
         fcha.format('dd-MM-yyyy')
+    }
+
+    def porcentajeAvance(cntr, plnl, tipo) {
+        def cn = dbConnectionService.getConnection()
+        def sql = "select sum(vloracml) suma from detalle(${cntr.id}, ${cntr.obra.id}, ${plnl.id}, '${tipo}')"
+        def totl = cn.rows(sql.toString())[0].suma / cntr.monto * 100
+        return Math.round(totl * 100 )/ 100
     }
 
 

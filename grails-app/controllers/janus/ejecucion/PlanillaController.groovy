@@ -4480,6 +4480,7 @@ class PlanillaController extends janus.seguridad.Shield {
     }
 
     def procesaMultasSinRj(id){
+        println "multas sin reajuste"
         def plnl = Planilla.get(id)
         def cmpl = Contrato.findByPadre(plnl.contrato)
         def diasMax = 5
@@ -4496,20 +4497,22 @@ class PlanillaController extends janus.seguridad.Shield {
         def anio =  new Date().format("yyyy").toInteger()
         anio -= 1
         def diciembre31 = new Date().parse("dd-MM-yyyy", "31-12-" + anio)
-//        println "fcfm: $fcfm, diciembre31: $diciembre31"
+        
+        println "fcfm: $fcfm, diciembre31: $diciembre31"
         if(fcfm == diciembre31) {
             fcfm++
             diasMax--
         }
         def res = diasLaborablesService.diasLaborablesDesde(fcfm, diasMax)
-//        println "No presentación de planilla --> fcfm: $fcfm, multas: $res"
+        println "No presentación de planilla --> fcfm: $fcfm, multas: $res"
+        
         /* si hay error, res[0] = false */
         if (!res[0]) {
             errorDiasLaborables(plnl.contrato.id, res[2], res[1])
         } else {
             fechaMax = res[1]
         }
-//        println "fechaPresentacion: $fechaPresentacion, fechaMax: $fechaMax "
+        println "fechaPresentacion: $fechaPresentacion, fechaMax: $fechaMax "
 
         res = diasLaborablesService.diasLaborablesEntre(fechaPresentacion, fechaMax)
         if (!res[0]) {
