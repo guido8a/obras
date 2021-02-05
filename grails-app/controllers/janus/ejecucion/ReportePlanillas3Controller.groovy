@@ -4848,7 +4848,7 @@ class ReportePlanillas3Controller {
         tablaDetalles = new PdfPTable(13);
         tablaDetalles.setWidthPercentage(100);
 //        tablaDetalles.setWidths(arregloEnteros([12, 35, 5, 11, 11, 11, 11, 11, 11, 11, 11]))
-        tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 4, 6, 4]))
+        tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 6, 6, 6, 6, 7, 7, 4]))
         tablaDetalles.setSpacingAfter(1f);
         tablaDetalles.setSplitLate(false);
         def currentPag = 1
@@ -4961,7 +4961,7 @@ class ReportePlanillas3Controller {
                 document.newPage()
                 tablaDetalles = new PdfPTable(13);
                 tablaDetalles.setWidthPercentage(100);
-                tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 7, 7, 7, 7, 4, 6, 4]))
+                tablaDetalles.setWidths(arregloEnteros([3, 34, 3, 6, 6, 6, 6, 6, 6, 6, 7, 7, 4]))
                 tablaDetalles.setSpacingAfter(1f);
                 printHeaderDetalle([pag: currentPag, total: totalPags])
                 rowsCurPag = 1
