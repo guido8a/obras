@@ -64,8 +64,8 @@
         </div>
 
         <div class="row-fluid" style="margin-left: 0px">
-            <div class="span6">
-                <div class="span2"><b>Archivo:</b></div>
+            <div class="span10">
+                <div class="span2"><b>Archivo .xlsx:</b></div>
                 <input type="file" class="required" id="file" name="file"/>
             </div>
         </div>

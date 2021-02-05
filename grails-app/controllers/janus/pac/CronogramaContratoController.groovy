@@ -1155,7 +1155,7 @@ class CronogramaContratoController extends janus.seguridad.Shield {
                 redirect(action: "mensajeUploadContrato", id: params.id)
             } else {
                 flash.message = "Seleccione un archivo Excel xlsx para procesar (archivos xls deben ser convertidos a xlsx primero)"
-                redirect(action: 'formArchivo')
+                redirect(action: 'subirExcel')
             }
         } else {
             flash.message = "Seleccione un archivo para procesar"
