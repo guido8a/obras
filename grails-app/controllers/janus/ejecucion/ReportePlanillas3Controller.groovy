@@ -4827,6 +4827,7 @@ class ReportePlanillas3Controller {
             addCellTabla(innerC, innerActual, [border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 2])
 
             PdfPTable innerAcu = new PdfPTable(3);
+            innerAcu.setWidths(arregloEnteros([30, 30, 20]))
             addCellTabla(innerAcu, new Paragraph("Acumulado", fontThTiny), [border: Color.BLACK, bwr: borderWidth, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 3])
             addCellTabla(innerAcu, new Paragraph("Cantidad", fontThTiny), [bwb: 0.1, bcb: Color.BLACK, border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
             addCellTabla(innerAcu, new Paragraph("V.Total", fontThTiny), [bwb: 0.1, bcb: Color.BLACK, border: Color.BLACK, bg: Color.LIGHT_GRAY, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
