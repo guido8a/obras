@@ -4694,6 +4694,97 @@ class ReportePlanillas3Controller {
         return tablaFirmas
     }
 
+    def firmas2(tipo, orientacion, planilla) {
+        def obra = planilla.contrato.obra
+        def contrato = planilla.contrato
+
+        def tablaFirmas = new PdfPTable(9);
+        tablaFirmas.setWidthPercentage(100);
+
+        def parametros = Parametros.get(1)
+
+        def contratista = planilla.contrato.oferta.proveedor
+        def fiscalizador = planilla.fiscalizador
+        def subdirector = parametros.subdirector
+        def administrador = contrato.administrador
+
+        def strContratista = nombrePersona(contratista, "prov") + "\nContratista"
+        def strFiscalizador = nombrePersona(fiscalizador) + "\nFiscalizador"
+        def strSubdirector = "Ing. Miguel Velasteguí" + "\nSubdirector"
+        def strCoordinacion = "Ing. Cesar Orellana Huayamabe" + "\nCoord. Fiscalización y administración de obras" + "\nde infraestructura"
+        def strDirector = "Arq. Juan Manuel Torres Gómez" + "\nDirector de gestión vial e infraestructura"
+
+        def strAdmin = nombrePersona(administrador) + "\nAdministrador"
+        def strFechaPresentacion = fechaConFormato(planilla.fechaPresentacion, "dd-MMM-yyyy") + "\nFecha de presentación"
+        def strFechaAprobacion = fechaConFormato(planilla.fechaIngreso, "dd-MMM-yyyy") + "\nFecha de aprobación"
+
+        Font fontThFirmas = new Font(Font.TIMES_ROMAN, 10, Font.BOLD);
+        Font fontTdFirmas = new Font(Font.TIMES_ROMAN, 10, Font.NORMAL);
+
+        if (tipo == "detalle") {
+            fontThFirmas = new Font(Font.TIMES_ROMAN, 9, Font.BOLD);
+            fontTdFirmas = new Font(Font.TIMES_ROMAN, 9, Font.NORMAL);
+            def frmtCol5 = [height: 10, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE, colspan: 9]
+
+            tablaFirmas.setWidths(arregloEnteros([15, 3, 15, 3, 15, 3, 15, 3, 16]))
+            tablaFirmas.totalHeight = 100f
+
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), frmtCol5)
+
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 40, bwb: 1, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 40, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 40, bwb: 1, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(" ", fontThFirmas), [height: 40, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(" ", fontThFirmas), [height: 40, bwb: 1, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(" ", fontThFirmas), [height: 40, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(" ", fontThFirmas), [height: 40, bwb: 1, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(" ", fontThFirmas), [height: 40, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(" ", fontThFirmas), [height: 40, bwb: 1, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+            addCellTabla(tablaFirmas, new Paragraph(strContratista, fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strFiscalizador, fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strAdmin, fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strCoordinacion, fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strDirector, fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+            addCellTabla(tablaFirmas, new Paragraph(strFechaPresentacion, fontTdFirmas), [height: 35, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_TOP])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strFechaAprobacion, fontTdFirmas), [height: 35, bcb: Color.WHITE, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_TOP])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strFechaAprobacion, fontTdFirmas), [height: 35, bcb: Color.WHITE, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_TOP])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strFechaAprobacion, fontTdFirmas), [height: 35, bcb: Color.WHITE, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_TOP])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strFechaAprobacion, fontTdFirmas), [height: 35, bcb: Color.WHITE, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_TOP])
+
+            tablaFirmas.setKeepTogether(true)
+
+        } else if (tipo == "otro") {
+            if (orientacion == "horizontal") {
+                tablaFirmas.setWidths(arregloEnteros([30,5, 30,5, 30]))
+            } else if (orientacion == "vertical") {
+                tablaFirmas.setWidths(arregloEnteros([25, 5,35,5, 25]))
+            }
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 25, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 25, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 25, bwb: 1, bcb: Color.BLACK, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 25, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 25, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [height: 15, border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph(strFiscalizador, fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+            addCellTabla(tablaFirmas, new Paragraph("", fontThFirmas), [border: Color.WHITE, align: Element.ALIGN_CENTER, valign: Element.ALIGN_MIDDLE])
+        }
+
+        return tablaFirmas
+    }
+
     def detalleTodo2(planilla, tipoRprt) {
         println "detalle de la planilla ${planilla.id}, tipo: $tipoRprt"
         def obra = planilla.contrato.obra
@@ -5161,7 +5252,7 @@ class ReportePlanillas3Controller {
 
         document.add(tablaDetalles)
 
-        document.add(firmas("detalle", "vertical", planilla))
+        document.add(firmas2("detalle", "vertical", planilla))
 
 //        HeaderFooterPageEvent event = new HeaderFooterPageEvent();
 //        pdfw.setPageEvent(event);
