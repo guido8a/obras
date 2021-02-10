@@ -3954,7 +3954,7 @@ class PlanillaController extends janus.seguridad.Shield {
                 def max = 10
                 def fecha = fcha
                 while(!existe){
-//                    println "periodo actual...: $prin, fcha: ${fcha}, fecha: ${fecha}"
+//                    println "periodo actual...: $prin, id: ${prin?.id} fcha: ${fcha}, fecha: ${fecha}"
                     fecha = preciosService.primerDiaDelMes(fecha) - 15
                     prin = PeriodosInec.findByFechaInicioLessThanAndFechaFinGreaterThan(fecha, fecha)
 //                    existe = preciosService.verificaIndicesPeriodo(plnl.contrato, prin).size() == 0
@@ -4533,7 +4533,7 @@ class PlanillaController extends janus.seguridad.Shield {
 
         /** manejar datos de:  * tipo de multa, * dias de retraso, * multa descripción y * valor de la multa */
         def rjpl = ReajustePlanilla.findAllByPlanillaAndPlanillaReajustada(plnl, plnl, [sort: 'periodo'])
-//        println "rjpl --- multas: ${rjpl.size()}"
+        println "rjpl --- multas: ${rjpl.size()}, plnl: ${plnl.id}"
 
         def baseMulta = 0
         def formatoNum = new DecimalFormat("#,###.##")
