@@ -1008,7 +1008,7 @@
 
                 <span style="margin-left: 100px;">Generada para:</span>
                 <g:select name="matriz_gen" from="${sbprMF}" optionKey="key" optionValue="value"
-                          style="margin-right: 20px; width: 400px"></g:select>
+                          style="margin-right: 20px; width: 400px"/>
 
                 <p style="margin-top: 20px">Desea volver a generar la matriz? o generar otra matriz</p>
                 <a href="#" class="btn btn-info" id="no">No -> Ver la Matriz existente</a>
@@ -1022,7 +1022,7 @@
             <div id="datos_matriz" style="text-align: center">
                 <span>Seleccione el subpresupuesto:</span>
                 <g:select name="matriz_sub" from="${subs}" noSelection="['0': 'Todos los subpresupuestos']"
-                          optionKey="id" optionValue="descripcion" style="margin-right: 20px"></g:select>
+                          optionKey="id" optionValue="descripcion" style="margin-right: 20px"/>
             <p>Generar con desglose de Transporte <input type="checkbox" id="si_trans" style="margin-top: -3px"
                                                          checked="true">
                 <g:if test="${FormulaPolinomica.countByObra(janus.Obra.get(obra?.id)) > 0}">
@@ -1846,7 +1846,7 @@
             </g:else>
             </g:else>
 
-            var idObra = ${obra?.id}
+            var idObra = '${obra?.id}'
 
                 $.ajax({
                     type: "POST",
@@ -1872,7 +1872,7 @@
         $("#btnRubros").click(function () {
             var url = "${createLink(controller:'reportes', action:'imprimirRubros')}?obra=${obra?.id}Wdesglose=";
             var urlVae = "${createLink(controller:'reportes3', action:'reporteRubrosVaeReg')}?obra=${obra?.id}Wdesglose=";
-            var idObra = ${obra?.id}
+            var idObra = '${obra?.id}'
 
 
                 $.ajax({
