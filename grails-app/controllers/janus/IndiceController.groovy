@@ -167,12 +167,13 @@ class IndiceController extends janus.seguridad.Shield {
                                         def valor
                                         if (celdas > 2) {
                                             valor = row[3].getContents();
+                                            valor = valor? valor.toString().replaceAll(',', '.') : ''
                                             try {
                                                 valor = valor.toDouble()
-//                                                println(valor)
+                                                println(valor)
                                             }
                                             catch (e) {
-//                                                println(e)
+                                                println(e)
                                                 bandera = false
                                                 html += 'fila ' + (j + 1) + ' Error en el valor: ' + valor + "<br/>"
                                             }

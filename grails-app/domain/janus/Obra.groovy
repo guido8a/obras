@@ -126,6 +126,7 @@ class Obra implements Serializable {
     double indiceCampo = 0
     double indiceCampamento = 0
     double indiceGastoObra = 0
+    String coordenadasVia
 
     static auditable = true
     static mapping = {
@@ -258,6 +259,7 @@ class Obra implements Serializable {
             indiceCampo column: 'indicmpo'
             indiceCampamento column: 'indicmpm'
             indiceGastoObra column: 'indigaob'
+            coordenadasVia column: 'obracrvi'
 
         }
     }
@@ -386,6 +388,8 @@ class Obra implements Serializable {
         indiceCampo(blank:true, nullable:true)
         indiceCampamento(blank:true, nullable:true)
         indiceGastoObra(blank:true, nullable:true)
+
+        coordenadasVia(blank:true, nullable:true)
     }
 
     String toString() {

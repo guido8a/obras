@@ -3743,7 +3743,8 @@ class PlanillaController extends janus.seguridad.Shield {
 
 
 
-
+                println "select sum(descuentos) from Planilla where contrato = ${plnl.contrato.id} and id <> ${plnl.id} and " +
+                        "fechaPresentacion < ${plnl.fechaPresentacion} and tipoContrato = ${plnl.tipoContrato}"
                 def totDsct = Planilla.executeQuery("select sum(descuentos) from Planilla where contrato = :c and id <> :p" +
                         " and fechaPresentacion < :f and tipoContrato = :t",
                         [c: plnl.contrato, p: plnl.id, f: plnl.fechaPresentacion, t: plnl.tipoContrato])
@@ -3760,6 +3761,7 @@ class PlanillaController extends janus.seguridad.Shield {
                 }
 
 //                dsct   = Math.round(plnl.valor*(plnl.contrato.porcentajeAnticipo/100)*100)/100
+                println "totDsct[0]: ${totDsct[0]}, dsct: $dsct"
                 def resto  = Math.round((plnl.contrato.anticipo - totDsct[0])*100)/100
                 println "totDsct[0]: ${totDsct[0]}, resto: ${resto}, dsct: $dsct"
 
@@ -3958,7 +3960,7 @@ class PlanillaController extends janus.seguridad.Shield {
                     fecha = preciosService.primerDiaDelMes(fecha) - 15
                     prin = PeriodosInec.findByFechaInicioLessThanAndFechaFinGreaterThan(fecha, fecha)
 //                    existe = preciosService.verificaIndicesPeriodo(plnl.contrato, prin).size() == 0
-                    existe = preciosService.verificaIndicesPeriodo(plnl.id, prin).size() == 0
+                    existe = preciosService.verificaIndicesPeriodo(plnl.id, prin).size() == 0  /** si retorna 0 ok **/
                     if(!max--){
                         return null
                     }
