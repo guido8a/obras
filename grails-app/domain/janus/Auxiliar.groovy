@@ -19,6 +19,7 @@ class Auxiliar implements Serializable {
     String memo2
     String notaMemoAd
     String notaPieAd
+    String logo
     static auditable = true
     static mapping = {
         table 'auxl'
@@ -46,6 +47,7 @@ class Auxiliar implements Serializable {
             memo2 column: 'prspmem2'
             notaMemoAd column: 'notammad'
             notaPieAd column: 'notantad'
+            logo column: 'auxllogo'
         }
     }
     static constraints = {
@@ -66,5 +68,6 @@ class Auxiliar implements Serializable {
         memo2(size: 1..200, blank: true, nullable: true, attributes: [title: 'memo2'])
         notaMemoAd(size: 1..255, blank: true, nullable: true, attributes: [title: 'notammad'])
         notaPieAd(size: 1..255, blank: true, nullable: true, attributtes: [title: 'notantad'])
+        logo(size: 1..31, blank: true, nullable: true)
     }
 }

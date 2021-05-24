@@ -1,4 +1,4 @@
-<%@ page import="janus.Unidad" %>
+<%@ page import="janus.Auxiliar; janus.Unidad" %>
 <%@ page import="janus.Parametros" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
@@ -87,7 +87,8 @@
 
     <div class="dialog ui-corner-all logo">
         <div style="text-align: center; margin-top: 40px; color: #810;">
-            <img src="${resource(dir: 'images', file: 'logotipo.png')}"/>
+            %{--<img src="${resource(dir: 'images', file: 'logotipo.png')}"/>--}%
+            <img src="${resource(dir: 'images', file: "${janus.Auxiliar.get(1).logo}")}"/>
         </div>
         <div style="text-align: center ; color:#002040; margin-top:0px; ">
             %{--(Logotipo proporcionado por la COORDINACION DE INFORMACION Y MEDIOS del GADLR)--}%
