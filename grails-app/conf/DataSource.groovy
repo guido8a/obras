@@ -24,7 +24,13 @@ environments {
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_simul"
 //            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_riego"
 //            url = "jdbc:postgresql://127.0.0.1:5432/obras"
-            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_brre1"
+//            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_brre2"
+//            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_brre"  //ok
+
+//            url = "jdbc:postgresql://127.0.0.1:5432/gadlr_envial"  //ok
+            
+            url = "jdbc:postgresql://127.0.0.1:5432/consugez"  //ok
+
             username = "postgres"
             password = "postgres"
         }
@@ -154,6 +160,44 @@ environments {
             url = "jdbc:postgresql://127.0.0.1:5432/oferentes"
             username = "postgres"
             password = "januslr"
+            dbCreate = 'update'
+        }
+    }
+
+    servicio {
+        dataSource {
+            dbCreate = "update"
+            url = "jdbc:postgresql://127.0.0.1:5432/obras"
+            username = "postgres"
+            password = "steinsgate"
+            properties {
+               // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
+               jmxEnabled = true
+               initialSize = 5
+               maxActive = 10
+               minIdle = 5
+               maxIdle = 5
+               maxWait = 10000
+               maxAge = 10 * 60000
+               timeBetweenEvictionRunsMillis = 5000
+               minEvictableIdleTimeMillis = 60000
+               validationQuery = "SELECT 1"
+               validationQueryTimeout = 3
+               validationInterval = 15000
+               testOnBorrow = true
+               testWhileIdle = true
+               testOnReturn = false
+               jdbcInterceptors = "ConnectionState"
+               defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
+            }
+        }
+
+        dataSource_oferentes {
+            dialect = org.hibernate.dialect.PostgreSQLDialect
+            driverClassName = 'org.postgresql.Driver'
+            url = "jdbc:postgresql://127.0.0.1:5432/oferentes"
+            username = "postgres"
+            password = "steinsgate"
             dbCreate = 'update'
         }
     }
