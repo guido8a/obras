@@ -452,12 +452,21 @@
                                     Valor
                                 </div>
 
-                                <div class="span3">
-                                    <input type="text" name="noPagoValor" value="${planillaInstance?.noPagoValor}">
+                                <div class="span2">
+                                    <input type="text" name="noPagoValor" value="${planillaInstance?.noPagoValor}" class="span2">
                                 </div>
                             </div>
 
+                        <div class="row" style="margin-bottom: 10px;" id="divNoPago">
+                            <div class='span2 formato'>
+                                Coordenadas de la vía terminada
+                            </div>
 
+                            <div class="span8">
+                                <g:textArea maxlength="255" name="coordenadasVia" class="span9"
+                                            value="${planillaInstance?.coordenadasVia}"/>
+                            </div>
+                        </div>
                     </fieldset>
                 </g:form>
             </g:if>

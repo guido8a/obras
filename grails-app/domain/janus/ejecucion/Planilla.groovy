@@ -93,6 +93,8 @@ class Planilla {
     String garantiaTrabajo
     Date fechaSuscripcionTrabajo
 
+    String coordenadasVia
+
     static mapping = {
         table 'plnl'
         cache usage: 'read-write', include: 'non-lazy'
@@ -190,6 +192,8 @@ class Planilla {
             garantiaTrabajo column: 'plnlotgr'
             fechaSuscripcionTrabajo column: 'plnlotfc'
 
+            coordenadasVia column: 'plnlcrvi'
+
 
         }
     }
@@ -266,6 +270,7 @@ class Planilla {
         fechaCertificacionTrabajo(blank: true, nullable: true)
         garantiaTrabajo(blank: true, nullable: true)
         fechaSuscripcionTrabajo(blank: true, nullable: true)
+        coordenadasVia(blank: true, nullable: true)
 
     }
 
