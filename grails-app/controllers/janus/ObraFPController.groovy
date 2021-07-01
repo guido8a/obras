@@ -146,26 +146,24 @@ class ObraFPController {
    *  Si hay desglose de transporte o si hay transporte especial se debe crear la columna chofer.
    */
         //<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        def camioneta = Item.get(Obra.get(obra__id).transporteCamioneta?.id)
-        def acemila   = Item.get(Obra.get(obra__id).transporteAcemila?.id)
-        def trnpEspecial =  camioneta || acemila
-        println "3. tranporte especial: " + trnpEspecial
-        transporteEspecial(obra__id)
-
-        if (trnpEspecial){
-            def res = verifica_precios(obra__id)
-            if (res.size() > 0) {
-                def msg = "<span style='color:red'>Errores detectados</span><br> <span class='label-azul'>No se encontraron precios para los siguientes items:</span><br>"
-                msg += res.collect { "<b>ITEM</b>: $it.key ${it.value.join(", <b>Lista</b>: ")}" }.join('<br>')
-                render msg
-                return
-            }
-        }
-
-        /* vuelve a ejecutar para incluir rubors de tranpsorte especial */
-//        println "ejecuta sp_obra_v2"
-        if (Obra.get(obra__id).estado == "N") ejecutaSQL("select * from sp_obra_v2(${obra__id}, ${sbpr})")
-//        ejecutaSQL("select * from sp_obra_v2(${obra__id}, ${sbpr})")
+//        def camioneta = Item.get(Obra.get(obra__id).transporteCamioneta?.id)
+//        def acemila   = Item.get(Obra.get(obra__id).transporteAcemila?.id)
+//        def trnpEspecial =  camioneta || acemila
+//        println "3. tranporte especial: " + trnpEspecial
+//        transporteEspecial(obra__id)
+//
+//        if (trnpEspecial){
+//            def res = verifica_precios(obra__id)
+//            if (res.size() > 0) {
+//                def msg = "<span style='color:red'>Errores detectados</span><br> <span class='label-azul'>No se encontraron precios para los siguientes items:</span><br>"
+//                msg += res.collect { "<b>ITEM</b>: $it.key ${it.value.join(", <b>Lista</b>: ")}" }.join('<br>')
+//                render msg
+//                return
+//            }
+//        }
+//
+//        /* vuelve a ejecutar para incluir rubors de tranpsorte especial */
+//        if (Obra.get(obra__id).estado == "N") ejecutaSQL("select * from sp_obra_v2(${obra__id}, ${sbpr})")
 
         //<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

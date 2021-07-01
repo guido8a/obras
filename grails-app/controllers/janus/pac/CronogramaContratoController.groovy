@@ -663,7 +663,8 @@ class CronogramaContratoController extends janus.seguridad.Shield {
         def totl = ""
         println params
 
-        def sqlTx = "select vocr__id id, vocrordn, itemnmbr, unddcdgo, vocrcntd::numeric(14,2), vocrpcun, vocrsbtt from vocr, item, undd " +
+        def sqlTx = "select vocr__id id, vocrordn, itemnmbr, unddcdgo, vocrcntd::numeric(14,2), vocrpcun, vocrsbtt " +
+                "from vocr, item, undd " +
                 "where item.item__id = vocr.item__id and undd.undd__id = item.undd__id and " +
                 "cntr__id = ${params.cntr} "
         if(params.sbpr != '0') {

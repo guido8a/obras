@@ -3690,6 +3690,7 @@ class PlanillaController extends janus.seguridad.Shield {
     }
 
     def errores() {
+        println "--> $params"
         return [params: params]
     }
 

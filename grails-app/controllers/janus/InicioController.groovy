@@ -255,7 +255,7 @@ class InicioController extends janus.seguridad.Shield {
         cnta = 0
         if (rgst[1].toString().size() > 0) {
             grpo = rgst[0] == 'M' ? '1' : rgst[0] == 'MO' ? '2' : '3'
-            undd = rgst[0] == 'u' ? '22' : rgst[0] == 'm' ? '12' : '6'
+            undd = rgst[5] == 'u' ? '22' : rgst[5] == 'm' ? '12' : '6'
             sqlsbgr = "select sbgr__id from sbgr where grpo__id = $grpo and sbgrcdgo ilike '${rgst[1].toString().trim()}'"
             println "sqlSbgr: $sqlsbgr"
             sbgr = cn.rows(sqlsbgr.toString())[0]?.sbgr__id
