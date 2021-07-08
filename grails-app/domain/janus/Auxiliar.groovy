@@ -17,6 +17,7 @@ class Auxiliar implements Serializable {
     String notaFormula
     String titulo
     String memo2
+    String memo3
     String notaMemoAd
     String notaPieAd
     String logo
@@ -45,6 +46,7 @@ class Auxiliar implements Serializable {
             nota column: 'frplnota'
             titulo column: 'prspttlo'
             memo2 column: 'prspmem2'
+            memo3 column: 'prspmem3'
             notaMemoAd column: 'notammad'
             notaPieAd column: 'notantad'
             logo column: 'auxllogo'
@@ -66,6 +68,7 @@ class Auxiliar implements Serializable {
         notaFormula(size: 1..200, blank: true, nullable: true, attributes: [title: 'notaFormula'])
         titulo(size: 1..100, blank: true, nullable: true, attributes: [title: 'titulo'])
         memo2(size: 1..200, blank: true, nullable: true, attributes: [title: 'memo2'])
+        memo3(size: 0..200, blank: true, nullable: true, attributes: [title: 'memo3'])
         notaMemoAd(size: 1..255, blank: true, nullable: true, attributes: [title: 'notammad'])
         notaPieAd(size: 1..255, blank: true, nullable: true, attributtes: [title: 'notantad'])
         logo(size: 1..31, blank: true, nullable: true)

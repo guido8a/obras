@@ -30,6 +30,10 @@ class Parametros implements Serializable {
     double inflacion
     int valida
 
+    String titulo1
+    String titulo2
+    String logo
+
     Persona subdirector
 
     double indiceAlquiler = 0
@@ -85,6 +89,10 @@ class Parametros implements Serializable {
             indiceSeguridad column: 'indisgro'
             indiceCampo column: 'indicmpo'
             indiceCampamento column: 'indicmpm'
+
+            titulo1 column: 'pauxttl1'
+            titulo2 column: 'pauxttl2'
+            logo column: 'pauxlogo'
         }
     }
     static constraints = {
@@ -122,5 +130,9 @@ class Parametros implements Serializable {
         indiceSeguridad(blank:true, nullable:true)
         indiceCampo(blank:true, nullable:true)
         indiceCampamento(blank:true, nullable:true)
+
+        titulo1(blank: true, nullable: true, size: 0..127)
+        titulo2(blank: true, nullable: true, size: 0..127)
+        logo(blank: true, nullable: true, size: 0..63)
     }
 }

@@ -4,36 +4,21 @@
     <bookmark url="file://$PROJECT_DIR$/grails-app/controllers/janus/ReportesRubrosController.groovy" line="2924" mnemonic="6" />
     <bookmark url="file://$PROJECT_DIR$/grails-app/views/variables/variables_ajax.gsp" line="909" mnemonic="5" />
     <bookmark url="file://$PROJECT_DIR$/grails-app/views/inicio/variables.gsp" line="156" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/grails-app/views/reportes3/imprimirTablaSub.gsp" line="135" mnemonic="3" />
-    <bookmark url="file://$PROJECT_DIR$/grails-app/controllers/janus/ReportesPlanillasController.groovy" line="3613" mnemonic="4" />
-    <bookmark url="file://$PROJECT_DIR$/grails-app/views/contrato/tablaFormula_ajax.gsp" line="216" mnemonic="2" />
-    <bookmark url="file://$PROJECT_DIR$/grails-app/views/obra/registroObra.gsp" line="2198" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/grails-app/controllers/janus/ejecucion/ReportePlanillas3Controller.groovy" line="4788" mnemonic="4" />
+    <bookmark url="file://$PROJECT_DIR$/grails-app/controllers/janus/ejecucion/ReportePlanillas3Controller.groovy" line="5110" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/grails-app/controllers/janus/ejecucion/ReportePlanillas3Controller.groovy" line="4696" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/grails-app/views/persona/pass_ajax.gsp" line="104" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d12dc821-beb5-425f-ac9e-8f7f3143b00d" name="Default" comment="cargar excel cronograma">
-      <change beforePath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/ContratoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/ContratoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/InicioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/InicioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/ejecucion/ReportePlanillas3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/ejecucion/ReportePlanillas3Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/pac/CronogramaContratoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/pac/CronogramaContratoController.java" afterDir="false" />
+    <list default="true" id="d12dc821-beb5-425f-ac9e-8f7f3143b00d" name="Default" comment="registro obra">
+      <change beforePath="$PROJECT_DIR$/grails-app/domain/janus/Auxiliar.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/janus/Auxiliar.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/domain/janus/Parametros.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/janus/Parametros.groovy" afterDir="false" />
     </list>
     <list id="fd0d0884-aba2-49f5-8a37-3072f6dd349c" name="no_commit" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.slcache/.index" beforeDir="false" afterPath="$PROJECT_DIR$/.slcache/.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obras-grailsPlugins.iml" beforeDir="false" afterPath="$PROJECT_DIR$/obras-grailsPlugins.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obras.iml" beforeDir="false" afterPath="$PROJECT_DIR$/obras.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/stacktrace.log" beforeDir="false" afterPath="$PROJECT_DIR$/target/stacktrace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/DescargasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/DescargasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/ElementosTagLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/ElementosTagLib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/Reportes4Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/Reportes4Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/RubroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/RubroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/ejecucion/Planilla.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/ejecucion/Planilla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/stubs/janus/ejecucion/PlanillaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/stubs/janus/ejecucion/PlanillaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/work/web.xml.tmp" beforeDir="false" afterPath="$PROJECT_DIR$/target/work/web.xml.tmp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$USER_HOME$/.grails/" />
@@ -69,6 +54,36 @@
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gadlr@192.168.100.9" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gadlr: database" type="162271b6:PgImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gadlr@192.168.100.9" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gadlr: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gadlr@192.168.100.9" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gadlr: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gadlr@192.168.100.9" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gadlr: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="obras dev" type="feb32156:DbDataSourceImpl" />
       </path>
     </expand>
@@ -80,58 +95,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaEjecucion/indexNuevo.gsp">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/Reportes4Controller.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3060">
-              <caret line="204" column="41" selection-start-line="204" selection-start-column="41" selection-end-line="204" selection-end-column="41" />
+            <state relative-caret-position="14280">
+              <caret line="961" column="38" selection-start-line="961" selection-start-column="38" selection-end-line="961" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/obra/registroObra.gsp">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/aseguradora/form_ajax.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="72" column="7" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="7" />
+            <state relative-caret-position="2565">
+              <caret line="171" column="34" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/copiarPolinomica.gsp">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/registroContrato.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2325">
-              <caret line="155" column="87" selection-start-line="155" selection-start-column="87" selection-end-line="155" selection-end-column="87" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ContratoController.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="1481" column="22" selection-start-line="1481" selection-start-column="22" selection-end-line="1481" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ReportesPlanillasController.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="3479" selection-start-line="3479" selection-end-line="3479" />
-              <folding>
-                <element signature="e#0#57#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/editarIndiceC_ajax.gsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+            <state relative-caret-position="202">
+              <caret line="1088" column="29" selection-start-line="1088" selection-start-column="29" selection-end-line="1088" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -139,26 +124,66 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/verContrato.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11010">
-              <caret line="734" column="56" selection-start-line="734" selection-start-column="56" selection-end-line="734" selection-end-column="56" />
+            <state relative-caret-position="18120">
+              <caret line="1208" column="109" selection-start-line="1208" selection-start-column="109" selection-end-line="1208" selection-end-column="109" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/tablaFormula_ajax.gsp">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ReportesRubrosController.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20880">
+              <caret line="1414" column="52" selection-start-line="1414" selection-start-column="52" selection-end-line="1414" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/Auxiliar.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="768">
+              <caret line="68" column="13" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/RubroController.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="235" column="16" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#22#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/322aa387-b8d7-43af-a637-a89f438ae1c8/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ObraController.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="11010">
+              <caret line="736" column="52" selection-start-line="736" selection-start-column="52" selection-end-line="736" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/obra/mapaObra.gsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2385">
-              <caret line="159" column="68" selection-start-line="159" selection-start-column="68" selection-end-line="159" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaEjecucion/tablaNueva.gsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+              <caret line="159" column="43" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -167,22 +192,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>btnReporte</find>
-      <find>imprimir orden de i</find>
-      <find>Dirección Calle</find>
-      <find>imprimir</find>
-      <find>funcionjs</find>
-      <find>number</find>
-      <find>copiarObraOfe</find>
-      <find>copiarDialogOfe</find>
-      <find>avance</find>
-      <find>btnVar</find>
-      <find>segu</find>
-      <find>flash.mes</find>
-      <find>buscarDialog</find>
-      <find>lista</find>
-      <find>btn-lista</find>
-      <find>modalTitle_busqueda</find>
       <find>hasc</find>
       <find>dialog</find>
       <find>input_codigo</find>
@@ -190,13 +199,29 @@
       <find>errores de</find>
       <find>editarvo</find>
       <find>voc</find>
-      <find>excel</find>
       <find>divTabla</find>
       <find>delegado</find>
       <find>btnDelFisc</find>
       <find>btnEditarIndice</find>
       <find>modal_tittle_var</find>
       <find>spanError</find>
+      <find>imprimir</find>
+      <find>init</find>
+      <find>imprimir nuev</find>
+      <find>fecha de</find>
+      <find>2</find>
+      <find>imprimir nuevo</find>
+      <find>date</find>
+      <find>excel</find>
+      <find>is</find>
+      <find>is=</find>
+      <find>&lt;i</find>
+      <find>passwordAct</find>
+      <find>passwordVerif</find>
+      <find>map</find>
+      <find>mapaPichincha</find>
+      <find>initialize</find>
+      <find>keycode</find>
     </findStrings>
     <replaceStrings>
       <replace>logo_reportes.png</replace>
@@ -209,8 +234,8 @@
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/grails-app/views/obra</dir>
-      <dir>$PROJECT_DIR$/grails-app/views</dir>
       <dir>$PROJECT_DIR$/grails-app/domain</dir>
+      <dir>$PROJECT_DIR$/grails-app/views</dir>
       <dir>$PROJECT_DIR$/grails-app/controllers</dir>
     </dirStrings>
   </component>
@@ -233,15 +258,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/grails-app/views/reportes4/registradas.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/reportes4/tablaPresupuestadas.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/reportes5/tablaAvance.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/etapa/list.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/auxiliar/list.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/concurso/concursos.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/concurso/list.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/reportes5/avance.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/tipoLista/list.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/tipoMulta/list.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/concurso/form_ajax.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/tipoPlazo/list.gsp" />
@@ -278,12 +294,21 @@
         <option value="$PROJECT_DIR$/grails-app/views/cronogramaContrato/nuevoCronograma.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/cronogramaContrato/mensajeUploadCronograma.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/cronogramaContrato/subirExcelCronograma.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/janus/pac/CronogramaContratoController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/contrato/editarIndice_ajax.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/contrato/editarIndiceC_ajax.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/contrato/tablaFormula_ajax.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/janus/ContratoController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/janus/ReportesPlanillasController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/planilla/detalleCosto.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/janus/pac/CronogramaContratoController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/janus/ejecucion/ReportePlanillas3Controller.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/janus/Reportes4Controller.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/obra/registroObra.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/domain/janus/Parametros.groovy" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/322aa387-b8d7-43af-a637-a89f438ae1c8/console.sql" />
+        <option value="$PROJECT_DIR$/grails-app/domain/janus/Auxiliar.groovy" />
       </list>
     </option>
   </component>
@@ -297,7 +322,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -305,21 +329,22 @@
               <item name="obras" type="b2602c69:ProjectViewProjectNode" />
               <item name="obras" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="obras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="obras" type="462c0819:PsiDirectoryNode" />
-              <item name="web-app" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Grails">
         <subPane>
           <expand>
             <path>
               <item name="" type="f1a0d8d8:GrailsRootNode" />
               <item name="" type="3c7b8529:GrailsApplicationNode" />
+            </path>
+            <path>
+              <item name="" type="f1a0d8d8:GrailsRootNode" />
+              <item name="" type="3c7b8529:GrailsApplicationNode" />
+              <item name="Domain Classes" type="75e8b6a9:GrailsArtefactHandlerNode" />
             </path>
             <path>
               <item name="" type="f1a0d8d8:GrailsRootNode" />
@@ -336,18 +361,7 @@
               <item name="" type="f1a0d8d8:GrailsRootNode" />
               <item name="" type="3c7b8529:GrailsApplicationNode" />
               <item name="views" type="a8c2cad5:GrailsPsiDirectoryNode" />
-              <item name="cronogramaEjecucion" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="" type="f1a0d8d8:GrailsRootNode" />
-              <item name="" type="3c7b8529:GrailsApplicationNode" />
-              <item name="views" type="a8c2cad5:GrailsPsiDirectoryNode" />
-              <item name="obra" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="" type="f1a0d8d8:GrailsRootNode" />
-              <item name="" type="3c7b8529:GrailsApplicationNode" />
-              <item name="conf" type="a8c2cad5:GrailsPsiDirectoryNode" />
+              <item name="reportes4" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="" type="f1a0d8d8:GrailsRootNode" />
@@ -366,7 +380,7 @@
     <property name="SearchEverywhereHistoryKey" value="obra&#9;FILE&#9;file:///home/grails/aplicaciones/git-hub/obras/grails-app/views/obra/registroObra.gsp&#10;registroObra&#9;FILE&#9;file:///home/grails/aplicaciones/git-hub/obras/grails-app/views/obra/registroObra.gsp" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="database.console.LAST_STATE" value="false" />
+    <property name="database.console.LAST_STATE" value="true" />
     <property name="grails.last.selected.app.url" value="file://$PROJECT_DIR$" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/grails-app/conf" />
@@ -521,112 +535,49 @@
       <workItem from="1603905503601" duration="9916000" />
       <workItem from="1603983061902" duration="391000" />
       <workItem from="1603984442120" duration="2252000" />
-      <workItem from="1605536210812" duration="1965000" />
-    </task>
-    <task id="LOCAL-00006" summary="cambios varios">
-      <created>1587596449314</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1587596449314</updated>
-    </task>
-    <task id="LOCAL-00007" summary="cambios varios">
-      <created>1587659751595</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1587659751595</updated>
-    </task>
-    <task id="LOCAL-00008" summary="cambios varios">
-      <created>1587661273661</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1587661273661</updated>
-    </task>
-    <task id="LOCAL-00009" summary="cambios varios">
-      <created>1587662391236</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1587662391236</updated>
-    </task>
-    <task id="LOCAL-00010" summary="cambios varios">
-      <created>1587744475820</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1587744475820</updated>
-    </task>
-    <task id="LOCAL-00011" summary="modificado texto en form de parrafo acta">
-      <created>1587746667921</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1587746667921</updated>
-    </task>
-    <task id="LOCAL-00012" summary="reporte rubros con vae">
-      <created>1588344921157</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1588344921157</updated>
-    </task>
-    <task id="LOCAL-00013" summary="reporte rubros con vae">
-      <created>1588433634190</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1588433634190</updated>
-    </task>
-    <task id="LOCAL-00014" summary="reporte rubros con transporte">
-      <created>1588466085028</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1588466085028</updated>
-    </task>
-    <task id="LOCAL-00015" summary="reporte rubros desde registroObra">
-      <created>1588613151987</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1588613151987</updated>
-    </task>
-    <task id="LOCAL-00016" summary="reporte rubros vae desde registroObra">
-      <created>1588620345456</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1588620345456</updated>
-    </task>
-    <task id="LOCAL-00017" summary="removido locale de los campos de numeros">
-      <created>1588632940144</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1588632940144</updated>
-    </task>
-    <task id="LOCAL-00018" summary="reporte rubros en volumenes de obra y grupo de rubros (no completo)">
-      <created>1588721341176</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1588721341176</updated>
-    </task>
-    <task id="LOCAL-00019" summary="reporte consolidado desde arbol de grupo de rubros">
-      <created>1588886405414</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1588886405414</updated>
-    </task>
-    <task id="LOCAL-00020" summary="registro de rubros">
-      <created>1589489054700</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1589489054700</updated>
+      <workItem from="1605536210812" duration="7694000" />
+      <workItem from="1605559607764" duration="48000" />
+      <workItem from="1605736324333" duration="20000" />
+      <workItem from="1606410240367" duration="887000" />
+      <workItem from="1606922048758" duration="181000" />
+      <workItem from="1606924483541" duration="127000" />
+      <workItem from="1609435254004" duration="81000" />
+      <workItem from="1609941689265" duration="38000" />
+      <workItem from="1611594159594" duration="238000" />
+      <workItem from="1612280398388" duration="9192000" />
+      <workItem from="1612361834033" duration="13378000" />
+      <workItem from="1612383756162" duration="1643000" />
+      <workItem from="1612385641976" duration="2556000" />
+      <workItem from="1612447761340" duration="8868000" />
+      <workItem from="1612534876014" duration="3507000" />
+      <workItem from="1612546669991" duration="1879000" />
+      <workItem from="1612883204570" duration="2254000" />
+      <workItem from="1612989078274" duration="46000" />
+      <workItem from="1612990588649" duration="113000" />
+      <workItem from="1613142777738" duration="1754000" />
+      <workItem from="1613150420999" duration="78000" />
+      <workItem from="1613151273453" duration="212000" />
+      <workItem from="1613666509818" duration="636000" />
+      <workItem from="1613671012813" duration="401000" />
+      <workItem from="1616097570307" duration="795000" />
+      <workItem from="1616514002760" duration="151000" />
+      <workItem from="1616514799624" duration="652000" />
+      <workItem from="1616531970919" duration="624000" />
+      <workItem from="1617990687002" duration="920000" />
+      <workItem from="1619117584462" duration="87000" />
+      <workItem from="1620059840588" duration="2583000" />
+      <workItem from="1620063345263" duration="11000" />
+      <workItem from="1620148410543" duration="622000" />
+      <workItem from="1620237820528" duration="4132000" />
+      <workItem from="1620333187057" duration="1017000" />
+      <workItem from="1620401966622" duration="250000" />
+      <workItem from="1620656862623" duration="410000" />
+      <workItem from="1620658203105" duration="733000" />
+      <workItem from="1620659389695" duration="1855000" />
+      <workItem from="1623079732652" duration="74000" />
+      <workItem from="1623257297479" duration="53000" />
+      <workItem from="1623791922250" duration="462000" />
+      <workItem from="1624372428591" duration="100000" />
     </task>
     <task id="LOCAL-00021" summary="documentos obra encabezado">
       <created>1589554364911</created>
@@ -866,11 +817,116 @@
       <option name="project" value="LOCAL" />
       <updated>1603987242340</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="firmas en reporte inicio de obra">
+      <created>1605541679992</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1605541679995</updated>
+    </task>
+    <task id="LOCAL-00056" summary="firmas en reporte inicio de obra">
+      <created>1605542101101</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1605542101101</updated>
+    </task>
+    <task id="LOCAL-00057" summary="firmas en reporte inicio de obra">
+      <created>1605543922450</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1605543922450</updated>
+    </task>
+    <task id="LOCAL-00058" summary="reporte planillas">
+      <created>1612373153463</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1612373153464</updated>
+    </task>
+    <task id="LOCAL-00059" summary="reporte planillas">
+      <created>1612382421828</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1612382421829</updated>
+    </task>
+    <task id="LOCAL-00060" summary="reporte planillas">
+      <created>1612388415321</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1612388415329</updated>
+    </task>
+    <task id="LOCAL-00061" summary="reporte planillas">
+      <created>1612452651654</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1612452651656</updated>
+    </task>
+    <task id="LOCAL-00062" summary="reporte planillas">
+      <created>1612460901815</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1612460901815</updated>
+    </task>
+    <task id="LOCAL-00063" summary="reporte planillas">
+      <created>1612461527528</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1612461527528</updated>
+    </task>
+    <task id="LOCAL-00064" summary="reporte planillas">
+      <created>1612461850567</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1612461850567</updated>
+    </task>
+    <task id="LOCAL-00065" summary="reporte planillas">
+      <created>1612536462961</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1612536462961</updated>
+    </task>
+    <task id="LOCAL-00066" summary="reporte planillas">
+      <created>1612539238721</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1612539238721</updated>
+    </task>
+    <task id="LOCAL-00067" summary="reporte planillas">
+      <created>1612548550459</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1612548550459</updated>
+    </task>
+    <task id="LOCAL-00068" summary="reporte planillas firmas">
+      <created>1612884891006</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1612884891007</updated>
+    </task>
+    <task id="LOCAL-00069" summary="registro obra">
+      <created>1617992255925</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1617992255925</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="450949000" />
+    <option name="totallyTimeSpent" value="520346000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -885,7 +941,7 @@
     <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16061899" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16061899" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -897,7 +953,7 @@
       <window_info id="Web" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289183" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49839914" visible="true" weight="0.20640177" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49839914" weight="0.20640177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -911,7 +967,7 @@
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="IDEtalk Messages" order="14" />
       <window_info anchor="bottom" id="Database Changes" order="15" weight="0.3289183" />
-      <window_info anchor="bottom" id="Database Console" order="16" weight="0.19757174" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="16" visible="true" weight="0.22516556" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -919,7 +975,7 @@
       <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="right" id="Database" order="7" visible="true" weight="0.12966916" />
+      <window_info anchor="right" id="Database" order="7" visible="true" weight="0.14834578" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="right" id="Bean Validation" order="10" />
@@ -1015,10 +1071,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="reporte consolidado desde arbol de grupo de rubros" />
-    <MESSAGE value="registro de rubros" />
-    <MESSAGE value="documentos obra encabezado" />
-    <MESSAGE value="cambio html en crono de contrato" />
     <MESSAGE value="cambios varios para contratos" />
     <MESSAGE value="arreglo en calculo de variables" />
     <MESSAGE value="variables" />
@@ -1040,206 +1092,15 @@
     <MESSAGE value="cargar excel cronograma" />
     <MESSAGE value="indice" />
     <MESSAGE value="indices" />
-    <option name="LAST_COMMIT_MESSAGE" value="indices" />
+    <MESSAGE value="firmas en reporte inicio de obra" />
+    <MESSAGE value="reporte planillas" />
+    <MESSAGE value="reporte planillas firmas" />
+    <MESSAGE value="registro obra" />
+    <option name="LAST_COMMIT_MESSAGE" value="registro obra" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3b23d45a-f8fa-46b1-b155-f94bc48e86a1/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://3b23d45a-f8fa-46b1-b155-f94bc48e86a1/database/gadlr_prba2/schema/public/table/item" />
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Double.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://3b23d45a-f8fa-46b1-b155-f94bc48e86a1/database/gadlr_prba2/schema/public/table/vocr" />
-    <entry file="file://$PROJECT_DIR$/grails-app/views/composicion/formArchivo.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/composicion/mensajeUpload.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/pac/CronogramaContrato.groovy">
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/pac/CronogramaContratado.groovy">
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaContrato/mensajeUploadContrato.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/VolumenContrato.groovy">
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://3b23d45a-f8fa-46b1-b155-f94bc48e86a1/database/gadlr_prba2/schema/public/table/crcr" />
-    <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaContrato/editarVocr.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" selection-start-line="77" selection-end-line="82" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaContrato/nuevoCronograma.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="62" selection-start-line="68" selection-start-column="62" selection-end-line="68" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ComposicionController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5490">
-          <caret line="368" column="126" selection-start-line="368" selection-start-column="126" selection-end-line="368" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaContrato/mensajeUploadCronograma.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="91" selection-start-line="16" selection-start-column="91" selection-end-line="16" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaContrato/subirExcel.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="99" selection-start-line="28" selection-start-column="99" selection-end-line="28" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaContrato/subirExcelCronograma.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="91" column="39" selection-start-line="91" selection-start-column="39" selection-end-line="91" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/pac/CronogramaContratoController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="1268" column="68" selection-start-line="1268" selection-start-column="68" selection-end-line="1268" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/reportes4/registradas.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="141" column="96" selection-start-line="141" selection-start-column="96" selection-end-line="141" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/reportes4/tablaRegistradas.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2685">
-          <caret line="179" column="91" selection-start-line="179" selection-start-column="91" selection-end-line="179" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/Reportes4Controller.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="1140" column="44" selection-start-line="1140" selection-start-column="44" selection-end-line="1140" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/DataSource.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="61" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/pac/CronogramaEjecucionController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3722">
-          <caret line="1429" column="64" selection-start-line="1429" selection-start-column="64" selection-end-line="1429" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#63#1" expanded="true" />
-            <element signature="e#0#65#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/delegadoFiscalizacion.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="49" lean-forward="true" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/Indice.groovy">
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/ejecucion/FormulaPolinomicaContractual.groovy">
-      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/indc">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/tpin">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/indc" />
+    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/tpin" />
     <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/editarIndice_ajax.gsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1251,13 +1112,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
           <caret line="204" column="41" selection-start-line="204" selection-start-column="41" selection-end-line="204" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/obra/registroObra.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="72" column="7" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1275,20 +1129,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/frpl">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/verContrato.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11010">
-          <caret line="734" column="56" selection-start-line="734" selection-start-column="56" selection-end-line="734" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/frpl" />
     <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/tablaFormula_ajax.gsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2385">
@@ -1303,9 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/322aa387-b8d7-43af-a637-a89f438ae1c8/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ContratoController.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1313,12 +1151,299 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/planilla/listAdmin.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5955">
+          <caret line="397" column="93" selection-start-line="397" selection-start-column="93" selection-end-line="397" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/pac/Proveedor.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/planilla/detalleCosto.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2445">
+          <caret line="163" column="33" selection-start-line="163" selection-start-column="33" selection-end-line="163" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/acta/form.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="77" selection-start-line="14" selection-start-column="77" selection-end-line="14" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ejecucion/PlanillaController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53220">
+          <caret line="3553" column="36" selection-start-line="3553" selection-start-column="36" selection-end-line="3553" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/taglib/janus/ElementosTagLib.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/DataSource.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="36" column="66" lean-forward="true" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/cntr" />
+    <entry file="jar://$PROJECT_DIR$/lib/jxl.jar!/jxl/WorkbookSettings.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://322aa387-b8d7-43af-a637-a89f438ae1c8/database/gadlr/schema/public/table/vocr" />
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/pac/CronogramaContratoController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="922" column="43" selection-start-line="922" selection-start-column="43" selection-end-line="922" selection-end-column="43" />
+          <folding>
+            <element signature="e#19#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/cronogramaContrato/editarVocr.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/Reportes6Controller.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="356" column="12" selection-start-line="356" selection-start-column="12" selection-end-line="356" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/ejecucion/Planilla.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/planilla/listFiscalizador.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4035">
+          <caret line="269" column="83" selection-start-line="269" selection-start-column="83" selection-end-line="269" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ReportesPlanillasController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="3479" selection-start-line="3479" selection-end-line="3479" />
+        <state relative-caret-position="12420">
+          <caret line="842" column="54" selection-start-line="842" selection-start-column="54" selection-end-line="842" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/Contrato.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="83" column="29" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="29" />
           <folding>
-            <element signature="e#0#57#1" expanded="true" />
+            <element signature="e#15#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ejecucion/ReportePlanillas3Controller.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="4728" column="80" selection-start-line="4728" selection-start-column="80" selection-end-line="4728" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/jxl.jar!/jxl/write/WritableSheet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/reportes4/tablaPresupuestadas.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="794">
+          <caret line="130" column="73" selection-start-line="130" selection-start-column="73" selection-end-line="130" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/documentosObra/documentosObra.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25005">
+          <caret line="1667" column="24" selection-start-line="1667" selection-start-column="24" selection-end-line="1667" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/canton/arbol.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6465">
+          <caret line="431" column="66" selection-start-line="431" selection-start-column="66" selection-end-line="431" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/CantonController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="357" column="55" selection-start-line="357" selection-start-column="55" selection-end-line="357" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/obra/registroObra.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18795">
+          <caret line="1183" column="4" selection-start-line="1183" selection-start-column="4" selection-end-line="1183" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/persona/form_ajax.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4276" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/persona/list.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2295">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/persona/listOferente.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4365">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/persona/pass_ajax.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="168" column="61" lean-forward="true" selection-start-line="168" selection-start-column="61" selection-end-line="168" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/reportes4/registradas.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="141" column="92" selection-start-line="141" selection-start-column="92" selection-end-line="141" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/reportes4/tablaRegistradas.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="175" column="86" selection-start-line="175" selection-start-column="86" selection-end-line="175" selection-end-column="86" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/Parametros.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1395">
+          <caret line="93" column="36" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/Reportes4Controller.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14280">
+          <caret line="961" column="38" selection-start-line="961" selection-start-column="38" selection-end-line="961" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/aseguradora/form_ajax.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2565">
+          <caret line="171" column="34" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/verContrato.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18120">
+          <caret line="1208" column="109" selection-start-line="1208" selection-start-column="109" selection-end-line="1208" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ReportesRubrosController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20880">
+          <caret line="1414" column="52" selection-start-line="1414" selection-start-column="52" selection-end-line="1414" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/322aa387-b8d7-43af-a637-a89f438ae1c8/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/ObraController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11010">
+          <caret line="736" column="52" selection-start-line="736" selection-start-column="52" selection-end-line="736" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/obra/mapaObra.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2385">
+          <caret line="159" column="43" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/contrato/registroContrato.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="1088" column="29" selection-start-line="1088" selection-start-column="29" selection-end-line="1088" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/janus/Auxiliar.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="68" column="13" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/janus/RubroController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="235" column="16" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#22#1" expanded="true" />
           </folding>
         </state>
       </provider>
