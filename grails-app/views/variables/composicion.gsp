@@ -221,9 +221,12 @@
                 <a href="#" class="btn btn-print btnExcel" data-id="${obra?.id}">
                     <i class="icon-table"></i> Excel
                 </a>
-                <g:link controller="reportes2" action="reporteExcelComposicionTotales" class="btn btn-print btnAdDirecta" id="${obra?.id}" params="[sp: sub, tipo: tipo]" title="Exportar a excel para definir las cantidades reales de Materiales, M.O. y Equipos">
+                <a href="#" class="btn btn-print btnAdmDirecta" data-id="${obra?.id}" title="Exportar a excel para definir las cantidades reales de Materiales, M.O. y Equipos">
                     <i class="icon-table"></i> Adm. Directa
-                </g:link>
+                </a>
+%{--                <g:link controller="reportes2" action="reporteExcelComposicionTotales" class="btn btn-print btnAdDirecta" id="${obra?.id}" params="[sp: sub, tipo: tipo]" title="Exportar a excel para definir las cantidades reales de Materiales, M.O. y Equipos">--}%
+%{--                    <i class="icon-table"></i> Adm. Directa--}%
+%{--                </g:link>--}%
             </div>
         </div>
     </g:if>
@@ -360,62 +363,23 @@
 <g:if test="${rend == 'screen'}">
     <script type="text/javascript">
 
-
         var url = "${resource(dir:'images', file:'spinner_24.gif')}";
         var spinner = $("<img style='margin-left:15px;' src='" + url + "' alt='Cargando...'/>");
 
-        // $('#spinner').bind('ajaxStart', function(){
-        //     $(this).show();
-        // }).bind('ajaxStop', function(){
-        //     $(this).hide();
-        // });
-
-
         $(".btnExcel").click(function () {
-            var $btnOrig = $(this).clone(true);
-            // $(this).replaceWith(spinner);
             $("#dlgLoad").dialog("open");
-            // var id = $(this).data("id");
-            %{--$.ajax({--}%
-            %{--    type: 'POST',--}%
-            %{--    url: "${createLink(controller: 'reportes2', action: 'reporteExcelComposicion')}",--}%
-            %{--    data:{--}%
-            %{--      id: '${obra?.id}',--}%
-            %{--      sp: '${sub}',--}%
-            %{--      tipo: '${tipo}'--}%
-            %{--    },--}%
-            %{--    success: function (msg) {--}%
-
-            %{--    }--}%
-                // cache: false,
-                // beforeSend: function(){
-                //     $("#spinner").show();
-                // },
-                // complete: function(){
-                //     $("#spinner").hide();
-                // },
-                // success: function(html){
-                //     $("#spinner").show();
-                // },
-                // // success: function(html){
-                // //     $('.info').append(html);
-                // // }
-            // });
-
-            // if (window.confirm("Do you really want to leave?")) {
-            //     $("#dlgLoad").dialog("close");
-                // window.open("exit.html", "Thanks for Visiting!");
-                location.href = "${g.createLink(controller: 'reportes2' ,action: 'reporteExcelComposicion',id: obra?.id)}?sp=${sub}" + "&tipo=" + '${tipo}'
+            location.href = "${g.createLink(controller: 'reportes2' ,action: 'reporteExcelComposicion',id: obra?.id)}?sp=${sub}" + "&tipo=" + '${tipo}'
             setTimeout(function () {
                 $("#dlgLoad").dialog("close");
-                // $(".btnExcel").replaceWith($btnOrig);
-            }, 2500);
-            // }
+            }, 3000);
+        });
 
-
-            %{--location.href = "${g.createLink(controller: 'reportes2' ,action: 'reporteExcelComposicion',id: obra?.id)}?sp=${sub}" + "&tipo=" + '${tipo}'--}%
-            // $(this).replaceWith(b2);
-            // $("#dlgLoad").dialog("close");
+        $(".btnAdmDirecta").click(function () {
+            $("#dlgLoad").dialog("open");
+            location.href = "${g.createLink(controller: 'reportes2' ,action: 'reporteExcelComposicionTotales',id: obra?.id)}?sp=${sub}" + "&tipo=" + '${tipo}'
+            setTimeout(function () {
+                $("#dlgLoad").dialog("close");
+            }, 3000);
         });
 
         $(function () {
