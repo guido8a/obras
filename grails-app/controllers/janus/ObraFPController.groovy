@@ -1084,13 +1084,13 @@ class ObraFPController {
         if (conTrnp) {
             tx_sql = "select rbpcpcun pcun from item_pcun_v2 (${obra.chofer.id}, '${obra.fechaPreciosRubros}', ${obra.lugar.id}," +
                     "${obra.listaPeso1.id}, ${obra.listaVolumen0.id}, ${obra.listaVolumen1.id}, ${obra.listaVolumen2.id}, ${obra.listaManoObra.id})"
-            //println "desgloseTrnp: " + tx_sql
+            println "desgloseTrnp: " + tx_sql
             cn.eachRow(tx_sql.toString()) { row ->
                 pu_chfr = row.pcun
             }
             tx_sql = "select rbpcpcun pcun from item_pcun_v2 (${obra.volquete.id}, '${obra.fechaPreciosRubros}', ${obra.lugar.id}," +
                     "${obra.listaPeso1.id}, ${obra.listaVolumen0.id}, ${obra.listaVolumen1.id}, ${obra.listaVolumen2.id}, ${obra.listaManoObra.id})"
-            //println "desgloseTrnp: " + tx_sql
+            println "desgloseTrnp: " + tx_sql
             cn.eachRow(tx_sql.toString()) { row ->
                 pu_vlqt = row.pcun
             }
